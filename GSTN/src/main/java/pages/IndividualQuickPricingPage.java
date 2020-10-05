@@ -202,7 +202,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 
 		
 		switchtoframe(driver, "display");    
-		//String winHandleBefore = driver.getWindowHandle();
 		selectFromDropdownByVisibleText(Product, dataRow.getProperty("Product"),"Product");
 		click(proceedBTN, "ProceedButton");
 		String parentWindow = driver.getWindowHandle();
@@ -221,7 +220,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 				Thread.sleep(2000);
 				switchtoframe(driver, "display");  
 		
-		//System.out.println(dataRow.getProperty("IntermediaryCode") +" "+dataRow.getProperty("Policy Tenure")+" "+dataRow.getProperty("Premium Frequency"));
 		
 		policytenure.sendKeys(Keys.END);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
@@ -540,8 +538,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		else
 			
-		
-		//switchtodefaultframe(driver);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		Reporter.log("");
 		Reporter.log("<B> -------------------------------------------</B>");
@@ -741,7 +737,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
 		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
 		Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
-		//Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterLoading(AfterOPD)"));
 		Assert.assertEquals(taxamountElementval, dataRow.getProperty("GST").replace(",", ""));
 		Assert.assertEquals(premiuminclusiveofTAXval, dataRow.getProperty("Total Premium").replace(",", ""));
 		

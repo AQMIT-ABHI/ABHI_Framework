@@ -24,6 +24,7 @@ import pages.GSTNOnlinePortalPage;
 import pages.IndividualQuickPricingPage;
 import pages.IndividualQuoteCreationPage;
 import pages.MemberInfoPage;
+import pages.MultiIndividualPricingPage;
 import pages.MultiIndividualQuoteCreationPage;
 import pages.NSTPFamily_Flow;
 import pages.NSTPIndividualUWRFlow;
@@ -86,7 +87,7 @@ public class StepDefination extends GSTNOnlinePortalPage {
 	// Anmol 26-06-2020
 	public void fillquickMultiIndividualPricing(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
 			String stepGroup, CustomAssert customAssert) throws Exception {
-		MultiIndividualQuoteCreationPage quickquote = new MultiIndividualQuoteCreationPage(driver);
+		MultiIndividualPricingPage quickquote = new MultiIndividualPricingPage(driver);
 		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
 	}	
 	

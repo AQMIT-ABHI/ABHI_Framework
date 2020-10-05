@@ -197,7 +197,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		//EnteringQuoteDetails
 		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 		Thread.sleep(2000);
-		//System.out.println(dataRow.getProperty("IntermediaryCode"));
 		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
 		Thread.sleep(WaitTime.low);
 		click(intermediarysearch, " search ");
@@ -205,7 +204,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		Thread.sleep(2000);
 		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
 		driver.switchTo().window(parentWindow);
-		//System.out.println(parentWindow);
 		Thread.sleep(2000);
 		
 
@@ -276,11 +274,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String deductval1= deductval.replace(" ", "");
 		ArrayList<String> deductlist = new ArrayList<String>(Arrays.asList(deductval1.split("\\+")));
 		
-		/*
-		 * String dobval = dataRow.getProperty("DateOfBirth"); String dobval1=
-		 * dobval.replace(" ", ""); ArrayList<String> doblist = new
-		 * ArrayList<String>(Arrays.asList(dobval1.split("\\+")));
-		 */
 		
 		String ageval = dataRow.getProperty("Age");
 		String ageval1= ageval.replace(" ", "");
@@ -373,7 +366,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				
 				Thread.sleep(WaitTime.medium);
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
-				//driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")).sendKeys(name);
 				Thread.sleep(WaitTime.low);
 				
 				
@@ -385,14 +377,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," SumInsured ");
 				Thread.sleep(WaitTime.low);
 			
-				
-				/*
-				 * Thread.sleep(WaitTime.medium); clearAndSenKeysStale(driver.findElement(By.
-				 * xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," Self DOB ");
-				 * Thread.sleep(WaitTime.low);
-				 * driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).
-				 * sendKeys(Keys.TAB);
-				 */
 				
 				Thread.sleep(WaitTime.medium);
 				 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -626,9 +610,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			click(driver.findElement(By.xpath("(//input[@name='HSCB'])["+y+"]"))," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.low);
 			
-//			//click on OK Quote button
-//			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
-//			click(driver.findElement(By.xpath("//button[contains(text(),'OK')]")), "Ok ");
 			
 			Thread.sleep(35000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])["+y+"]")));	
@@ -702,8 +683,9 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		
 		
 		//after OPD assert
-		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
-		//Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterLoading(AfterOPD)"));
+		Assert.assertEquals(netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
+		Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
 		Assert.assertEquals(taxamountElementval, dataRow.getProperty("GST").replace(",", ""));
 		Assert.assertEquals(premiuminclusiveofTAXval, dataRow.getProperty("Total Premium").replace(",", ""));
 		
