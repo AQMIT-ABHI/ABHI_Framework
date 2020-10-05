@@ -1593,7 +1593,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		//after OPD assert
 		int netpremiumaftervalNO = (int) Float.parseFloat(netpremiumafterval);	
 		int netpremiumaftervalNOSheet = (int) Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));	
-		
 		verifyAssert(netpremiumaftervalNO, netpremiumaftervalNOSheet,"NetPremiumAfterDiscount(After Covers)");
 		//Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterLoading(AfterOPD)"));
 		

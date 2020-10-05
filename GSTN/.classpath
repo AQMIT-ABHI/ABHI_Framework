@@ -24,9 +24,9 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.testng.TESTNG_CONTAINER"/>
-	<classpathentry exported="true" kind="lib" path="D:/FrameWork_Old/FW/lib/fillo-1.19.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/FrameWork_Old/FW/lib/sikulix.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/FrameWork_Old/FW/lib/sikulixapi.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/FrameWork_Old/FW/lib/sikulixlibswin.jar"/>
+	<classpathentry kind="lib" path="D:/git/ABHI_Framework/GSTN/lib/fillo-1.19.jar"/>
+	<classpathentry kind="lib" path="D:/git/ABHI_Framework/GSTN/lib/sikulix.jar"/>
+	<classpathentry kind="lib" path="D:/git/ABHI_Framework/GSTN/lib/sikulixapi.jar"/>
+	<classpathentry kind="lib" path="D:/git/ABHI_Framework/GSTN/lib/sikulixlibswin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
