@@ -5,15 +5,15 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test verbose="2" name="TC_Family_Floater_005">
-    <parameter name="ScriptReference" value="CreateNewArogyaSanjFamilyflowPricing"/>
-    <parameter name="ScenarioID" value="TC_Family_Floater_005"/>
-    <parameter name="Description" value="OPD Sum Insured = 20000 for 2 year"/>
+  <test verbose="2" name="TC_AS_MultiIndividual_006">
+    <parameter name="ScriptReference" value="CreateMultiINDIVIDUALArogyaSPricing"/>
+    <parameter name="ScenarioID" value="TC_AS_MultiIndividual_006"/>
+    <parameter name="Description" value=""/>
     <parameter name="Product" value=""/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TC_Family_Floater_005"/>
+    <parameter name="ScenarioUID" value="TC_AS_MultiIndividual_006"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TC_Family_Floater_005 -->
+  </test> <!-- TC_AS_MultiIndividual_006 -->
 </suite> <!-- Pricing -->
