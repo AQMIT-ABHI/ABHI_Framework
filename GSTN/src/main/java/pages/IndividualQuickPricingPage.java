@@ -547,11 +547,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Reporter.log("<B> -------------------------------------------</B>");
 		Reporter.log("<B>  OPD not applied </B>");
 		Reporter.log("<B> NetPremiumBefore Value:-  </B>"+ netpremiumbefore.getText());
-		//Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+		Reporter.log("<B> Discount:-  </B>"+Discount.getText());
 		Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
 		Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-		//Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-		//Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+		Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+		Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
 		Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
 		Reporter.log("<B> -------------------------------------------</B>");
 		
@@ -740,7 +740,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//after OPD assert
 		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
 		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
-		Assert.assertEquals(netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
 		//Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterLoading(AfterOPD)"));
 		Assert.assertEquals(taxamountElementval, dataRow.getProperty("GST").replace(",", ""));
 		Assert.assertEquals(premiuminclusiveofTAXval, dataRow.getProperty("Total Premium").replace(",", ""));
