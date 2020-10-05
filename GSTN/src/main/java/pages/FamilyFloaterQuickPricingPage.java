@@ -372,7 +372,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		}
 			
 		Thread.sleep(2000);
-		////span[@md-highlight-text="searchText"]
 		List<WebElement> element = driver.findElements(By.xpath("//span[@md-highlight-text='searchText']"));
 		Thread.sleep(7000);
 		
@@ -385,9 +384,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		        }
 		  }
 				
-//		WebElement FamilySizeclick = driver.findElement(By.xpath("//span[contains(text(),'"+dataRow.getProperty("FamilySize")+"')]"));
-//		click(FamilySizeclick, "Familysize");
-		//driver.findElement(By.xpath("//span[contains(text(),'Father-in-Law + Mother-in-Law')]")).click();
 	
 		
 		Thread.sleep(WaitTime.high);
@@ -423,7 +419,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		    char c = chars[random.nextInt(chars.length)];
 		    sb.append(c);
 		}
-		//String name = sb.toString();
 		
 		
 		
@@ -1093,18 +1088,13 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 
 		//Assert Quote Details
-		/*
-		 * String netpremiumbeforeval =
-		 * netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", ""); int
-		 * netpremiumbeforevalNO = (int) Float.parseFloat(netpremiumbeforeval); int
-		 * netpremiumbeforevalNOSheet = (int)
-		 * Float.parseFloat(dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").
-		 * replace(",", ""));
-		 * driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		 * verifyAssert(Math.round(netpremiumbeforevalNO),
-		 * Math.round(netpremiumbeforevalNOSheet), "Expected value NetPremium");
-		 */
-		//Assert.assertEquals("Expected value",Math.round(netpremiumbeforevalNO), Math.round(netpremiumbeforevalNOSheet));
+		
+		  String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", ""); 
+		  int netpremiumbeforevalNO = (int) Float.parseFloat(netpremiumbeforeval); 
+		  int netpremiumbeforevalNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		  driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+		  verifyAssert(Math.round(netpremiumbeforevalNO),Math.round(netpremiumbeforevalNOSheet), "Expected value NetPremium");
+		  //Assert.assertEquals("Expected value",Math.round(netpremiumbeforevalNO), Math.round(netpremiumbeforevalNOSheet));
 		
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
@@ -1170,7 +1160,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					    char c = chars[random.nextInt(chars.length)];
 					    sb.append(c);
 					}
-					//String name = sb.toString();
+					
 					
 					String Family = dataRow.getProperty("Relation");
 //					String Family1 = Family.replace(" ", "");
@@ -1189,10 +1179,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					String deductval1= deductval.replace(" ", "");
 					ArrayList<String> deductlist = new ArrayList<String>(Arrays.asList(deductval1.split("\\+")));
 					
-//					String dobval = dataRow.getProperty("DateOfBirth");
-//					String dobval1= dobval.replace(" ", "");
-//					ArrayList<String> doblist = new ArrayList<String>(Arrays.asList(dobval1.split("\\+")));
-					
+				
 					String ageval = dataRow.getProperty("Age");
 					String ageval1= ageval.replace(" ", "");
 					ArrayList<String> agelist = new ArrayList<String>(Arrays.asList(ageval1.split("\\+")));
@@ -1261,7 +1248,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						{
 							int y = x+1;
 							
-							//WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]"));
+							
 							WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]"));
 							WebElement dob = driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]"));
 							WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]"));
@@ -1275,28 +1262,18 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								
 								Thread.sleep(WaitTime.medium);
 								
-//								selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
-//								Thread.sleep(WaitTime.low);
+
 								
 								Thread.sleep(WaitTime.medium);
 								clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
-								//driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")).sendKeys(name);
 								Thread.sleep(WaitTime.low);
 								
 								
-//								Thread.sleep(WaitTime.medium);
-//								selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," zonelist ");
-//								Thread.sleep(WaitTime.low);
 								
 								Thread.sleep(WaitTime.medium);
 								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," deductlist ");
 								Thread.sleep(WaitTime.low);
 							
-								
-//								Thread.sleep(WaitTime.medium);
-//								clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," DOB ");
-//								Thread.sleep(WaitTime.low);
-//								driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 								
 								Thread.sleep(WaitTime.medium);
 								 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -1430,14 +1407,10 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 		//Assert
 		
-		  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ",
-		  "").replace(",", ""); int premiumbeforeOPDNO = (int)
-		  Float.parseFloat(premiumbeforeOPD); int premiumbeforeOPDNOSheet = (int)
-		  Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").
-		  replace(",", "")); verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,
-		  "NetPremiumAfterDiscount(BeforeOPD)");
-		 
-		verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
+		  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
+		  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int premiumbeforeOPDNOSheet = (int)
+		  Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", "")); verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(BeforeOPD)");
+		  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
 		
 
 		
@@ -1531,25 +1504,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				click(saveokBTN,"OK");
 			}
 			
-		
-		
-		
-//		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
-//		{
-//			Thread.sleep(WaitTime.medium);
-//			click(opdeCheckbox,"OPDE checkBOX");
-//			Thread.sleep(WaitTime.medium);
-//			
-//			//click on OK Quote button
-//			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-//			if (okBTN == true) {
-//				click(saveokBTN,"OK");
-//			}
-//			
-//			Thread.sleep(WaitTime.medium);
-//			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
-//			Thread.sleep(WaitTime.medium);
-//			
+					
 	        click(calpremBTN, "Calculate Premium Button");
 		    Thread.sleep(12000);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
