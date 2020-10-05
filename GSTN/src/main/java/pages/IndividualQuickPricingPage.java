@@ -210,69 +210,48 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//EnteringQuoteDetails
 				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-				Thread.sleep(WaitTime.low);
 				click(intermediarysearch, " search ");
 				switchToWindow(driver);
-				Thread.sleep(2000);
 				driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
 				driver.switchTo().window(parentWindow);
 				System.out.println(parentWindow);
-				Thread.sleep(2000);
 				switchtoframe(driver, "display");  
 		
-		
+		Thread.sleep(WaitTime.low);
 		policytenure.sendKeys(Keys.END);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
 		Thread.sleep(WaitTime.low);
 		
-		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		Thread.sleep(WaitTime.medium);
-		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
-		Thread.sleep(4000);
-		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
+		Thread.sleep(WaitTime.low);
+		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");		
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
-		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.medium);
-
+		
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.low);
-		
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
-		membernumbers.sendKeys(Keys.TAB);
 		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(2000);
+		membernumbers.sendKeys(Keys.TAB);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		//Member Details
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.low);
-		clearAndSenKeys(membername, getRandomString(),"Member Name");
-		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-		Thread.sleep(WaitTime.low);
-	
-		Thread.sleep(WaitTime.low);
+		clearAndSenKeys(membername, getRandomString(),"Member Name");
+		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");	
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-		Thread.sleep(WaitTime.low);
+	
 		
 		
 		//Age & DOB //Date Calculation
@@ -284,7 +263,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 		{
 			 clearAndSenKeys(AgeValue,"0","Age");
-			 Thread.sleep(3000);
 			 String CollectAge=AgeValue.getAttribute("value");
 			 String[] arrofstr=acurrdate.split("/",3);
 	         String date3=arrofstr[2];
@@ -293,18 +271,15 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		     int year=calactual-ageCal;
 	         String yearStr=String.valueOf(year);
 	         String actualdate=acurrdate.replaceAll(date3, yearStr);
-	         Thread.sleep(WaitTime.low);
 	         clearAndSenKeys(dob,actualdate,"Date of Birth");
-	         Thread.sleep(WaitTime.low);
 	         dob.sendKeys(Keys.TAB);
 	         AgeValue.sendKeys(Keys.TAB);
-	         Thread.sleep(1000);
+	      
 	} 
 	         
 		else
 		{
         	 clearAndSenKeys(AgeValue,dataRow.getProperty("Age"),"Age");
-        	 Thread.sleep(3000);
         	 String CollectAge=AgeValue.getAttribute("value");
 			 String[] arrofstr=acurrdate.split("/",3);
 	         String date3=arrofstr[2];
@@ -313,9 +288,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		     int year=calactual-ageCal;
 	         String yearStr=String.valueOf(year);
 	         String actualdate=acurrdate.replaceAll(date3, yearStr);
-	         Thread.sleep(WaitTime.low);
 	         clearAndSenKeys(dob,actualdate,"Date of Birth");
-	         Thread.sleep(WaitTime.low);
 	         dob.sendKeys(Keys.TAB);
 	         AgeValue.sendKeys(Keys.TAB);
 	         
@@ -323,14 +296,9 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		    
 		//Gender
-		Thread.sleep(WaitTime.medium);
+		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
-		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
-		Thread.sleep(WaitTime.low);
-		
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 		Thread.sleep(WaitTime.low);
@@ -350,10 +318,9 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 		
 		
-		Thread.sleep(WaitTime.low);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
-		Thread.sleep(WaitTime.high);
+		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 	
@@ -375,10 +342,8 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		click(saveBTN," SaveButton ");
-		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		click(saveokBTN, "Ok ");
-		Thread.sleep(3000);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		
 		String QuoteNo = refno2.getText();
@@ -400,15 +365,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
-		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
 			click(wmpcpCheckbox," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.medium);
-			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			//click on OK Quote button
@@ -428,25 +389,21 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//IF opd 
-		Thread.sleep(WaitTime.medium);
+		
 		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+	
 			click(opdeCheckbox,"OPDE checkBOX");
-			Thread.sleep(WaitTime.low);
-			
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
+	
 			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
-			Thread.sleep(WaitTime.medium);
-			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.low);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -465,25 +422,20 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//ELSE-IF HOSPITAL CASH BENEFIT 
-		Thread.sleep(WaitTime.medium);
+	
 		if(dataRow.getProperty("HospitalCashBenefit").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+		
 			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.low);
-			
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
-			Thread.sleep(WaitTime.medium);
-			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.low);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -503,13 +455,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 
 		
 		//ELSE-IF Maternity Expenses
-		Thread.sleep(WaitTime.medium);
+	
 		if(dataRow.getProperty("MaternityExpense").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
-			click(mtexCheckbox," Maternity Expense checkBOX");
-			Thread.sleep(WaitTime.medium);
 			
+			click(mtexCheckbox," Maternity Expense checkBOX");
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
@@ -518,7 +468,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			Reporter.log("");
@@ -553,10 +503,9 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		click(saveBTN," SaveButton ");
-		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		click(saveokBTN, "Ok ");
-		Thread.sleep(3000);
+	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		
 		String QuoteNo = refno2.getText();
@@ -578,15 +527,12 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
-		Thread.sleep(WaitTime.medium);
+
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
-			click(wmpcpCheckbox," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.medium);
 			
+			click(wmpcpCheckbox," Hospital Cash Benefit checkBOX");
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			//click on OK Quote button
@@ -606,25 +552,20 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//IF opd 
-		Thread.sleep(WaitTime.medium);
+	
 		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
-			click(opdeCheckbox,"OPDE checkBOX");
-			Thread.sleep(WaitTime.low);
 			
+			click(opdeCheckbox,"OPDE checkBOX");
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
-			Thread.sleep(WaitTime.medium);
-			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -643,25 +584,21 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//ELSE-IF HOSPITAL CASH BENEFIT 
-		Thread.sleep(WaitTime.medium);
+		
 		if(dataRow.getProperty("HospitalCashBenefit").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
-			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.low);
 			
+			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
-			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
-			Thread.sleep(WaitTime.medium);
 			
+			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -681,13 +618,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 
 		
 		//ELSE-IF Maternity Expenses
-		Thread.sleep(WaitTime.medium);
+	
 		if(dataRow.getProperty("MaternityExpense").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+		
 			click(mtexCheckbox," Maternity Expense checkBOX");
-			Thread.sleep(WaitTime.medium);
-			
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
@@ -696,7 +631,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			Reporter.log("");
