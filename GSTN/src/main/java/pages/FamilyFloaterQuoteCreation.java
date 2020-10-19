@@ -199,7 +199,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		//String winHandleBefore = driver.getWindowHandle();
 		selectFromDropdownByVisibleText(Product, dataRow.getProperty("Product"),"Product");
 		click(proceedBTN, "ProceedButton");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.low);
 		String parentWindow = driver.getWindowHandle();
 		
 		
@@ -207,7 +207,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.low);
 		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.low);
 		click(intermediarysearch, " search ");
 		switchToWindow(driver);
 		Thread.sleep(2000);
@@ -218,7 +218,8 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 
 		switchtoframe(driver, "display");  
-		
+//		Thread.sleep(WaitTime.medium);
+
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
 		
 		
@@ -227,21 +228,23 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		
-		Thread.sleep(2000);
+
+//		Thread.sleep(WaitTime.low);
+		Thread.sleep(4000);
 		wait.until(ExpectedConditions.elementToBeClickable(SI));
 		
-		Thread.sleep(2000);
+//		Thread.sleep(4000);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
 		Thread.sleep(WaitTime.low);
 		
-		
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.medium);
+		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		
-		//Thread.sleep(WaitTime.low);
-		
+		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(2000);
+
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured")," SumInsured ");
 		Thread.sleep(WaitTime.low);
 		
@@ -441,20 +444,23 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 		
 		//member details
-		
-		
+
+//		Thread.sleep(WaitTime.low);
+
 		if (zone.isEnabled())
 		{
 		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
 	
 		}
-		
-		
+
+//		Thread.sleep(WaitTime.low);
+
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
 		
 		
-		
-		
+
+//		Thread.sleep(WaitTime.medium);
+
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 		
 		
@@ -473,7 +479,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			
 			if (myList.get(x).equalsIgnoreCase("Self"))
 			{
-				Thread.sleep(WaitTime.medium);
+//				Thread.sleep(WaitTime.medium);
 				clearAndSenKeys(MemberName , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -496,7 +502,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(dob,actualdate,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         dob.sendKeys(Keys.TAB);
@@ -516,7 +522,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(dob,actualdate,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         dob.sendKeys(Keys.TAB);
@@ -526,7 +532,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 				
 				//Gender
-				
+
 				if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 				 selectFromDropdownByVisibleText(gender, "Male"," Gender ");
 				
@@ -537,7 +543,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 
-				
+
 				selectFromDropdownByVisibleText(relationship,"Self"," Relationship ");
 				
 				
@@ -546,7 +552,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
             else if (myList.get(x).equalsIgnoreCase("Spouse")) {
             	
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				
 				
@@ -569,7 +575,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate1=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate1,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -589,7 +595,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate1=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate1,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -598,7 +604,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				//Gender
-				
+
 				if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
 				
@@ -609,14 +615,14 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					}
 					
 				
-			
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Spouse"," Relationship ");
 				
             	
 			}
           else if (myList.get(x).equalsIgnoreCase("Kid1")) {
 
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 			
 				
@@ -639,7 +645,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate2=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -659,7 +665,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate2=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -667,11 +673,12 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 							
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				//Thread.sleep(WaitTime.low);
 				
 				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
 				//Thread.sleep(WaitTime.low);
         	  
@@ -679,7 +686,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			}
           else if (myList.get(x).equalsIgnoreCase("Kid2")) {
         	  
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -702,7 +709,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate3=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate3,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -722,7 +729,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate3=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate3,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -730,19 +737,18 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				
 				
-				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
 				
         	  
           }
           else if (myList.get(x).equalsIgnoreCase("Kid3")) {
         	  
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -765,7 +771,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate4=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate4,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -785,7 +791,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate4=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate4,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -793,18 +799,17 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				
-				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
 				
           
           }
           else if (myList.get(x).equalsIgnoreCase("Father")) {
         	  
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -827,7 +832,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate5=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate5,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -847,7 +852,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate5=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate5,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -855,18 +860,20 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
-				
+
+//				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				Thread.sleep(WaitTime.low);
 				
-				
+//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Father"," Relationship ");
 				Thread.sleep(WaitTime.low);
          
           }
           else if (myList.get(x).equalsIgnoreCase("Mother")) {	
         	  
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -889,7 +896,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate6=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate6,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -909,7 +916,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate6=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate6,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -918,19 +925,18 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
 				
 				
-				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Mother"," Relationship ");
 				
         	  
           }
           else if (myList.get(x).equalsIgnoreCase("Father-in-law")) {
 
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				
 				
@@ -953,7 +959,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate7=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate7,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -973,7 +979,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate7=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate7,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -981,11 +987,10 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				
-				
-				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Father-in-Law"," Relationship ");
 				
         	 
@@ -993,7 +998,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
           	}	
           else if (myList.get(x).equalsIgnoreCase("Mother-in-law")) {
 
-				
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.medium);
 				
@@ -1016,7 +1021,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate8=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate8,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -1036,7 +1041,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
 			         String actualdate8=acurrdate.replaceAll(date3, yearStr);
-			         Thread.sleep(WaitTime.medium);
+//			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate8,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
@@ -1045,11 +1050,13 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
-				
+
+//				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender");
 				Thread.sleep(WaitTime.low);
 				
-				
+//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Mother-in-Law"," Relationship");
 				Thread.sleep(WaitTime.low);
         	 
@@ -1060,7 +1067,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 				
 		
-		Thread.sleep(WaitTime.low);	
+//		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
 		
@@ -1068,7 +1075,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		
 		click(saveBTN," SaveButton ");
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveokBTN, "Ok ");
@@ -1084,7 +1091,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
-		
+
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
 			
@@ -1171,11 +1178,11 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 			
 		}
-		
+		switchtodefaultframe(driver);
 }
 		
 		//Arogya sanjivni-- Rahul
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited")) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)")) {
 			
 			clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 			membernumbers.sendKeys(Keys.TAB);
