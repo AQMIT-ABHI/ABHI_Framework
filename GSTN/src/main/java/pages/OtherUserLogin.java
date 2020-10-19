@@ -176,13 +176,13 @@ public class OtherUserLogin extends GenericMethods {
 		   
 		   
 		   //Selection Dropdown 2
-		   @FindBy(xpath="//div[contains(text(),'AddressProof')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Address Proof')]//following::select[2]")
 		   private WebElement Optional2;
 		   
 		   
 		   //Selection Dropdown 3
 		   @FindBy(xpath="//div[contains(text(),'Passport')]//following::select[2]")
-		   private WebElement Optional3;   
+		   private WebElement Optional3;  
 		   
 		   
 		   //Selection Dropdown 4
@@ -264,7 +264,7 @@ public class OtherUserLogin extends GenericMethods {
 		switchtoframe(driver,"display");
 		Thread.sleep(WaitTime.low);
 		click(membericon,"Member Icon");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		switchtoframe(driver,"containerFrame");
 		Thread.sleep(WaitTime.low);
         click(memberCode, "Member Code");
@@ -272,45 +272,45 @@ public class OtherUserLogin extends GenericMethods {
         
         
         
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //	    clearAndSenKeys(mobileNumber,"9890122325","Mobile No");
 //		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(weightinKG,dataRow.getProperty("WeightInKG"),"Weight In KG");
 		Thread.sleep(WaitTime.low);
 		weightinKG.sendKeys(Keys.TAB);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(bmi,dataRow.getProperty("BMI"),"bmi");
 //		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(nationality,"Indian","Nationality");
 //		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(countryofResidence,"India","Country of Residence");
 //		countryofResidence.sendKeys(Keys.TAB);
 //		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(occupation,dataRow.getProperty("Occupation"),"Occupation");
 		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(sumInsured,"200000","Sum Insured");
 //		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(roomCategory,"Single Private","Room Category");
 //		Thread.sleep(WaitTime.low);
 	
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(countryofResidence,"India","Country of Residence");
 //		Thread.sleep(WaitTime.low);
 		
@@ -330,44 +330,44 @@ public class OtherUserLogin extends GenericMethods {
 				}
 				
 				
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(Ischronic,dataRow.getProperty("IsChronic"),"Is Chronic");
 //		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(hniCustomer,"No","hni Customer");
 //		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(CEOClubAdvisorCustomer,"No","CEO Club Advisor Customerr");
 //		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(priorityCustomer,"No","Priority Customer");
 //		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(sensitiveCustomerr,"No","sensitive Customerr");
 //		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(Pincode,"400050","Pincode");
 //		Pincode.sendKeys(Keys.TAB);
 //	    Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(city,"MUMBAI","City");
 //	    Thread.sleep(WaitTime.low);
 //	
-//	    Thread.sleep(WaitTime.medium);
+//	    Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(districtName,"MUMBAI","District Name");
 //		Thread.sleep(WaitTime.low);
 //	
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(state,"MAHARASHTRA","State");
 //		Thread.sleep(WaitTime.low);
 			
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 	    selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone");
 		Thread.sleep(WaitTime.low);
 		
@@ -376,7 +376,7 @@ public class OtherUserLogin extends GenericMethods {
 		((JavascriptExecutor) driver)
 	     .executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		click(SaveButton,"Save");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(Okbutton,"Ok Button");
 		Thread.sleep(WaitTime.low);
 		
@@ -403,31 +403,31 @@ public class OtherUserLogin extends GenericMethods {
 	       //Select Optional From the dropdown 1
 	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 			
 		 //Select Optional From the dropdown 2
 	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 				
 		 //Select Optional From the dropdown 3
 	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 			
 		 //Select Optional From the dropdown 4
 	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
+			Thread.sleep(WaitTime.low);	
 	   
 			
 		//Select Optional From the dropdown 5
 	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
+			Thread.sleep(WaitTime.low);	
 			
 			
 			//Save
@@ -447,7 +447,7 @@ public class OtherUserLogin extends GenericMethods {
 		//Policy Summary
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(policysummary, "Policy Summary");
 		switchtoframe(driver,"containerFrame");
 		Thread.sleep(WaitTime.low);
@@ -487,13 +487,13 @@ public class OtherUserLogin extends GenericMethods {
 		 * 
 		 * //Traverse Member Info switchtodefaultframe(driver);
 		 * switchtoframe(driver,"display"); Thread.sleep(WaitTime.low);
-		 * click(membericon,"Member Icon"); Thread.sleep(WaitTime.medium);
+		 * click(membericon,"Member Icon"); Thread.sleep(WaitTime.low);
 		 * switchtoframe(driver,"containerFrame"); Thread.sleep(WaitTime.low);
 		 * click(memberCode, "Member Code"); switchtoframe(driver,"memberiframe0");
 		 * 
-		 * //Save ,Ok, Close click(SaveButton,"Save"); Thread.sleep(WaitTime.medium);
+		 * //Save ,Ok, Close click(SaveButton,"Save"); Thread.sleep(WaitTime.low);
 		 * click(Okbutton,"Ok Button"); Thread.sleep(WaitTime.low);
-		 * click(closebutton,"Close"); Thread.sleep(WaitTime.medium);
+		 * click(closebutton,"Close"); Thread.sleep(WaitTime.low);
 		 * switchtodefaultframe(driver); switchtoframe(driver,"display");
 		 * switchtoframe(driver,"containerFrame"); click(Continue,"Continue");
 		 * Thread.sleep(WaitTime.low);
@@ -506,6 +506,7 @@ public class OtherUserLogin extends GenericMethods {
 		Reporter.log("----------");
 		Reporter.log("Policy Number for this case is "+policyno);
 		Reporter.log("---------");
+		ConfigReader.getInstance().StoreValueToConfig("PolicyNo", policyno, "Policy No generated");
 		
 		//Policy Summary
 		click(Continue,"Continue");
