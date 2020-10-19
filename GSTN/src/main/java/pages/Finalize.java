@@ -291,6 +291,9 @@ public class Finalize extends GenericMethods{
 		//selectFromDropdownByVisibleText(title,dataRow.getProperty("Title"),"Title");
 		
 		//Title
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
+		{
+		
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 			Thread.sleep(WaitTime.low);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
@@ -300,33 +303,77 @@ public class Finalize extends GenericMethods{
 			Thread.sleep(WaitTime.low);
 		}
 		
-		
-		
 		//First Name
 		clearAndSenKeys(firstname,getRandomString(),"First Name" );
 		Thread.sleep(WaitTime.low);
+		
 		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
 		Thread.sleep(WaitTime.low);
 		
-		
 		//Date Of Birth
-		     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
-		     Date obj = new Date();
-		     String acurrdate=dfor.format(obj);
-			 String CollectAge= dataRow.getProperty("Age");
-			 String[] arrofstr=acurrdate.split("/",3);
-	         String date3=arrofstr[2];
-		     int calactual= Integer.parseInt(date3);
-		     int ageCal=Integer.parseInt(CollectAge);
-		     int year=calactual-ageCal;
-	         String yearStr=String.valueOf(year);
-	         String actualdate1=acurrdate.replaceAll(date3, yearStr);
-	         Thread.sleep(WaitTime.low);
-	         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-	         Thread.sleep(WaitTime.low);
-	         dateofbirth.sendKeys(Keys.TAB);
+
+	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+	     Date obj = new Date();
+	     String acurrdate=dfor.format(obj);
+		 String CollectAge= dataRow.getProperty("Age");
+		 String[] arrofstr=acurrdate.split("/",3);
+         String date3=arrofstr[2];
+	     int calactual= Integer.parseInt(date3);
+	     int ageCal=Integer.parseInt(CollectAge);
+	     int year=calactual-ageCal;
+        String yearStr=String.valueOf(year);
+        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+        Thread.sleep(WaitTime.medium);
+        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+        Thread.sleep(WaitTime.low);
+        dateofbirth.sendKeys(Keys.TAB);
+		
+		}
+		
+		
+		//Arogya Sanjevani
+		else
+			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)"))
+			{
+				//First Name
+				clearAndSenKeys(firstname,getRandomString(),"First Name" );
+				Thread.sleep(WaitTime.medium);
+				
+				//Gender
+			    selectFromDropdownByVisibleText(gender,dataRow.getProperty("PartyGender"),"Party Gender");
+			    Thread.sleep(WaitTime.low);
+			    
+			    if(dataRow.getProperty("PartyGender").equalsIgnoreCase("Male")) {
+					Thread.sleep(WaitTime.medium);
+					selectFromDropdownByVisibleText(title,"Mr.","Title");
+				}
+				else {
+					selectFromDropdownByVisibleText(title,"Ms.","Title");
+					Thread.sleep(WaitTime.low);
+				}
+			    
+			  //Date Of Birth
+			     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+			     Date obj = new Date();
+			     String acurrdate=dfor.format(obj);
+				 String CollectAge= dataRow.getProperty("PartyAge");
+				 String[] arrofstr=acurrdate.split("/",3);
+		         String date3=arrofstr[2];
+			     int calactual= Integer.parseInt(date3);
+			     int ageCal=Integer.parseInt(CollectAge);
+			     int year=calactual-ageCal;
+		         String yearStr=String.valueOf(year);
+		         String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		         Thread.sleep(WaitTime.medium);
+		         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		         Thread.sleep(WaitTime.low);
+		         dateofbirth.sendKeys(Keys.TAB);
+			}
+		
+		
+		    
 	
 		
 		

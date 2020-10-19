@@ -1,4 +1,5 @@
 
+
 package pages;
 
 
@@ -714,4 +715,3 @@ public class IndividualQuickPricingPage extends GenericMethods {
 
 
 }
-

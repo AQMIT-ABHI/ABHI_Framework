@@ -1072,11 +1072,13 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		click(calpremBTN, "Calculate Premium Button");
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		
 		click(saveBTN," SaveButton ");
-//		Thread.sleep(3000);
+
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveokBTN, "Ok ");
 		Thread.sleep(3000);

@@ -262,6 +262,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		 
 		if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 		{
+			 Thread.sleep(WaitTime.low);
 			 clearAndSenKeys(AgeValue,"0","Age");
 			 Thread.sleep(3000);
 			 String CollectAge=AgeValue.getAttribute("value");
