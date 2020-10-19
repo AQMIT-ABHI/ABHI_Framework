@@ -755,7 +755,7 @@ public class STPFamily_Flow extends GenericMethods {
 					WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
 					WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
 					WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[2])["+k+"]"));
-					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'AddressProof')]//following::select[2])["+k+"]"));
+					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[2])["+k+"]"));
 					WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[2])["+k+"]"));
 					WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[2])["+k+"]"));
 					WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[2])["+k+"]"));

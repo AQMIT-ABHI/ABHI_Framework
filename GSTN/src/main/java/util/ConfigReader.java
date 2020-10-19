@@ -71,8 +71,10 @@ public class ConfigReader {
     
     
     public String StoreValueToConfig(String Key,String value,String Comment) throws IOException {
- 	   
- 	   String Path="D:\\2020-20200629T052145Z-001\\ABFL-25-06-2020\\TCS-framework\\FrameWork_25\\FW\\Config.properties";
+
+
+ 	   String Path="E:\\git\\ABHI_Framework\\GSTN\\Config.properties";
+
  	   FileOutputStream outputstream=new FileOutputStream(Path);
  	   props.setProperty(Key, value);
  	   props.save(outputstream, Comment);
