@@ -246,7 +246,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.low);
 		
 		//Active Health--Rahul
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health")) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")) {
 		
 		HashMap<String, Integer> BtnPress = new HashMap<String, Integer>();
 		BtnPress.put("Self + Spouse", 28);
@@ -1065,11 +1065,10 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		click(calpremBTN, "Calculate Premium Button");
 		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		
 		click(saveBTN," SaveButton ");
 		Thread.sleep(3000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveokBTN, "Ok ");
 		Thread.sleep(3000);
@@ -1176,7 +1175,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 }
 		
 		//Arogya sanjivni-- Rahul
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited")) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)")) {
 			
 			clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 			membernumbers.sendKeys(Keys.TAB);

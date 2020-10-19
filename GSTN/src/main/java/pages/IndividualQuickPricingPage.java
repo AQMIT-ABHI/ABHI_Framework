@@ -221,11 +221,12 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		policytenure.sendKeys(Keys.END);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
+		Thread.sleep(WaitTime.low);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		Thread.sleep(WaitTime.low);
@@ -233,24 +234,30 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
+		Thread.sleep(WaitTime.low);
 		
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		membernumbers.sendKeys(Keys.TAB);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		//Member Details
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		clearAndSenKeys(membername, getRandomString(),"Member Name");
-		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");	
+		Thread.sleep(WaitTime.low);
+		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+		Thread.sleep(WaitTime.low);
 	
 		
 		
@@ -262,6 +269,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		 
 		if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 		{
+			Thread.sleep(WaitTime.low);
 			 clearAndSenKeys(AgeValue,"0","Age");
 			 String CollectAge=AgeValue.getAttribute("value");
 			 String[] arrofstr=acurrdate.split("/",3);
@@ -279,6 +287,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	         
 		else
 		{
+			 Thread.sleep(WaitTime.low);
         	 clearAndSenKeys(AgeValue,dataRow.getProperty("Age"),"Age");
         	 String CollectAge=AgeValue.getAttribute("value");
 			 String[] arrofstr=acurrdate.split("/",3);
@@ -298,10 +307,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//Gender
 		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 	
 		//click on Chronic
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
@@ -669,9 +679,10 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//after OPD assert
-		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
+		
+		Assert.assertEquals(netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
 		Assert.assertEquals(netpremiumafterval, dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
-		Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));
 		Assert.assertEquals(taxamountElementval, dataRow.getProperty("GST").replace(",", ""));
 		Assert.assertEquals(premiuminclusiveofTAXval, dataRow.getProperty("Total Premium").replace(",", ""));
 		
