@@ -153,6 +153,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	@FindBy(xpath="//input[@name='HSCB']")
 	private WebElement hcbCheckbox ;
 	
+	
 	//Co-Pay Waiver
 	@FindBy(xpath="//input[@name='WMCP']")
 	private WebElement wmpcpCheckbox ;
@@ -222,7 +223,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		policytenure.sendKeys(Keys.END);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
 		Thread.sleep(WaitTime.low);
@@ -237,14 +238,14 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 		Thread.sleep(WaitTime.medium);
 		membernumbers.sendKeys(Keys.TAB);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		//Member Details
@@ -308,11 +309,16 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//Gender
 		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
+		
+		
+		
+		
+		
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 	
 		//click on Chronic
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
@@ -708,3 +714,4 @@ public class IndividualQuickPricingPage extends GenericMethods {
 
 
 }
+

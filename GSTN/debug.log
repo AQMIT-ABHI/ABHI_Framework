@@ -17,7 +17,6 @@
 [0918/165959.559:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [0923/142555.878:ERROR:file_io_win.cc(162)] CreateFile C:\Users\wfh\AppData\Local\Temp\scoped_dir8700_1567932319\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
 [0923/150030.765:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
-[0924/160326.407:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1010/115504.446:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1010/122833.082:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1010/125235.059:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
@@ -37,3 +36,4 @@
 [1019/134757.837:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [1019/135809.146:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1019/135809.148:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+

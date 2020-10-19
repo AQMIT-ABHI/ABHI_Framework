@@ -59,6 +59,7 @@ public class TestExecutionSuite{
 	String filePath="";
 	String MigrationFilePath="";
 	String SheetName = "";
+	private Object quickquote;
 	private static HashMap<String, String> scenarioStatus = new HashMap<>();
 	
 	
@@ -200,6 +201,9 @@ public class TestExecutionSuite{
 	        	XSSFRow rowhead = sheet.createRow((short)rowNumber++);
 	        	rowhead.createCell(0).setCellValue(entry.getKey());
 	        	rowhead.createCell(1).setCellValue(entry.getValue());
+	        	TestExecutionSuite txt = new TestExecutionSuite();
+	        	//txt.quickquote.setQuoteNo(QuoteNo);
+	        	
 	        	 System.out.println("Key = " + entry.getKey() + 
 	                     ", Value = " + entry.getValue()); 
 	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));

@@ -219,14 +219,16 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 		switchtoframe(driver, "display");  
 //		Thread.sleep(WaitTime.medium);
+
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		
 		
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		Thread.sleep(WaitTime.low);
+		
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
+
 //		Thread.sleep(WaitTime.low);
 		Thread.sleep(4000);
 		wait.until(ExpectedConditions.elementToBeClickable(SI));
@@ -242,6 +244,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		Thread.sleep(WaitTime.medium);
 //		Thread.sleep(2000);
+
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured")," SumInsured ");
 		Thread.sleep(WaitTime.low);
 		
@@ -348,15 +351,15 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		BtnPress.put("Self + Spouse + Mother + Father-in-law + Mother-in-law",1 );
 		BtnPress.put("Self + Father + Mother + Father-in-law + Mother-in-law", 1);
 		BtnPress.put("Self + Spouse + Father + Mother + Father-in-law + Mother-in-law",1 );
-		BtnPress.put("Self + Kid1", 21);
+		BtnPress.put("Self + Kid1", 22);
 		BtnPress.put("Self + Kid1 + Kid2", 14);
 		BtnPress.put("Self + Spouse + Kid1 + Kid2", 14);
 		
 		
 		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
+		
 		clearAndSenKeys(FamilySize, dataRow.getProperty("FamilySize"), "Family-Size");
-		Thread.sleep(2000);
+		
 		
 		
 		for(String key: BtnPress.keySet()){
@@ -383,27 +386,27 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(4000);
 		
 		
-		  for (int j = 0; j < element.size(); j++) {
-		        String temp = element.get(j).getText();
-		        if (temp.equals(dataRow.getProperty("FamilySize"))) {
-		            element.get(j).click();             
-		            break;
-		        }
-		  }
-		
+//		  for (int j = 0; j < element.size(); j++) {
+//		        String temp = element.get(j).getText();
+//		        if (temp.equals(dataRow.getProperty("FamilySize"))) {
+//		            element.get(j).click();             
+//		            break;
+//		        }
+//		  }
+//		
 				
 //		WebElement FamilySizeclick = driver.findElement(By.xpath("//span[contains(text(),'"+dataRow.getProperty("FamilySize")+"')]"));
 //		click(FamilySizeclick, "Familysize");
 		//driver.findElement(By.xpath("//span[contains(text(),'Father-in-Law + Mother-in-Law')]")).click();
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 		Thread.sleep(WaitTime.low);
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -441,22 +444,25 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 		
 		//member details
-		
+
 //		Thread.sleep(WaitTime.low);
+
 		if (zone.isEnabled())
 		{
 		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-		Thread.sleep(WaitTime.low);
+	
 		}
-		
+
 //		Thread.sleep(WaitTime.low);
+
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-		Thread.sleep(WaitTime.low);
 		
 		
+
 //		Thread.sleep(WaitTime.medium);
+
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-		Thread.sleep(WaitTime.low);
+		
 		
 		
 		for (int x = 0;x<myList.size();x++)
@@ -487,7 +493,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				if (dataRow.getProperty("SelfDOB").equalsIgnoreCase("<1"))
 				{
 					 clearAndSenKeys(AgeValue,"0","Age");
-					 Thread.sleep(WaitTime.low);
+					
 					 String CollectAge=AgeValue.getAttribute("value");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
@@ -507,7 +513,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				{
 		        	//Date Calculation
 		        	 clearAndSenKeys(AgeValue,dataRow.getProperty("SelfDOB"),"Age");
-		        	 Thread.sleep(WaitTime.low);
+		        	
 		        	 String CollectAge=AgeValue.getAttribute("value");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
@@ -526,29 +532,29 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 				
 				//Gender
-//				Thread.sleep(WaitTime.medium);
+
 				if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 				 selectFromDropdownByVisibleText(gender, "Male"," Gender ");
-				 Thread.sleep(WaitTime.low);
+				
 				}
 				else {
 					selectFromDropdownByVisibleText(gender, "Female"," Gender ");
-					Thread.sleep(WaitTime.low);
+					
 				}
 				
 
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(relationship,"Self"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
 				
 			
 			}
 
             else if (myList.get(x).equalsIgnoreCase("Spouse")) {
             	
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
-				Thread.sleep(WaitTime.low);
+				
 				
 				
 				//Age & DOB
@@ -580,7 +586,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				{
 		        	//Date Calculation
 		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("SpouseDOB"),"Age");
-		        	 Thread.sleep(WaitTime.low);
+		        	// Thread.sleep(WaitTime.low);
 		        	 String CollectAge=AgeValue1.getAttribute("value");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
@@ -598,27 +604,27 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				//Gender
-//				Thread.sleep(WaitTime.medium);
+
 				if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
-				Thread.sleep(WaitTime.low);
+				
 					}
 				else {
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
-				Thread.sleep(WaitTime.low);
+			
 					}
 					
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Spouse"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
             	
 			}
           else if (myList.get(x).equalsIgnoreCase("Kid1")) {
 
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
-				Thread.sleep(WaitTime.low);
+			
 				
 				
 				//Age & DOB
@@ -631,7 +637,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				{
 					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -651,7 +657,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		        	//Date Calculation
 		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid1DOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -667,19 +673,20 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 							
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
-				Thread.sleep(WaitTime.low);
+				//Thread.sleep(WaitTime.low);
 				
-//				Thread.sleep(WaitTime.medium);
+				
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				//Thread.sleep(WaitTime.low);
         	  
 
 			}
           else if (myList.get(x).equalsIgnoreCase("Kid2")) {
         	  
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -730,19 +737,18 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
-				Thread.sleep(WaitTime.low);
 				
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
         	  
           }
           else if (myList.get(x).equalsIgnoreCase("Kid3")) {
         	  
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -793,18 +799,17 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
-				Thread.sleep(WaitTime.low);
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
           
           }
           else if (myList.get(x).equalsIgnoreCase("Father")) {
         	  
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -855,18 +860,20 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			         
 				}
 				
+
 //				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 				Thread.sleep(WaitTime.low);
 				
 //				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Father"," Relationship ");
 				Thread.sleep(WaitTime.low);
          
           }
           else if (myList.get(x).equalsIgnoreCase("Mother")) {	
         	  
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.low);
 				
@@ -918,21 +925,20 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
-				Thread.sleep(WaitTime.low);
 				
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Mother"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
         	  
           }
           else if (myList.get(x).equalsIgnoreCase("Father-in-law")) {
 
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
-				Thread.sleep(WaitTime.medium);
+				
 				
 
 				//Age & DOB
@@ -981,19 +987,18 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
-				Thread.sleep(WaitTime.low);
 				
-//				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Father-in-Law"," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
         	 
         	  
           	}	
           else if (myList.get(x).equalsIgnoreCase("Mother-in-law")) {
 
-//				Thread.sleep(WaitTime.medium);
+
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 				Thread.sleep(WaitTime.medium);
 				
@@ -1045,11 +1050,13 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				}
 				
 				
+
 //				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender");
 				Thread.sleep(WaitTime.low);
 				
 //				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Mother-in-Law"," Relationship");
 				Thread.sleep(WaitTime.low);
         	 
@@ -1063,7 +1070,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 //		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
-		Thread.sleep(WaitTime.medium);
+		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -1084,16 +1091,15 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
-//		Thread.sleep(WaitTime.medium);
+
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(wmpcpCheckbox," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.medium);
 			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
-
+			
 
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
@@ -1108,9 +1114,9 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(opdeCheckbox,"OPDE checkBOX");
-			Thread.sleep(WaitTime.medium);
+			
 			
 			//click on OK Quote button
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
@@ -1118,7 +1124,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
+			
 			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1133,7 +1139,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("HospitalCashBenefit").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1143,7 +1149,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
+		
 			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1160,7 +1166,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("MaternityExpense").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(mtexCheckbox," Maternity Expense checkBOX");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1180,17 +1186,17 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			
 			clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 			membernumbers.sendKeys(Keys.TAB);
-			Thread.sleep(WaitTime.medium);
+			
 			
 			int MemSize = Integer.parseInt(dataRow.getProperty("NoOfMembers"));
 			
-			Thread.sleep(WaitTime.medium);
+			
 			wait.until(ExpectedConditions.elementToBeClickable(plantype));
 			selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 			Thread.sleep(WaitTime.low);
 
 			clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
-			Thread.sleep(WaitTime.medium);
+			
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 			
 			
@@ -1233,9 +1239,9 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			//String roomval1= roomval.replace(" ", "");
 			ArrayList<String> roomlist = new ArrayList<String>(Arrays.asList(roomval.split("\\+")));
 			
-			Thread.sleep(WaitTime.medium);
+			
 			selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])[1]")),roomlist.get(0)," Room ");
-			Thread.sleep(WaitTime.low);
+			
 			
 			
 			HashMap<String, String> NamesList = new HashMap<>(); 
@@ -1301,12 +1307,12 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					
 				
 						
-						Thread.sleep(WaitTime.medium);
+						
 						
 //						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
 //						Thread.sleep(WaitTime.low);
 						
-						Thread.sleep(WaitTime.medium);
+					
 						clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 						//driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")).sendKeys(name);
 						Thread.sleep(WaitTime.low);
@@ -1316,33 +1322,33 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 //						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," zonelist ");
 //						Thread.sleep(WaitTime.low);
 						
-						Thread.sleep(WaitTime.medium);
+						
 						selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," deductlist ");
-						Thread.sleep(WaitTime.low);
+						
 					
 						
-						Thread.sleep(WaitTime.medium);
+						
 						clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," DOB ");
-						Thread.sleep(WaitTime.low);
+						
 						driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 						
 						
-						Thread.sleep(WaitTime.medium);
+						
 						selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")),genderlist.get(x)," Gender ");
-						Thread.sleep(WaitTime.low);
+						
 		
 						//Relationship
 						
-						Thread.sleep(WaitTime.medium);
+						
 						selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
-						Thread.sleep(WaitTime.low);
+						
 						
 						
 		
 				}
 			
 			
-			Thread.sleep(WaitTime.low);	
+				
 			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(WaitTime.high);
@@ -1377,7 +1383,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			String isCoPay1= isCoPay.replace(" ", "");
 			ArrayList<String> isCoPaylist= new ArrayList<String>(Arrays.asList(isCoPay1.split("\\+")));
 			
-			Thread.sleep(WaitTime.medium);
+			
 			for (int x = 0;x<isCoPaylist.size();x++)
 			{
 			if(isCoPaylist.get(x).equalsIgnoreCase("Yes"))

@@ -40,7 +40,9 @@ public class TestEngine {
 			java.util.Date date=new java.util.Date();
 			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy__hh-mm-ss");
 
-			excutionFolder="D:\\ExecutionReport\\"+ConfigReader.getInstance().getValue("TestSheet")+folderDate;
+
+			excutionFolder="E:\\ABHI\\FrameWork_25\\TCS_Execution_Repo\\"+ConfigReader.getInstance().getValue("TestSheet")+folderDate;
+
 			
 			testNG.setOutputDirectory(excutionFolder);		
 			List<XmlSuite> suiteList=new ArrayList<>();

@@ -217,29 +217,19 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		switchtoframe(driver, "display");  
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		Thread.sleep(WaitTime.low);
+		
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
+
+		
+		
 		Thread.sleep(WaitTime.low);
-		
-		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
-//		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.medium);
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
-//		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-//		Thread.sleep(WaitTime.low);
-		
+
+
 		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"), "PinCode ");
 //		Thread.sleep(WaitTime.low);
@@ -249,27 +239,19 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		membernumbers.sendKeys(Keys.TAB);
 //		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(2000);
+		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		//Member Details
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
+
+
 //		Thread.sleep(WaitTime.low);
-		
-		
-		
-		Thread.sleep(WaitTime.low);
-		clearAndSenKeys(membername, getRandomString(),"Member Name");
-//		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-//		Thread.sleep(WaitTime.low);
+
 	
-		Thread.sleep(WaitTime.low);
+		
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-//		Thread.sleep(WaitTime.low);
+
+
 		
 		
 		//Age & DOB
@@ -320,17 +302,18 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 		
 		//Gender
-		Thread.sleep(WaitTime.medium);
+		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
-//		Thread.sleep(WaitTime.low);
+
 		
-		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
-//		Thread.sleep(WaitTime.low);
+
 		
-		Thread.sleep(WaitTime.medium);
+		
+		
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-//		Thread.sleep(WaitTime.low);
+
+
 	
 		//click on Chronic
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
@@ -346,18 +329,19 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}
 		}
 		
-		
+
 		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+
 		
 		
-		Thread.sleep(WaitTime.low);	
+			
 		click(calpremBTN, "Calculate Premium Button");
 		Thread.sleep(WaitTime.high);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		click(saveBTN," SaveButton ");
-		Thread.sleep(4000);
+		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 		click(saveokBTN, "Ok ");
@@ -394,7 +378,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(opdeCheckbox,"OPDE checkBOX");
 			Thread.sleep(WaitTime.low);
 			
@@ -402,7 +386,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 			click(saveokBTN, "Ok ");
 			
-			Thread.sleep(WaitTime.medium);
+			
 			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
 			Thread.sleep(WaitTime.medium);
 			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
@@ -415,11 +399,12 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}		
 		
 		
+		
 		//ELSE-IF HOSPITAL CASH BENEFIT 
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("HospitalCashBenefit").equalsIgnoreCase("Yes"))
 		{
-			Thread.sleep(WaitTime.medium);
+			
 			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.low);
 			
@@ -427,7 +412,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 			click(saveokBTN, "Ok ");
 			
-			Thread.sleep(WaitTime.medium);
+			
 			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
 			Thread.sleep(WaitTime.medium);
 			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
