@@ -223,8 +223,8 @@ public class CollectionScreen extends GenericMethods {
 		// Choose File 1
 		Thread.sleep(3000);
 		click(choosefile, "Choose File");
-		Thread.sleep(5000);
-		choosefile.sendKeys("D:\\code.txt");
+		Thread.sleep(2000);
+		choosefile.sendKeys("E:\\code.txt");
 		Thread.sleep(5000);
 
 		// Upload File 1
@@ -254,7 +254,7 @@ public class CollectionScreen extends GenericMethods {
 		Thread.sleep(5000);
 		click(choosefile, "Choose File");
 		Thread.sleep(8000);
-		choosefile.sendKeys("D:\\code.txt");
+		choosefile.sendKeys("E:\\code.txt");
 		Thread.sleep(5000);
 
 		// Upload File 2
@@ -267,7 +267,7 @@ public class CollectionScreen extends GenericMethods {
 		switchtoframe(driver, "containerFrame");
 		// Ok Button
 
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		click(OK, "File Uploaded Successfully"); 
 		Thread.sleep(2000);
 

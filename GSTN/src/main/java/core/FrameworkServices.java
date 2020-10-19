@@ -149,6 +149,8 @@ public class FrameworkServices {
 		int ExecuteFlag=Integer.parseInt(ConfigReader.getInstance().getValue("ExecuteFlag"));
 		int GSTNid=Integer.parseInt(ConfigReader.getInstance().getValue("GSTNid"));
 		int Status=Integer.parseInt(ConfigReader.getInstance().getValue("Status"));
+		//
+	//	int Quickquote=Integer.parseInt(ConfigReader.getInstance().getValue("QuoteNo"));
 		int ScriptName=Integer.parseInt(ConfigReader.getInstance().getValue("ScriptName"));
 		List<TestScenarioDataGenerator> migrationTestDataList=new ArrayList<>();
 

@@ -202,27 +202,27 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		click(intermediarysearch, " search ");
 		switchToWindow(driver);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
 		driver.switchTo().window(parentWindow);
 		//System.out.println(parentWindow);
-		Thread.sleep(2000);
+		//Thread.sleep(2000);
 		
 
 		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.medium);
+		
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		Thread.sleep(WaitTime.low);
+		
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		Thread.sleep(WaitTime.medium);
+		
 		
 		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
-		Thread.sleep(4000);
+		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
 		Thread.sleep(WaitTime.low);
 		
@@ -231,16 +231,16 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.medium);
+		
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
-		Thread.sleep(WaitTime.low);
+	
 		
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 		membernumbers.sendKeys(Keys.TAB);
-		Thread.sleep(WaitTime.medium);
+		
 		
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -369,22 +369,22 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				WebElement AgeValue = driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]"));
 				
 					
-					Thread.sleep(WaitTime.medium);
+					
 					
 					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
 					Thread.sleep(WaitTime.low);
 					
-					Thread.sleep(WaitTime.medium);
+					
 					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 					//driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")).sendKeys(name);
 					Thread.sleep(WaitTime.low);
 					
 					
-					Thread.sleep(WaitTime.medium);
+					
 					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," SumInsured ");
 					Thread.sleep(WaitTime.low);
 					
-					Thread.sleep(WaitTime.medium);
+					
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," SumInsured ");
 					Thread.sleep(WaitTime.low);
 				
@@ -448,19 +448,19 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					 
 					
 					
-					Thread.sleep(WaitTime.medium);
+					
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")),genderlist.get(x)," Gender ");
-					Thread.sleep(WaitTime.low);
+					
 	
 					//Relationship
 					{
-					Thread.sleep(WaitTime.medium);
+					
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
-					Thread.sleep(WaitTime.low);
+					
 					}
-					Thread.sleep(WaitTime.medium);
+					
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]")),roomlist.get(x)," Room ");
-					Thread.sleep(WaitTime.low);
+					
 					
 					//click on Chronic
 					if (ischroniclist.get(x).equalsIgnoreCase("Yes"))
@@ -486,16 +486,16 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
-		Thread.sleep(WaitTime.high);
+		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		click(saveBTN," SaveButton ");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveokBTN, "Ok ");
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
@@ -520,7 +520,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		if(isCoPaylist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
+			
 			click(driver.findElement(By.xpath("(//input[@name='WMCP'])["+y+"]"))," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.medium);
 			
@@ -554,7 +554,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			int y = x+1;
 			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='OPDE'])["+y+"]")),"OPDE checkBOX");
-			Thread.sleep(WaitTime.medium);
+			
 			
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			
@@ -590,7 +590,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		if(isHCBlist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
+			
 			click(driver.findElement(By.xpath("(//input[@name='HSCB'])["+y+"]"))," Hospital Cash Benefit checkBOX");
 			Thread.sleep(WaitTime.low);
 			
@@ -624,7 +624,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			int y = x+1;
 			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='MTEX'])"))," Maternity Expense checkBOX");
-			Thread.sleep(WaitTime.medium);
+		
 			
 			click(calpremBTN,"");
 			

@@ -283,7 +283,7 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(WaitTime.low);
 		click(policyholderCD, "PolicyHolderCD");
 		switchToWindow(driver);
-		Thread.sleep(4000);
+		Thread.sleep(WaitTime.low);
 
 		
 		
@@ -295,7 +295,7 @@ public class Finalize extends GenericMethods{
 		{
 		
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
 		}
 		else {
@@ -305,7 +305,7 @@ public class Finalize extends GenericMethods{
 		
 		//First Name
 		clearAndSenKeys(firstname,getRandomString(),"First Name" );
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//Gender
@@ -313,6 +313,7 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(WaitTime.low);
 		
 		//Date Of Birth
+
 	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 	     Date obj = new Date();
 	     String acurrdate=dfor.format(obj);
@@ -372,19 +373,19 @@ public class Finalize extends GenericMethods{
 			}
 		
 		
-		
+		    
 	
 		
 		
 		
 		//Nationality
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(nationality,dataRow.getProperty("Nationality"),"Nationality");
 		//Thread.sleep(WaitTime.low);
 		
 	    
 		//Country of Residence
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(countryofresidence,dataRow.getProperty("Country of Residence"),"Country of Residence");
 		//Thread.sleep(WaitTime.low);
 		
@@ -396,32 +397,32 @@ public class Finalize extends GenericMethods{
 		
 		//HNI Customer
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(HNIcustomer, "No","HNI Customer");
 		//Thread.sleep(WaitTime.low);
 		
 		
 		//CEO Club Advisor Customer
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(CEOclubadvisor, "No","CEO Club Advisor Customer");
 		//Thread.sleep(WaitTime.low);
 		
 		
 		//Priority Customer
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(prioritycustomer, "No","Priority Customer");
 		//Thread.sleep(WaitTime.low);
 		
 		
 		//Sensitive Customer
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(sensitivecustomer, "No","Sensitive Customer");
 //		Thread.sleep(WaitTime.low);
 		
 		
 		//GST
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(GSTregistrationtype,dataRow.getProperty("GST Registration Type"),"GST Registration Type");
 		Thread.sleep(WaitTime.low);
 		
@@ -511,16 +512,16 @@ public class Finalize extends GenericMethods{
 		switchToWindow(driver);
 		Thread.sleep(4000);
 			 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(accountNo,dataRow.getProperty("AccountNo"),"Account No");
 		Thread.sleep(WaitTime.low);
 				
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(confirmaccountNo,dataRow.getProperty("ConformAccountNo"),"ConformAccount No");
 		Thread.sleep(WaitTime.low);
 				
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(bankaccounttype,dataRow.getProperty("AccountType"),"account Type");
 		Thread.sleep(WaitTime.low);
 		
@@ -532,7 +533,7 @@ public class Finalize extends GenericMethods{
 		switchToWindow(driver);
 				
 				
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
 		Thread.sleep(WaitTime.low);
 		
@@ -544,13 +545,13 @@ public class Finalize extends GenericMethods{
 		click(ifcselectbtn,"IFSCselectbtn");
 	
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
        driver.switchTo().window(ChildWindow2);
 //		confirmaccountNo.sendKeys(Keys.TAB);
 //		IFSCCode.sendKeys(Keys.TAB);
 //		ifsciconbtn.sendKeys(Keys.TAB);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(bankaccounttype,dataRow.getProperty("AccountType"),"account Type");
 //		Thread.sleep(WaitTime.low);
 				
@@ -578,7 +579,7 @@ public class Finalize extends GenericMethods{
 		driver.switchTo().window(parentWindow);
 		Thread.sleep(2000);
 		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		selectFromDropdownByVisibleText(policyholdermember,dataRow.getProperty("PolicyHolderIsMember"),"IsPolicyHolderMember");
 		Thread.sleep(WaitTime.low);
 		

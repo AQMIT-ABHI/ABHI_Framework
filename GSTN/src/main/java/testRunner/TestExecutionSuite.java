@@ -59,6 +59,7 @@ public class TestExecutionSuite{
 	String filePath="";
 	String MigrationFilePath="";
 	String SheetName = "";
+	private Object quickquote;
 	private static HashMap<String, String> scenarioStatus = new HashMap<>();
 	
 	
@@ -195,12 +196,17 @@ public class TestExecutionSuite{
 	    	XSSFRow rowheadHeader = sheet.createRow((short)rowNumber++);
 	    	rowheadHeader.createCell(0).setCellValue("Scenario");
 	    	rowheadHeader.createCell(1).setCellValue("Status");
+	    	rowheadHeader.createCell(2).setCellValue("QuoteNo");
 	        for (Map.Entry<String,String> entry : scenarioStatus.entrySet()) {
 	        	XSSFRow rowhead = sheet.createRow((short)rowNumber++);
 	        	rowhead.createCell(0).setCellValue(entry.getKey());
 	        	rowhead.createCell(1).setCellValue(entry.getValue());
+	        	TestExecutionSuite txt = new TestExecutionSuite();
+	        	//txt.quickquote.setQuoteNo(QuoteNo);
+	        	
 	        	 System.out.println("Key = " + entry.getKey() + 
 	                     ", Value = " + entry.getValue()); 
+	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
 	        }
 	        FileOutputStream fileOut = new FileOutputStream(TestEngine.excutionFolder+"\\LatestSheet.xlsx");
 	        workbook.write(fileOut);
