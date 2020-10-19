@@ -18,3 +18,16 @@
 [0923/142555.878:ERROR:file_io_win.cc(162)] CreateFile C:\Users\wfh\AppData\Local\Temp\scoped_dir8700_1567932319\Crashpad\settings.dat: The system cannot find the file specified. (0x2)
 [0923/150030.765:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [0924/160326.407:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1009/171736.278:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1013/145858.161:ERROR:file_io_win.cc(162)] CreateFile C:\Users\Sagar\AppData\Local\Temp\scoped_dir3096_732806621\Crashpad\settings.dat: The system cannot find the path specified. (0x3)
+[1013/145858.212:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Sagar\AppData\Local\Temp\scoped_dir3096_732806621\Crashpad\reports\0d086f76-6ea8-43c7-8375-ff43981f57e1.dmp: The system cannot find the path specified. (0x3)
+[1013/145858.212:ERROR:crash_report_exception_handler.cc(97)] PrepareNewCrashReport failed
+[1016/153951.631:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1016/161824.546:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1017/151847.650:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1017/153259.289:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1017/160848.923:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1017/163801.237:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1019/121605.853:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1019/121605.882:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[1019/122729.231:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

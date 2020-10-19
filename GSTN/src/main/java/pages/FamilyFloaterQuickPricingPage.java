@@ -1134,7 +1134,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 	}
 		
 		//Arogya sanjivni-- Rahul
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited")) {
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)")) {
 					
 					clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 					membernumbers.sendKeys(Keys.TAB);
