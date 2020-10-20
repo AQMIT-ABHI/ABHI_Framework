@@ -1,3 +1,5 @@
+
+
 package pages;
 
 
@@ -151,6 +153,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	//HCB
 	@FindBy(xpath="//input[@name='HSCB']")
 	private WebElement hcbCheckbox ;
+	
 	
 	//Co-Pay Waiver
 	@FindBy(xpath="//input[@name='WMCP']")
@@ -307,6 +310,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//Gender
 		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
+		
+		
+		
+		
+		
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.medium);

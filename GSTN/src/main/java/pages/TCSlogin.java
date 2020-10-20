@@ -70,7 +70,7 @@ public class TCSlogin extends GenericMethods {
 		//clearAndSenKeys(role, dataRow.getProperty("Role"), "Role");
 		
 		click(loginBTN, "Login Button");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.low);
 		switchtodefaultframe(driver);
 		
 

@@ -44,14 +44,14 @@ public class TcsCommonPages extends GenericMethods {
 		Reporter.log("<B>Traverse To CommonPage</B>");
 
 		switchtoframe(driver, "display");
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
 		click(policymanagement, "Policy Management");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.low);
 		switchtodefaultframe(driver);
 		
 		switchtoframe(driver, "head");
 		click(quickquote, "Quick Quote");
-		Thread.sleep(WaitTime.low);		
+//		Thread.sleep(WaitTime.low);		
 		switchtodefaultframe(driver);
 		
 		

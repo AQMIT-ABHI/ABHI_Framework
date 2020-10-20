@@ -39,9 +39,13 @@ public class TestEngine {
 			ITestResult result = null ;
 			java.util.Date date=new java.util.Date();
 			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy__hh-mm-ss");
+
 			String folderDate=simpleDateFormat.format(date);
 
 			excutionFolder="D:\\2020-20200629T052145Z-001\\ABFL-25-06-2020\\TCS-framework\\FrameWork_25\\TCS_Execution_Repo\\"+ConfigReader.getInstance().getValue("TestSheet")+folderDate;
+
+
+
 
 			
 			testNG.setOutputDirectory(excutionFolder);		
