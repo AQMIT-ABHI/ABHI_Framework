@@ -196,51 +196,37 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		
 		//EnteringQuoteDetails
 		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
-		Thread.sleep(2000);
 		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-		Thread.sleep(WaitTime.low);
 		click(intermediarysearch, " search ");
 		switchToWindow(driver);
-		Thread.sleep(2000);
 		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
 		driver.switchTo().window(parentWindow);
-		Thread.sleep(2000);
 		
 
 		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
 		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
+		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
 		Thread.sleep(WaitTime.low);
 		
-		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		Thread.sleep(WaitTime.medium);
-		
-		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
-		Thread.sleep(4000);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
 		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
-		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.medium);
+		
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.low);
 		
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
+		Thread.sleep(WaitTime.low);
 		membernumbers.sendKeys(Keys.TAB);
-		Thread.sleep(WaitTime.medium);
-		
-		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -347,7 +333,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		{
 			int y = x+1;
 			
-			//WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]"));
 			WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]"));
 			WebElement dob = driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]"));
 			WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]"));
@@ -357,28 +342,16 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			WebElement deduct = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]"));
 			WebElement room = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]"));
 			
-		
-				
-				Thread.sleep(WaitTime.medium);
-				
+			    Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
 				Thread.sleep(WaitTime.low);
 				
-				Thread.sleep(WaitTime.medium);
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 				Thread.sleep(WaitTime.low);
-				
-				
-				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," SumInsured ");
-				Thread.sleep(WaitTime.low);
 				
-				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," SumInsured ");
-				Thread.sleep(WaitTime.low);
 			
-				
-				Thread.sleep(WaitTime.medium);
 				 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 				 Date obj = new Date();
 				 String acurrdate=dfor.format(obj);
@@ -386,7 +359,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				 if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 					{
 						 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
-						 Thread.sleep(3000);
 						 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
 						 String[] arrofstr=acurrdate.split("/",3);
 				         String date3=arrofstr[2];
@@ -397,7 +369,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				         String actualdate=acurrdate.replaceAll(date3, yearStr);
 				         Thread.sleep(WaitTime.low);
 				         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
-				         Thread.sleep(WaitTime.low);
 				         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 				         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 				} 
@@ -406,7 +377,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 					{
 			        	//Date Calculation
 						 clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),agelist.get(x),"Age");
-			        	 Thread.sleep(3000);
 			        	 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
 						 String[] arrofstr=acurrdate.split("/",3);
 				         String date3=arrofstr[2];
@@ -417,26 +387,23 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				         String actualdate=acurrdate.replaceAll(date3, yearStr);
 				         Thread.sleep(WaitTime.low);
 				         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
-				         Thread.sleep(WaitTime.low);
 				         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 				         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 				         
 					}
 				
 				
-				Thread.sleep(WaitTime.medium);
+				
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")),genderlist.get(x)," Gender ");
-				Thread.sleep(WaitTime.low);
-
 				//Relationship
 				{
-				Thread.sleep(WaitTime.medium);
+				
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
-				Thread.sleep(WaitTime.low);
+				
 				}
-				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]")),roomlist.get(x)," Room ");
-				Thread.sleep(WaitTime.low);
+			   Thread.sleep(WaitTime.low);
+			   selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]")),roomlist.get(x)," Room ");
+			   Thread.sleep(WaitTime.low);
 				
 				//click on Chronic
 				if (ischroniclist.get(x).equalsIgnoreCase("Yes"))
@@ -459,25 +426,31 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		}
 		
 		
-		Thread.sleep(WaitTime.low);	
+	
 		if(dataRow.getProperty("TestCase").equalsIgnoreCase("QuoteCreation"))
 		{
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		}
+		
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
-		Thread.sleep(WaitTime.high);
+		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
+		Thread.sleep(WaitTime.low);
 		click(saveBTN," SaveButton ");
-		Thread.sleep(3000);
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 		if(dataRow.getProperty("TestCase").equalsIgnoreCase("QuoteCreation"))
 		{
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		}
+		
+		
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveokBTN, "Ok ");
-		Thread.sleep(3000);
+	
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
@@ -508,8 +481,8 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		
 		//Assert Quote Details
 
-	  String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
-      Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+	  // String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+     // Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
 		
 		
 		//CO-Pay Wavier
@@ -517,18 +490,16 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String isCoPay1= isCoPay.replace(" ", "");
 		ArrayList<String> isCoPaylist= new ArrayList<String>(Arrays.asList(isCoPay1.split("\\+")));
 		
-		Thread.sleep(WaitTime.medium);
+		
 		for (int x = 0;x<isCoPaylist.size();x++)
 		{
 		if(isCoPaylist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
-			click(driver.findElement(By.xpath("(//input[@name='WMCP'])["+y+"]"))," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.medium);
 			
+			click(driver.findElement(By.xpath("(//input[@name='WMCP'])["+y+"]"))," Hospital Cash Benefit checkBOX");
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			if (okBTN == true) {
@@ -548,31 +519,25 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String OPDval1= OPDval.replace(" ", "");
 		ArrayList<String> OPDvallist= new ArrayList<String>(Arrays.asList(OPDval1.split("\\+")));
 		
-		Thread.sleep(WaitTime.medium);
+		
 		for (int x = 0;x<isOPDlist.size();x++)
 		{
 		if(isOPDlist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='OPDE'])["+y+"]")),"OPDE checkBOX");
-			Thread.sleep(WaitTime.medium);
-			
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
 			
-			Thread.sleep(WaitTime.medium);
 			
-		
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//select[@name='Applicable Sum Insured'])["+y+"]")));	
 			selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//select[@name='Applicable Sum Insured'])["+y+"]")), OPDvallist.get(x)," OPD Expenses SumInsured ");
-			Thread.sleep(WaitTime.medium);
 			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.low);
 			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -600,24 +565,19 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String isHCBval1= isHCBval.replace(" ", "");
 		ArrayList<String> isHCBvallist= new ArrayList<String>(Arrays.asList(isHCBval1.split("\\+")));
 		
-		Thread.sleep(WaitTime.medium);
+		
 		for (int x = 0;x<isHCBlist.size();x++)
 		{
 		if(isHCBlist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='HSCB'])["+y+"]"))," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.low);
 			
-			
-			Thread.sleep(35000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])["+y+"]")));	
 			selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])["+y+"]")),isHCBvallist.get(x) ," Hospital Cash Benefit  Expenses");
-			Thread.sleep(WaitTime.medium);
 			
 			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(15000);
+			Thread.sleep(WaitTime.low);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 			
 			Reporter.log("");
@@ -641,18 +601,16 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String ismaternity1= ismaternity.replace(" ", "");
 		ArrayList<String> ismaternitylist= new ArrayList<String>(Arrays.asList(ismaternity1.split("\\+")));
 		
-		Thread.sleep(WaitTime.medium);
+		
 		for(int x = 0;x<ismaternitylist.size();x++)
 		{
 		if(ismaternitylist.get(x).equalsIgnoreCase("Yes"))
 		{
 			int y = x+1;
-			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='MTEX'])"))," Maternity Expense checkBOX");
-			Thread.sleep(WaitTime.medium);
 			
 			click(calpremBTN,"");
-			
+			Thread.sleep(WaitTime.low);
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 			
 			if (okBTN == true) {
@@ -661,7 +619,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		}	
 		}
 		
-		
+		switchtodefaultframe(driver);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -701,7 +659,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		public void fillQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-			AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+		//	AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 			
 			
 		}

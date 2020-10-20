@@ -205,7 +205,8 @@ public class GenericMethods {
 		highlighter(webElement);
 		webElement.clear();
 		webElement.sendKeys(data);
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(webElement));
 		List<WebElement> optionsToSelect =webElement.findElements(by);
 		for(WebElement option : optionsToSelect){
 	        if(option.getText().equals(data)) {
