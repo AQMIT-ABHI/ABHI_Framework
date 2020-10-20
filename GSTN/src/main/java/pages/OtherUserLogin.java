@@ -176,7 +176,7 @@ public class OtherUserLogin extends GenericMethods {
 		   
 		   
 		   //Selection Dropdown 2
-		   @FindBy(xpath="//div[contains(text(),'AddressProof')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Address Proof')]//following::select[2]")
 		   private WebElement Optional2;
 		   
 		   
@@ -254,7 +254,7 @@ public class OtherUserLogin extends GenericMethods {
 		
 		click(SearchButton, "search");
 		
-		driver.findElement(By.xpath("//input[@name='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
+		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
 		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
 		
