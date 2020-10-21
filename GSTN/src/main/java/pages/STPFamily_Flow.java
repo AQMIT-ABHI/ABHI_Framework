@@ -14,9 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-
 import com.codoid.products.fillo.Connection;
-
 import constants.PropertyConfigs;
 import util.ConfigReader;
 import util.CustomAssert;
@@ -24,8 +22,8 @@ import util.ExcelRead;
 import util.GenericMethods;
 import util.WaitTime;
 
-public class STPFamily_Flow extends GenericMethods {
-
+public class STPFamily_Flow extends GenericMethods{
+	
 	@FindBy(xpath = "//input[@id='pUserName']")
 	private WebElement username;
 
@@ -166,35 +164,6 @@ public class STPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "//a[@name='Requirements']/i")
 	private WebElement requirementsIcon;
 
-	/*
-	 * // Selection Dropdown 1
-	 * 
-	 * @FindBy(xpath = "//div[contains(text(),'ID Proof')]//following::select[2]")
-	 * private WebElement Optional1;
-	 * 
-	 * // Selection Dropdown 2
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'AddressProof')]//following::select[2]") private
-	 * WebElement Optional2;
-	 * 
-	 * // Selection Dropdown 3
-	 * 
-	 * @FindBy(xpath = "//div[contains(text(),'Passport')]//following::select[2]")
-	 * private WebElement Optional3;
-	 * 
-	 * // Selection Dropdown 4
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'Declaration for Staying in India')]//following::select[2]"
-	 * ) private WebElement Optional4;
-	 * 
-	 * // Selection Dropdown 5
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'Health Declaration Form')]//following::select[2]")
-	 * private WebElement Optional5;
-	 */
 
 	// Save
 	@FindBy(xpath = "//button[@id='SaveRequire']")
@@ -214,6 +183,7 @@ public class STPFamily_Flow extends GenericMethods {
 	}
 
 	public void fillSTPFlow(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,String stepGroup, CustomAssert customAssert) throws Exception {
+		
 		String sheetName = ConfigReader.getInstance().getValue(PropertyConfigs.TestSheet);
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName, stepGroup);
 		Reporter.log("<B>Traverse To CommonPage</B>");
@@ -235,29 +205,25 @@ public class STPFamily_Flow extends GenericMethods {
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(QuoteNoSearch, getQuoteNo(), "Quote No Input");
 		Thread.sleep(WaitTime.high);
-
 		click(SearchButton, "search");
 
 		driver.findElement(By.xpath("//input[@name='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo() + "')]")), "Quote no");
-
-		
 		Thread.sleep(WaitTime.low);
+		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo() + "')]")), "Quote no");
+		Thread.sleep(WaitTime.low);
+		
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
-		Thread.sleep(WaitTime.low);
+        Thread.sleep(1000);
 		click(membericon, "Member Icon");
 		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver, "containerFrame");
 		Thread.sleep(WaitTime.low);
-
+		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
-			
 			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
 		{
-		
 		String Family1 = dataRow.getProperty("FamilySize");
 		String Family2 = Family1.replace(" ", "");
 		ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
@@ -297,10 +263,18 @@ public class STPFamily_Flow extends GenericMethods {
 						Reporter.log(" as " + Chroniclist.get(i));
 					}
 				}
-
+		
+				/*
+				 * Thread.sleep(WaitTime.medium); selectFromDropdownByVisibleText(Optedzone,
+				 * dataRow.getProperty("Zone"), "Zone"); Thread.sleep(WaitTime.low);
+				 */
 				
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(Optedzone, dataRow.getProperty("Zone"), "Zone");
+				String zones = dataRow.getProperty("Zone");
+				ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+				String optedzone=zone.get(0);
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
 				Thread.sleep(WaitTime.low);
 
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -382,8 +356,7 @@ public class STPFamily_Flow extends GenericMethods {
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 				Thread.sleep(WaitTime.low);
-//							
-
+				
 				/*
 				 * Thread.sleep(WaitTime.medium);
 				 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
@@ -411,13 +384,13 @@ public class STPFamily_Flow extends GenericMethods {
 	}
 
 		// COPS Requirement Page
-           switchtodefaultframe(driver);
-		   switchtoframe(driver, "display"); 
-		   Thread.sleep(3000);
-	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.low);
-	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.low);
+             switchtodefaultframe(driver);
+			 switchtoframe(driver, "display"); 
+			 Thread.sleep(3000);
+	         click(requirementsIcon,"Click Requirement Icon");
+	         Thread.sleep(WaitTime.low);
+	         switchtoframe(driver, "containerFrame");
+	         Thread.sleep(WaitTime.low);
 	       
 	       
 	       //Multiple Requiremrnts
@@ -596,30 +569,15 @@ public class STPFamily_Flow extends GenericMethods {
 								Reporter.log(" as " + Chroniclist.get(i));
 							}
 						}
-
-						
 						
 						Thread.sleep(WaitTime.medium);
-						if(dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-								{
-						selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-								}
-						
-						
-						else if(dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-						{
-							selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-									}
-						
-						else if(dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-						{
-							selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-									}
-						
-						
-						
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
 						Thread.sleep(WaitTime.low);
-
+						
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
 						Thread.sleep(WaitTime.medium);
@@ -629,7 +587,7 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.low);
 						switchtodefaultframe(driver);
 						switchtoframe(driver, "display");
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(1000);
 						click(membericon, "Member Icon");
 						Thread.sleep(WaitTime.medium);
 						switchtoframe(driver, "containerFrame");
@@ -700,7 +658,6 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.medium);
 						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
-//									
 
 						/*
 						 * Thread.sleep(WaitTime.medium);
@@ -708,23 +665,12 @@ public class STPFamily_Flow extends GenericMethods {
 						 * ; Thread.sleep(WaitTime.low);
 						 */
 						Thread.sleep(WaitTime.medium);
-						if(dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-								{
-						selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-								}
-						
-						
-						else if(dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-						{
-							selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-									}
-						
-						else if(dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-						{
-							selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-									}
-						
-						
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+						Thread.sleep(WaitTime.low);
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
@@ -746,13 +692,13 @@ public class STPFamily_Flow extends GenericMethods {
 
 
 				// COPS Requirement Page
-		           switchtodefaultframe(driver);
-				   switchtoframe(driver, "display"); 
-				   Thread.sleep(3000);
-			       click(requirementsIcon,"Click Requirement Icon");
-			       Thread.sleep(WaitTime.low);
-			       switchtoframe(driver, "containerFrame");
-			       Thread.sleep(WaitTime.low);
+	                   switchtodefaultframe(driver);
+			           switchtoframe(driver, "display"); 
+			           Thread.sleep(3000);
+			           click(requirementsIcon,"Click Requirement Icon");
+			           Thread.sleep(WaitTime.low);
+			           switchtoframe(driver, "containerFrame");
+			           Thread.sleep(WaitTime.low);
 			       
 			       
 			       //Multiple Requiremrnts
@@ -937,9 +883,12 @@ public class STPFamily_Flow extends GenericMethods {
 							}
 						}
 
-						
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(Optedzone, dataRow.getProperty("Zone"), "Zone");
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
 						Thread.sleep(WaitTime.low);
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -1021,13 +970,22 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.medium);
 						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
-//									
 
 						/*
 						 * Thread.sleep(WaitTime.medium);
 						 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
 						 * ; Thread.sleep(WaitTime.low);
 						 */
+						
+						/*
+						 * Thread.sleep(WaitTime.medium); String zones = dataRow.getProperty("Zone");
+						 * ArrayList<String> zone = new
+						 * ArrayList<String>(Arrays.asList(zones.split("\\+"))); String
+						 * optedzone=zone.get(0); Thread.sleep(WaitTime.medium);
+						 * selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone");
+						 * Thread.sleep(WaitTime.low);
+						 */
+						
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
@@ -1190,11 +1148,7 @@ public class STPFamily_Flow extends GenericMethods {
 					
 				} 
 				
-				
-				
-				
-				
-				
+					
 				else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 				{
 					
@@ -1240,39 +1194,24 @@ public class STPFamily_Flow extends GenericMethods {
 								}
 							}
 
-							
-							
 							Thread.sleep(WaitTime.medium);
-							if(dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-									{
-							selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-									}
-							
-							
-							else if(dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-							{
-								selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-										}
-							
-							else if(dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-							{
-								selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-										}
-							
+							String zones = dataRow.getProperty("Zone");
+							ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+							String optedzone=zone.get(0);
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+							Thread.sleep(WaitTime.low);
 							
 							
 							Thread.sleep(WaitTime.low);
-
 							((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 							click(SaveButton, "Save");
 							Thread.sleep(WaitTime.medium);
 							click(Okbutton, "Ok Button");
 							Thread.sleep(WaitTime.low);
 
-							Thread.sleep(WaitTime.low);
 							switchtodefaultframe(driver);
 							switchtoframe(driver, "display");
-							Thread.sleep(WaitTime.low);
 							click(membericon, "Member Icon");
 							Thread.sleep(WaitTime.medium);
 							switchtoframe(driver, "containerFrame");
@@ -1343,32 +1282,16 @@ public class STPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 							Thread.sleep(WaitTime.low);
-//										
-
-							/*
-							 * Thread.sleep(WaitTime.medium);
-							 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
-							 * ; Thread.sleep(WaitTime.low);
-							 */
+	
 							Thread.sleep(WaitTime.medium);
-							if(dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-									{
-							selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-									}
+							String zones = dataRow.getProperty("Zone");
+							ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+							String optedzone=zone.get(0);
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+							Thread.sleep(WaitTime.low);
 							
 							
-							else if(dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-							{
-								selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-										}
-							
-							else if(dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-							{
-								selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-										}
-							
-							
-
 							((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 							click(SaveButton, "Save");
 							Thread.sleep(WaitTime.medium);
@@ -1505,6 +1428,7 @@ public class STPFamily_Flow extends GenericMethods {
 						Reporter.log("----------");
 						Reporter.log("Policy Number for this case is "+policyno);
 						Reporter.log("---------");
+						ConfigReader.getInstance().StoreValueToConfig("PolicyNo", policyno, "Policy No generated");
 						
 						
 						//Policy Summary
@@ -1542,3 +1466,7 @@ public class STPFamily_Flow extends GenericMethods {
 	}
 
 }
+
+	
+
+

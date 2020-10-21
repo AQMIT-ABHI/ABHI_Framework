@@ -201,19 +201,17 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		String parentWindow = driver.getWindowHandle();
 		
 		//EnteringQuoteDetails
-				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
-				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-				Thread.sleep(WaitTime.low);
-				click(intermediarysearch, " search ");
-				switchToWindow(driver);
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
-				driver.switchTo().window(parentWindow);
-				System.out.println(parentWindow);
-				Thread.sleep(2000);
-				switchtoframe(driver, "display");  
-		
-		//System.out.println(dataRow.getProperty("IntermediaryCode") +" "+dataRow.getProperty("Policy Tenure")+" "+dataRow.getProperty("Premium Frequency"));
+		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
+		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
+		Thread.sleep(WaitTime.low);
+		click(intermediarysearch, " search ");
+		switchToWindow(driver);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
+		driver.switchTo().window(parentWindow);
+		System.out.println(parentWindow);
+		Thread.sleep(2000);
+		switchtoframe(driver, "display");  
 		
 		policytenure.sendKeys(Keys.END);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
@@ -372,7 +370,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		}
 			
 		Thread.sleep(2000);
-		////span[@md-highlight-text="searchText"]
 		List<WebElement> element = driver.findElements(By.xpath("//span[@md-highlight-text='searchText']"));
 		Thread.sleep(7000);
 		
@@ -384,12 +381,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		            break;
 		        }
 		  }
-				
-//		WebElement FamilySizeclick = driver.findElement(By.xpath("//span[contains(text(),'"+dataRow.getProperty("FamilySize")+"')]"));
-//		click(FamilySizeclick, "Familysize");
-		//driver.findElement(By.xpath("//span[contains(text(),'Father-in-Law + Mother-in-Law')]")).click();
-	
 		
+		  
 		Thread.sleep(WaitTime.high);
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
@@ -424,10 +417,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		    sb.append(c);
 		}
 		//String name = sb.toString();
-		
-		
-		
-		
+	
 		String Family = dataRow.getProperty("FamilySize");
 		String Family1 = Family.replace(" ", "");
 		ArrayList<String> myList = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
@@ -450,10 +440,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 		Thread.sleep(WaitTime.low);
-		
-		
-		
-		
+	
 		for (int x = 0;x<myList.size();x++)
 		{
 			int y = x+1;
@@ -463,8 +450,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]"));
 			WebElement relationship = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]"));
 			WebElement AgeValue1 = driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]"));
-			
-			
+	
 			
 			if (myList.get(x).equalsIgnoreCase("Self"))
 			{
@@ -531,7 +517,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					Thread.sleep(WaitTime.low);
 				}
 
-				
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(relationship,"Self"," Relationship ");
 				Thread.sleep(WaitTime.low);
