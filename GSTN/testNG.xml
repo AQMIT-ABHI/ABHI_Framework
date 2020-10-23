@@ -1,24 +1,19 @@
-
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" parallel="tests" name="QuoteCreation">
+<suite thread-count="1" parallel="tests" name="Pricing">
   <parameter name="BrowserName" value="Desktop"/>
-  <parameter name="LoBName" value="QuoteCreation"/>
-  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\QuoteCreationScanerio\0003_ScenarioSuite_QuoteCreation.xlsx"/>
-  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\QuoteCreationData\QuoteCreation_DataSuite.xlsx"/>
-  <test name="TCS_FamilyPlatEssential_0032" verbose="2">
-    <parameter name="ScriptReference" value="CreateFamilySTPFlowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS_FamilyPlatEssential_0032"/>
-    <parameter name="Description" value="Dependent child (Son/Daughter) also add after 25 years of age in Family floater policy"/>
-    <parameter name="Product" value="Negative"/>
+  <parameter name="LoBName" value="Pricing"/>
+  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
+  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
+  <test name="TCS_STP_ArogyaMultiInd_0003" verbose="2">
+    <parameter name="ScriptReference" value="CreateMultiINDSTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_STP_ArogyaMultiInd_0003"/>
+    <parameter name="Description" value="Verify the Loading applied and installment calculated for Yearly Payment Mode"/>
+    <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_FamilyPlatEssential_0032"/>
+    <parameter name="ScenarioUID" value="TCS_STP_ArogyaMultiInd_0003"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_FamilyPlatEssential_0032 -->
-</suite> <!-- QuoteCreation -->
-
-
+  </test> <!-- TCS_STP_ArogyaMultiInd_0003 -->
+</suite> <!-- Pricing -->

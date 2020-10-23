@@ -22,7 +22,7 @@ import pages.GSTNOnlineLoginPage;
 import pages.GSTNOnlineNewReturndashBoardPage;
 import pages.GSTNOnlinePortalPage;
 import pages.IndividualQuickPricingPage;
-import pages.IndividualQuickPricingPageNoassert;
+
 import pages.IndividualQuoteCreationPage;
 import pages.MemberInfoPage;
 import pages.MultiIndividualPricingPage;
@@ -75,12 +75,7 @@ public class StepDefination extends GSTNOnlinePortalPage {
 		IndividualQuickPricingPage quickquote = new IndividualQuickPricingPage(driver);
 		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
 	}
-//Rahul 15-10-2020
-	public void fillquickIndividualPricingNoAssert(WebDriver driver, String testScenarioID, XSSFWorkbook workbook,
-			Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
-		IndividualQuickPricingPageNoassert quickquote = new IndividualQuickPricingPageNoassert(driver);
-		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
-	}
+
 	
 	// Anmol 18-06-2020
 	public void fillquickFamilyPricing(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,

@@ -335,7 +335,7 @@ public class Finalize extends GenericMethods{
 		
 		//Arogya Sanjevani
 		else
-			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)"))
+			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 			{
 				//First Name
 				clearAndSenKeys(firstname,getRandomString(),"First Name" );
