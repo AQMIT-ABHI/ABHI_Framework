@@ -3,6 +3,7 @@ package pages;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Properties;
 import java.util.Set;
@@ -251,9 +252,7 @@ public class Finalize extends GenericMethods{
 		@FindBy(xpath="//label[contains(text(),'Reference Number')]//following::label[1]")
 		private WebElement refno2;
 	
-	
-	
-	
+
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
 		super(driver);
@@ -285,15 +284,16 @@ public class Finalize extends GenericMethods{
 		switchToWindow(driver);
 		Thread.sleep(WaitTime.low);
 
-		
-		
-		
 		//selectFromDropdownByVisibleText(title,dataRow.getProperty("Title"),"Title");
+		//First Name
+		clearAndSenKeys(firstname,getRandomString(),"First Name" );
+		Thread.sleep(WaitTime.low);
 		
-		//Title
+		//Individual
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
-		
+			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Individual"))
+			{
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 			Thread.sleep(WaitTime.low);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
@@ -303,17 +303,11 @@ public class Finalize extends GenericMethods{
 			Thread.sleep(WaitTime.low);
 		}
 		
-		//First Name
-		clearAndSenKeys(firstname,getRandomString(),"First Name" );
-		Thread.sleep(WaitTime.low);
-		
-		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
 		Thread.sleep(WaitTime.low);
 		
 		//Date Of Birth
-
 	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 	     Date obj = new Date();
 	     String acurrdate=dfor.format(obj);
@@ -332,94 +326,290 @@ public class Finalize extends GenericMethods{
 		
 		}
 		
-		
-		//Arogya Sanjevani
-		else
-			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+		//Family
+		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
 			{
-				//First Name
-				clearAndSenKeys(firstname,getRandomString(),"First Name" );
-				Thread.sleep(WaitTime.medium);
+		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
+			Thread.sleep(WaitTime.low);
+			selectFromDropdownByVisibleText(title,"Mr.","Title");
+		}
+		else {
+			selectFromDropdownByVisibleText(title,"Ms.","Title");
+			Thread.sleep(WaitTime.low);
+		}
+		
+		//Gender
+		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
+		Thread.sleep(WaitTime.low);
+		
+		//Date Of Birth
+	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+	     Date obj = new Date();
+	     String acurrdate=dfor.format(obj);
+	     
+	     //Split Family Size
+	     String Family = dataRow.getProperty("FamilySize");
+		 //String Family1 = Family.replace(" ", "");
+		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family.split("\\+")));
+		 String familysize=family.get(0);
+		 
+		 //Select Date
+		 if(familysize.equalsIgnoreCase("Self"))
+		 {
+			String commonage= dataRow.getProperty("SelfDOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Spouse"))
+			{
+				String commonage= dataRow.getProperty("SpouseDOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Kid1"))
+			{
+				String commonage= dataRow.getProperty("Kid1DOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Kid2"))
+			{
+				String commonage= dataRow.getProperty("Kid2DOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Kid3"))
+			{
+				String commonage= dataRow.getProperty("Kid3DOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Father"))
+			{
+				String commonage= dataRow.getProperty("FatherDOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Mother"))
+			{
+				String commonage= dataRow.getProperty("MotherDOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Father-in-law"))
+			{
+				String commonage= dataRow.getProperty("FILDOB");
+		 }
+			else if(familysize.equalsIgnoreCase("Mother-in-law"))
+			{
+				String commonage= dataRow.getProperty("MILDOB");
+		 }
+		 
+		 
+		 String CollectAge= dataRow.getProperty("commonage");
+		 String[] arrofstr=acurrdate.split("/",3);
+         String date3=arrofstr[2];
+	     int calactual= Integer.parseInt(date3);
+	     int ageCal=Integer.parseInt(CollectAge);
+	     int year=calactual-ageCal;
+         String yearStr=String.valueOf(year);
+         String actualdate1=acurrdate.replaceAll(date3, yearStr);
+         Thread.sleep(WaitTime.medium);
+         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+         Thread.sleep(WaitTime.low);
+         dateofbirth.sendKeys(Keys.TAB);
+		
+		}
+	
+			
+		//Multi-individual
+		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
+		{
+			//Gender
+			Thread.sleep(WaitTime.medium);
+			String genders = dataRow.getProperty("Gender");
+			ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
+			String genderSelection=genderSelect.get(0);
+			Thread.sleep(WaitTime.medium);
+			selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
+			Thread.sleep(WaitTime.low);
+			
+			//Title
+	        if(genderSelection.equalsIgnoreCase("Male"))
+	        {
+	        	Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(title,"Mr.","Title");
+			}
+			else {
+				selectFromDropdownByVisibleText(title,"Ms.","Title");
+				Thread.sleep(WaitTime.low);
+	        }
+	        
+	        
+	      //Date Of Birth
+		     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+		     Date obj = new Date();
+		     String acurrdate=dfor.format(obj);
+		     
+		    //Age Split
+	       Thread.sleep(WaitTime.medium);
+			String AGE = dataRow.getProperty("Age");
+			ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
+			String ageSelection=AGESelect.get(0);
+			Thread.sleep(WaitTime.low);
 				
+			//Calculate Age
+			String[] arrofstr=acurrdate.split("/",3);
+	        String date3=arrofstr[2];
+		    int calactual= Integer.parseInt(date3);
+		    int ageCal=Integer.parseInt(ageSelection);
+		    int year=calactual-ageCal;
+	        String yearStr=String.valueOf(year);
+	        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+	        Thread.sleep(WaitTime.medium);
+	        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+	        Thread.sleep(WaitTime.low);
+	        dateofbirth.sendKeys(Keys.TAB);
+		}
+	}	
+		
+
+		//Arogya Sanjevani
+
+		else if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+			
+
+			{
+			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Individual"))
+			  {
+		        if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
+		     	Thread.sleep(WaitTime.low);
+		    	selectFromDropdownByVisibleText(title,"Mr.","Title");
+		   }
+		   else {
+			selectFromDropdownByVisibleText(title,"Ms.","Title");
+			Thread.sleep(WaitTime.low);
+		   }
+		
+			//Gender
+			selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
+			Thread.sleep(WaitTime.low);
+		
+		    //Date Of Birth
+		     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+		     Date obj = new Date();
+		     String acurrdate=dfor.format(obj);
+			 String CollectAge= dataRow.getProperty("Age");
+			 String[] arrofstr=acurrdate.split("/",3);
+	         String date3=arrofstr[2];
+		     int calactual= Integer.parseInt(date3);
+		     int ageCal=Integer.parseInt(CollectAge);
+		     int year=calactual-ageCal;
+	         String yearStr=String.valueOf(year);
+	         String actualdate1=acurrdate.replaceAll(date3, yearStr);
+	         Thread.sleep(WaitTime.medium);
+	         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+	         Thread.sleep(WaitTime.low);
+	         dateofbirth.sendKeys(Keys.TAB);
+		
+		}
+			
+			//Family
+			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
+			{	
 				//Gender
-			    selectFromDropdownByVisibleText(gender,dataRow.getProperty("PartyGender"),"Party Gender");
-			    Thread.sleep(WaitTime.low);
-			    
-			    if(dataRow.getProperty("PartyGender").equalsIgnoreCase("Male")) {
-					Thread.sleep(WaitTime.medium);
+				Thread.sleep(WaitTime.medium);
+				String genders = dataRow.getProperty("Gender");
+				ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
+				String genderSelection=genderSelect.get(0);
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
+				Thread.sleep(WaitTime.low);
+				
+				//Title
+		        if(genderSelection.equalsIgnoreCase("Male"))
+		        {
+		        	Thread.sleep(WaitTime.low);
 					selectFromDropdownByVisibleText(title,"Mr.","Title");
 				}
 				else {
 					selectFromDropdownByVisibleText(title,"Ms.","Title");
 					Thread.sleep(WaitTime.low);
-				}
-			    
-			  //Date Of Birth
+		        }
+		        
+		        
+		      //Date Of Birth
 			     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 			     Date obj = new Date();
 			     String acurrdate=dfor.format(obj);
-				 String CollectAge= dataRow.getProperty("PartyAge");
-				 String[] arrofstr=acurrdate.split("/",3);
-		         String date3=arrofstr[2];
-			     int calactual= Integer.parseInt(date3);
-			     int ageCal=Integer.parseInt(CollectAge);
-			     int year=calactual-ageCal;
-		         String yearStr=String.valueOf(year);
-		         String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		         Thread.sleep(WaitTime.medium);
-		         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		         Thread.sleep(WaitTime.low);
-		         dateofbirth.sendKeys(Keys.TAB);
+			     
+			    //Age Split
+		       Thread.sleep(WaitTime.medium);
+				String AGE = dataRow.getProperty("Age");
+				ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
+				String ageSelection=AGESelect.get(0);
+				Thread.sleep(WaitTime.low);
+					
+				//Calculate Age
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+			    int ageCal=Integer.parseInt(ageSelection);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 			}
-		
-		
-		    
-	
-		
-		
-		
-		//Nationality
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(nationality,dataRow.getProperty("Nationality"),"Nationality");
-		//Thread.sleep(WaitTime.low);
-		
-	    
+			
+			
+			//Multi-individual
+			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
+			{
+				
+				//Gender
+				Thread.sleep(WaitTime.medium);
+				String genders = dataRow.getProperty("Gender");
+				ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
+				String genderSelection=genderSelect.get(0);
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
+				Thread.sleep(WaitTime.low);
+				
+				//Title
+		        if(genderSelection.equalsIgnoreCase("Male"))
+		        {
+		        	Thread.sleep(WaitTime.low);
+					selectFromDropdownByVisibleText(title,"Mr.","Title");
+				}
+				else {
+					selectFromDropdownByVisibleText(title,"Ms.","Title");
+					Thread.sleep(WaitTime.low);
+		        }
+		        
+		        
+		      //Date Of Birth
+			     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+			     Date obj = new Date();
+			     String acurrdate=dfor.format(obj);
+			     
+			    //Age Split
+		       Thread.sleep(WaitTime.medium);
+				String AGE = dataRow.getProperty("Age");
+				ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
+				String ageSelection=AGESelect.get(0);
+				Thread.sleep(WaitTime.low);
+					
+				//Calculate Age
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+			    int ageCal=Integer.parseInt(ageSelection);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
+			}
+			
+    	}
+			
+
 		//Country of Residence
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(countryofresidence,dataRow.getProperty("Country of Residence"),"Country of Residence");
-		//Thread.sleep(WaitTime.low);
 		
 		//27-08-2020
-		
-		
-		
-		
-		
-		//HNI Customer
-		
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(HNIcustomer, "No","HNI Customer");
-		//Thread.sleep(WaitTime.low);
-		
-		
-		//CEO Club Advisor Customer
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(CEOclubadvisor, "No","CEO Club Advisor Customer");
-		//Thread.sleep(WaitTime.low);
-		
-		
-		//Priority Customer
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(prioritycustomer, "No","Priority Customer");
-		//Thread.sleep(WaitTime.low);
-		
-		
-		//Sensitive Customer
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(sensitivecustomer, "No","Sensitive Customer");
-//		Thread.sleep(WaitTime.low);
-		
-		
 		//GST
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		Thread.sleep(WaitTime.low);
@@ -432,7 +622,7 @@ public class Finalize extends GenericMethods{
 		clearAndSenKeys(whatsappnumber,dataRow.getProperty("WhatsApp Number"),"WhatsApp Number" );
 		
 		
-		//IstheMailing Radiobutton   Doubt
+		//IstheMailing Radiobutton
 		Thread.sleep(WaitTime.low);
 		click(mailing,"IstheMailing");
 		Thread.sleep(3000);
@@ -441,7 +631,6 @@ public class Finalize extends GenericMethods{
 		//Save Button
 		click(saveBTN,"Save");
 		Thread.sleep(3000);
-		//wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK']")));
 		click(okBTN, "OK");
 		Thread.sleep(3000);
 
@@ -502,11 +691,8 @@ public class Finalize extends GenericMethods{
 		
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
-		
-		 //Party Create Window
+		//Party Create Window
 		String ChildWindow1=driver.getWindowHandle();
-		
-		
 		Thread.sleep(3000);
 		click(bankaccountdetails,"bankaccountdetail");
 		switchToWindow(driver);
@@ -547,14 +733,6 @@ public class Finalize extends GenericMethods{
 		
 		Thread.sleep(WaitTime.low);
        driver.switchTo().window(ChildWindow2);
-//		confirmaccountNo.sendKeys(Keys.TAB);
-//		IFSCCode.sendKeys(Keys.TAB);
-//		ifsciconbtn.sendKeys(Keys.TAB);
-		
-//		Thread.sleep(WaitTime.low);
-//		selectFromDropdownByVisibleText(bankaccounttype,dataRow.getProperty("AccountType"),"account Type");
-//		Thread.sleep(WaitTime.low);
-				
 		Thread.sleep(WaitTime.low);
 		click(savebtn,"Savebtn");
 				
@@ -590,9 +768,6 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(3000);
 		click(okBTN2, "OK");
 		Thread.sleep(3000);
-		
-		//switchtoframe(driver, "display");    
-		//switchtodefaultframe(driver);
 		
 		}     	
 	

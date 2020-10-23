@@ -27,7 +27,7 @@ public class StepKeyword extends StepDefination {
 		case "Create_Individual_Pricing":
 			fillquickIndividualPricing(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;	
-		
+
 		case "Create_FamilyFloater_Pricing":
 			fillquickFamilyPricing(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;

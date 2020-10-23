@@ -2,7 +2,6 @@ package stepDefination;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.codoid.products.fillo.Connection;
 
@@ -12,7 +11,6 @@ import pages.DiscountAndLoading;
 import pages.FamilyFloaterQuickPricingPage;
 import pages.FamilyFloaterQuoteCreation;
 import pages.Finalize;
-import pages.GSTLoginPages;
 import pages.GSTNAOSCommonPage;
 import pages.GSTNAddReturns;
 import pages.GSTNDashBoard;
@@ -22,7 +20,6 @@ import pages.GSTNOnlineLoginPage;
 import pages.GSTNOnlineNewReturndashBoardPage;
 import pages.GSTNOnlinePortalPage;
 import pages.IndividualQuickPricingPage;
-
 import pages.IndividualQuoteCreationPage;
 import pages.MemberInfoPage;
 import pages.MultiIndividualPricingPage;
@@ -75,7 +72,6 @@ public class StepDefination extends GSTNOnlinePortalPage {
 		IndividualQuickPricingPage quickquote = new IndividualQuickPricingPage(driver);
 		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
 	}
-
 	
 	// Anmol 18-06-2020
 	public void fillquickFamilyPricing(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
