@@ -2,6 +2,8 @@ package pages;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -12,11 +14,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-
 import com.codoid.products.fillo.Connection;
-
 import constants.PropertyConfigs;
 import util.ConfigReader;
 import util.CustomAssert;
@@ -24,8 +25,8 @@ import util.ExcelRead;
 import util.GenericMethods;
 import util.WaitTime;
 
-public class STPFamily_Flow extends GenericMethods {
-
+public class STPFamily_Flow extends GenericMethods{
+	
 	@FindBy(xpath = "//input[@id='pUserName']")
 	private WebElement username;
 
@@ -44,7 +45,7 @@ public class STPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "(//p[contains(text(),'Policy Management')])[1]")
 	private WebElement PolicyManagement;
 
-	@FindBy(xpath = "//input[@id='Policy No.']")
+	@FindBy(xpath = "//input[@name='Policy No.']")
 	private WebElement QuoteNoSearch;
 
 	@FindBy(xpath = "//button[@id='Search']")
@@ -71,7 +72,7 @@ public class STPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 
-	@FindBy(xpath = "//select[@id='Occupation']")
+	@FindBy(xpath = "//input[@id='occupation']")
 	private WebElement occupation;
 
 	@FindBy(xpath = "//select[@id='Applicable Sum Insured']")
@@ -112,7 +113,7 @@ public class STPFamily_Flow extends GenericMethods {
 
 	@FindBy(xpath = "//select[@id='Opted zone']")
 	private WebElement Optedzone;
-
+	
 	@FindBy(xpath = "(//a[@name='Policy Summary'])[2]")
 	private WebElement policysummary;
 
@@ -166,35 +167,6 @@ public class STPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "//a[@name='Requirements']/i")
 	private WebElement requirementsIcon;
 
-	/*
-	 * // Selection Dropdown 1
-	 * 
-	 * @FindBy(xpath = "//div[contains(text(),'ID Proof')]//following::select[2]")
-	 * private WebElement Optional1;
-	 * 
-	 * // Selection Dropdown 2
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'AddressProof')]//following::select[2]") private
-	 * WebElement Optional2;
-	 * 
-	 * // Selection Dropdown 3
-	 * 
-	 * @FindBy(xpath = "//div[contains(text(),'Passport')]//following::select[2]")
-	 * private WebElement Optional3;
-	 * 
-	 * // Selection Dropdown 4
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'Declaration for Staying in India')]//following::select[2]"
-	 * ) private WebElement Optional4;
-	 * 
-	 * // Selection Dropdown 5
-	 * 
-	 * @FindBy(xpath =
-	 * "//div[contains(text(),'Health Declaration Form')]//following::select[2]")
-	 * private WebElement Optional5;
-	 */
 
 	// Save
 	@FindBy(xpath = "//button[@id='SaveRequire']")
@@ -213,8 +185,8 @@ public class STPFamily_Flow extends GenericMethods {
 		wait = new WebDriverWait(driver, 30);
 	}
 
-	public void fillSTPFlow(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,
-			String stepGroup, CustomAssert customAssert) throws Exception {
+	public void fillSTPFlow(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,String stepGroup, CustomAssert customAssert) throws Exception {
+		
 		String sheetName = ConfigReader.getInstance().getValue(PropertyConfigs.TestSheet);
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName, stepGroup);
 		Reporter.log("<B>Traverse To CommonPage</B>");
@@ -236,26 +208,25 @@ public class STPFamily_Flow extends GenericMethods {
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(QuoteNoSearch, getQuoteNo(), "Quote No Input");
 		Thread.sleep(WaitTime.high);
-
 		click(SearchButton, "search");
 
-		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo() + "')]")), "Quote no");
-
-		
+		driver.findElement(By.xpath("//input[@name='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
+		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo() + "')]")), "Quote no");
+		Thread.sleep(WaitTime.low);
+		
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
-		Thread.sleep(WaitTime.low);
+        Thread.sleep(1000);
 		click(membericon, "Member Icon");
 		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver, "containerFrame");
 		Thread.sleep(WaitTime.low);
-
+		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
-		
+			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
+		{
 		String Family1 = dataRow.getProperty("FamilySize");
 		String Family2 = Family1.replace(" ", "");
 		ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
@@ -281,7 +252,8 @@ public class STPFamily_Flow extends GenericMethods {
 				weightinKG.sendKeys(Keys.TAB);
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
 				Thread.sleep(WaitTime.low);
 
 				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
@@ -295,10 +267,18 @@ public class STPFamily_Flow extends GenericMethods {
 						Reporter.log(" as " + Chroniclist.get(i));
 					}
 				}
-
+		
+				/*
+				 * Thread.sleep(WaitTime.medium); selectFromDropdownByVisibleText(Optedzone,
+				 * dataRow.getProperty("Zone"), "Zone"); Thread.sleep(WaitTime.low);
+				 */
 				
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(Optedzone, dataRow.getProperty("Zone"), "Zone");
+				String zones = dataRow.getProperty("Zone");
+				ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+				String optedzone=zone.get(0);
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
 				Thread.sleep(WaitTime.low);
 
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -348,7 +328,8 @@ public class STPFamily_Flow extends GenericMethods {
 
 				
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
 				Thread.sleep(WaitTime.low);
 				
 
@@ -380,8 +361,7 @@ public class STPFamily_Flow extends GenericMethods {
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 				Thread.sleep(WaitTime.low);
-//							
-
+				
 				/*
 				 * Thread.sleep(WaitTime.medium);
 				 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
@@ -409,13 +389,13 @@ public class STPFamily_Flow extends GenericMethods {
 	}
 
 		// COPS Requirement Page
-           switchtodefaultframe(driver);
-		   switchtoframe(driver, "display"); 
-		   Thread.sleep(3000);
-	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.low);
-	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.low);
+             switchtodefaultframe(driver);
+			 switchtoframe(driver, "display"); 
+			 Thread.sleep(3000);
+	         click(requirementsIcon,"Click Requirement Icon");
+	         Thread.sleep(WaitTime.low);
+	         switchtoframe(driver, "containerFrame");
+	         Thread.sleep(WaitTime.low);
 	       
 	       
 	       //Multiple Requiremrnts
@@ -549,22 +529,24 @@ public class STPFamily_Flow extends GenericMethods {
 			
 		} 
 		
-		else
 			
-			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)"))
+			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 			{
+				
 				String Family1 = dataRow.getProperty("Relation");
 				String Family2 = Family1.replace(" ", "");
 				ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
 				
 
-				for (int x = 0; x < myList1.size(); x++) {
+				for (int x = 0; x < myList1.size(); x++) 
+				{
 					int y = x + 1;
 
 					WebElement SerialNo = driver.findElement(By.xpath("//div[contains(text(),'Serial No')]//following::label[" + y + "]"));
 					
 
-					if (y == 1) {
+					if (y == 1)
+					{
 						Thread.sleep(WaitTime.medium);
 						click(SerialNo, "Serial Number clicked");
 						switchtoframe(driver, "memberiframe"+x);
@@ -578,7 +560,8 @@ public class STPFamily_Flow extends GenericMethods {
 						weightinKG.sendKeys(Keys.TAB);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
 						Thread.sleep(WaitTime.low);
 
 						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
@@ -592,28 +575,15 @@ public class STPFamily_Flow extends GenericMethods {
 								Reporter.log(" as " + Chroniclist.get(i));
 							}
 						}
-
 						
 						Thread.sleep(WaitTime.medium);
-						
-						if (dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-						}
-						
-						else if (dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-						}
-						
-						else if (dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-						}
-						
-							
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
 						Thread.sleep(WaitTime.low);
-
+						
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
 						Thread.sleep(WaitTime.medium);
@@ -623,7 +593,7 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.low);
 						switchtodefaultframe(driver);
 						switchtoframe(driver, "display");
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(1000);
 						click(membericon, "Member Icon");
 						Thread.sleep(WaitTime.medium);
 						switchtoframe(driver, "containerFrame");
@@ -631,7 +601,8 @@ public class STPFamily_Flow extends GenericMethods {
 
 					}
 
-					else if (y > 1) {
+					else if (y > 1) 
+					{
 						Thread.sleep(WaitTime.medium);
 						click(driver.findElement(By.xpath("//div[contains(text(),'Serial No')]/following::label[@id='Serial No'][" + y + "]")),"Serial Number clicked");
 						switchtoframe(driver, "memberiframe"+x);
@@ -658,10 +629,10 @@ public class STPFamily_Flow extends GenericMethods {
 						clearAndSenKeys(countryofResidence, "India", "Country of Residence");
 						click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
 						Thread.sleep(WaitTime.medium);
-
-						
+		
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
 						Thread.sleep(WaitTime.low);
 						
 
@@ -692,29 +663,20 @@ public class STPFamily_Flow extends GenericMethods {
 
 						Thread.sleep(WaitTime.medium);
 						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
-						Thread.sleep(WaitTime.low);								
+						Thread.sleep(WaitTime.low);
 
 						/*
 						 * Thread.sleep(WaitTime.medium);
 						 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
 						 * ; Thread.sleep(WaitTime.low);
 						 */
-						
-						if (dataRow.getProperty("PinCode").equalsIgnoreCase("400050"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone I", "Zone");
-						}
-						
-						else if (dataRow.getProperty("PinCode").equalsIgnoreCase("411015"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone II", "Zone");
-						}
-						
-						else if (dataRow.getProperty("PinCode").equalsIgnoreCase("444601"))
-						{
-						selectFromDropdownByVisibleText(Optedzone, "Zone III", "Zone");
-						}
-						
+						Thread.sleep(WaitTime.medium);
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+						Thread.sleep(WaitTime.low);
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
@@ -732,18 +694,17 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.low);
 
 					}
+				}
 
-
-			}
 
 				// COPS Requirement Page
-		           switchtodefaultframe(driver);
-				   switchtoframe(driver, "display"); 
-				   Thread.sleep(3000);
-			       click(requirementsIcon,"Click Requirement Icon");
-			       Thread.sleep(WaitTime.low);
-			       switchtoframe(driver, "containerFrame");
-			       Thread.sleep(WaitTime.low);
+	                   switchtodefaultframe(driver);
+			           switchtoframe(driver, "display"); 
+			           Thread.sleep(3000);
+			           click(requirementsIcon,"Click Requirement Icon");
+			           Thread.sleep(WaitTime.low);
+			           switchtoframe(driver, "containerFrame");
+			           Thread.sleep(WaitTime.low);
 			       
 			       
 			       //Multiple Requiremrnts
@@ -755,7 +716,7 @@ public class STPFamily_Flow extends GenericMethods {
 					WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
 					WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
 					WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[2])["+k+"]"));
-					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'AddressProof')]//following::select[2])["+k+"]"));
+					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[2])["+k+"]"));
 					WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[2])["+k+"]"));
 					WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[2])["+k+"]"));
 					WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[2])["+k+"]"));
@@ -874,9 +835,634 @@ public class STPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.low);
 						switchtoframe(driver,"containerFrame");
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-			}
+			
+		
+		}
+	}
+			
+		
+		else
+			
+			if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+			{
+				if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
+				{
 				
-}
+				String Family1 = dataRow.getProperty("Relation");
+				String Family2 = Family1.replace(" ", "");
+				ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
+				
+
+				for (int x = 0; x < myList1.size(); x++) {
+					int y = x + 1;
+
+					WebElement SerialNo = driver.findElement(By.xpath("//div[contains(text(),'Serial No')]//following::label[" + y + "]"));
+					
+
+					if (y == 1) {
+						Thread.sleep(WaitTime.medium);
+						click(SerialNo, "Serial Number clicked");
+						switchtoframe(driver, "memberiframe"+x);
+						Thread.sleep(WaitTime.low);
+
+						clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+						Thread.sleep(WaitTime.low);
+
+						clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+						Thread.sleep(WaitTime.low);
+						weightinKG.sendKeys(Keys.TAB);
+						
+						
+						  Thread.sleep(WaitTime.medium); clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+						  click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Occupation Selected");
+						  Thread.sleep(WaitTime.low);
+						 
+						
+						
+						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+							String Chronic = dataRow.getProperty("Chronic");
+							ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+							for (int i = 0; i < Chroniclist.size(); i++) {
+								WebElement Chronicclick = driver
+										.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+								clickWithoutJavaScript(Chronicclick, " Chronic ");
+								Reporter.log(" as " + Chroniclist.get(i));
+							}
+						}
+						
+						
+						Thread.sleep(WaitTime.medium);
+						String zones = dataRow.getProperty("Zone");
+						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+						String optedzone=zone.get(0);
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+						Thread.sleep(WaitTime.low);
+
+						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+						click(SaveButton, "Save");
+						Thread.sleep(WaitTime.medium);
+						click(Okbutton, "Ok Button");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.low);
+						switchtodefaultframe(driver);
+						switchtoframe(driver, "display");
+						Thread.sleep(WaitTime.low);
+						click(membericon, "Member Icon");
+						Thread.sleep(WaitTime.medium);
+						switchtoframe(driver, "containerFrame");
+						Thread.sleep(WaitTime.low);
+
+					}
+
+					else if (y > 1) {
+						Thread.sleep(WaitTime.medium);
+						click(driver.findElement(By.xpath("//div[contains(text(),'Serial No')]/following::label[@id='Serial No'][" + y + "]")),"Serial Number clicked");
+						switchtoframe(driver, "memberiframe"+x);
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(mobileNumber, "9890122325", "Mobile No");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+						Thread.sleep(WaitTime.low);
+						weightinKG.sendKeys(Keys.TAB);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(countryofResidence, "India", "Country of Residence");
+						click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
+						Thread.sleep(WaitTime.medium);
+	
+						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+						Thread.sleep(WaitTime.low);
+	
+						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+							String Chronic = dataRow.getProperty("Chronic");
+							ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+							for (int i = 0; i < Chroniclist.size(); i++) {
+								WebElement Chronicclick = driver
+										.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+								clickWithoutJavaScript(Chronicclick, " Chronic ");
+								Reporter.log(" as " + Chroniclist.get(i));
+							}
+						}
+
+						
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+						Thread.sleep(WaitTime.low);
+
+						/*
+						 * Thread.sleep(WaitTime.medium);
+						 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
+						 * ; Thread.sleep(WaitTime.low);
+						 */
+						
+						/*
+						 * Thread.sleep(WaitTime.medium); String zones = dataRow.getProperty("Zone");
+						 * ArrayList<String> zone = new
+						 * ArrayList<String>(Arrays.asList(zones.split("\\+"))); String
+						 * optedzone=zone.get(0); Thread.sleep(WaitTime.medium);
+						 * selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone");
+						 * Thread.sleep(WaitTime.low);
+						 */
+						
+
+						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+						click(SaveButton, "Save");
+						Thread.sleep(WaitTime.medium);
+						click(Okbutton, "Ok Button");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.low);
+						switchtodefaultframe(driver);
+						switchtoframe(driver, "display");
+						Thread.sleep(WaitTime.low);
+						click(membericon, "Member Icon");
+						Thread.sleep(WaitTime.medium);
+						switchtoframe(driver, "containerFrame");
+						Thread.sleep(WaitTime.low);
+
+					}
+			}
+
+				// COPS Requirement Page
+		           switchtodefaultframe(driver);
+				   switchtoframe(driver, "display"); 
+				   Thread.sleep(3000);
+			       click(requirementsIcon,"Click Requirement Icon");
+			       Thread.sleep(WaitTime.low);
+			       switchtoframe(driver, "containerFrame");
+			       Thread.sleep(WaitTime.low);
+			       
+			       
+			       //Multiple Requiremrnts
+			       for (int n = 0;n<myList1.size();n++)
+					{
+						int s = n+2;
+						int k=n+1;
+					
+					WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+					WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+					WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[2])["+k+"]"));
+					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[2])["+k+"]"));
+					WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[2])["+k+"]"));
+					WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[2])["+k+"]"));
+					WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[2])["+k+"]"));
+					
+					 
+					Thread.sleep(3000);
+			        click(document,"Show Requirment");
+			        Thread.sleep(3000);
+			        
+					//Select Optional From the dropdown 1
+			       Thread.sleep(WaitTime.medium);
+				   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
+					Thread.sleep(WaitTime.medium);
+					
+						
+					 //Select Optional From the dropdown 2
+				       Thread.sleep(WaitTime.low);
+					   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
+						Thread.sleep(WaitTime.medium);
+						
+							
+					 //Select Optional From the dropdown 3
+				       Thread.sleep(WaitTime.low);
+					   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
+						Thread.sleep(WaitTime.medium);
+						
+						
+					 //Select Optional From the dropdown 4
+				       Thread.sleep(WaitTime.low);
+					   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
+						Thread.sleep(WaitTime.medium);	
+				   
+						
+					//Select Optional From the dropdown 5
+				       Thread.sleep(WaitTime.low);
+					   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
+					   Thread.sleep(3000);	
+						
+						
+						//Save
+					   Thread.sleep(WaitTime.low);
+				        click(SaveRequirement,"Save");
+				        Thread.sleep(2000);
+				        
+				        
+				        //Ok Button
+				        Thread.sleep(5000);
+				        click(OK,"Modification Successfully Completed");
+				        Thread.sleep(3000);
+					
+					}
+			       
+			       
+			       
+			     //Policy Summary
+					switchtodefaultframe(driver);
+					switchtoframe(driver,"display");
+					Thread.sleep(WaitTime.medium);
+					click(policysummary, "Policy Summary");
+					switchtoframe(driver,"containerFrame");
+					Thread.sleep(WaitTime.low);
+					
+
+					//Policy Summary
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+					Thread.sleep(WaitTime.low);
+					click(DataEntry1,"DataEntry 1 Complteted");
+					Thread.sleep(WaitTime.low);
+					
+					
+					//Data Entry1 Completed for all scrutiny cases
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+					String dataentry=DataEntryCompleted.getText();
+					Reporter.log("----------");
+					Reporter.log("For all Scrutiny cases "+dataentry);
+					Reporter.log("---------");
+					
+					
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+					Thread.sleep(WaitTime.low);
+					click(SubmitButton,"Submit");
+					Thread.sleep(WaitTime.low);
+					
+					//STP flow
+					
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+					Thread.sleep(WaitTime.low);
+					click(issuepolicy,"Issue Policy");
+					Thread.sleep(WaitTime.low);
+			       		
+					
+					//Printing Policy Number
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+					String policyno=policynumber.getText();
+					Reporter.log("----------");
+					Reporter.log("Policy Number for this case is "+policyno);
+					Reporter.log("---------");
+					
+					
+					//Policy Summary
+					click(Continue,"Continue");
+					Thread.sleep(WaitTime.low);
+					
+					//Payment Cycle
+					Thread.sleep(WaitTime.low);
+					driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+					click(Continue,"Continue");
+					Thread.sleep(WaitTime.low);
+					
+					
+					//Follow Up
+						switchtodefaultframe(driver);
+						switchtoframe(driver,"display");
+						Thread.sleep(WaitTime.low);
+						click(FollowUp,"Follow Up");
+						Thread.sleep(WaitTime.low);
+						switchtoframe(driver,"containerFrame");
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+				} 
+				
+					
+				else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
+				{
+					
+					String Family1 = dataRow.getProperty("Relation");
+					String Family2 = Family1.replace(" ", "");
+					ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
+					
+
+					for (int x = 0; x < myList1.size(); x++) 
+					{
+						int y = x + 1;
+
+						WebElement SerialNo = driver.findElement(By.xpath("//div[contains(text(),'Serial No')]//following::label[" + y + "]"));
+						
+
+						if (y == 1)
+						{
+							Thread.sleep(WaitTime.medium);
+							click(SerialNo, "Serial Number clicked");
+							switchtoframe(driver, "memberiframe"+x);
+							Thread.sleep(WaitTime.low);
+
+							clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+							Thread.sleep(WaitTime.low);
+
+							clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+							Thread.sleep(WaitTime.low);
+							weightinKG.sendKeys(Keys.TAB);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+							click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+							Thread.sleep(WaitTime.low);
+
+							if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+								String Chronic = dataRow.getProperty("Chronic");
+								ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+								for (int i = 0; i < Chroniclist.size(); i++) {
+									WebElement Chronicclick = driver
+											.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+									clickWithoutJavaScript(Chronicclick, " Chronic ");
+									Reporter.log(" as " + Chroniclist.get(i));
+								}
+							}
+
+							Thread.sleep(WaitTime.medium);
+							String zones = dataRow.getProperty("Zone");
+							ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+							String optedzone=zone.get(0);
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+							Thread.sleep(WaitTime.low);
+							
+							
+							Thread.sleep(WaitTime.low);
+							((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+							click(SaveButton, "Save");
+							Thread.sleep(WaitTime.medium);
+							click(Okbutton, "Ok Button");
+							Thread.sleep(WaitTime.low);
+
+							switchtodefaultframe(driver);
+							switchtoframe(driver, "display");
+							click(membericon, "Member Icon");
+							Thread.sleep(WaitTime.medium);
+							switchtoframe(driver, "containerFrame");
+							Thread.sleep(WaitTime.low);
+
+						}
+
+						else if (y > 1) 
+						{
+							Thread.sleep(WaitTime.medium);
+							click(driver.findElement(By.xpath("//div[contains(text(),'Serial No')]/following::label[@id='Serial No'][" + y + "]")),"Serial Number clicked");
+							switchtoframe(driver, "memberiframe"+x);
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(mobileNumber, "9890122325", "Mobile No");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+							Thread.sleep(WaitTime.low);
+							weightinKG.sendKeys(Keys.TAB);
+
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(countryofResidence, "India", "Country of Residence");
+							click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
+							Thread.sleep(WaitTime.medium);
+
+							Thread.sleep(WaitTime.medium);
+							clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+							click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+							Thread.sleep(WaitTime.low);
+							
+							if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+								String Chronic = dataRow.getProperty("Chronic");
+								ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+								for (int i = 0; i < Chroniclist.size(); i++) {
+									WebElement Chronicclick = driver
+											.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+									clickWithoutJavaScript(Chronicclick, " Chronic ");
+									Reporter.log(" as " + Chroniclist.get(i));
+								}
+							}
+
+							
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+							Thread.sleep(WaitTime.low);
+	
+							Thread.sleep(WaitTime.medium);
+							String zones = dataRow.getProperty("Zone");
+							ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
+							String optedzone=zone.get(0);
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone"); 
+							Thread.sleep(WaitTime.low);
+							
+							
+							((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+							click(SaveButton, "Save");
+							Thread.sleep(WaitTime.medium);
+							click(Okbutton, "Ok Button");
+							Thread.sleep(WaitTime.low);
+
+							Thread.sleep(WaitTime.low);
+							switchtodefaultframe(driver);
+							switchtoframe(driver, "display");
+							Thread.sleep(WaitTime.low);
+							click(membericon, "Member Icon");
+							Thread.sleep(WaitTime.medium);
+							switchtoframe(driver, "containerFrame");
+							Thread.sleep(WaitTime.low);
+
+						}
+					}
+
+
+					// COPS Requirement Page
+			           switchtodefaultframe(driver);
+					   switchtoframe(driver, "display"); 
+					   Thread.sleep(3000);
+				       click(requirementsIcon,"Click Requirement Icon");
+				       Thread.sleep(WaitTime.low);
+				       switchtoframe(driver, "containerFrame");
+				       Thread.sleep(WaitTime.low);
+				       
+				       
+				       //Multiple Requiremrnts
+				       for (int n = 0;n<myList1.size();n++)
+						{
+							int s = n+2;
+							int k=n+1;
+						
+						WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+						WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+						WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[2])["+k+"]"));
+						WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[2])["+k+"]"));
+						WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[2])["+k+"]"));
+						WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[2])["+k+"]"));
+						WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[2])["+k+"]"));
+						
+						 
+						Thread.sleep(3000);
+				        click(document,"Show Requirment");
+				        Thread.sleep(3000);
+				        
+						//Select Optional From the dropdown 1
+				       Thread.sleep(WaitTime.medium);
+					   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
+						Thread.sleep(WaitTime.medium);
+						
+							
+						 //Select Optional From the dropdown 2
+					       Thread.sleep(WaitTime.low);
+						   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
+							Thread.sleep(WaitTime.medium);
+							
+								
+						 //Select Optional From the dropdown 3
+					       Thread.sleep(WaitTime.low);
+						   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
+							Thread.sleep(WaitTime.medium);
+							
+							
+						 //Select Optional From the dropdown 4
+					       Thread.sleep(WaitTime.low);
+						   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
+							Thread.sleep(WaitTime.medium);	
+					   
+							
+						//Select Optional From the dropdown 5
+					       Thread.sleep(WaitTime.low);
+						   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
+						   Thread.sleep(3000);	
+							
+							
+							//Save
+						   Thread.sleep(WaitTime.low);
+					        click(SaveRequirement,"Save");
+					        Thread.sleep(2000);
+					        
+					        
+					        //Ok Button
+					        Thread.sleep(5000);
+					        click(OK,"Modification Successfully Completed");
+					        Thread.sleep(3000);
+						
+						}
+				       
+				       
+				       
+				     //Policy Summary
+						switchtodefaultframe(driver);
+						switchtoframe(driver,"display");
+						Thread.sleep(WaitTime.medium);
+						click(policysummary, "Policy Summary");
+						switchtoframe(driver,"containerFrame");
+						Thread.sleep(WaitTime.low);
+						
+
+						//Policy Summary
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+						Thread.sleep(WaitTime.low);
+						click(DataEntry1,"DataEntry 1 Complteted");
+						Thread.sleep(WaitTime.low);
+						
+						
+						//Data Entry1 Completed for all scrutiny cases
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+						String dataentry=DataEntryCompleted.getText();
+						Reporter.log("----------");
+						Reporter.log("For all Scrutiny cases "+dataentry);
+						Reporter.log("---------");
+						
+						
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+						Thread.sleep(WaitTime.low);
+						click(SubmitButton,"Submit");
+						Thread.sleep(WaitTime.low);
+						
+						//STP flow
+						
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+						Thread.sleep(WaitTime.low);
+						click(issuepolicy,"Issue Policy");
+						Thread.sleep(WaitTime.low);
+				       		
+						
+						//Printing Policy Number
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+						String policyno=policynumber.getText();
+						Reporter.log("----------");
+						Reporter.log("Policy Number for this case is "+policyno);
+						Reporter.log("---------");
+						ConfigReader.getInstance().StoreValueToConfig("PolicyNo", policyno, "Policy No generated");
+						
+						
+						//Policy Summary
+						click(Continue,"Continue");
+						Thread.sleep(WaitTime.low);
+						
+						//Payment Cycle
+						Thread.sleep(WaitTime.low);
+						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+						click(Continue,"Continue");
+						Thread.sleep(WaitTime.low);
+						
+						
+						//Follow Up
+							switchtodefaultframe(driver);
+							switchtoframe(driver,"display");
+							Thread.sleep(WaitTime.low);
+							click(FollowUp,"Follow Up");
+							Thread.sleep(WaitTime.low);
+							switchtoframe(driver,"containerFrame");
+							driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+				
+			
+			}
+		}
+				
+	}
+				
+
 
 	public void STPfamilyDetails(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,
 			String stepGroup, CustomAssert customAssert) throws Exception {
@@ -885,3 +1471,7 @@ public class STPFamily_Flow extends GenericMethods {
 	}
 
 }
+
+	
+
+
