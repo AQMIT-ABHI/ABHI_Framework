@@ -285,6 +285,9 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(WaitTime.low);
 
 		//selectFromDropdownByVisibleText(title,dataRow.getProperty("Title"),"Title");
+		//First Name
+		clearAndSenKeys(firstname,getRandomString(),"First Name" );
+		Thread.sleep(WaitTime.low);
 		
 		//Individual
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -299,10 +302,6 @@ public class Finalize extends GenericMethods{
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
 			Thread.sleep(WaitTime.low);
 		}
-		
-		//First Name
-		clearAndSenKeys(firstname,getRandomString(),"First Name" );
-		Thread.sleep(WaitTime.low);
 		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
@@ -338,10 +337,6 @@ public class Finalize extends GenericMethods{
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
 			Thread.sleep(WaitTime.low);
 		}
-		
-		//First Name
-		clearAndSenKeys(firstname,getRandomString(),"First Name" );
-		Thread.sleep(WaitTime.low);
 		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
@@ -416,10 +411,6 @@ public class Finalize extends GenericMethods{
 		//Multi-individual
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 		{
-			//First Name
-			clearAndSenKeys(firstname,getRandomString(),"First Name" );
-			Thread.sleep(WaitTime.low);
-		
 			//Gender
 			Thread.sleep(WaitTime.medium);
 			String genders = dataRow.getProperty("Gender");
@@ -470,7 +461,8 @@ public class Finalize extends GenericMethods{
 		
 
 		//Arogya Sanjevani
-		else if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited (4225)"))
+		else if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+			
 			{
 			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Individual"))
 			  {
@@ -482,10 +474,6 @@ public class Finalize extends GenericMethods{
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
 			Thread.sleep(WaitTime.low);
 		   }
-		
-			//First Name
-			clearAndSenKeys(firstname,getRandomString(),"First Name" );
-			Thread.sleep(WaitTime.low);
 		
 			//Gender
 			selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
@@ -512,11 +500,7 @@ public class Finalize extends GenericMethods{
 			
 			//Family
 			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
-			{
-				//First Name
-				clearAndSenKeys(firstname,getRandomString(),"First Name" );
-				Thread.sleep(WaitTime.low);
-			
+			{	
 				//Gender
 				Thread.sleep(WaitTime.medium);
 				String genders = dataRow.getProperty("Gender");
@@ -568,10 +552,7 @@ public class Finalize extends GenericMethods{
 			//Multi-individual
 			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 			{
-				//First Name
-				clearAndSenKeys(firstname,getRandomString(),"First Name" );
-				Thread.sleep(WaitTime.low);
-			
+				
 				//Gender
 				Thread.sleep(WaitTime.medium);
 				String genders = dataRow.getProperty("Gender");

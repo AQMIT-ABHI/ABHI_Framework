@@ -663,12 +663,4 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			
 			
 		}
-	
-		
-
-
-
-	
-	
-
 }

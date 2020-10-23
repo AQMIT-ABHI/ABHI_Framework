@@ -5,15 +5,15 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test verbose="2" name="TCS_STP_ArogyaMultiInd_0001">
-    <parameter name="ScriptReference" value="CreateMultiINDSTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TCS_STP_ArogyaMultiInd_0001"/>
-    <parameter name="Description" value="Policy should get issued with SI - 150000 and premium frequency as Yearly"/>
+  <test verbose="2" name="TCS_ArogyaSanjFamSTP_00019">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_ArogyaSanjFamSTP_00019"/>
+    <parameter name="Description" value="Arogya-Sanjeevani STP Flow"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_STP_ArogyaMultiInd_0001"/>
+    <parameter name="ScenarioUID" value="TCS_ArogyaSanjFamSTP_00019"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_STP_ArogyaMultiInd_0001 -->
+  </test> <!-- TCS_ArogyaSanjFamSTP_00019 -->
 </suite> <!-- Pricing -->
