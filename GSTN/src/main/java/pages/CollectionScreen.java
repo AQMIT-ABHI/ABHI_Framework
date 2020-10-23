@@ -223,7 +223,7 @@ public class CollectionScreen extends GenericMethods {
 		Thread.sleep(3000);
 		click(choosefile, "Choose File");
 		Thread.sleep(2000);
-		choosefile.sendKeys("D:\\code.txt");
+		choosefile.sendKeys("E:\\code.txt");
 
 		Thread.sleep(5000);
 

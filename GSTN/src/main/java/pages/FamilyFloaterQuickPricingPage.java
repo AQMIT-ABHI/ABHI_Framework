@@ -1273,10 +1273,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 //								selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," zonelist ");
 //								Thread.sleep(WaitTime.low);
 								
+
 								Thread.sleep(WaitTime.medium);
 								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]")),deductlist.get(x)," deductlist ");
 								Thread.sleep(WaitTime.low);
 							
+
 								
 //								Thread.sleep(WaitTime.medium);
 //								clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," DOB ");
@@ -1387,8 +1389,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					 * Assert.assertEquals("Expected value",netpremiumbeforeval,
 					 * dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
 					 */
-					
-					
+
 					//CO-Pay Wavier
 					String isCoPay = dataRow.getProperty("Co-Pay Waiver");
 					String isCoPay1= isCoPay.replace(" ", "");
@@ -1414,11 +1415,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						
 					}
 					}
-					
+					switchtodefaultframe(driver);
 				}
 		
 		//Assert
 		
+
 		/*
 		 * String premiumbeforeOPD =
 		 * netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
@@ -1429,6 +1431,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		 * "NetPremiumAfterDiscount(BeforeOPD)");
 		 */
 		 //verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
+
 		
 
 		
@@ -1540,7 +1543,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			Reporter.log("<B> -------------------------------------------</B>");
 				
 		}
-		switchtodefaultframe(driver);
+	//	switchtodefaultframe(driver);
 	}
 		
 	
@@ -1588,7 +1591,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+
 			//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+
 			
 			
 		}
