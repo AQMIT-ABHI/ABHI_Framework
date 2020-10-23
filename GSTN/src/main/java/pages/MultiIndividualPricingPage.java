@@ -218,6 +218,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 		
 
@@ -344,7 +345,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			
 			    Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 				Thread.sleep(WaitTime.low);
@@ -663,12 +664,4 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			
 			
 		}
-	
-		
-
-
-
-	
-	
-
 }

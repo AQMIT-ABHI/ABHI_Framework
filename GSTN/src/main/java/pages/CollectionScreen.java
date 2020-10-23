@@ -146,8 +146,7 @@ public class CollectionScreen extends GenericMethods {
 
 		// Source of Collection
 		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(sourceofCollection, dataRow.getProperty("Source of Collection"),
-				"Source of Collection");
+		selectFromDropdownByVisibleText(sourceofCollection, dataRow.getProperty("Source of Collection"),"Source of Collection");
 		Thread.sleep(WaitTime.medium);
 
 		// Collection Mode
@@ -224,7 +223,7 @@ public class CollectionScreen extends GenericMethods {
 		Thread.sleep(3000);
 		click(choosefile, "Choose File");
 		Thread.sleep(2000);
-		choosefile.sendKeys("D:\\code.txt");
+		choosefile.sendKeys("E:\\code.txt");
 
 		Thread.sleep(5000);
 
@@ -255,7 +254,7 @@ public class CollectionScreen extends GenericMethods {
 		Thread.sleep(5000);
 		click(choosefile, "Choose File");
 		Thread.sleep(8000);
-		choosefile.sendKeys("E:\\code.txt");
+		choosefile.sendKeys("D:\\code.txt");
 		Thread.sleep(5000);
 
 		// Upload File 2
