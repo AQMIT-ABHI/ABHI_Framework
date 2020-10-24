@@ -1,3 +1,4 @@
+
 package testRunner;
 
 import java.io.File;
@@ -197,6 +198,7 @@ public class TestExecutionSuite{
 	    	rowheadHeader.createCell(0).setCellValue("Scenario");
 	    	rowheadHeader.createCell(1).setCellValue("Status");
 	    	rowheadHeader.createCell(2).setCellValue("QuoteNo");
+	    	rowheadHeader.createCell(3).setCellValue("PolicyNo");
 	        for (Map.Entry<String,String> entry : scenarioStatus.entrySet()) {
 	        	XSSFRow rowhead = sheet.createRow((short)rowNumber++);
 	        	rowhead.createCell(0).setCellValue(entry.getKey());
@@ -207,6 +209,8 @@ public class TestExecutionSuite{
 	        	 System.out.println("Key = " + entry.getKey() + 
 	                     ", Value = " + entry.getValue()); 
 	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
+
+	        	 rowhead.createCell(3).setCellValue(ConfigReader.getInstance().getValue("Policy_No"));
 	        }
 	        FileOutputStream fileOut = new FileOutputStream(TestEngine.excutionFolder+"\\LatestSheet.xlsx");
 	        workbook.write(fileOut);
@@ -315,3 +319,4 @@ public class TestExecutionSuite{
 	}
 	
 }
+
