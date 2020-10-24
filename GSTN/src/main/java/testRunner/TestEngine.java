@@ -41,7 +41,11 @@ public class TestEngine {
 			SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd-MMM-yyyy__hh-mm-ss");
 			String folderDate=simpleDateFormat.format(date);
 
+
 			excutionFolder="D:\\ExecutionReport\\"+ConfigReader.getInstance().getValue("TestSheet")+folderDate;
+
+
+
 
 			
 			testNG.setOutputDirectory(excutionFolder);		

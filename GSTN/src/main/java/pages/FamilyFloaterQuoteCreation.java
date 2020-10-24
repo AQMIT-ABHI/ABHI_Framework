@@ -359,9 +359,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(WaitTime.medium);
 		
 		clearAndSenKeys(FamilySize, dataRow.getProperty("FamilySize"), "Family-Size");
-		
-		
-		
+
 		for(String key: BtnPress.keySet()){
 			if(key.equalsIgnoreCase(dataRow.getProperty("FamilySize")))
 			{
@@ -445,6 +443,12 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		//member details
 
+		
+		
+		
+		
+		
+		
 //		Thread.sleep(WaitTime.low);
 
 		if (zone.isEnabled())
@@ -664,6 +668,9 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 				     int ageCal=Integer.parseInt(CollectAge);
 				     int year=calactual-ageCal;
 			         String yearStr=String.valueOf(year);
+			         
+			         
+			         
 			         String actualdate2=acurrdate.replaceAll(date3, yearStr);
 //			         Thread.sleep(WaitTime.medium);
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
