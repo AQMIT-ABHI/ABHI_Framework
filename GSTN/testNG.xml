@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite thread-count="1" name="Pricing" parallel="tests">
-
-  <parameter name="BrowserName" value="Desktop"/>
-  <parameter name="LoBName" value="Pricing"/>
-  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
-  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test verbose="2" name="TCS_ArogyaSanjFamSTP_00019">
+<suite thread-count="1" name="Pricing" parallel="tests">
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00001">
     <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TCS_ArogyaSanjFamSTP_00019"/>
-    <parameter name="Description" value="Arogya-Sanjeevani STP Flow"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00001"/>
+    <parameter name="Description" value="Maximum age among Self and Spouse - Self (max)"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_ArogyaSanjFamSTP_00019"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00001"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
