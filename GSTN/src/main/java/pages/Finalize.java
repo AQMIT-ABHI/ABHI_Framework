@@ -504,11 +504,13 @@ public class Finalize extends GenericMethods{
 			else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
 			{	
 				//Gender
+
 				Thread.sleep(WaitTime.medium);
 				String genders = dataRow.getProperty("Gender");
 				ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
 				String genderSelection=genderSelect.get(0);
 				Thread.sleep(WaitTime.medium);
+
 				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
 				Thread.sleep(WaitTime.low);
 				
