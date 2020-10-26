@@ -224,7 +224,6 @@ public class CollectionScreen extends GenericMethods {
 		click(choosefile, "Choose File");
 		Thread.sleep(2000);
 		choosefile.sendKeys("D:\\code.txt");
-
 		Thread.sleep(5000);
 
 		// Upload File 1
