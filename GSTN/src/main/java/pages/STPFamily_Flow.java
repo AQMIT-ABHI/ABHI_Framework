@@ -250,12 +250,20 @@ public class STPFamily_Flow extends GenericMethods{
 				clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
 				Thread.sleep(WaitTime.low);
 				weightinKG.sendKeys(Keys.TAB);
-
-				Thread.sleep(WaitTime.medium);
-				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+				
+				HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+				BtnPress1.put("Self Employed", 1);
+				Thread.sleep(WaitTime.medium); 
+				clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
 				Thread.sleep(WaitTime.low);
-
+				for(String key: BtnPress1.keySet()){
+					if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+					{
+					wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+					driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+				    }
+				}
+				
 				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 					String Chronic = dataRow.getProperty("Chronic");
 					ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
@@ -268,11 +276,6 @@ public class STPFamily_Flow extends GenericMethods{
 					}
 				}
 		
-				/*
-				 * Thread.sleep(WaitTime.medium); selectFromDropdownByVisibleText(Optedzone,
-				 * dataRow.getProperty("Zone"), "Zone"); Thread.sleep(WaitTime.low);
-				 */
-				
 				Thread.sleep(WaitTime.medium);
 				String zones = dataRow.getProperty("Zone");
 				ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
@@ -318,21 +321,36 @@ public class STPFamily_Flow extends GenericMethods{
 				weightinKG.sendKeys(Keys.TAB);
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+				selectFromDropdownByVisibleText(nationality,dataRow.getProperty("Nationality"), "Nationality");
 				Thread.sleep(WaitTime.low);
 
-				Thread.sleep(WaitTime.medium);
-				clearAndSenKeys(countryofResidence, "India", "Country of Residence");
-				click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
-				Thread.sleep(WaitTime.medium);
-
-				
-				Thread.sleep(WaitTime.medium);
-				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+				HashMap<String, Integer> BtnPress2 = new HashMap<String, Integer>();
+				BtnPress2.put("India", 1);
+				Thread.sleep(WaitTime.medium); 
+				clearAndSenKeys(countryofResidence,dataRow.getProperty("Country of Residence"), "Country of Residence");
 				Thread.sleep(WaitTime.low);
-				
+				for(String key: BtnPress2.keySet()){
+					if(key.equalsIgnoreCase(dataRow.getProperty("Country of Residence")))
+					{
+					wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='countryof residence']"))));
+					driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+				    }
+				}
 
+				Thread.sleep(WaitTime.low);
+				HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+				BtnPress1.put("Self Employed", 1);
+				Thread.sleep(WaitTime.medium); 
+				clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+				Thread.sleep(WaitTime.low);
+				for(String key: BtnPress1.keySet()){
+					if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+					{
+					wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+					driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+				    }
+				}
+				
 				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 					String Chronic = dataRow.getProperty("Chronic");
 					ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
@@ -361,12 +379,6 @@ public class STPFamily_Flow extends GenericMethods{
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 				Thread.sleep(WaitTime.low);
-				
-				/*
-				 * Thread.sleep(WaitTime.medium);
-				 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
-				 * ; Thread.sleep(WaitTime.low);
-				 */
 
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 				click(SaveButton, "Save");
@@ -559,11 +571,19 @@ public class STPFamily_Flow extends GenericMethods{
 						Thread.sleep(WaitTime.low);
 						weightinKG.sendKeys(Keys.TAB);
 
-						Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+						HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+						BtnPress1.put("Self Employed", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
 						Thread.sleep(WaitTime.low);
-
+						for(String key: BtnPress1.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
+						
 						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 							String Chronic = dataRow.getProperty("Chronic");
 							ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
@@ -622,18 +642,35 @@ public class STPFamily_Flow extends GenericMethods{
 						weightinKG.sendKeys(Keys.TAB);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+						selectFromDropdownByVisibleText(nationality,dataRow.getProperty("Nationality"), "Nationality");
 						Thread.sleep(WaitTime.low);
 
-						Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(countryofResidence, "India", "Country of Residence");
-						click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
-						Thread.sleep(WaitTime.medium);
-		
-						Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+						HashMap<String, Integer> BtnPress2 = new HashMap<String, Integer>();
+						BtnPress2.put("India", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(countryofResidence,dataRow.getProperty("Country of Residence"), "Country of Residence");
 						Thread.sleep(WaitTime.low);
+						for(String key: BtnPress2.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Country of Residence")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='countryof residence']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
+		
+						Thread.sleep(WaitTime.low);
+						HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+						BtnPress1.put("Self Employed", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+						Thread.sleep(WaitTime.low);
+						for(String key: BtnPress1.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
 						
 
 						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
@@ -665,11 +702,6 @@ public class STPFamily_Flow extends GenericMethods{
 						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
 
-						/*
-						 * Thread.sleep(WaitTime.medium);
-						 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
-						 * ; Thread.sleep(WaitTime.low);
-						 */
 						Thread.sleep(WaitTime.medium);
 						String zones = dataRow.getProperty("Zone");
 						ArrayList<String> zone = new ArrayList<String>(Arrays.asList(zones.split("\\+")));
@@ -835,8 +867,6 @@ public class STPFamily_Flow extends GenericMethods{
 						Thread.sleep(WaitTime.low);
 						switchtoframe(driver,"containerFrame");
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-			
-		
 		}
 	}
 			
@@ -871,13 +901,20 @@ public class STPFamily_Flow extends GenericMethods{
 						clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
 						Thread.sleep(WaitTime.low);
 						weightinKG.sendKeys(Keys.TAB);
+						Thread.sleep(WaitTime.low);
 						
-						
-						  Thread.sleep(WaitTime.medium); clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
-						  click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Occupation Selected");
-						  Thread.sleep(WaitTime.low);
-						 
-						
+						HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+						BtnPress1.put("Self Employed", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+						Thread.sleep(WaitTime.low);
+						for(String key: BtnPress1.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
 						
 						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 							String Chronic = dataRow.getProperty("Chronic");
@@ -937,18 +974,35 @@ public class STPFamily_Flow extends GenericMethods{
 						weightinKG.sendKeys(Keys.TAB);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+						selectFromDropdownByVisibleText(nationality, dataRow.getProperty("Nationality"), "Nationality");
 						Thread.sleep(WaitTime.low);
 
-						Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(countryofResidence, "India", "Country of Residence");
-						click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
-						Thread.sleep(WaitTime.medium);
-	
-						Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-						click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+						HashMap<String, Integer> BtnPress2 = new HashMap<String, Integer>();
+						BtnPress2.put("India", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(countryofResidence,dataRow.getProperty("Country of Residence"), "Country of Residence");
 						Thread.sleep(WaitTime.low);
+						for(String key: BtnPress2.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Country of Residence")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='countryof residence']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
+
+						Thread.sleep(WaitTime.low);
+						HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+						BtnPress1.put("Self Employed", 1);
+						Thread.sleep(WaitTime.medium); 
+						clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+						Thread.sleep(WaitTime.low);
+						for(String key: BtnPress1.keySet()){
+							if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+							{
+							wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+							driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+						    }
+						}
 	
 						if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 							String Chronic = dataRow.getProperty("Chronic");
@@ -978,22 +1032,6 @@ public class STPFamily_Flow extends GenericMethods{
 						Thread.sleep(WaitTime.medium);
 						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
-
-						/*
-						 * Thread.sleep(WaitTime.medium);
-						 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
-						 * ; Thread.sleep(WaitTime.low);
-						 */
-						
-						/*
-						 * Thread.sleep(WaitTime.medium); String zones = dataRow.getProperty("Zone");
-						 * ArrayList<String> zone = new
-						 * ArrayList<String>(Arrays.asList(zones.split("\\+"))); String
-						 * optedzone=zone.get(0); Thread.sleep(WaitTime.medium);
-						 * selectFromDropdownByVisibleText(Optedzone,optedzone,"Zone");
-						 * Thread.sleep(WaitTime.low);
-						 */
-						
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
@@ -1183,10 +1221,18 @@ public class STPFamily_Flow extends GenericMethods{
 							Thread.sleep(WaitTime.low);
 							weightinKG.sendKeys(Keys.TAB);
 
-							Thread.sleep(WaitTime.medium);
-							clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-							click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+							HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+							BtnPress1.put("Self Employed", 1);
+							Thread.sleep(WaitTime.medium); 
+							clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
 							Thread.sleep(WaitTime.low);
+							for(String key: BtnPress1.keySet()){
+								if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+								{
+								wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+								driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+							    }
+							}
 
 							if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 								String Chronic = dataRow.getProperty("Chronic");
@@ -1246,18 +1292,34 @@ public class STPFamily_Flow extends GenericMethods{
 							weightinKG.sendKeys(Keys.TAB);
 
 							Thread.sleep(WaitTime.medium);
-							selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+							selectFromDropdownByVisibleText(nationality,dataRow.getProperty("Nationality"), "Nationality");
 							Thread.sleep(WaitTime.low);
 
-							Thread.sleep(WaitTime.medium);
-							clearAndSenKeys(countryofResidence, "India", "Country of Residence");
-							click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on country");
-							Thread.sleep(WaitTime.medium);
-
-							Thread.sleep(WaitTime.medium);
-							clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-							click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+							HashMap<String, Integer> BtnPress2 = new HashMap<String, Integer>();
+							BtnPress2.put("India", 1);
+							Thread.sleep(WaitTime.medium); 
+							clearAndSenKeys(countryofResidence,dataRow.getProperty("Country of Residence"), "Country of Residence");
 							Thread.sleep(WaitTime.low);
+							for(String key: BtnPress2.keySet()){
+								if(key.equalsIgnoreCase(dataRow.getProperty("Country of Residence")))
+								{
+								wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='countryof residence']"))));
+								driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+							    }
+							}
+
+							HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+							BtnPress1.put("Self Employed", 1);
+							Thread.sleep(WaitTime.medium); 
+							clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+							Thread.sleep(WaitTime.low);
+							for(String key: BtnPress1.keySet()){
+								if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+								{
+								wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+								driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+							    }
+							}
 							
 							if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 								String Chronic = dataRow.getProperty("Chronic");

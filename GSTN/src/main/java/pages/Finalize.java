@@ -30,6 +30,9 @@ import util.WaitTime;
 
 public class Finalize extends GenericMethods{
 
+	//public static String AgeCommon;
+
+
 	//Finalize Button
 	@FindBy(xpath="//button[@id='btnFinalize']")
 	private WebElement finalizeBTN;
@@ -251,7 +254,6 @@ public class Finalize extends GenericMethods{
 	//reference Number2
 		@FindBy(xpath="//label[contains(text(),'Reference Number')]//following::label[1]")
 		private WebElement refno2;
-	
 
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
@@ -349,65 +351,150 @@ public class Finalize extends GenericMethods{
 	     
 	     //Split Family Size
 	     String Family = dataRow.getProperty("FamilySize");
-		 //String Family1 = Family.replace(" ", "");
-		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family.split("\\+")));
+		 String Family1 = Family.replace(" ", "");
+		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
 		 String familysize=family.get(0);
 		 
 		 //Select Date
+		 
 		 if(familysize.equalsIgnoreCase("Self"))
 		 {
-			String commonage= dataRow.getProperty("SelfDOB");
+			String AgeCommon= dataRow.getProperty("SelfDOB");
+			String[] arrofstr=acurrdate.split("/",3);
+	        String date3=arrofstr[2];
+		    int calactual= Integer.parseInt(date3);
+			int ageCal=Integer.parseInt(AgeCommon);
+		    int year=calactual-ageCal;
+	        String yearStr=String.valueOf(year);
+	        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+	        Thread.sleep(WaitTime.medium);
+	        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+	        Thread.sleep(WaitTime.low);
+	        dateofbirth.sendKeys(Keys.TAB);
 		 }
+		 
 			else if(familysize.equalsIgnoreCase("Spouse"))
 			{
-				String commonage= dataRow.getProperty("SpouseDOB");
+				String AgeCommon= dataRow.getProperty("SpouseDOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Kid1"))
 			{
-				String commonage= dataRow.getProperty("Kid1DOB");
+				String AgeCommon= dataRow.getProperty("Kid1DOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Kid2"))
 			{
-				String commonage= dataRow.getProperty("Kid2DOB");
+				String AgeCommon= dataRow.getProperty("Kid2DOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Kid3"))
 			{
-				String commonage= dataRow.getProperty("Kid3DOB");
+				String AgeCommon= dataRow.getProperty("Kid3DOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Father"))
 			{
-				String commonage= dataRow.getProperty("FatherDOB");
+				String AgeCommon= dataRow.getProperty("FatherDOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Mother"))
 			{
-				String commonage= dataRow.getProperty("MotherDOB");
+				String AgeCommon= dataRow.getProperty("MotherDOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Father-in-law"))
 			{
-				String commonage= dataRow.getProperty("FILDOB");
+				String AgeCommon= dataRow.getProperty("FILDOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
 		 }
 			else if(familysize.equalsIgnoreCase("Mother-in-law"))
 			{
-				String commonage= dataRow.getProperty("MILDOB");
-		 }
-		 
-		 
-		 String CollectAge= dataRow.getProperty("commonage");
-		 String[] arrofstr=acurrdate.split("/",3);
-         String date3=arrofstr[2];
-	     int calactual= Integer.parseInt(date3);
-	     int ageCal=Integer.parseInt(CollectAge);
-	     int year=calactual-ageCal;
-         String yearStr=String.valueOf(year);
-         String actualdate1=acurrdate.replaceAll(date3, yearStr);
-         Thread.sleep(WaitTime.medium);
-         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-         Thread.sleep(WaitTime.low);
-         dateofbirth.sendKeys(Keys.TAB);
-		
+				String AgeCommon= dataRow.getProperty("MILDOB");
+				String[] arrofstr=acurrdate.split("/",3);
+		        String date3=arrofstr[2];
+			    int calactual= Integer.parseInt(date3);
+				int ageCal=Integer.parseInt(AgeCommon);
+			    int year=calactual-ageCal;
+		        String yearStr=String.valueOf(year);
+		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		        Thread.sleep(WaitTime.medium);
+		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+		        Thread.sleep(WaitTime.low);
+		        dateofbirth.sendKeys(Keys.TAB);
+		 }	
 		}
-	
-			
+
 		//Multi-individual
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 		{
