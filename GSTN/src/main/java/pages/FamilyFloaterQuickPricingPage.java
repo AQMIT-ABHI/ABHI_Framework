@@ -201,19 +201,17 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		String parentWindow = driver.getWindowHandle();
 		
 		//EnteringQuoteDetails
-				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
-				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-				Thread.sleep(WaitTime.low);
-				click(intermediarysearch, " search ");
-				switchToWindow(driver);
-				Thread.sleep(2000);
-				driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
-				driver.switchTo().window(parentWindow);
-				System.out.println(parentWindow);
-				Thread.sleep(2000);
-				switchtoframe(driver, "display");  
-		
-		//System.out.println(dataRow.getProperty("IntermediaryCode") +" "+dataRow.getProperty("Policy Tenure")+" "+dataRow.getProperty("Premium Frequency"));
+		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
+		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
+		Thread.sleep(WaitTime.low);
+		click(intermediarysearch, " search ");
+		switchToWindow(driver);
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
+		driver.switchTo().window(parentWindow);
+		System.out.println(parentWindow);
+		Thread.sleep(2000);
+		switchtoframe(driver, "display");  
 		
 		policytenure.sendKeys(Keys.END);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
@@ -241,7 +239,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.low);
 		
 		//Active Health--Rahul
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health")) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")) {
 		
 		HashMap<String, Integer> BtnPress = new HashMap<String, Integer>();
 		BtnPress.put("Self + Spouse", 28);
@@ -372,7 +370,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		}
 			
 		Thread.sleep(2000);
-		////span[@md-highlight-text="searchText"]
 		List<WebElement> element = driver.findElements(By.xpath("//span[@md-highlight-text='searchText']"));
 		Thread.sleep(7000);
 		
@@ -384,12 +381,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		            break;
 		        }
 		  }
-				
-//		WebElement FamilySizeclick = driver.findElement(By.xpath("//span[contains(text(),'"+dataRow.getProperty("FamilySize")+"')]"));
-//		click(FamilySizeclick, "Familysize");
-		//driver.findElement(By.xpath("//span[contains(text(),'Father-in-Law + Mother-in-Law')]")).click();
-	
 		
+		  
 		Thread.sleep(WaitTime.high);
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
@@ -424,10 +417,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		    sb.append(c);
 		}
 		//String name = sb.toString();
-		
-		
-		
-		
+	
 		String Family = dataRow.getProperty("FamilySize");
 		String Family1 = Family.replace(" ", "");
 		ArrayList<String> myList = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
@@ -450,10 +440,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 		Thread.sleep(WaitTime.low);
-		
-		
-		
-		
+	
 		for (int x = 0;x<myList.size();x++)
 		{
 			int y = x+1;
@@ -463,8 +450,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]"));
 			WebElement relationship = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]"));
 			WebElement AgeValue1 = driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]"));
-			
-			
+	
 			
 			if (myList.get(x).equalsIgnoreCase("Self"))
 			{
@@ -531,7 +517,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					Thread.sleep(WaitTime.low);
 				}
 
-				
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(relationship,"Self"," Relationship ");
 				Thread.sleep(WaitTime.low);
@@ -1140,11 +1125,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			
 			
 		}
-		
+		switchtodefaultframe(driver);
 	}
 		
 		//Arogya sanjivni-- Rahul
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy, Aditya Birla Health Insurance Co. Limited")) {
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")) {
 					
 					clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 					membernumbers.sendKeys(Keys.TAB);
@@ -1288,10 +1273,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 //								selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," zonelist ");
 //								Thread.sleep(WaitTime.low);
 								
+
 								Thread.sleep(WaitTime.medium);
-								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," deductlist ");
+								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]")),deductlist.get(x)," deductlist ");
 								Thread.sleep(WaitTime.low);
 							
+
 								
 //								Thread.sleep(WaitTime.medium);
 //								clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," DOB ");
@@ -1396,10 +1383,13 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					Reporter.log("<B> -------------------------------------------</B>");
 					
 //					Assert Quote Details
-					String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "");
-					Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
-					
-					
+					/*
+					 * String netpremiumbeforeval =
+					 * netpremiumbefore.getText().toString().replace("₹ ", "");
+					 * Assert.assertEquals("Expected value",netpremiumbeforeval,
+					 * dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
+					 */
+
 					//CO-Pay Wavier
 					String isCoPay = dataRow.getProperty("Co-Pay Waiver");
 					String isCoPay1= isCoPay.replace(" ", "");
@@ -1425,19 +1415,22 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						
 					}
 					}
-					
 				}
 		
 		//Assert
 		
-		  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ",
-		  "").replace(",", ""); int premiumbeforeOPDNO = (int)
-		  Float.parseFloat(premiumbeforeOPD); int premiumbeforeOPDNOSheet = (int)
-		  Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").
-		  replace(",", "")); verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,
-		  "NetPremiumAfterDiscount(BeforeOPD)");
-		 
-		verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
+
+		/*
+		 * String premiumbeforeOPD =
+		 * netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
+		 * premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int
+		 * premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty(
+		 * "NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
+		 * verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,
+		 * "NetPremiumAfterDiscount(BeforeOPD)");
+		 */
+		 //verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
+
 		
 
 		
@@ -1530,26 +1523,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			if (okBTN == true) {
 				click(saveokBTN,"OK");
 			}
+
 			
-		
-		
-		
-//		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
-//		{
-//			Thread.sleep(WaitTime.medium);
-//			click(opdeCheckbox,"OPDE checkBOX");
-//			Thread.sleep(WaitTime.medium);
-//			
-//			//click on OK Quote button
-//			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-//			if (okBTN == true) {
-//				click(saveokBTN,"OK");
-//			}
-//			
-//			Thread.sleep(WaitTime.medium);
-//			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
-//			Thread.sleep(WaitTime.medium);
-//			
 	        click(calpremBTN, "Calculate Premium Button");
 		    Thread.sleep(12000);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
@@ -1567,7 +1542,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			Reporter.log("<B> -------------------------------------------</B>");
 				
 		}
-		switchtodefaultframe(driver);
+	switchtodefaultframe(driver);
 	}
 		
 	
@@ -1615,7 +1590,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-			AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+
+			//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+
 			
 			
 		}

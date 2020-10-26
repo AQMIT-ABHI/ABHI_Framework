@@ -2,7 +2,6 @@ package stepDefination;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import com.codoid.products.fillo.Connection;
 
@@ -12,7 +11,6 @@ import pages.DiscountAndLoading;
 import pages.FamilyFloaterQuickPricingPage;
 import pages.FamilyFloaterQuoteCreation;
 import pages.Finalize;
-import pages.GSTLoginPages;
 import pages.GSTNAOSCommonPage;
 import pages.GSTNAddReturns;
 import pages.GSTNDashBoard;
@@ -22,7 +20,6 @@ import pages.GSTNOnlineLoginPage;
 import pages.GSTNOnlineNewReturndashBoardPage;
 import pages.GSTNOnlinePortalPage;
 import pages.IndividualQuickPricingPage;
-import pages.IndividualQuickPricingPageNoassert;
 import pages.IndividualQuoteCreationPage;
 import pages.MemberInfoPage;
 import pages.MultiIndividualPricingPage;
@@ -73,12 +70,6 @@ public class StepDefination extends GSTNOnlinePortalPage {
 	public void fillquickIndividualPricing(WebDriver driver, String testScenarioID, XSSFWorkbook workbook,
 			Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
 		IndividualQuickPricingPage quickquote = new IndividualQuickPricingPage(driver);
-		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
-	}
-//Rahul 15-10-2020
-	public void fillquickIndividualPricingNoAssert(WebDriver driver, String testScenarioID, XSSFWorkbook workbook,
-			Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
-		IndividualQuickPricingPageNoassert quickquote = new IndividualQuickPricingPageNoassert(driver);
 		quickquote.fillQuote(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
 	}
 	
