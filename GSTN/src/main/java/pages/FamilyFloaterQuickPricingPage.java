@@ -1,4 +1,3 @@
-
 package pages;
 
 import java.text.DateFormat;
@@ -240,7 +239,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.low);
 		
 		//Active Health--Rahul
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health")) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")) {
 		
 		HashMap<String, Integer> BtnPress = new HashMap<String, Integer>();
 		BtnPress.put("Self + Spouse", 28);
@@ -1126,7 +1125,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			
 			
 		}
-		
+		switchtodefaultframe(driver);
 	}
 		
 		//Arogya sanjivni-- Rahul
@@ -1416,7 +1415,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						
 					}
 					}
-					switchtodefaultframe(driver);
 				}
 		
 		//Assert
@@ -1544,7 +1542,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			Reporter.log("<B> -------------------------------------------</B>");
 				
 		}
-	//	switchtodefaultframe(driver);
+	switchtodefaultframe(driver);
 	}
 		
 	
