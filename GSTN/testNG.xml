@@ -1,40 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<<<<<<< HEAD
 <suite thread-count="1" name="Pricing" parallel="tests">
-=======
-
-<suite thread-count="1" name="Pricing" parallel="tests">
-
->>>>>>> branch 'Rahul' of https://github.com/AQMIT-ABHI/ABHI_Framework.git
   <parameter name="BrowserName" value="Desktop"/>
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-<<<<<<< HEAD
   <test verbose="2" name="TCS_GoldEssentialFamilySTP_00001">
     <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
     <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00001"/>
     <parameter name="Description" value="Maximum age among Self and Spouse - Self (max)"/>
-=======
-  <test verbose="2" name="TCS_ArogyaSanjFamSTP_00019">
-    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TCS_ArogyaSanjFamSTP_00019"/>
-    <parameter name="Description" value="Arogya-Sanjeevani STP Flow"/>
->>>>>>> branch 'Rahul' of https://github.com/AQMIT-ABHI/ABHI_Framework.git
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-<<<<<<< HEAD
     <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00001"/>
-=======
-    <parameter name="ScenarioUID" value="TCS_ArogyaSanjFamSTP_00019"/>
->>>>>>> branch 'Rahul' of https://github.com/AQMIT-ABHI/ABHI_Framework.git
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-<<<<<<< HEAD
   </test> <!-- TCS_GoldEssentialFamilySTP_00001 -->
-=======
-  </test> <!-- TCS_ArogyaSanjFamSTP_00019 -->
->>>>>>> branch 'Rahul' of https://github.com/AQMIT-ABHI/ABHI_Framework.git
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00002">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00002"/>
+    <parameter name="Description" value="Maximum age among Self and Spouse - Spouse (max)"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00002"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00002 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00003">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00003"/>
+    <parameter name="Description" value="Maximum age among Self and kid - Self (max)"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00003"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00003 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00004">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00004"/>
+    <parameter name="Description" value="At least 1 insured member of age 20 years or above is mandatory"/>
+    <parameter name="Product" value="Negative"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00004"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00004 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00005">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00005"/>
+    <parameter name="Description" value="At least 1 insured member of age 20 years or above is mandatory"/>
+    <parameter name="Product" value="Negative"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00005"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00005 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00006">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00006"/>
+    <parameter name="Description" value="Self + Spouse where self is male and spouse is female"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00006"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00006 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00007">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00007"/>
+    <parameter name="Description" value="Self + Spouse where self is female and spouse is male"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00007"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00007 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00008">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00008"/>
+    <parameter name="Description" value="Family floater with only Childrens not applicable"/>
+    <parameter name="Product" value="Negative"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00008"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00008 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00009">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00009"/>
+    <parameter name="Description" value="Positive flow for various family construct"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00009"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00009 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00010">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00010"/>
+    <parameter name="Description" value="Positive flow for various family construct"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00010"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00010 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00011">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00011"/>
+    <parameter name="Description" value="Positive flow for various family construct"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00011"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00011 -->
+  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00012">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00012"/>
+    <parameter name="Description" value="Positive flow for various family construct"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00012"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_GoldEssentialFamilySTP_00012 -->
 </suite> <!-- Pricing -->

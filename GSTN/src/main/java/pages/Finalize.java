@@ -349,8 +349,8 @@ public class Finalize extends GenericMethods{
 	     
 	     //Split Family Size
 	     String Family = dataRow.getProperty("FamilySize");
-		 //String Family1 = Family.replace(" ", "");
-		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family.split("\\+")));
+		 String Family1 = Family.replace(" ", "");
+		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
 		 String familysize=family.get(0);
 		 
 		 //Select Date
