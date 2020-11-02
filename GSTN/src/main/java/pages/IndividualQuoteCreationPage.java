@@ -418,7 +418,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}
 				
 		//IF opd 
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
 		{
 			

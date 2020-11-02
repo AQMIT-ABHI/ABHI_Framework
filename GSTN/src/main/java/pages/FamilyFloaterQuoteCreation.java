@@ -1757,7 +1757,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 						}
 			          else if (myList.get(x).equalsIgnoreCase("Daughter")) {
 			        	  
-
+			        	    Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")) , getRandomString() ," Name ");
 							Thread.sleep(WaitTime.medium);
 							
@@ -1824,13 +1824,14 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					
 							
 					
-//					Thread.sleep(WaitTime.medium);	
+					Thread.sleep(WaitTime.medium);	
 					SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 					click(calpremBTN, "Calculate Premium Button");
 					
 					driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 					wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 					
+					Thread.sleep(WaitTime.medium);
 					click(saveBTN," SaveButton ");
 
 					Thread.sleep(3000);

@@ -242,7 +242,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 				System.out.println(parentWindow);
 				switchtoframe(driver, "display");  
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.high);
 		policytenure.sendKeys(Keys.END);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");

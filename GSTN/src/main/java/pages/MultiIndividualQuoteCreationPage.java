@@ -505,7 +505,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			}
 		
 		
-		Thread.sleep(WaitTime.low);	
+		Thread.sleep(WaitTime.high);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
 		
