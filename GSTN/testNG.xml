@@ -1,20 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" name="Pricing" parallel="tests">
+<suite thread-count="1" parallel="tests" name="QuoteCreation">
   <parameter name="BrowserName" value="Desktop"/>
-  <parameter name="LoBName" value="Pricing"/>
-  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
-  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test verbose="2" name="TCS_GoldEssentialFamilySTP_00001">
-    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TCS_GoldEssentialFamilySTP_00001"/>
-    <parameter name="Description" value="Maximum age among Self and Spouse - Self (max)"/>
+  <parameter name="LoBName" value="QuoteCreation"/>
+  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\QuoteCreationScanerio\0003_ScenarioSuite_QuoteCreation.xlsx"/>
+  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\QuoteCreationData\QuoteCreation_DataSuite.xlsx"/>
+  <test name="TCS_MultiInd-ActiveAssureQuote_0130" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS_MultiInd-ActiveAssureQuote_0130"/>
+    <parameter name="Description" value="To verify whether user is able to select Semi Anually payment option."/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_GoldEssentialFamilySTP_00001"/>
+    <parameter name="ScenarioUID" value="TCS_MultiInd-ActiveAssureQuote_0130"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_GoldEssentialFamilySTP_00001 -->
-</suite> <!-- Pricing -->
-
+  </test> <!-- TCS_MultiInd-ActiveAssureQuote_0130 -->
+  <test name="TCS_MultiInd-ActiveAssureQuote_0136" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS_MultiInd-ActiveAssureQuote_0136"/>
+    <parameter name="Description" value="To verify installment loading percentage if payment mode is Quarterly."/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_MultiInd-ActiveAssureQuote_0136"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_MultiInd-ActiveAssureQuote_0136 -->
+  <test name="TCS_MultiInd-ActiveAssureQuote_0139" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS_MultiInd-ActiveAssureQuote_0139"/>
+    <parameter name="Description" value="To verify installment loading percentage if payment mode is Semi-Annual."/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_MultiInd-ActiveAssureQuote_0139"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_MultiInd-ActiveAssureQuote_0139 -->
+  <test name="TCS_MultiInd-ActiveAssureQuote_0140" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS_MultiInd-ActiveAssureQuote_0140"/>
+    <parameter name="Description" value="To verify installment loading percentage if payment mode is Quarterly."/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_MultiInd-ActiveAssureQuote_0140"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_MultiInd-ActiveAssureQuote_0140 -->
+  <test name="TCS_MultiInd-ActiveAssureQuote_0142" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS_MultiInd-ActiveAssureQuote_0142"/>
+    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
+    <parameter name="Product" value="Negative"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_MultiInd-ActiveAssureQuote_0142"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_MultiInd-ActiveAssureQuote_0142 -->
+</suite> <!-- QuoteCreation -->

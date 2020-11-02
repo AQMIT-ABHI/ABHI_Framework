@@ -180,6 +180,28 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 	private WebElement refno2;
 	
 	
+	//POS Active assure covers
+	
+			@FindBy(xpath="(//input[@name='AHB'])[1]")
+			private WebElement AHBchkbox ;
+			
+			@FindBy(xpath="(//input[@name='ANRU'])[1]")
+			private WebElement ANRUchkbox ;
+			
+			@FindBy(xpath="(//input[@name='CHB'])[1]")
+			private WebElement CHBchkbox ;
+			
+			@FindBy(xpath="(//input[@name='RIPW'])[1]")
+			private WebElement RIPWchkbox ;
+			
+			@FindBy(xpath="(//input[@name='SNCB'])[1]")
+			private WebElement SNCBchkbox ;
+			
+			@FindBy(xpath="(//input[@name='URSI'])[1]")
+			private WebElement URSIchkbox ;
+		
+	
+	
     WebDriverWait wait;
 	public IndividualQuoteCreationPage(WebDriver driver) {
 		super(driver);
@@ -224,7 +246,13 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
 
+		//wait.until(ExpectedConditions.elementToBeClickable(plantype));
+		Thread.sleep(WaitTime.low);
+		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");		
+		Thread.sleep(WaitTime.low);
 		
+		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
+		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.low);
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
@@ -242,14 +270,22 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
+		
 		//Member Details
-
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
+				Thread.sleep(WaitTime.medium);
 
 //		Thread.sleep(WaitTime.low);
-
-	
+				clearAndSenKeys(membername, getRandomString(),"Member Name");
+				Thread.sleep(WaitTime.low);
+//				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
+//				Thread.sleep(WaitTime.low);
+//				selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+//				Thread.sleep(WaitTime.low);
+//	
 		
-		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+		
 
 
 		
@@ -304,17 +340,23 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		//Gender
 		
+		
+		
+		
+		
+		
+		
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
-		
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 
 		
-		
+		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 
-
+		Thread.sleep(WaitTime.low);
 	
 		//click on Chronic
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
@@ -437,6 +479,86 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			click(saveokBTN,"OK");
 			
 		}
+		
+		//Accidental Hospitalization Booster
+
+				if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
+				{
+					
+					click(AHBchkbox," Accidental Hospitalization Booster");
+					Thread.sleep(WaitTime.medium);
+					
+					
+					Thread.sleep(5000);
+					}
+					
+				
+				
+						
+				//IF AnyRoomUpgrade 
+				Thread.sleep(WaitTime.medium);
+				if(dataRow.getProperty("AnyRoomUpgrade").equalsIgnoreCase("Yes"))
+				{
+					
+					click(ANRUchkbox,"AnyRoomUpgrade checkBOX");
+				
+					
+					Thread.sleep(5000);
+//					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+				}		
+				
+				//IF Cancer Hospitalization Booster
+				Thread.sleep(WaitTime.medium);
+				if(dataRow.getProperty("CancerHospitalizationBooster").equalsIgnoreCase("Yes"))
+				{
+					
+					click(CHBchkbox,"CancerHospitalizationBooster checkBOX");
+				
+					
+					Thread.sleep(5000);
+//					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+				}		
+				
+				//IF Reduction in PED Waiting Period
+				Thread.sleep(WaitTime.medium);
+				if(dataRow.getProperty("ReductioninPEDWaitingPeriod").equalsIgnoreCase("Yes"))
+				{
+					
+					click(RIPWchkbox,"ReductioninPEDWaitingPeriod checkBOX");
+				
+					
+					Thread.sleep(5000);
+//					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+				}	
+				
+				//IF Super NCB
+				Thread.sleep(WaitTime.medium);
+				if(dataRow.getProperty("SuperNCB").equalsIgnoreCase("Yes"))
+				{
+					
+					click(SNCBchkbox,"SuperNCB checkBOX");
+				
+					
+					Thread.sleep(5000);
+//					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+				}	
+				
+				//IF Unlimited Reload of Sum Insured
+				Thread.sleep(WaitTime.medium);
+				if(dataRow.getProperty("UnlimitedReloadofSumInsured").equalsIgnoreCase("Yes"))
+				{
+					
+					click(URSIchkbox,"UnlimitedReloadofSumInsured checkBOX");
+				
+				
+					Thread.sleep(5000);
+//					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+				}	
 		
 		switchtodefaultframe(driver);
 		
