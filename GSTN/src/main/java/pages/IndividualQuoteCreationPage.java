@@ -230,7 +230,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 
 
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.high);
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"), "PinCode ");
 //		Thread.sleep(WaitTime.low);
 		
