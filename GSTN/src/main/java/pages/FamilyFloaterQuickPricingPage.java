@@ -1630,6 +1630,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 //						selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
 
+
 						Thread.sleep(WaitTime.medium);
 
 						selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
@@ -1980,6 +1981,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						
 //						Assert Quote Details
 
+						
+						  String netpremiumbeforeval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "").replace(".00", "");
+						  Assert.assertEquals("Expected value",netpremiumbeforeval,dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
+						 
+						
 						//Accidental Hospitalization Booster
 
 						if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
@@ -2064,18 +2070,28 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						click(calpremBTN, "Calculate Premium Button");
 						Thread.sleep(8000);
 						
-						  String netpremiumbeforeval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "").replace(".00", "");
-						  Assert.assertEquals("Expected value",netpremiumbeforeval,dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
 						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After Optional Covers calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+					    Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+					    Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				        Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+         
 						  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
 						  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); 
 						  int premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
 						  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(BeforeOPD)");
 						 
-       				click(saveBTN, "Save Button");
+//						click(saveBTN, "Save Button");
 						Thread.sleep(3000);
-			 }	
-			
+						
+			 }
 			 switchtodefaultframe(driver);
 	}
 		
@@ -2124,7 +2140,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-            AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+      AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 
 		}
 }
