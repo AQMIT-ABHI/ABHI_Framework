@@ -199,8 +199,9 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			
 			@FindBy(xpath="(//input[@name='URSI'])[1]")
 			private WebElement URSIchkbox ;
-		
-	
+			
+			@FindBy(xpath="//select[@id='Affiliate employee discount']")
+			private WebElement affiliatedEMPdiscount;
 	
     WebDriverWait wait;
 	public IndividualQuoteCreationPage(WebDriver driver) {
@@ -253,11 +254,18 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
+
+		Thread.sleep(WaitTime.low);
+		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
+		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.low);
-		wait.until(ExpectedConditions.elementToBeClickable(plantype));
-
-
+		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)"))
+		{
+		selectFromDropdownByVisibleText(affiliatedEMPdiscount, dataRow.getProperty("AffiliatedEMPDiscount"),"Affiliated Employee Discount");
+		Thread.sleep(WaitTime.low);
+		}
 		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"), "PinCode ");
 //		Thread.sleep(WaitTime.low);
@@ -279,17 +287,20 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 //		Thread.sleep(WaitTime.low);
 				clearAndSenKeys(membername, getRandomString(),"Member Name");
 				Thread.sleep(WaitTime.low);
-//				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-//				Thread.sleep(WaitTime.low);
-//				selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-//				Thread.sleep(WaitTime.low);
+				
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+				{
+				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
+				Thread.sleep(WaitTime.low);
+				
+				 selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+				 Thread.sleep(WaitTime.low);
+				 
+				}
+			  
+	
 //	
-		
-		
 
-
-		
-		
 		//Age & DOB
 		 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 		 Date obj = new Date();
@@ -339,23 +350,13 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 		
 		//Gender
-		
-		
-		
-		
-		
-		
-		
+	
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
-
-		
 		Thread.sleep(WaitTime.low);
-		
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-
 		Thread.sleep(WaitTime.low);
 	
 		//click on Chronic
@@ -374,11 +375,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 
 		Thread.sleep(WaitTime.low);	
-		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
-
-		
-		
-			
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 		click(calpremBTN, "Calculate Premium Button");
 		Thread.sleep(WaitTime.high);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -392,7 +389,9 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
+		System.out.println("Quote No:....."+QuoteNo);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
+		
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
 		Reporter.log("                     ");
@@ -487,13 +486,9 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 					
 					click(AHBchkbox," Accidental Hospitalization Booster");
 					Thread.sleep(WaitTime.medium);
-					
-					
 					Thread.sleep(5000);
 					}
-					
-				
-				
+			
 						
 				//IF AnyRoomUpgrade 
 				Thread.sleep(WaitTime.medium);
