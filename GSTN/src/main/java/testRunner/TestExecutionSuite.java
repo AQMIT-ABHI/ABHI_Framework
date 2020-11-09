@@ -192,7 +192,7 @@ public class TestExecutionSuite{
 		String ScanerioType=ConfigReader.getInstance().getValue(PropertyConfigs.ScanerioType);
 		
 		 XSSFWorkbook workbook = new XSSFWorkbook();
-	    	XSSFSheet sheet = workbook.createSheet("Result Summery");
+	    	XSSFSheet sheet = workbook.createSheet("Result Summary");
 	    	int rowNumber = 0;
 	    	XSSFRow rowheadHeader = sheet.createRow((short)rowNumber++);
 	    	rowheadHeader.createCell(0).setCellValue("Scenario");
@@ -209,7 +209,7 @@ public class TestExecutionSuite{
 	        	 System.out.println("Key = " + entry.getKey() + 
 	                     ", Value = " + entry.getValue()); 
 	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
-
+                
 	        	 rowhead.createCell(3).setCellValue(ConfigReader.getInstance().getValue("Policy_No"));
 	        }
 	        FileOutputStream fileOut = new FileOutputStream(TestEngine.excutionFolder+"\\LatestSheet.xlsx");
