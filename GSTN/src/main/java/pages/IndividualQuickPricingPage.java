@@ -242,7 +242,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 				System.out.println(parentWindow);
 				switchtoframe(driver, "display");  
 		
-		Thread.sleep(WaitTime.high);
+		Thread.sleep(WaitTime.low);
 		policytenure.sendKeys(Keys.END);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
@@ -279,11 +279,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		clearAndSenKeys(membername, getRandomString(),"Member Name");
 		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-		Thread.sleep(WaitTime.low);
-	
+//		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
+//		Thread.sleep(WaitTime.low);
+//		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+//		Thread.sleep(WaitTime.low);
+//	
 		
 		
 		//Age & DOB //Date Calculation
@@ -331,7 +331,22 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		    
 		//Gender
 		
-		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
+		//Gender
+		if(dataRow.getProperty("Gender").equalsIgnoreCase("Other Female"))
+		{
+			selectFromDropdownByVisibleText(gender,"Female","Gender");
+		}
+		
+		else if(dataRow.getProperty("Gender").equalsIgnoreCase("Other Male"))
+		{
+		selectFromDropdownByVisibleText(gender, "Male"," Gender ");
+		}
+		
+		else
+		{
+			selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
+		}
+		
 	
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
@@ -360,8 +375,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 	
-		if (dataRow.getProperty("Product").equalsIgnoreCase("Activ Health"))
-		{
 	
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		Reporter.log("");
@@ -390,15 +403,13 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Reporter.log("---------------------");
 		
 		
-		
-		
 		//Assert Quote Details
-		
-		  String netpremiumbeforeval =
-		  netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+		{
+		  String netpremiumbeforeval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		  Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
 		 
-		
+		}
 		
 		//ELSE-IF Waiver of Mandatory Co-payment 
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
@@ -505,7 +516,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(WaitTime.medium);
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+			//WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			Reporter.log("");
 			Reporter.log("<B> -------------------------------------------</B>");
@@ -519,151 +530,13 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
 			Reporter.log("<B> -------------------------------------------</B>");
 		}
-		}
 		
 		
-		else
-			
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
-		Reporter.log("");
-		Reporter.log("<B> -------------------------------------------</B>");
-		Reporter.log("<B>  OPD not applied </B>");
-		Reporter.log("<B> NetPremiumBefore Value:-  </B>"+ netpremiumbefore.getText());
-		Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-		Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-		Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-		Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-		Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-		Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-		Reporter.log("<B> -------------------------------------------</B>");
+		// NON POS Activ Assure (4219)
 		
+		if (dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)"))
 		
-		click(saveBTN," SaveButton ");
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
-		click(saveokBTN, "Ok ");
-	
-		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
-		
-		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
-		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
-		
-		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
-		Reporter.log("                     ");
-		Reporter.log("---------------------");
-		
-		
-		
-		
-		//Assert Quote Details
-		
-		  String netpremiumbeforeval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
-		  Assert.assertEquals("Expected value",netpremiumbeforeval,dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
-		 
-		
-		
-		//ELSE-IF Waiver of Mandatory Co-payment 
-
-		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
-		{
-			
-			click(wmpcpCheckbox," Hospital Cash Benefit checkBOX");
-			click(calpremBTN, "Calculate Premium Button");
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-			
-			//click on OK Quote button
-			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-			if (okBTN == true) {
-				click(saveokBTN,"OK");
-			}
-			
-		}
-		
-
-		
-		  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", "");
-		  Assert.assertEquals(premiumbeforeOPD,dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
-		 
-				
-		
-		
-		//IF opd 
-	
-		if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
-		{
-			
-			click(opdeCheckbox,"OPDE checkBOX");
-			//click on OK Quote button
-			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-			if (okBTN == true) {
-				click(saveokBTN,"OK");
-			}
-			
-			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
-			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-			
-			Reporter.log("");
-			Reporter.log("<B> -------------------------------------------</B>");
-			Reporter.log("<B>After OPD calculated</B>");
-			Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-			Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-			Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-			Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-			Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-			Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-			Reporter.log("<B> -------------------------------------------</B>");
-				
-		}		
-		
-		
-		//ELSE-IF HOSPITAL CASH BENEFIT 
-		
-		if(dataRow.getProperty("HospitalCashBenefit").equalsIgnoreCase("Yes"))
-		{
-			
-			click(hcbCheckbox," Hospital Cash Benefit checkBOX");
-			//click on OK Quote button
-			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-			if (okBTN == true) {
-				click(saveokBTN,"OK");
-			}
-			
-			
-			selectFromDropdownByVisibleText(hcbDropDown, dataRow.getProperty("HCBsi")," Hospital Cash Benefit  Expenses");
-			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-			
-			Reporter.log("");
-			Reporter.log("<B> -------------------------------------------</B>");
-			Reporter.log("<B>After Hospital Cash Benefit calculated</B>");
-			Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-			Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-			Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-			Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-			Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-			Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-			Reporter.log("<B> -------------------------------------------</B>");
-				
-		}
-		
-
-		
-		//ELSE-IF Maternity Expenses
-	
-		if(dataRow.getProperty("MaternityExpense").equalsIgnoreCase("Yes"))
-		{
-		
-			click(mtexCheckbox," Maternity Expense checkBOX");
-			//click on OK Quote button
-			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-			if (okBTN == true) {
-				click(saveokBTN,"OK");
-			}
+		{	
 			
 			//Accidental Hospitalization Booster
 
@@ -745,22 +618,37 @@ public class IndividualQuickPricingPage extends GenericMethods {
 					
 			}	
 			
-			click(calpremBTN, "Calculate Premium Button");
-			Thread.sleep(WaitTime.medium);
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
-			Reporter.log("");
-			Reporter.log("<B> -------------------------------------------</B>");
-			Reporter.log("<B>After Maternity calculated</B>");
-			Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-			Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-			Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-			Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-			Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-			Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-			Reporter.log("<B> -------------------------------------------</B>");
+			
+			
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
+		Reporter.log("");
+		Reporter.log("<B> -------------------------------------------</B>");
+		Reporter.log("<B>  OPD not applied </B>");
+		Reporter.log("<B> NetPremiumBefore Value:-  </B>"+ netpremiumbefore.getText());
+		Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+		Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+		Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+		Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+		Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+		Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+		Reporter.log("<B> -------------------------------------------</B>");
+		
+		
+		 String netpremiumcoverval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		 Assert.assertEquals("Expected value",netpremiumcoverval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
+	
+		click(saveBTN," SaveButton ");
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+		click(saveokBTN, "Ok ");
+	
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+		
+		
+		
 		}
+		
+		
 		
 	}
 		
@@ -773,6 +661,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		//Values of Premium Calculation	
 		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		String netpremiumcoverval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
 		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
 		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");

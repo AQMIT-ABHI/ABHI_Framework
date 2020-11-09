@@ -1863,7 +1863,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 						Thread.sleep(5000);
 						}
 						
-					}
+		 
 					
 							
 					//IF AnyRoomUpgrade 
@@ -1934,11 +1934,11 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					Thread.sleep(3000);
 					click(calpremBTN, "Calculate Premium Button");
 					Thread.sleep(8000);
-//					click(saveBTN, "Save Button");
-//					Thread.sleep(3000);
+	//				click(saveBTN, "Save Button");
+	//				Thread.sleep(3000);
 					switchtodefaultframe(driver);
 			}
-	
+	}
 		
 		
 		//IF opd 

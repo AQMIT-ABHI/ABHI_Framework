@@ -45,6 +45,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 	private WebElement Product;
 
 	@FindBy(xpath="//a[contains(text(),'Proceed')]")
+	
+	
+	
 	private WebElement proceedBTN;
 	
 	@FindBy(xpath="//select[@id='Source Code']")
@@ -194,7 +197,10 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		@FindBy(xpath="(//input[@name='URSI'])[1]")
 		private WebElement URSIchkbox ;
 	
+		@FindBy(xpath="//select[@id='Affiliate employee discount']")
+		private WebElement affiliatedEMPdiscount;
 	
+		
 	
     WebDriverWait wait;
 	public MultiIndividualQuoteCreationPage(WebDriver driver) {
@@ -216,11 +222,11 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		String parentWindow = driver.getWindowHandle();
 		
 		//EnteringQuoteDetails
-		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
+//		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 		Thread.sleep(2000);
 		//System.out.println(dataRow.getProperty("IntermediaryCode"));
 		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(intermediarysearch, " search ");
 		switchToWindow(driver);
 		//Thread.sleep(2000);
@@ -231,13 +237,13 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 
 		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
 		
 		
@@ -245,15 +251,24 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
-		Thread.sleep(WaitTime.low);
-		
 		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
+		
+		
+		Thread.sleep(WaitTime.low);
+		Thread.sleep(3000);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
+		Thread.sleep(WaitTime.low);
+		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)"))
+		{
+		selectFromDropdownByVisibleText(affiliatedEMPdiscount, dataRow.getProperty("AffiliatedEMPDiscount"),"Affiliated Employee Discount");
+		Thread.sleep(WaitTime.low);
+		}
 		
 		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
@@ -263,7 +278,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		membernumbers.sendKeys(Keys.TAB);
 		
 		
-		Thread.sleep(2000);
+		Thread.sleep(6000);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -320,9 +335,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		String ischronicval1= ischronicval.replace(" ", "");
 		ArrayList<String> ischroniclist = new ArrayList<String>(Arrays.asList(ischronicval1.split("\\+")));
 		
-		String chronicval = dataRow.getProperty("Chronic");
-		//String chronicval1= chronicval.replace(" ", "");
-		ArrayList<String> chroniclist = new ArrayList<String>(Arrays.asList(chronicval.split("\\+")));
+//		String chronicval = dataRow.getProperty("Chronic");
+//		String chronicval1= chronicval.replace(" ", "");
+//		ArrayList<String> chroniclist = new ArrayList<String>(Arrays.asList(chronicval.split("\\+")));
 		
 		
 		HashMap<String, String> NamesList = new HashMap<>(); 
@@ -391,28 +406,28 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					
 					
 					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.high);
 					
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.high);
 					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 					//driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")).sendKeys(name);
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.high);
 					
 					
 					
 //					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," SumInsured ");
-//					Thread.sleep(WaitTime.low);
+//					Thread.sleep(WaitTime.medium);
 //					
 //					
 //					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," SumInsured ");
-//					Thread.sleep(WaitTime.low);
+//					Thread.sleep(WaitTime.medium);
 //				
 					
 					
 					/*
 					 * Thread.sleep(WaitTime.medium); clearAndSenKeysStale(driver.findElement(By.
 					 * xpath("(//input[@id='Date of Birth'])["+y+"]")),doblist.get(x)," Self DOB ");
-					 * Thread.sleep(WaitTime.low);
+					 * Thread.sleep(WaitTime.medium);
 					 * driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).
 					 * sendKeys(Keys.TAB);
 					 */
@@ -436,9 +451,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 						     int year=calactual-ageCal;
 					         String yearStr=String.valueOf(year);
 					         String actualdate=acurrdate.replaceAll(date3, yearStr);
-					         Thread.sleep(WaitTime.low);
+					         Thread.sleep(WaitTime.medium);
 					         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
-					         Thread.sleep(WaitTime.low);
+					         Thread.sleep(WaitTime.medium);
 					         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 					         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 					} 
@@ -456,9 +471,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 						     int year=calactual-ageCal;
 					         String yearStr=String.valueOf(year);
 					         String actualdate=acurrdate.replaceAll(date3, yearStr);
-					         Thread.sleep(WaitTime.low);
+					         Thread.sleep(WaitTime.medium);
 					         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
-					         Thread.sleep(WaitTime.low);
+					         Thread.sleep(WaitTime.medium);
 					         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
 					         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 					         
@@ -467,45 +482,45 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					 
 					
 					
-					 Thread.sleep(WaitTime.low);
+					 Thread.sleep(WaitTime.medium);
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")),genderlist.get(x)," Gender ");
 					
 	
 					//Relationship
 					{
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(WaitTime.medium);
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
 					
 					}
 					Thread.sleep(WaitTime.low);
-					Thread.sleep(4000);
+					Thread.sleep(2000);
 					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]")),roomlist.get(x)," Room ");
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.medium);
 				//	Thread.sleep(2000);
 					
 					
 					//click on Chronic
-					if (ischroniclist.get(x).equalsIgnoreCase("Yes"))
-					{
-					String Chronic = chroniclist.get(x);
-					String na = "n/a";
-					
-					if(Chronic != na) {
-					ArrayList Chroniclist= new ArrayList(Arrays.asList(Chronic.split(",")));
-					for(int i =0;i<Chroniclist.size();i++)
-					{
-					WebElement Chronicclick = driver.findElement(By.xpath("(//option[contains(text(),'"+Chroniclist.get(i)+"')])["+y+"]"));
-	
-					clickWithoutJavaScript(Chronicclick, " Chronic ");
-					Reporter.log(" as "+Chroniclist.get(i));
-					}
-					}
-					}
+//					if (ischroniclist.get(x).equalsIgnoreCase("Yes"))
+//					{
+//					String Chronic = chroniclist.get(x);
+//					String na = "n/a";
+//					
+//					if(Chronic != na) {
+//					ArrayList Chroniclist= new ArrayList(Arrays.asList(Chronic.split(",")));
+//					for(int i =0;i<Chroniclist.size();i++)
+//					{
+//					WebElement Chronicclick = driver.findElement(By.xpath("(//option[contains(text(),'"+Chroniclist.get(i)+"')])["+y+"]"));
+//	
+//					clickWithoutJavaScript(Chronicclick, " Chronic ");
+//					Reporter.log(" as "+Chroniclist.get(i));
+//					}
+//					}
+				//	}
 	
 			}
 		
 		
-		Thread.sleep(WaitTime.high);	
+		Thread.sleep(WaitTime.medium);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
 		
@@ -521,6 +536,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
+		System.out.println("Quote No-------"+QuoteNo);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -696,7 +712,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			int y = x+1;
 			
 			click(driver.findElement(By.xpath("(//input[@name='HSCB'])["+y+"]"))," Hospital Cash Benefit checkBOX");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 			
 //			//click on OK Quote button
 //			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
