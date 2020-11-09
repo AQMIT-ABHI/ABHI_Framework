@@ -1443,17 +1443,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")) {
 					
-					HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
-					BtnPress1.put("2 Adults", 0);
-					BtnPress1.put("1 Adult+1 Child", 0);
-					BtnPress1.put("1 Adult+2 Children", 1);
-					BtnPress1.put("1 Adult+3 Childre", 2);
-					BtnPress1.put("2 Adults+1 Child", 1);
-					BtnPress1.put("2 Adults+2 Children", 2);
-					BtnPress1.put("2 Adults+3 Children", 3);
-					BtnPress1.put("1 Adult+4 Children", 3);
-					BtnPress1.put("2 Adults+4 Children", 1);
-					
+				
 					selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("FamilySize"), "Family-Size");
 					Thread.sleep(WaitTime.medium);
 					
@@ -1810,11 +1800,11 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 							}
 							
 
-							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
+							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
 							 Thread.sleep(WaitTime.medium);
 							
 
-							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
+							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Daughter"," Relationship ");
 							 Thread.sleep(WaitTime.medium);
 			        	  
 			          }
@@ -1863,7 +1853,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 						Thread.sleep(5000);
 						}
 						
-					}
+					
 					
 							
 					//IF AnyRoomUpgrade 
@@ -1939,7 +1929,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					switchtodefaultframe(driver);
 			}
 	
-		
+	}
 		
 		//IF opd 
 		

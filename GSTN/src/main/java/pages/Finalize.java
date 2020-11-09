@@ -30,9 +30,6 @@ import util.WaitTime;
 
 public class Finalize extends GenericMethods{
 
-	//public static String AgeCommon;
-
-
 	//Finalize Button
 	@FindBy(xpath="//button[@id='btnFinalize']")
 	private WebElement finalizeBTN;
@@ -254,6 +251,7 @@ public class Finalize extends GenericMethods{
 	//reference Number2
 		@FindBy(xpath="//label[contains(text(),'Reference Number')]//following::label[1]")
 		private WebElement refno2;
+	
 
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
@@ -281,15 +279,15 @@ public class Finalize extends GenericMethods{
 		
 		//Entering Policy Holder Details
 		wait.until(ExpectedConditions.elementToBeClickable(policyholderCD));
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(policyholderCD, "PolicyHolderCD");
 		switchToWindow(driver);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 
 		//selectFromDropdownByVisibleText(title,dataRow.getProperty("Title"),"Title");
 		//First Name
 		clearAndSenKeys(firstname,getRandomString(),"First Name" );
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Individual
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -297,17 +295,17 @@ public class Finalize extends GenericMethods{
 			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Individual"))
 			{
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
 		}
 		else {
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 		}
 		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Date Of Birth
 	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -323,7 +321,7 @@ public class Finalize extends GenericMethods{
         String actualdate1=acurrdate.replaceAll(date3, yearStr);
         Thread.sleep(WaitTime.medium);
         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-        Thread.sleep(WaitTime.low);
+        Thread.sleep(WaitTime.medium);
         dateofbirth.sendKeys(Keys.TAB);
 		
 		}
@@ -332,17 +330,17 @@ public class Finalize extends GenericMethods{
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
 			{
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
 		}
 		else {
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 		}
 		
 		//Gender
 		selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Date Of Birth
 	     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -356,145 +354,60 @@ public class Finalize extends GenericMethods{
 		 String familysize=family.get(0);
 		 
 		 //Select Date
-		 
 		 if(familysize.equalsIgnoreCase("Self"))
 		 {
-			String AgeCommon= dataRow.getProperty("SelfDOB");
-			String[] arrofstr=acurrdate.split("/",3);
-	        String date3=arrofstr[2];
-		    int calactual= Integer.parseInt(date3);
-			int ageCal=Integer.parseInt(AgeCommon);
-		    int year=calactual-ageCal;
-	        String yearStr=String.valueOf(year);
-	        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-	        Thread.sleep(WaitTime.medium);
-	        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-	        Thread.sleep(WaitTime.low);
-	        dateofbirth.sendKeys(Keys.TAB);
+			String commonage= dataRow.getProperty("SelfDOB");
 		 }
-		 
 			else if(familysize.equalsIgnoreCase("Spouse"))
 			{
-				String AgeCommon= dataRow.getProperty("SpouseDOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("SpouseDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid1"))
 			{
-				String AgeCommon= dataRow.getProperty("Kid1DOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("Kid1DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid2"))
 			{
-				String AgeCommon= dataRow.getProperty("Kid2DOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("Kid2DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid3"))
 			{
-				String AgeCommon= dataRow.getProperty("Kid3DOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("Kid3DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Father"))
 			{
-				String AgeCommon= dataRow.getProperty("FatherDOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("FatherDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Mother"))
 			{
-				String AgeCommon= dataRow.getProperty("MotherDOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("MotherDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Father-in-law"))
 			{
-				String AgeCommon= dataRow.getProperty("FILDOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
+				String commonage= dataRow.getProperty("FILDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Mother-in-law"))
 			{
-				String AgeCommon= dataRow.getProperty("MILDOB");
-				String[] arrofstr=acurrdate.split("/",3);
-		        String date3=arrofstr[2];
-			    int calactual= Integer.parseInt(date3);
-				int ageCal=Integer.parseInt(AgeCommon);
-			    int year=calactual-ageCal;
-		        String yearStr=String.valueOf(year);
-		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
-		        Thread.sleep(WaitTime.medium);
-		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
-		        dateofbirth.sendKeys(Keys.TAB);
-		 }	
+				String commonage= dataRow.getProperty("MILDOB");
+		 }
+		 
+		 
+		 String CollectAge= dataRow.getProperty("commonage");
+		 String[] arrofstr=acurrdate.split("/",3);
+         String date3=arrofstr[2];
+	     int calactual= Integer.parseInt(date3);
+	     int ageCal=Integer.parseInt(CollectAge);
+	     int year=calactual-ageCal;
+         String yearStr=String.valueOf(year);
+         String actualdate1=acurrdate.replaceAll(date3, yearStr);
+         Thread.sleep(WaitTime.medium);
+         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
+         Thread.sleep(WaitTime.medium);
+         dateofbirth.sendKeys(Keys.TAB);
+		
 		}
-
+	
+			
 		//Multi-individual
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Multi-Individual"))
 		{
@@ -505,17 +418,17 @@ public class Finalize extends GenericMethods{
 			String genderSelection=genderSelect.get(0);
 			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 			
 			//Title
 	        if(genderSelection.equalsIgnoreCase("Male"))
 	        {
-	        	Thread.sleep(WaitTime.low);
+	        	Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(title,"Mr.","Title");
 			}
 			else {
 				selectFromDropdownByVisibleText(title,"Ms.","Title");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 	        }
 	        
 	        
@@ -529,7 +442,7 @@ public class Finalize extends GenericMethods{
 			String AGE = dataRow.getProperty("Age");
 			ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
 			String ageSelection=AGESelect.get(0);
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 				
 			//Calculate Age
 			String[] arrofstr=acurrdate.split("/",3);
@@ -541,7 +454,7 @@ public class Finalize extends GenericMethods{
 	        String actualdate1=acurrdate.replaceAll(date3, yearStr);
 	        Thread.sleep(WaitTime.medium);
 	        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-	        Thread.sleep(WaitTime.low);
+	        Thread.sleep(WaitTime.medium);
 	        dateofbirth.sendKeys(Keys.TAB);
 		}
 	}	
@@ -556,17 +469,17 @@ public class Finalize extends GenericMethods{
 			if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Individual"))
 			  {
 		        if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
-		     	Thread.sleep(WaitTime.low);
+		     	Thread.sleep(WaitTime.medium);
 		    	selectFromDropdownByVisibleText(title,"Mr.","Title");
 		   }
 		   else {
 			selectFromDropdownByVisibleText(title,"Ms.","Title");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 		   }
 		
 			//Gender
 			selectFromDropdownByVisibleText(gender,dataRow.getProperty("Gender"),"Gender");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 		
 		    //Date Of Birth
 		     DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -582,7 +495,7 @@ public class Finalize extends GenericMethods{
 	         String actualdate1=acurrdate.replaceAll(date3, yearStr);
 	         Thread.sleep(WaitTime.medium);
 	         clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-	         Thread.sleep(WaitTime.low);
+	         Thread.sleep(WaitTime.medium);
 	         dateofbirth.sendKeys(Keys.TAB);
 		
 		}
@@ -599,17 +512,17 @@ public class Finalize extends GenericMethods{
 				Thread.sleep(WaitTime.medium);
 
 				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				
 				//Title
 		        if(genderSelection.equalsIgnoreCase("Male"))
 		        {
-		        	Thread.sleep(WaitTime.low);
+		        	Thread.sleep(WaitTime.medium);
 					selectFromDropdownByVisibleText(title,"Mr.","Title");
 				}
 				else {
 					selectFromDropdownByVisibleText(title,"Ms.","Title");
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.medium);
 		        }
 		        
 		        
@@ -623,7 +536,7 @@ public class Finalize extends GenericMethods{
 				String AGE = dataRow.getProperty("Age");
 				ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
 				String ageSelection=AGESelect.get(0);
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 					
 				//Calculate Age
 				String[] arrofstr=acurrdate.split("/",3);
@@ -635,7 +548,7 @@ public class Finalize extends GenericMethods{
 		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
 		        Thread.sleep(WaitTime.medium);
 		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
+		        Thread.sleep(WaitTime.medium);
 		        dateofbirth.sendKeys(Keys.TAB);
 			}
 			
@@ -651,17 +564,17 @@ public class Finalize extends GenericMethods{
 				String genderSelection=genderSelect.get(0);
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				
 				//Title
 		        if(genderSelection.equalsIgnoreCase("Male"))
 		        {
-		        	Thread.sleep(WaitTime.low);
+		        	Thread.sleep(WaitTime.medium);
 					selectFromDropdownByVisibleText(title,"Mr.","Title");
 				}
 				else {
 					selectFromDropdownByVisibleText(title,"Ms.","Title");
-					Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.medium);
 		        }
 		        
 		        
@@ -675,7 +588,7 @@ public class Finalize extends GenericMethods{
 				String AGE = dataRow.getProperty("Age");
 				ArrayList<String> AGESelect = new ArrayList<String>(Arrays.asList(AGE.split("\\+")));
 				String ageSelection=AGESelect.get(0);
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 					
 				//Calculate Age
 				String[] arrofstr=acurrdate.split("/",3);
@@ -687,7 +600,7 @@ public class Finalize extends GenericMethods{
 		        String actualdate1=acurrdate.replaceAll(date3, yearStr);
 		        Thread.sleep(WaitTime.medium);
 		        clearAndSenKeys(dateofbirth,actualdate1,"Date of Birth");
-		        Thread.sleep(WaitTime.low);
+		        Thread.sleep(WaitTime.medium);
 		        dateofbirth.sendKeys(Keys.TAB);
 			}
 			
@@ -695,24 +608,24 @@ public class Finalize extends GenericMethods{
 			
 
 		//Country of Residence
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(countryofresidence,dataRow.getProperty("Country of Residence"),"Country of Residence");
 		
 		//27-08-2020
 		//GST
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(GSTregistrationtype,dataRow.getProperty("GST Registration Type"),"GST Registration Type");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		//Whatsapp Number
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(whatsappnumber,dataRow.getProperty("WhatsApp Number"),"WhatsApp Number" );
 		
 		
 		//IstheMailing Radiobutton
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(mailing,"IstheMailing");
 		Thread.sleep(3000);
 		
@@ -754,22 +667,21 @@ public class Finalize extends GenericMethods{
 		
 		
 		//Landline Number
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		clearAndSenKeys(Landline,dataRow.getProperty("Landline Number"),"Landline number");
 		
 		
 		//Mobile Number
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		clearAndSenKeys(Mobile,dataRow.getProperty("Mobile Number"),"Mobile Number");
 		
-		
 		//Fill Email ID
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		clearAndSenKeys(Email,dataRow.getProperty("Email ID"),"Email ID");
 		
 		
 		//Click Save Button
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		click(Save1,"Save Button");
 		
 		
@@ -787,42 +699,42 @@ public class Finalize extends GenericMethods{
 		switchToWindow(driver);
 		Thread.sleep(4000);
 			 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(accountNo,dataRow.getProperty("AccountNo"),"Account No");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 				
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(confirmaccountNo,dataRow.getProperty("ConformAccountNo"),"ConformAccount No");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 				
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(bankaccounttype,dataRow.getProperty("AccountType"),"account Type");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Bank Account Window
 		String ChildWindow2=driver.getWindowHandle();
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(ifsciconbtn,"Iconbtn");
 		switchToWindow(driver);
 				
 				
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(searchifscbtn,"IFSCsearchbtn");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(ifcselectbtn,"IFSCselectbtn");
 	
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
        driver.switchTo().window(ChildWindow2);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(savebtn,"Savebtn");
 				
 		Thread.sleep(3000);
@@ -830,7 +742,7 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(2000);
 		
 	// close btn on ifsc code 	
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(closebtn,"Closebtn");
 		Thread.sleep(3000);
 
@@ -848,7 +760,7 @@ public class Finalize extends GenericMethods{
 		switchtoframe(driver, "display");  
 		Thread.sleep(WaitTime.high);
 		selectFromDropdownByVisibleText(policyholdermember,dataRow.getProperty("PolicyHolderIsMember"),"IsPolicyHolderMember");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		//Convert Detail Quote
