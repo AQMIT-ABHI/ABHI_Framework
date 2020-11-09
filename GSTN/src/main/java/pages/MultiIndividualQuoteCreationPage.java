@@ -193,12 +193,12 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		@FindBy(xpath="(//input[@name='URSI'])[1]")
 		private WebElement URSIchkbox ;
+
 		
 		//Affiliated Employee Discount
 		@FindBy(xpath="//select[@id='Affiliate employee discount']")
 		private WebElement affiliatedEMPdiscount;
-	
-	
+
 	
     WebDriverWait wait;
 	public MultiIndividualQuoteCreationPage(WebDriver driver) {
@@ -249,10 +249,12 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+
 		{
 		selectFromDropdownByVisibleText(affiliatedEMPdiscount, dataRow.getProperty("AffiliatedEMPDiscount"),"Affiliated Employee Discount");
 		Thread.sleep(WaitTime.low);
 		}
+
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.low);
@@ -260,6 +262,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
 		Thread.sleep(WaitTime.low);
 		membernumbers.sendKeys(Keys.TAB);
+
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -305,8 +308,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		NamesList.put("Son","Archie");
 		NamesList.put("Son","Archie");
 		NamesList.put("Son","Archie");
-		
-		
+
 		NamesList.put("Kid1","Harry");
 		NamesList.put("Kid2","Jacl");
 		NamesList.put("Kid3","Thomas");
@@ -314,6 +316,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		NamesList.put("Mother","Female");
 		NamesList.put("Father-in-law","George");
 		NamesList.put("Mother-in-law","Olivia");
+		NamesList.put("Dependant Child","Anny");
 		
 		ArrayList<String> Names = new ArrayList<String>();
 		Names.add("Self");
@@ -336,7 +339,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Names.add("Niece");
 		Names.add("Daughter");
 		Names.add("Daughter-in-law");
-		
+		Names.add("Dependant Child");
 		
 		
 		//Member Details
@@ -488,6 +491,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(WaitTime.high);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
+
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
@@ -512,6 +516,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		//CO-Pay Wavier
                 if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
+
 		String isCoPay = dataRow.getProperty("Co-Pay Waiver");
 		String isCoPay1= isCoPay.replace(" ", "");
 		ArrayList<String> isCoPaylist= new ArrayList<String>(Arrays.asList(isCoPay1.split("\\+")));
@@ -594,6 +599,8 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			int y = x+1;
 			
 			click(driver.findElement(By.xpath("(//input[@name='HSCB'])["+y+"]"))," Hospital Cash Benefit checkBOX");
+
+
 			Thread.sleep(35000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])["+y+"]")));	
 			selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])["+y+"]")),isHCBvallist.get(x) ," Hospital Cash Benefit  Expenses");
@@ -620,8 +627,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			int y = x+1;
 			Thread.sleep(WaitTime.medium);
 			click(driver.findElement(By.xpath("(//input[@name='MTEX'])["+y+"]"))," Maternity Expense checkBOX");
-		
-			
+
 			click(calpremBTN,"");
 			
 			boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
@@ -631,7 +637,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			}
 		}	
 		}
-            }
+  }
 		
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
@@ -751,6 +757,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
                    }
 	
 	              switchtodefaultframe(driver);
+
 	}
 	
 		public void fillQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception

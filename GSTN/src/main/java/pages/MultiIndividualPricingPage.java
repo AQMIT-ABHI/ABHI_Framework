@@ -261,7 +261,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		String SIval = dataRow.getProperty("SumInsured");
 		String SI1val = SIval.replace(" ", "");
 		ArrayList<String> SumInsuredList = new ArrayList<String>(Arrays.asList(SI1val.split("\\+")));
-		
+
 		String ageval = dataRow.getProperty("Age");
 		String ageval1= ageval.replace(" ", "");
 		ArrayList<String> agelist = new ArrayList<String>(Arrays.asList(ageval1.split("\\+")));
@@ -416,10 +416,12 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				//String roomval1= roomval.replace(" ", "");
 				ArrayList<String> roomlist = new ArrayList<String>(Arrays.asList(roomval.split("\\+")));
 				
+
 				Thread.sleep(WaitTime.low); 
 			   selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]")),roomlist.get(x)," Room ");
 			   Thread.sleep(WaitTime.low);
 				}
+
 				
 				//click on Chronic
 				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -518,11 +520,13 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		
 		
 		//Assert Quote Details
+
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 		{
 	  String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
      Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
 		}
+
 		
 		//CO-Pay Wavier
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -659,8 +663,10 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		}
 	}
 		
+
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
 		{
+
 		
 		//ELSE-IF ReductioninPEDWaitingPeriod
 		String RIPEDwaiting = dataRow.getProperty("ReductioninPEDWaitingPeriod");
@@ -671,7 +677,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		{
 		if(RIPEDwaitingPeriodlist.get(x).equalsIgnoreCase("Yes"))
 		{
-			int y = x+1;
+
 			click(driver.findElement(By.xpath("(//input[@name='RIPW'])["+y+"]"))," ReductioninPEDWaitingPeriod");
 			Thread.sleep(WaitTime.low);
 		}
@@ -723,6 +729,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				if(URSTR.get(x).equalsIgnoreCase("Yes"))
 				{
 					int y = x+1;
+
 					click(driver.findElement(By.xpath("(//input[@name='URSI'])["+y+"]"))," UnlimitedReloadofSumInsured");
 					Thread.sleep(WaitTime.low);
 				}
@@ -740,6 +747,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				if(SuperNCBBT.get(x).equalsIgnoreCase("Yes"))
 				{
 					int y = x+1;
+
 					click(driver.findElement(By.xpath("(//input[@name='SNCB'])["+y+"]"))," SuperNCB");
 					Thread.sleep(WaitTime.low);
 				}
