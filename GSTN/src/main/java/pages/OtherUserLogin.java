@@ -1,6 +1,7 @@
 package pages;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
@@ -73,7 +75,7 @@ public class OtherUserLogin extends GenericMethods {
 	@FindBy(xpath="//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 	
-	@FindBy(xpath="//input[@id='occupation']")
+	@FindBy(xpath = "//input[@id='occupation']")
 	private WebElement occupation;
 	
 	@FindBy(xpath="//select[@id='Applicable Sum Insured']")
@@ -171,17 +173,17 @@ public class OtherUserLogin extends GenericMethods {
 		   
 		
 		   //Selection Dropdown 1
-		   @FindBy(xpath="(//div[contains(text(),'ID Proof')]//following::select[1])[1]")
+		   @FindBy(xpath="//div[contains(text(),'ID Proof')]//following::select[1]")
 		   private WebElement Optional1;
 		   
 		   
 		   //Selection Dropdown 2
-		   @FindBy(xpath="(//div[contains(text(),'Address Proof')]//following::select[1])[1]")
+		   @FindBy(xpath="//div[contains(text(),'Address Proof')]//following::select[1]")
 		   private WebElement Optional2;
 		   
 		   
 		   //Selection Dropdown 3
-		   @FindBy(xpath="(//div[contains(text(),'Passport')]//following::select[1])[1]")
+		   @FindBy(xpath="//div[contains(text(),'Passport')]//following::select[1]")
 		   private WebElement Optional3;  
 		   
 		   
@@ -193,14 +195,6 @@ public class OtherUserLogin extends GenericMethods {
 		   //Selection Dropdown 5
 		   @FindBy(xpath="//div[contains(text(),'Health Declaration Form')]//following::select[1]")
 		   private WebElement Optional5;  
-		   
-		   //Selection Dropdown 6
-		   @FindBy(xpath="//div[contains(text(),'Bank Account Document of Proposer')]//following::select[1]")
-		   private WebElement Optional6; 
-		   
-		 //Selection Dropdown 7
-		   @FindBy(xpath="//div[contains(text(),'Proposal Form')]//following::select[1]")
-		   private WebElement Optional7; 
 		   
 		  //Save
 		   @FindBy(xpath="//button[@id='SaveRequire']")
@@ -250,13 +244,13 @@ public class OtherUserLogin extends GenericMethods {
 		
 		click(driver.findElement(By.xpath("//div[contains(text(),'COPS')]")),"Selected Role as COPS");
 		
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
 		click(PolicyManagement,"Policy Management tab");
 		
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
 		Thread.sleep(4000);
 		
@@ -267,65 +261,70 @@ public class OtherUserLogin extends GenericMethods {
 		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
 		
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(membericon,"Member Icon");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		switchtoframe(driver,"containerFrame");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
         click(memberCode, "Member Code");
         switchtoframe(driver,"memberiframe0");
         
         
         
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //	    clearAndSenKeys(mobileNumber,"9890122325","Mobile No");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
-		Thread.sleep(WaitTime.medium);
-		
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(weightinKG,dataRow.getProperty("WeightInKG"),"Weight In KG");
-		Thread.sleep(WaitTime.medium);
-		weightinKG.sendKeys(Keys.TAB);
-		
-//		Thread.sleep(WaitTime.medium);
-//		clearAndSenKeys(bmi,dataRow.getProperty("BMI"),"bmi");
-//		Thread.sleep(WaitTime.medium);
-		
-//		Thread.sleep(WaitTime.medium);
-//		selectFromDropdownByVisibleText(nationality,"Indian","Nationality");
-//		Thread.sleep(WaitTime.medium);
-//		
-//		Thread.sleep(WaitTime.medium);
-//		clearAndSenKeys(countryofResidence,"India","Country of Residence");
-//		countryofResidence.sendKeys(Keys.TAB);
-//		Thread.sleep(WaitTime.medium);
-		
-//		Thread.sleep(WaitTime.medium);
-//		selectFromDropdownByVisibleText(occupation,dataRow.getProperty("Occupation"),"Occupation");
-//		Thread.sleep(WaitTime.medium);
-		
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
-		click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
 		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
-//		selectFromDropdownByVisibleText(sumInsured,"200000","Sum Insured");
-//		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
+		clearAndSenKeys(weightinKG,dataRow.getProperty("WeightInKG"),"Weight In KG");
+		Thread.sleep(WaitTime.low);
+		weightinKG.sendKeys(Keys.TAB);
 		
-//		Thread.sleep(WaitTime.medium);
-//		selectFromDropdownByVisibleText(roomCategory,"Single Private","Room Category");
-//		Thread.sleep(WaitTime.medium);
-	
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
+//		clearAndSenKeys(bmi,dataRow.getProperty("BMI"),"bmi");
+//		Thread.sleep(WaitTime.low);
+		
+//		Thread.sleep(WaitTime.low);
+//		selectFromDropdownByVisibleText(nationality,"Indian","Nationality");
+//		Thread.sleep(WaitTime.low);
+//		
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(countryofResidence,"India","Country of Residence");
-//		Thread.sleep(WaitTime.medium);
+//		countryofResidence.sendKeys(Keys.TAB);
+//		Thread.sleep(WaitTime.low);
+		
+		Thread.sleep(WaitTime.low);
+		HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+		BtnPress1.put("Self Employed", 1);
+		Thread.sleep(WaitTime.medium); 
+		clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
+		Thread.sleep(WaitTime.low);
+		for(String key: BtnPress1.keySet()){
+			if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+			{
+			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+			driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+		    }
+		}
+		
+//		Thread.sleep(WaitTime.low);
+//		selectFromDropdownByVisibleText(sumInsured,"200000","Sum Insured");
+//		Thread.sleep(WaitTime.low);
+		
+//		Thread.sleep(WaitTime.low);
+//		selectFromDropdownByVisibleText(roomCategory,"Single Private","Room Category");
+//		Thread.sleep(WaitTime.low);
+	
+//		Thread.sleep(WaitTime.low);
+//		clearAndSenKeys(countryofResidence,"India","Country of Residence");
+//		Thread.sleep(WaitTime.low);
 		
 		
 		//Click on Chronic
@@ -343,55 +342,55 @@ public class OtherUserLogin extends GenericMethods {
 				}
 				
 				
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(Ischronic,dataRow.getProperty("IsChronic"),"Is Chronic");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(hniCustomer,"No","hni Customer");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(CEOClubAdvisorCustomer,"No","CEO Club Advisor Customerr");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(priorityCustomer,"No","Priority Customer");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(sensitiveCustomerr,"No","sensitive Customerr");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(Pincode,"400050","Pincode");
 //		Pincode.sendKeys(Keys.TAB);
-//	    Thread.sleep(WaitTime.medium);
+//	    Thread.sleep(WaitTime.low);
 //		
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(city,"MUMBAI","City");
-//	    Thread.sleep(WaitTime.medium);
+//	    Thread.sleep(WaitTime.low);
 //	
-//	    Thread.sleep(WaitTime.medium);
+//	    Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(districtName,"MUMBAI","District Name");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //	
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 //		clearAndSenKeys(state,"MAHARASHTRA","State");
-//		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.low);
 			
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 	    selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//Save & Ok
 		((JavascriptExecutor) driver)
 	     .executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		click(SaveButton,"Save");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(Okbutton,"Ok Button");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		
@@ -401,56 +400,47 @@ public class OtherUserLogin extends GenericMethods {
 		   switchtoframe(driver, "display"); 
 		   Thread.sleep(3000);
 	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 	       
 	       
 		   //Show Requirement on Requirements page
 	       Thread.sleep(3000);
 	       click(showrequirement1,"Click on Show Requirement");
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 	       
 	       
 		   
 	       //Select Optional From the dropdown 1
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 			
 		 //Select Optional From the dropdown 2
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 				
 		 //Select Optional From the dropdown 3
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			
 			
 		 //Select Optional From the dropdown 4
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
+			Thread.sleep(WaitTime.low);	
 	   
 			
 		//Select Optional From the dropdown 5
-	       Thread.sleep(WaitTime.medium);
+	       Thread.sleep(WaitTime.low);
 		   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
+			Thread.sleep(WaitTime.low);	
 			
-		//Select Optional From the dropdown 6
-		   Thread.sleep(WaitTime.medium);
-		   selectFromDropdownByVisibleText(Optional6,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
-				
-		//Select Optional From the dropdown 7
-		  Thread.sleep(WaitTime.medium);
-		  selectFromDropdownByVisibleText(Optional7,dataRow.getProperty("Optional Status"),"Selection Optional");
-		  Thread.sleep(WaitTime.medium);	
 			
 			//Save
 	        Thread.sleep(3000);
@@ -469,18 +459,18 @@ public class OtherUserLogin extends GenericMethods {
 		//Policy Summary
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(policysummary, "Policy Summary");
 		switchtoframe(driver,"containerFrame");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 
 		//Policy Summary
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(DataEntry1,"DataEntry 1 Complteted");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//Data Entry1 Completed for all scrutiny cases
@@ -492,33 +482,33 @@ public class OtherUserLogin extends GenericMethods {
 		
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(SubmitButton,"Submit");
-		Thread.sleep(10000);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//STP flow
 	
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		click(issuepolicy,"Issue Policy");
-		Thread.sleep(WaitTime.high);
+		Thread.sleep(WaitTime.low);
 		
 		/*
-		 * click(Continue,"Continue"); Thread.sleep(WaitTime.medium);
+		 * click(Continue,"Continue"); Thread.sleep(WaitTime.low);
 		 * 
 		 * //Traverse Member Info switchtodefaultframe(driver);
-		 * switchtoframe(driver,"display"); Thread.sleep(WaitTime.medium);
-		 * click(membericon,"Member Icon"); Thread.sleep(WaitTime.medium);
-		 * switchtoframe(driver,"containerFrame"); Thread.sleep(WaitTime.medium);
+		 * switchtoframe(driver,"display"); Thread.sleep(WaitTime.low);
+		 * click(membericon,"Member Icon"); Thread.sleep(WaitTime.low);
+		 * switchtoframe(driver,"containerFrame"); Thread.sleep(WaitTime.low);
 		 * click(memberCode, "Member Code"); switchtoframe(driver,"memberiframe0");
 		 * 
-		 * //Save ,Ok, Close click(SaveButton,"Save"); Thread.sleep(WaitTime.medium);
-		 * click(Okbutton,"Ok Button"); Thread.sleep(WaitTime.medium);
-		 * click(closebutton,"Close"); Thread.sleep(WaitTime.medium);
+		 * //Save ,Ok, Close click(SaveButton,"Save"); Thread.sleep(WaitTime.low);
+		 * click(Okbutton,"Ok Button"); Thread.sleep(WaitTime.low);
+		 * click(closebutton,"Close"); Thread.sleep(WaitTime.low);
 		 * switchtodefaultframe(driver); switchtoframe(driver,"display");
 		 * switchtoframe(driver,"containerFrame"); click(Continue,"Continue");
-		 * Thread.sleep(WaitTime.medium);
+		 * Thread.sleep(WaitTime.low);
 		 */
 		
 		
@@ -532,25 +522,25 @@ public class OtherUserLogin extends GenericMethods {
 		
 		//Policy Summary
 		click(Continue,"Continue");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//Payment Cycle
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 		click(Continue,"Continue");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//Follow Up
 			switchtodefaultframe(driver);
 			switchtoframe(driver,"display");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			click(FollowUp,"Follow Up");
-			Thread.sleep(WaitTime.medium);
+			Thread.sleep(WaitTime.low);
 			switchtoframe(driver,"containerFrame");
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 	//		click(Continue, "Submit btn");
-	//		Thread.sleep(WaitTime.medium);
+	//		Thread.sleep(WaitTime.low);
 		
 		
 	}

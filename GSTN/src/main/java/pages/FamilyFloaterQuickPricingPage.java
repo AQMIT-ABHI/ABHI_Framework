@@ -1,3 +1,4 @@
+
 package pages;
 
 import java.text.DateFormat;
@@ -1617,12 +1618,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						
 						//member details
 
-						
-						
-						
-						
-						
-						
 //						Thread.sleep(WaitTime.medium);
 
 						if (zone.isEnabled())
@@ -1634,8 +1629,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 //						Thread.sleep(WaitTime.medium);
 
 //						selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-						
-						
+
 
 						Thread.sleep(WaitTime.medium);
 
@@ -1986,6 +1980,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Reporter.log("<B> -------------------------------------------</B>");
 						
 //						Assert Quote Details
+
 						
 						  String netpremiumbeforeval =netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "").replace(".00", "");
 						  Assert.assertEquals("Expected value",netpremiumbeforeval,dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
@@ -2087,7 +2082,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					    Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
 				        Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
 						Reporter.log("<B> -------------------------------------------</B>");
-						
+         
 						  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
 						  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); 
 						  int premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
@@ -2145,12 +2140,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+      AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 
-			AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-
-			
-			
 		}
-
 }
 

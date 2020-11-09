@@ -199,9 +199,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			
 			@FindBy(xpath="(//input[@name='URSI'])[1]")
 			private WebElement URSIchkbox ;
-			
+		
+
+			//Affiliated Employee Discount
 			@FindBy(xpath="//select[@id='Affiliate employee discount']")
 			private WebElement affiliatedEMPdiscount;
+			
+			//PPN Discount
+			@FindBy(xpath="(//span[contains(text(),'PPN Discount')]//following::select)[8]")
+			private WebElement PPNDiscount;
+	
 	
     WebDriverWait wait;
 	public IndividualQuoteCreationPage(WebDriver driver) {
@@ -217,7 +224,6 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName,stepGroup);
 		Reporter.log("<B>Traverse To CommonPage</B>");
 
-		
 		switchtoframe(driver, "display");    
 		selectFromDropdownByVisibleText(Product, dataRow.getProperty("Product"),"Product");
 		click(proceedBTN, "ProceedButton");
@@ -225,57 +231,54 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		
 		//EnteringQuoteDetails
-		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
-		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
-//		Thread.sleep(WaitTime.low);
-		click(intermediarysearch, " search ");
-		switchToWindow(driver);
-//		Thread.sleep(2000);
-		driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
-		driver.switchTo().window(parentWindow);
-		System.out.println(parentWindow);
-//		Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
+				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
+				click(intermediarysearch, " search ");
+				switchToWindow(driver);
+				driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
+				driver.switchTo().window(parentWindow);
+				System.out.println(parentWindow);
+				switchtoframe(driver, "display");  
 		
-
-		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
+		policytenure.sendKeys(Keys.END);
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		
-		
+		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-
-		//wait.until(ExpectedConditions.elementToBeClickable(plantype));
+		Thread.sleep(WaitTime.low);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");		
 		Thread.sleep(WaitTime.low);
 		
-		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
-		Thread.sleep(WaitTime.low);
 
+		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 		Thread.sleep(WaitTime.low);
+	
 		
-		Thread.sleep(WaitTime.low);
-		
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
 		{
 		selectFromDropdownByVisibleText(affiliatedEMPdiscount, dataRow.getProperty("AffiliatedEMPDiscount"),"Affiliated Employee Discount");
 		Thread.sleep(WaitTime.low);
 		}
+		
 		Thread.sleep(WaitTime.low);
-		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"), "PinCode ");
-//		Thread.sleep(WaitTime.low);
+		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		
 		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
+		
+		Thread.sleep(WaitTime.medium);
 		membernumbers.sendKeys(Keys.TAB);
-//		Thread.sleep(WaitTime.low);
 		
-		
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
 		
@@ -284,7 +287,8 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
 				Thread.sleep(WaitTime.medium);
 
-//		Thread.sleep(WaitTime.low);
+				
+				
 				clearAndSenKeys(membername, getRandomString(),"Member Name");
 				Thread.sleep(WaitTime.low);
 				
@@ -293,13 +297,11 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
 				Thread.sleep(WaitTime.low);
 				
-				 selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-				 Thread.sleep(WaitTime.low);
-				 
+				selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+				Thread.sleep(WaitTime.low);
 				}
-			  
 	
-//	
+
 
 		//Age & DOB
 		 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -350,16 +352,33 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 		
 		//Gender
-	
+
+		Thread.sleep(WaitTime.low);
+
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
+
+		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+		{
 		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
+		}
+		
+		//PPN Discount
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+		{
+			Thread.sleep(WaitTime.medium);
+			selectFromDropdownByVisibleText(PPNDiscount, dataRow.getProperty("PPN Discount"), "PPN Discount");
+		}
+
 	
 		//click on Chronic
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
+		{
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
 		{
 		String Chronic = dataRow.getProperty("Chronic");
@@ -370,16 +389,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 
 		clickWithoutJavaScript(Chronicclick, " Chronic ");
 		Reporter.log(" as "+Chroniclist.get(i));
+		  }
 		}
-		}
-		
+	}	
 
 		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 		click(calpremBTN, "Calculate Premium Button");
 		Thread.sleep(WaitTime.high);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveBTN," SaveButton ");
 		
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
@@ -389,17 +408,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
-		System.out.println("Quote No:....."+QuoteNo);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
-		
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
 		Reporter.log("                     ");
 		Reporter.log("---------------------");
-		
-		
-		//ELSE-IF Waiver of Mandatory Co-payment 
 		Thread.sleep(WaitTime.medium);
+
+		//ELSE-IF Waiver of Mandatory Co-payment 
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
+		{
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
 			Thread.sleep(WaitTime.medium);
@@ -427,19 +445,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			//click on OK Quote button
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
 			click(saveokBTN, "Ok ");
-			
-			
+					
 			selectFromDropdownByVisibleText(opdeDropDown, dataRow.getProperty("OPDsi")," OPD Expenses SumInsured ");
 			Thread.sleep(WaitTime.medium);
 			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
-
 			
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(15000);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 							
 		}		
-		
 		
 		
 		//ELSE-IF HOSPITAL CASH BENEFIT 
@@ -466,7 +481,6 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}
 		
 
-		
 		//ELSE-IF Maternity Expenses
 		Thread.sleep(WaitTime.medium);
 		if(dataRow.getProperty("MaternityExpense").equalsIgnoreCase("Yes"))
@@ -475,18 +489,20 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			click(mtexCheckbox," Maternity Expense checkBOX");
 			Thread.sleep(WaitTime.medium);
 			//SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
-			click(saveokBTN,"OK");
-			
+			click(saveokBTN,"OK");	
 		}
+	}
 		
 		//Accidental Hospitalization Booster
+
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))	
+		{
 
 				if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
 				{
 					
 					click(AHBchkbox," Accidental Hospitalization Booster");
 					Thread.sleep(WaitTime.medium);
-					Thread.sleep(5000);
 					}
 			
 						
@@ -554,7 +570,20 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 //					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 						
 				}	
-		
+
+				
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				click(saveBTN," SaveButton ");
+				Thread.sleep(WaitTime.medium);
+				SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+				click(saveokBTN, "Ok ");
+				Thread.sleep(WaitTime.low);
+				
+		}
+
 		switchtodefaultframe(driver);
 		
 	}
