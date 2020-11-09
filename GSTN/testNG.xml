@@ -5,59 +5,15 @@
   <parameter name="LoBName" value="QuoteCreation"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\QuoteCreationScanerio\0003_ScenarioSuite_QuoteCreation.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\QuoteCreationData\QuoteCreation_DataSuite.xlsx"/>
-  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0065" verbose="2">
+  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045" verbose="2">
     <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0065"/>
+    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045"/>
     <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0065"/>
+    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0065 -->
-  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0066" verbose="2">
-    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0066"/>
-    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
-    <parameter name="Product" value="Positive"/>
-    <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0066"/>
-    <classes>
-      <class name="testRunner.TestExecutionSuite"/>
-    </classes>
-  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0066 -->
-  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0067" verbose="2">
-    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0067"/>
-    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
-    <parameter name="Product" value="Positive"/>
-    <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0067"/>
-    <classes>
-      <class name="testRunner.TestExecutionSuite"/>
-    </classes>
-  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0067 -->
-  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0068" verbose="2">
-    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0068"/>
-    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
-    <parameter name="Product" value="Positive"/>
-    <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0068"/>
-    <classes>
-      <class name="testRunner.TestExecutionSuite"/>
-    </classes>
-  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0068 -->
-  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0069" verbose="2">
-    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
-    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0069"/>
-    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
-    <parameter name="Product" value="Positive"/>
-    <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0069"/>
-    <classes>
-      <class name="testRunner.TestExecutionSuite"/>
-    </classes>
-  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0069 -->
+  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0045 -->
 </suite> <!-- QuoteCreation -->
