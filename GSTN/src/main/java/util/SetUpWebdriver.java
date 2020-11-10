@@ -120,7 +120,7 @@ public class SetUpWebdriver {
   		}
   		System.out.println(driver.getTitle());
  		driver.manage().window().maximize();
- 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+ 		driver.manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
 		return driver;
 	}catch (Exception e) {
 		System.out.println(e.getMessage());

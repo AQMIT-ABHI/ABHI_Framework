@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="1" parallel="tests" name="Pricing">
+<suite thread-count="1" parallel="tests" name="QuoteCreation">
   <parameter name="BrowserName" value="Desktop"/>
-  <parameter name="LoBName" value="Pricing"/>
-  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
-  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TCS_NONPOS_IndActiveAssure_002" verbose="2">
-    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
-    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_002"/>
-    <parameter name="Description" value="Verify the Loading applied and installment calculated for Yearly Payment Mode"/>
+  <parameter name="LoBName" value="QuoteCreation"/>
+  <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\QuoteCreationScanerio\0003_ScenarioSuite_QuoteCreation.xlsx"/>
+  <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\QuoteCreationData\QuoteCreation_DataSuite.xlsx"/>
+  <test name="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewMULTIINDIVIDUALflowQuoteCreation"/>
+    <parameter name="ScenarioID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045"/>
+    <parameter name="Description" value="To verify installment loading percentage if payment mode is Single."/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_002"/>
+    <parameter name="ScenarioUID" value="TCS-Multi-AsIsNonPOSActiveAssureQuote_0045"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_NONPOS_IndActiveAssure_002 -->
-</suite> <!-- Pricing -->
+  </test> <!-- TCS-Multi-AsIsNonPOSActiveAssureQuote_0045 -->
+</suite> <!-- QuoteCreation -->
