@@ -276,7 +276,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
 		Thread.sleep(WaitTime.medium);
 		
-		
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(membername, getRandomString(),"Member Name");
 		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
@@ -351,9 +351,9 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.medium);
-		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
-		Thread.sleep(WaitTime.medium);
-	
+//		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
+//		Thread.sleep(WaitTime.medium);
+//	
 		//click on Chronic
 		if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes"))
 		{
