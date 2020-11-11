@@ -39,11 +39,13 @@ import constants.PropertyConfigs;
 import core.FrameworkServices;
 import core.TestScriptStepGenerator;
 import core.TestSuiteGenerator;
+import pages.FamilyFloaterQuoteCreation;
 import stepDefination.StepKeyword;
 import util.ConfigReader;
 import util.CustomAssert;
 import util.ExcelDatabase;
 import util.ExcelRead;
+import util.GenericMethods;
 import util.SetUpWebdriver;
 
 public class TestExecutionSuite{
@@ -61,6 +63,7 @@ public class TestExecutionSuite{
 	String MigrationFilePath="";
 	String SheetName = "";
 	private Object quickquote;
+	private String Quote=GenericMethods.getQuoteNo();
 	private static HashMap<String, String> scenarioStatus = new HashMap<>();
 	
 	
@@ -98,6 +101,7 @@ public class TestExecutionSuite{
 			
 			CustomAssert customAssert = new CustomAssert(driver);
 			CustomAssert.executionFlag = true;
+			 Quote=GenericMethods.getQuoteNo();
 			StepKeyword keyword = new StepKeyword(driver);
 			for (TestScriptStepGenerator testScriptStepGenerator : FrameworkServices.getScriptStepFromScriptName(scriptReference)) {
 				// TODO Amiya 05-10-2019
@@ -108,6 +112,7 @@ public class TestExecutionSuite{
 			if (CustomAssert.executionFlag) {
 				Reporter.log("Test Scenario has been passed");
 				scenarioStatus.put(testScenario_Id,"PASSED");
+				
 				// TO DO Amiya 01-11-2018
 				// Update sheet Execution Status to passed if testcase excuted successfully.
 				/*if (FrameworkServices.getConfigProperties().getProperty("ExecutionMode").equalsIgnoreCase("Migration")) {
@@ -209,7 +214,6 @@ public class TestExecutionSuite{
 	        	 System.out.println("Key = " + entry.getKey() + 
 	                     ", Value = " + entry.getValue()); 
 	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
-                
 	        	 rowhead.createCell(3).setCellValue(ConfigReader.getInstance().getValue("Policy_No"));
 	        }
 	        FileOutputStream fileOut = new FileOutputStream(TestEngine.excutionFolder+"\\LatestSheet.xlsx");

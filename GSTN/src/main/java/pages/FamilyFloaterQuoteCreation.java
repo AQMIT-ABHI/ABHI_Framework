@@ -1443,17 +1443,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		
 		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")) {
 					
-					HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
-					BtnPress1.put("2 Adults", 0);
-					BtnPress1.put("1 Adult+1 Child", 0);
-					BtnPress1.put("1 Adult+2 Children", 1);
-					BtnPress1.put("1 Adult+3 Childre", 2);
-					BtnPress1.put("2 Adults+1 Child", 1);
-					BtnPress1.put("2 Adults+2 Children", 2);
-					BtnPress1.put("2 Adults+3 Children", 3);
-					BtnPress1.put("1 Adult+4 Children", 3);
-					BtnPress1.put("2 Adults+4 Children", 1);
-					
+				
 					selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("FamilySize"), "Family-Size");
 					Thread.sleep(WaitTime.medium);
 					
@@ -1502,7 +1492,13 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 					
 					//member details
-		
+
+					
+					
+					
+					
+					
+					
 //					Thread.sleep(WaitTime.medium);
 
 					if (zone.isEnabled())
@@ -1512,12 +1508,18 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					}
 
 //					Thread.sleep(WaitTime.medium);
+
 //					selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+					
+					
+
 //					Thread.sleep(WaitTime.medium);
 
 					selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 					
-	      		for (int x = 0;x<myList.size();x++)
+					
+					
+					for (int x = 0;x<myList.size();x++)
 					{
 						int y = x+1;
 						
@@ -1718,7 +1720,10 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 							     int calactual= Integer.parseInt(date3);
 							     int ageCal=Integer.parseInt(CollectAge);
 							     int year=calactual-ageCal;
-						         String yearStr=String.valueOf(year);         
+						         String yearStr=String.valueOf(year);
+						         
+						         
+						         
 						         String actualdate2=acurrdate.replaceAll(date3, yearStr);
 //						         Thread.sleep(WaitTime.medium);
 						         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
@@ -1732,10 +1737,13 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 
 							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
 							Thread.sleep(WaitTime.medium);
-				
+							
+							
+
 							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
 							Thread.sleep(WaitTime.medium);
-			 
+			        	  
+
 						}
 			          else if (myList.get(x).equalsIgnoreCase("Daughter")) {
 			        	  
@@ -1792,11 +1800,11 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 							}
 							
 
-							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Male"," Gender ");
+							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")), "Female"," Gender ");
 							 Thread.sleep(WaitTime.medium);
 							
 
-							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Son"," Relationship ");
+							selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),"Daughter"," Relationship ");
 							 Thread.sleep(WaitTime.medium);
 			        	  
 			          }
@@ -1840,17 +1848,22 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 						
 						click(AHBchkbox," Accidental Hospitalization Booster");
 						Thread.sleep(WaitTime.medium);
+						
+						
 						Thread.sleep(5000);
 						}
 						
-					}
+					
 					
 							
 					//IF AnyRoomUpgrade 
 					Thread.sleep(WaitTime.medium);
 					if(dataRow.getProperty("AnyRoomUpgrade").equalsIgnoreCase("Yes"))
 					{
+						
 						click(ANRUchkbox,"AnyRoomUpgrade checkBOX");
+					
+						
 						Thread.sleep(5000);
 //						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 							
@@ -1862,6 +1875,8 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					{
 						
 						click(CHBchkbox,"CancerHospitalizationBooster checkBOX");
+					
+						
 						Thread.sleep(5000);
 //						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 							
@@ -1871,7 +1886,10 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					Thread.sleep(WaitTime.medium);
 					if(dataRow.getProperty("ReductioninPEDWaitingPeriod").equalsIgnoreCase("Yes"))
 					{
+						
 						click(RIPWchkbox,"ReductioninPEDWaitingPeriod checkBOX");
+					
+						
 						Thread.sleep(5000);
 //						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 							
@@ -1883,17 +1901,24 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					{
 						
 						click(SNCBchkbox,"SuperNCB checkBOX");
+					
+						
 						Thread.sleep(5000);
-//						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));		
+//						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+							
 					}	
 					
 					//IF Unlimited Reload of Sum Insured
 					Thread.sleep(WaitTime.medium);
 					if(dataRow.getProperty("UnlimitedReloadofSumInsured").equalsIgnoreCase("Yes"))
 					{
+						
 						click(URSIchkbox,"UnlimitedReloadofSumInsured checkBOX");
+					
+					
 						Thread.sleep(5000);
-//						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));								
+//						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+							
 					}	
 					
 					Thread.sleep(3000);
@@ -1904,7 +1929,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					switchtodefaultframe(driver);
 			}
 	
-		
+	}
 		
 		//IF opd 
 		

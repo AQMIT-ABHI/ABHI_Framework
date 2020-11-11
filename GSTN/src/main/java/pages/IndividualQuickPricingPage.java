@@ -324,6 +324,28 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	private WebElement DCBCDropDown;
 	
 	
+	//POS Active assure covers
+	
+	@FindBy(xpath="(//input[@name='AHB'])[1]")
+	private WebElement AHBchkbox ;
+	
+	@FindBy(xpath="(//input[@name='ANRU'])[1]")
+	private WebElement ANRUchkbox ;
+	
+	@FindBy(xpath="(//input[@name='CHB'])[1]")
+	
+	private WebElement CHBchkbox ;
+	
+	@FindBy(xpath="(//input[@name='RIPW'])[1]")
+	private WebElement RIPWchkbox ;
+	
+	@FindBy(xpath="(//input[@name='SNCB'])[1]")
+	private WebElement SNCBchkbox ;
+	
+	@FindBy(xpath="(//input[@name='URSI'])[1]")
+	private WebElement URSIchkbox ;
+	
+	
     WebDriverWait wait;
 	public IndividualQuickPricingPage(WebDriver driver) {
 		super(driver);
@@ -404,9 +426,10 @@ public class IndividualQuickPricingPage extends GenericMethods {
 				Thread.sleep(WaitTime.medium);
 		}
 		
-		
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(membername, getRandomString(),"Member Name");
 		Thread.sleep(WaitTime.low);
+
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
 		{
@@ -462,6 +485,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		    
 		//Gender
+
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
@@ -482,7 +506,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			selectFromDropdownByVisibleText(PPNDiscount, dataRow.getProperty("PPN Discount"), "PPN Discount");
 		}
 	
-		
+	
 		//click on Chronic
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
@@ -531,7 +555,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
-	
+
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		Reporter.log("");
 		Reporter.log("<B> -------------------------------------------</B>");
@@ -564,6 +588,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//Assert Quote Details
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 		{
+
 		 String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		 Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
 		 
@@ -571,6 +596,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
 		{
+
 		//ELSE-IF Waiver of Mandatory Co-payment 
 		if(dataRow.getProperty("Co-Pay Waiver").equalsIgnoreCase("Yes"))
 		{
@@ -670,7 +696,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(WaitTime.medium);
-			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+			//WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
 			
 			Reporter.log("");
 			Reporter.log("<B> -------------------------------------------</B>");
@@ -691,15 +717,16 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		//Accidental Hospitalization Booster
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))	
 		{
+
 			if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
 			{
 				
 				click(AHBchkbox," Accidental Hospitalization Booster");
 				Thread.sleep(WaitTime.medium);
-				Thread.sleep(5000);
-				
+
 				}
 				
+
 					
 			//IF AnyRoomUpgrade 
 			Thread.sleep(WaitTime.medium);
@@ -709,6 +736,8 @@ public class IndividualQuickPricingPage extends GenericMethods {
 				click(ANRUchkbox,"AnyRoomUpgrade checkBOX");
 				Thread.sleep(5000);
 //				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+
+
 					
 			}		
 			
@@ -718,6 +747,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			{
 				
 				click(CHBchkbox,"CancerHospitalizationBooster checkBOX");
+
 				Thread.sleep(5000);
 //				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 					
@@ -1162,6 +1192,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 }
 
 
+
 	@SuppressWarnings("deprecation")
 	public void AssertQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 	{
@@ -1170,6 +1201,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		//Values of Premium Calculation	
 		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		String netpremiumcoverval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
 		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
 		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");
@@ -1203,4 +1235,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 	
 }
+
+
 

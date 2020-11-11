@@ -205,6 +205,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			@FindBy(xpath="(//input[@name='URSI'])[1]")
 			private WebElement URSIchkbox ;
 		
+
 			//Affiliated Employee Discount
 			@FindBy(xpath="//select[@id='Affiliate employee discount']")
 			private WebElement affiliatedEMPdiscount;
@@ -367,12 +368,12 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");		
 		Thread.sleep(WaitTime.low);
 		
+
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 		Thread.sleep(WaitTime.low);
-		
-		Thread.sleep(WaitTime.low);
+	
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
 		{
@@ -413,6 +414,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				Thread.sleep(WaitTime.low);
 				}
 	
+
 
 		//Age & DOB
 		 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -463,12 +465,15 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 		
 		//Gender
+
 		Thread.sleep(WaitTime.low);
+
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.medium);
+
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 		{
@@ -482,6 +487,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(PPNDiscount, dataRow.getProperty("PPN Discount"), "PPN Discount");
 		}
+
 	
 		//click on Chronic
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -628,14 +634,15 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 	}
 		
 		//Accidental Hospitalization Booster
+
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))	
 		{
+
 				if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
 				{
 					
 					click(AHBchkbox," Accidental Hospitalization Booster");
 					Thread.sleep(WaitTime.medium);
-					Thread.sleep(5000);
 					}
 			
 						
@@ -703,6 +710,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 //					WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
 						
 				}	
+
 				
 				click(calpremBTN, "Calculate Premium Button");
 				Thread.sleep(WaitTime.medium);
@@ -1088,7 +1096,6 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			
 			//Covers End
 		 }
-		
 		switchtodefaultframe(driver);
 		
 	}
