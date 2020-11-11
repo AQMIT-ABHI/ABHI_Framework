@@ -157,3 +157,8 @@
 [1107/113712.093:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Sagar\AppData\Local\Temp\scoped_dir12080_1988124384\Crashpad\reports\72886312-2639-486b-99f6-04de7c20deec.dmp: The system cannot find the path specified. (0x3)
 [1107/113712.093:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
 [1107/124533.686:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1110/110453.556:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1110/113504.963:ERROR:file_io_win.cc(162)] CreateFile C:\Users\Sagar\AppData\Local\Temp\scoped_dir5704_1504471211\Crashpad\settings.dat: The system cannot find the path specified. (0x3)
+[1110/113504.979:ERROR:file_io_win.cc(171)] CreateFile C:\Users\Sagar\AppData\Local\Temp\scoped_dir5704_1504471211\Crashpad\reports\99a4b44d-5176-474c-8e81-c8edb9a369b7.dmp: The system cannot find the path specified. (0x3)
+[1110/113504.979:ERROR:crash_report_exception_handler.cc(99)] PrepareNewCrashReport failed
+[1110/201301.699:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

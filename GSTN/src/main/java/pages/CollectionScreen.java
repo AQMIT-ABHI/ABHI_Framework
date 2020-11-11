@@ -207,9 +207,9 @@ public class CollectionScreen extends GenericMethods {
 		// For Proposer
 
 		// Show Requirements
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		click(showrequirement, "Show Requirement");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
 		// Upload Requirement A
 
