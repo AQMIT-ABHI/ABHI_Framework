@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 import java.util.Set;
 
@@ -112,6 +113,9 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 	@FindBy(xpath="(//input[@id='Date of Birth']//following::select[3])[1]")
 	private WebElement room;
 	
+	@FindBy(xpath="(//input[@id='Age']//following::select[5])[1]")
+	private WebElement RiskClass;
+	
 	@FindBy(xpath="//button[@id='btnCalcPrem']")
 	private WebElement calpremBTN;
 	
@@ -180,6 +184,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 	private WebElement refno2;
 	
 	
+	
 	//POS Active assure covers
 	
 			@FindBy(xpath="(//input[@name='AHB'])[1]")
@@ -207,7 +212,114 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			//PPN Discount
 			@FindBy(xpath="(//span[contains(text(),'PPN Discount')]//following::select)[8]")
 			private WebElement PPNDiscount;
+			
+			//Nature Of Duty
+			@FindBy(xpath="//input[@id='natureof dutyrowIndex']")
+			private WebElement NatureOfDuty;
 	
+			
+			//Active Secure POS & Non POSCovers
+			
+			//ACCDCheckbox
+			@FindBy(xpath="//input[@name='ACCD']")
+			private WebElement ACCDCheckbox;
+			
+			//ACCDDropDown
+			@FindBy(xpath="(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])[1]")
+			private WebElement ACCDDropDown;
+			
+			//AMECheckbox
+			@FindBy(xpath="//input[@name='ACME']")
+			private WebElement AMECheckbox;
+			
+			//EMICheckbox
+			@FindBy(xpath="//input[@name='EMIP']")
+			private WebElement EMICheckbox;
+			
+			//EMIDropDown
+			@FindBy(xpath="(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])[1]")
+			private WebElement EMIDropDown;
+			
+			//LoanCheckbox
+			@FindBy(xpath="//input[@name='LOPC']")
+			private WebElement LoanCheckbox;
+			
+			//LoanDropDown
+			@FindBy(xpath="(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])[1]")
+			private WebElement LoanDropDown;
+			
+			//WEASCheckbox
+			@FindBy(xpath="//input[@name='WEAS']")
+			private WebElement WEASCheckbox;
+			
+			//CICheckbox
+			@FindBy(xpath="//input[@name='CIL']")
+			private WebElement CICheckbox;
+			
+			//CIDropDown
+			@FindBy(xpath="(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])[1]")
+			private WebElement CIDropDown;
+			
+			//SEOCheckbox
+			@FindBy(xpath="//input[@name='SCOP']")
+			private WebElement SEOCheckbox;
+			
+			//WCCheckbox
+			@FindBy(xpath="//input[@name='WLI']")
+			private WebElement WCCheckbox;
+			
+			//ADSBCheckbox
+			@FindBy(xpath="//input[@name='ADSB']")
+			private WebElement ADSBCheckbox;
+			
+			//APHCCheckbox
+			@FindBy(xpath="//input[@name='APHC']")
+			private WebElement APHCCheckbox;
+			
+			//BBBFCheckbox
+			@FindBy(xpath="//input[@name='BBBF']")
+			private WebElement BBBFCheckbox;
+			
+			//BBBFDropDown
+			@FindBy(xpath="(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])[1]")
+			private WebElement BBBFDropDown;
+			
+			//BNBECheckbox
+			@FindBy(xpath="//input[@name='BNBE']")
+			private WebElement BNBECheckbox;
+			
+			//BBBFDropDown
+			@FindBy(xpath="(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])[1]")
+			private WebElement BNBEDropDown;
+			
+			//COBECheckbox
+			@FindBy(xpath="//input[@name='COBE']")
+			private WebElement COBECheckbox;
+			
+			//TTDBCheckbox
+			@FindBy(xpath="//input[@name='TTDB']")
+			private WebElement TTDBCheckbox;
+			
+			//CANCCheckbox
+			@FindBy(xpath="//input[@name='CANC']")
+			private WebElement CANCCheckbox;
+			
+			//CANCDropDown
+			@FindBy(xpath="(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])[1]")
+			private WebElement CANCDropDown;
+			
+			//SCANCheckbox
+			@FindBy(xpath="//input[@name='SCAN']")
+			private WebElement SCANCheckbox;
+			
+			//DCBCCheckbox
+			@FindBy(xpath="//input[@name='DCBC']")
+			private WebElement DCBCCheckbox;
+			
+			//DCBCDropDown
+			@FindBy(xpath="(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])[1]")
+			private WebElement DCBCDropDown;
+			
 	
     WebDriverWait wait;
 	public IndividualQuoteCreationPage(WebDriver driver) {
@@ -282,15 +394,17 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		
 		//Member Details
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+		{
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"),"Sum Insured");
 				Thread.sleep(WaitTime.medium);
-				
+		}
 				
 				clearAndSenKeys(membername, getRandomString(),"Member Name");
 				Thread.sleep(WaitTime.low);
 				
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
 				{
 				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
 				Thread.sleep(WaitTime.low);
@@ -385,7 +499,34 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		  }
 		}
 	}	
-
+		
+		
+		//Nature of Duty
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		{
+			HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+			BtnPress1.put("CASHIER", 1);
+			Thread.sleep(WaitTime.medium); 
+			clearAndSenKeys(NatureOfDuty,dataRow.getProperty("NatureOfDuty"), "Nature of Duty");
+			Thread.sleep(WaitTime.low);
+			for(String key: BtnPress1.keySet()){
+				if(key.equalsIgnoreCase(dataRow.getProperty("NatureOfDuty")))
+				{
+				wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='natureof dutyrowIndex']"))));
+				driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+			    }
+			}
+			
+			
+			//Risk Class
+			Thread.sleep(WaitTime.low);
+			selectFromDropdownByVisibleText(RiskClass, dataRow.getProperty("RiskClass"), "Risk Class");
+			Thread.sleep(WaitTime.low);
+	
+		}
+		
+		
+		
 		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 		click(calpremBTN, "Calculate Premium Button");
@@ -574,6 +715,380 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				Thread.sleep(WaitTime.low);
 				
 		}
+		
+		//Active Secure POS & Non POS Covers 
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		 {
+			//Accidental Death Cover
+			if(dataRow.getProperty("AcciDeathCover").equalsIgnoreCase("Yes"))
+			{
+				click(ACCDCheckbox,"ACCD CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(ACCDDropDown, dataRow.getProperty("ACCDsi")," ACCD SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After ACCD calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}		
+
+			
+			//Accidental Medical Expenses
+			if(dataRow.getProperty("AcciMedicalExp").equalsIgnoreCase("Yes"))
+			{
+				click(AMECheckbox,"Accidental Medical Expenses checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+			}
+			
+			
+			//EMI Protect
+			if(dataRow.getProperty("EMIProtect").equalsIgnoreCase("Yes"))
+			{
+				click(EMICheckbox,"EMI CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(EMIDropDown, dataRow.getProperty("EMIsi")," EMI SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After EMI calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}	
+
+			
+			//Loan Protect
+			if(dataRow.getProperty("LoanProtect").equalsIgnoreCase("Yes"))
+			{
+				click(LoanCheckbox,"Loan CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(LoanDropDown, dataRow.getProperty("Loansi")," Loan SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After LoanProtect calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}	
+			
+			
+			//World-Wide Emergency Assistance
+			if(dataRow.getProperty("WEAS").equalsIgnoreCase("Yes"))
+			{
+				click(WEASCheckbox,"WEAS checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+			}
+			
+			//Critical Illness
+			if(dataRow.getProperty("Criticalillness").equalsIgnoreCase("Yes"))
+			{
+				click(CICheckbox,"CI CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(CIDropDown, dataRow.getProperty("CIsi")," Loan SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After Critical Illness calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}	
+
+			//Second E Opinion
+			if(dataRow.getProperty("SecondEOpinion").equalsIgnoreCase("Yes"))
+			{
+				click(SEOCheckbox,"SEO checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+			}
+			
+			//Wellness Coach
+			if(dataRow.getProperty("WellnessCoach").equalsIgnoreCase("Yes"))
+			{
+				click(WCCheckbox,"WC checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+			}
+			
+			
+			//Adventure Sports Cover
+			if(dataRow.getProperty("AdventureSports").equalsIgnoreCase("Yes"))
+			{
+				click(ADSBCheckbox,"ADSB checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}	
+			}
+			
+			//Accidental In-patient Hosp Cover
+			if(dataRow.getProperty("AcciHospCover").equalsIgnoreCase("Yes"))
+			{
+				click(APHCCheckbox,"ADSB checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}	
+			}
+			
+			//Broken Bones Benefit
+			if(dataRow.getProperty("BroknBoneBenefit").equalsIgnoreCase("Yes"))
+			{
+				click(BBBFCheckbox,"BBBF CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(BBBFDropDown, dataRow.getProperty("BBBFsi")," BBBF SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After BBBF calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}
+			
+			//Burn Benefit
+			if(dataRow.getProperty("BurnBenefit").equalsIgnoreCase("Yes"))
+			{
+				click(BNBECheckbox,"BNBE CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(BNBEDropDown, dataRow.getProperty("BNBEsi")," BNBE SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After BNBE calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}
+			
+			//Coma Benefit
+			if(dataRow.getProperty("ComaBenefit").equalsIgnoreCase("Yes"))
+			{
+				click(COBECheckbox,"COBE checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}	
+			}
+			
+			//Temporary Total Disablement
+			if(dataRow.getProperty("TempTDB").equalsIgnoreCase("Yes"))
+			{
+				click(TTDBCheckbox,"TTDB checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}	
+			}
+			
+			//Cancer Cover
+			if(dataRow.getProperty("CancerCover").equalsIgnoreCase("Yes"))
+			{
+				click(CANCCheckbox,"CANC CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(CANCDropDown, dataRow.getProperty("CANCsi")," CANC SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After CANC calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}
+			
+			//Scan Second E Opinion
+			if(dataRow.getProperty("SCANOpinion").equalsIgnoreCase("Yes"))
+			{
+				click(SCANCheckbox,"SCAN checkBOX");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				
+				//click on OK Quote button
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}	
+			}
+			
+			//Daily Cash Benefit
+			if(dataRow.getProperty("DailyCashBenef").equalsIgnoreCase("Yes"))
+			{
+				click(DCBCCheckbox,"DCBC CheckBOX");
+				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				if (okBTN == true) {
+					click(saveokBTN,"OK");
+				}
+				
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleText(DCBCDropDown, dataRow.getProperty("DCBCsi")," DCBC SumInsured ");
+				click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.low);
+				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+				
+				Reporter.log("");
+				Reporter.log("<B> -------------------------------------------</B>");
+				Reporter.log("<B>After DCBC calculated</B>");
+				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+				Reporter.log("<B> -------------------------------------------</B>");	
+			}
+			
+			//Covers End
+		 }
+		
 		switchtodefaultframe(driver);
 		
 	}

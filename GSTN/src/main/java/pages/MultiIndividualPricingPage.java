@@ -154,7 +154,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 	private WebElement opdeDropDown;
 	
 	
-	@FindBy(xpath="")
+	@FindBy(xpath="(//b[contains(text(),'HSCB - Hospital Cash Benefit')]//following::select[1])[1]")
 	private WebElement hcbDropDown;
 	
 	//save btn
@@ -176,6 +176,110 @@ public class MultiIndividualPricingPage extends GenericMethods {
 	//Affiliated Employee Discount
 	@FindBy(xpath="//select[@id='Affiliate employee discount']")
 	private WebElement affiliatedEMPdiscount;
+	
+	
+	//Active Secure POS & Non POSCovers
+	
+	//ACCDCheckbox
+	@FindBy(xpath="//input[@name='ACCD']")
+	private WebElement ACCDCheckbox;
+	
+	//ACCDDropDown
+	@FindBy(xpath="(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])[1]")
+	private WebElement ACCDDropDown;
+	
+	//AMECheckbox
+	@FindBy(xpath="//input[@name='ACME']")
+	private WebElement AMECheckbox;
+	
+	//EMICheckbox
+	@FindBy(xpath="//input[@name='EMIP']")
+	private WebElement EMICheckbox;
+	
+	//EMIDropDown
+	@FindBy(xpath="(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])[1]")
+	private WebElement EMIDropDown;
+	
+	//LoanCheckbox
+	@FindBy(xpath="//input[@name='LOPC']")
+	private WebElement LoanCheckbox;
+	
+	//LoanDropDown
+	@FindBy(xpath="(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])[1]")
+	private WebElement LoanDropDown;
+	
+	//WEASCheckbox
+	@FindBy(xpath="//input[@name='WEAS']")
+	private WebElement WEASCheckbox;
+	
+	//CICheckbox
+	@FindBy(xpath="//input[@name='CIL']")
+	private WebElement CICheckbox;
+	
+	//CIDropDown
+	@FindBy(xpath="(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])[1]")
+	private WebElement CIDropDown;
+	
+	//SEOCheckbox
+	@FindBy(xpath="//input[@name='SCOP']")
+	private WebElement SEOCheckbox;
+	
+	//WCCheckbox
+	@FindBy(xpath="//input[@name='WLI']")
+	private WebElement WCCheckbox;
+	
+	//ADSBCheckbox
+	@FindBy(xpath="//input[@name='ADSB']")
+	private WebElement ADSBCheckbox;
+	
+	//APHCCheckbox
+	@FindBy(xpath="//input[@name='APHC']")
+	private WebElement APHCCheckbox;
+	
+	//BBBFCheckbox
+	@FindBy(xpath="//input[@name='BBBF']")
+	private WebElement BBBFCheckbox;
+	
+	//BBBFDropDown
+	@FindBy(xpath="(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])[1]")
+	private WebElement BBBFDropDown;
+	
+	//BNBECheckbox
+	@FindBy(xpath="//input[@name='BNBE']")
+	private WebElement BNBECheckbox;
+	
+	//BBBFDropDown
+	@FindBy(xpath="(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])[1]")
+	private WebElement BNBEDropDown;
+	
+	//COBECheckbox
+	@FindBy(xpath="//input[@name='COBE']")
+	private WebElement COBECheckbox;
+	
+	//TTDBCheckbox
+	@FindBy(xpath="//input[@name='TTDB']")
+	private WebElement TTDBCheckbox;
+	
+	//CANCCheckbox
+	@FindBy(xpath="//input[@name='CANC']")
+	private WebElement CANCCheckbox;
+	
+	//CANCDropDown
+	@FindBy(xpath="(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])[1]")
+	private WebElement CANCDropDown;
+	
+	//SCANCheckbox
+	@FindBy(xpath="//input[@name='SCAN']")
+	private WebElement SCANCheckbox;
+	
+	//DCBCCheckbox
+	@FindBy(xpath="//input[@name='DCBC']")
+	private WebElement DCBCCheckbox;
+	
+	//DCBCDropDown
+	@FindBy(xpath="(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])[1]")
+	private WebElement DCBCDropDown;
+
 	
 	
     WebDriverWait wait;
@@ -258,10 +362,6 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		//String Family1 = Family.replace(" ", "");
 		ArrayList<String> Relationlist = new ArrayList<String>(Arrays.asList(Family.split("\\+")));
 		
-		String SIval = dataRow.getProperty("SumInsured");
-		String SI1val = SIval.replace(" ", "");
-		ArrayList<String> SumInsuredList = new ArrayList<String>(Arrays.asList(SI1val.split("\\+")));
-		
 		String ageval = dataRow.getProperty("Age");
 		String ageval1= ageval.replace(" ", "");
 		ArrayList<String> agelist = new ArrayList<String>(Arrays.asList(ageval1.split("\\+")));
@@ -330,15 +430,25 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			WebElement zone = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]"));
 			WebElement deduct = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]"));
 			WebElement room = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]"));
-			
+			WebElement natureofduty=driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]"));
+			WebElement RiskClass=driver.findElement(By.xpath("(//input[@id='Age']//following::select[5])["+y+"]"));
+
+			if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+			{
+				String SIval = dataRow.getProperty("SumInsured");
+				String SI1val = SIval.replace(" ", "");
+				ArrayList<String> SumInsuredList = new ArrayList<String>(Arrays.asList(SI1val.split("\\+")));
+
 			    Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]")),SumInsuredList.get(x)," SumInsured ");
 				Thread.sleep(WaitTime.medium);
-				
+			}
+			
+			    Thread.sleep(WaitTime.low);
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 				Thread.sleep(WaitTime.low);
 				
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
 				{
 					//Zone
 					String zoneval = dataRow.getProperty("Zone");
@@ -450,6 +560,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		}
 	}
 				
+				
 		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
 			{
 					String PPNDiscount = dataRow.getProperty("PPN Discount");
@@ -460,7 +571,44 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				   selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[4])["+y+"]")),PPNDiscounttt.get(x)," PPN Discount ");
 				   Thread.sleep(WaitTime.low);
 			}
+		 
+		 
+		//Nature of Duty & Risk Class
+		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+			{
+			 
+			 String NatureOf = dataRow.getProperty("NatureOfDuty");
+			 //String NatureOf = Nature.replace(" ", "");
+			 ArrayList<String> NatureOfdutylist = new ArrayList<String>(Arrays.asList(NatureOf.split("\\+")));
+				
+			    HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+				BtnPress1.put("CASHIER", 1);
+				
+				Thread.sleep(WaitTime.medium); 
+				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]")),NatureOfdutylist.get(x), "Nature of Duty");
+				Thread.sleep(WaitTime.low);
+				for(String key: BtnPress1.keySet()){
+					if(key.equalsIgnoreCase(NatureOfdutylist.get(x)))
+					{
+					wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]"))));
+					driver.findElement(By.xpath("(//span[contains(text(),'"+key+"')])["+y+"]")).click();
+				    }
+				}
+				
+				
+				//Risk Class
+				String Riskclass = dataRow.getProperty("RiskClass");
+				//String riskclass = Riskclass.replace(" ", "");
+				ArrayList<String> Riskclasslist = new ArrayList<String>(Arrays.asList(Riskclass.split("\\+")));
+				 
+				Thread.sleep(WaitTime.low);
+				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Age']//following::select[5])["+y+"]")),Riskclasslist.get(x)," Risk Class ");
+				Thread.sleep(WaitTime.low);
+		
+			}
+		//End For Loop 
 		}
+		
 			
 		if(dataRow.getProperty("TestCase").equalsIgnoreCase("QuoteCreation"))
 		{
@@ -659,6 +807,8 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		}
 	}
 		
+		
+		//Assure POS & Non POS covers
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
 		{
 		
@@ -781,6 +931,524 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				
 				 String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 			     Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		}
+		
+		
+		//Active Secure POS & Non POS Covers
+				if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				 {
+					//Accidental Death Cover
+					String AC = dataRow.getProperty("AcciDeathCover");
+					String ACCD= AC.replace(" ", "");
+					ArrayList<String> ACCDlist= new ArrayList<String>(Arrays.asList(ACCD.split("\\+")));
+					
+					String ACCDval = dataRow.getProperty("ACCDsi");
+					String ACCDval1= ACCDval.replace(" ", "");
+					ArrayList<String> ACCDvallist= new ArrayList<String>(Arrays.asList(ACCDval1.split("\\+")));
+
+
+					for (int x = 0;x<ACCDlist.size();x++)
+					{
+					if(ACCDlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='ACCD'])["+y+"]")),"ACCD checkBOX");
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+						
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])["+y+"]")), ACCDvallist.get(x)," ACCD SumInsured ");
+						
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After ACCD calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}		
+				}	
+					
+					
+					//Accidental Medical Expenses
+					String AME = dataRow.getProperty("AcciMedicalExp");
+					String AME1= AME.replace(" ", "");
+					ArrayList<String> AMElist= new ArrayList<String>(Arrays.asList(AME1.split("\\+")));
+					
+					
+					for(int x = 0;x<AMElist.size();x++)
+					{
+					if(AMElist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='ACME'])["+y+"]"))," AME checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//EMI Protect
+					String EMI = dataRow.getProperty("EMIProtect");
+					String EMI1= EMI.replace(" ", "");
+					ArrayList<String> EMIlist= new ArrayList<String>(Arrays.asList(EMI1.split("\\+")));
+					
+					String EMIval = dataRow.getProperty("EMIsi");
+					String EMIval1= EMIval.replace(" ", "");
+					ArrayList<String> EMIvallist= new ArrayList<String>(Arrays.asList(EMIval1.split("\\+")));
+						
+					for (int x = 0;x<EMIlist.size();x++)
+					{
+					if(EMIlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='EMIP'])["+y+"]"))," EMI checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])["+y+"]")),EMIvallist.get(x) ,"EMI Protect");
+						
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After EMIProtect calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+					}
+					
+					//Loan Protect
+					String loan = dataRow.getProperty("LoanProtect");
+					String loan1= loan.replace(" ", "");
+					ArrayList<String> loanlist= new ArrayList<String>(Arrays.asList(loan1.split("\\+")));
+					
+					String loanval = dataRow.getProperty("Loansi");
+					String loanval1= loanval.replace(" ", "");
+					ArrayList<String> loanvallist= new ArrayList<String>(Arrays.asList(loanval1.split("\\+")));
+						
+					for (int x = 0;x<loanlist.size();x++)
+					{
+					if(loanlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='LOPC'])["+y+"]"))," Loan checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])["+y+"]")),loanvallist.get(x) ,"Loan Protect");
+						
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After LoanProtect calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}	
+					
+					
+					//World-Wide Emergency Assistance
+					String WEAS = dataRow.getProperty("WEAS");
+					String WEAS1= WEAS.replace(" ", "");
+					ArrayList<String> WEASlist= new ArrayList<String>(Arrays.asList(WEAS1.split("\\+")));
+					
+					for(int x = 0;x<WEASlist.size();x++)
+					{
+					if(WEASlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='WEAS'])["+y+"]")),"WEAS checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Critical Illness
+					String CI = dataRow.getProperty("Criticalillness");
+					String CI1= CI.replace(" ", "");
+					ArrayList<String> CIlist= new ArrayList<String>(Arrays.asList(CI1.split("\\+")));
+					
+					String CIval = dataRow.getProperty("CIsi");
+					String CIval1= CIval.replace(" ", "");
+					ArrayList<String> CIvallist= new ArrayList<String>(Arrays.asList(CIval1.split("\\+")));
+						
+					for (int x = 0;x<CIlist.size();x++)
+					{
+					if(CIlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='CIL'])["+y+"]"))," CI checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")),CIvallist.get(x) ,"Critical Illness");
+						
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After CI calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}		
+
+					
+					//Second E Opinion
+					String SEO = dataRow.getProperty("SecondEOpinion");
+					String SEO1= SEO.replace(" ", "");
+					ArrayList<String> SEOlist= new ArrayList<String>(Arrays.asList(SEO1.split("\\+")));
+					
+					for(int x = 0;x<SEOlist.size();x++)
+					{
+					if(SEOlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='SCOP'])["+y+"]")),"SEO checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Wellness Coach
+					String WIL = dataRow.getProperty("WellnessCoach");
+					String WIL1= WIL.replace(" ", "");
+					ArrayList<String> WILlist= new ArrayList<String>(Arrays.asList(WIL1.split("\\+")));
+					
+					for(int x = 0;x<WILlist.size();x++)
+					{
+					if(WILlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='WLI'])["+y+"]")),"WIL checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Adventure Sports Cover
+					String ADS = dataRow.getProperty("AdventureSports");
+					String ADS1= ADS.replace(" ", "");
+					ArrayList<String> ADSlist= new ArrayList<String>(Arrays.asList(ADS1.split("\\+")));
+					
+					for(int x = 0;x<ADSlist.size();x++)
+					{
+					if(ADSlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='ADSB'])["+y+"]")),"ADS checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Accidental In-patient Hosp Cover
+					String AHC = dataRow.getProperty("AcciHospCover");
+					String AHC1= AHC.replace(" ", "");
+					ArrayList<String> AHClist= new ArrayList<String>(Arrays.asList(AHC1.split("\\+")));
+					
+					for(int x = 0;x<AHClist.size();x++)
+					{
+					if(AHClist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='APHC'])["+y+"]")),"AHC checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Broken Bones Benefit
+					String BBB = dataRow.getProperty("BroknBoneBenefit");
+					String BBB1= BBB.replace(" ", "");
+					ArrayList<String> BBBlist= new ArrayList<String>(Arrays.asList(BBB1.split("\\+")));
+					
+					String BBBval = dataRow.getProperty("BBBFsi");
+					String BBBval1= BBBval.replace(" ", "");
+					ArrayList<String> BBBvallist= new ArrayList<String>(Arrays.asList(BBBval1.split("\\+")));
+						
+					for (int x = 0;x<BBBlist.size();x++)
+					{
+					if(BBBlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='BBBF'])["+y+"]"))," BBBF checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])["+y+"]")),BBBvallist.get(x) ,"Broken Bone Benefit");
+						Thread.sleep(WaitTime.low);
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After BBB calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}	
+					
+					
+					//Burn Benefit
+					String BNBE = dataRow.getProperty("BurnBenefit");
+					String BNBE1= BNBE.replace(" ", "");
+					ArrayList<String> BNBElist= new ArrayList<String>(Arrays.asList(BNBE1.split("\\+")));
+					
+					String BNBEval = dataRow.getProperty("BNBEsi");
+					String BNBEval1= BNBEval.replace(" ", "");
+					ArrayList<String> BNBEvallist= new ArrayList<String>(Arrays.asList(BNBEval1.split("\\+")));
+						
+					for (int x = 0;x<BNBElist.size();x++)
+					{
+					if(BNBElist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='BNBE'])["+y+"]"))," BNBE checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])["+y+"]")),BNBEvallist.get(x) ,"Burn Benefit");
+						Thread.sleep(WaitTime.low);
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After BNBE calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}
+					
+					
+					//Coma Benefit
+					String CB = dataRow.getProperty("ComaBenefit");
+					String CB1= CB.replace(" ", "");
+					ArrayList<String> CBlist= new ArrayList<String>(Arrays.asList(CB1.split("\\+")));
+					
+					for(int x = 0;x<CBlist.size();x++)
+					{
+					if(CBlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='COBE'])["+y+"]")),"CB checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Temporary Total Disablement
+					String TTD = dataRow.getProperty("TempTDB");
+					String TTD1= TTD.replace(" ", "");
+					ArrayList<String> TTDlist= new ArrayList<String>(Arrays.asList(TTD1.split("\\+")));
+					
+					for(int x = 0;x<TTDlist.size();x++)
+					{
+					if(TTDlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='TTDB'])["+y+"]")),"TTD checkBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Cancer Cover
+					String CC = dataRow.getProperty("CancerCover");
+					String CC1= CC.replace(" ", "");
+					ArrayList<String> CClist= new ArrayList<String>(Arrays.asList(CC1.split("\\+")));
+					
+					String CCval = dataRow.getProperty("CANCsi");
+					String CCval1= CCval.replace(" ", "");
+					ArrayList<String> CCvallist= new ArrayList<String>(Arrays.asList(CCval1.split("\\+")));
+						
+					for (int x = 0;x<CClist.size();x++)
+					{
+					if(CClist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='CANC'])["+y+"]"))," CANC checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])["+y+"]")),CCvallist.get(x) ,"Cancer Cover");
+						Thread.sleep(WaitTime.low);
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After CANC calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}
+					
+					
+					//Scan Second E Opinion
+					String Scan = dataRow.getProperty("SCANOpinion");
+					String Scan1= Scan.replace(" ", "");
+					ArrayList<String> Scanlist= new ArrayList<String>(Arrays.asList(Scan1.split("\\+")));
+					
+					for(int x = 0;x<Scanlist.size();x++)
+					{
+					if(Scanlist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='SCAN'])["+y+"]")),"SCAN CheckBOX");
+						click(calpremBTN,"Calculate Premium");
+						Thread.sleep(WaitTime.low);
+						boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+						
+						if (okBTN == true) {
+							click(saveokBTN,"OK");
+						}
+					}	
+				}
+					
+					
+					//Daily Cash Benefit
+					String DC = dataRow.getProperty("DailyCashBenef");
+					String DC1= DC.replace(" ", "");
+					ArrayList<String> DClist= new ArrayList<String>(Arrays.asList(DC1.split("\\+")));
+					
+					String DCval = dataRow.getProperty("DCBCsi");
+					String DCval1= DCval.replace(" ", "");
+					ArrayList<String> DCvallist= new ArrayList<String>(Arrays.asList(DCval1.split("\\+")));
+						
+					for (int x = 0;x<DClist.size();x++)
+					{
+					if(DClist.get(x).equalsIgnoreCase("Yes"))
+					{
+						int y = x+1;
+						click(driver.findElement(By.xpath("(//input[@name='DCBC'])["+y+"]"))," DCB checkBOX");
+						
+						wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])["+y+"]")));	
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])["+y+"]")),DCvallist.get(x) ,"Daily Cash Benefit");
+						Thread.sleep(WaitTime.low);
+						click(calpremBTN, "Calculate Premium Button");
+						Thread.sleep(WaitTime.low);
+						WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
+						
+						Reporter.log("");
+						Reporter.log("<B> -------------------------------------------</B>");
+						Reporter.log("<B>After DCB calculated</B>");
+						Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
+						Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+						Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+						Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+						Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
+						Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
+						Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
+						Reporter.log("<B> -------------------------------------------</B>");
+					}
+				}
+
+		    String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		    Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+	
+		  //Covers End
 		}
 		
 		String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
