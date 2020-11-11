@@ -1,6 +1,7 @@
 package pages;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
@@ -73,7 +75,7 @@ public class OtherUserLogin extends GenericMethods {
 	@FindBy(xpath="//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 	
-	@FindBy(xpath="//select[@id='Occupation']")
+	@FindBy(xpath = "//input[@id='occupation']")
 	private WebElement occupation;
 	
 	@FindBy(xpath="//select[@id='Applicable Sum Insured']")
@@ -171,27 +173,27 @@ public class OtherUserLogin extends GenericMethods {
 		   
 		
 		   //Selection Dropdown 1
-		   @FindBy(xpath="//div[contains(text(),'ID Proof')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'ID Proof')]//following::select[1]")
 		   private WebElement Optional1;
 		   
 		   
 		   //Selection Dropdown 2
-		   @FindBy(xpath="//div[contains(text(),'Address Proof')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Address Proof')]//following::select[1]")
 		   private WebElement Optional2;
 		   
 		   
 		   //Selection Dropdown 3
-		   @FindBy(xpath="//div[contains(text(),'Passport')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Passport')]//following::select[1]")
 		   private WebElement Optional3;  
 		   
 		   
 		   //Selection Dropdown 4
-		   @FindBy(xpath="//div[contains(text(),'Declaration for Staying in India')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Declaration for Staying in India')]//following::select[1]")
 		   private WebElement Optional4;  
 		   
 		   
 		   //Selection Dropdown 5
-		   @FindBy(xpath="//div[contains(text(),'Health Declaration Form')]//following::select[2]")
+		   @FindBy(xpath="//div[contains(text(),'Health Declaration Form')]//following::select[1]")
 		   private WebElement Optional5;  
 		   
 		  //Save
@@ -299,8 +301,18 @@ public class OtherUserLogin extends GenericMethods {
 //		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(occupation,dataRow.getProperty("Occupation"),"Occupation");
+		HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+		BtnPress1.put("Self Employed", 1);
+		Thread.sleep(WaitTime.medium); 
+		clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
 		Thread.sleep(WaitTime.low);
+		for(String key: BtnPress1.keySet()){
+			if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+			{
+			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+			driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+		    }
+		}
 		
 //		Thread.sleep(WaitTime.low);
 //		selectFromDropdownByVisibleText(sumInsured,"200000","Sum Insured");
