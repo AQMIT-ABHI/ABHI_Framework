@@ -1213,6 +1213,3 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 	
 }
-
-
-
