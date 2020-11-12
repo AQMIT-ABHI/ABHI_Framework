@@ -729,7 +729,6 @@ public class Finalize extends GenericMethods{
 		
 		Thread.sleep(WaitTime.medium);
 		click(ifcselectbtn,"IFSCselectbtn");
-	
 		
 		Thread.sleep(WaitTime.medium);
        driver.switchTo().window(ChildWindow2);
