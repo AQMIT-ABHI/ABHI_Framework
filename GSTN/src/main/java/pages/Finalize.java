@@ -717,8 +717,7 @@ public class Finalize extends GenericMethods{
 		
 		Thread.sleep(WaitTime.medium);
 		click(ifsciconbtn,"Iconbtn");
-		switchToWindow(driver);
-				
+		switchToWindow(driver);		
 				
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");

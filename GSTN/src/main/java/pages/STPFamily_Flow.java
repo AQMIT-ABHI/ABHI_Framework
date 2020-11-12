@@ -94,7 +94,7 @@ public class STPFamily_Flow extends GenericMethods{
 	private WebElement priorityCustomer;
 
 	@FindBy(xpath = "//select[@id='Sensitive Customer']")
-	private WebElement sensitiveCustomerr;
+	private WebElement sensitiveCustomer;
 
 	@FindBy(xpath = "//input[@id='Policy-holder ZIP Code']")
 	private WebElement Pincode;
@@ -365,19 +365,19 @@ public class STPFamily_Flow extends GenericMethods{
 
 				
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+				selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"), "hni Customer");
 				Thread.sleep(WaitTime.low);
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+				selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"), "CEO Club Advisor Customerr");
 				Thread.sleep(WaitTime.low);
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+				selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"), "Priority Customer");
 				Thread.sleep(WaitTime.low);
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+				selectFromDropdownByVisibleText(sensitiveCustomer, dataRow.getProperty("SensitiveCustomer"), "sensitive Customerr");
 				Thread.sleep(WaitTime.low);
 
 				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -400,78 +400,73 @@ public class STPFamily_Flow extends GenericMethods{
 
 	}
 
-		// COPS Requirement Page
-             switchtodefaultframe(driver);
-			 switchtoframe(driver, "display"); 
-			 Thread.sleep(3000);
-	         click(requirementsIcon,"Click Requirement Icon");
-	         Thread.sleep(WaitTime.low);
-	         switchtoframe(driver, "containerFrame");
-	         Thread.sleep(WaitTime.low);
-	       
-	       
-	       //Multiple Requiremrnts
-	       for (int n = 0;n<myList1.size();n++)
-			{
-				int s = n+2;
-				int k=n+1;
-			
-			WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
-			WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
-			WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
-			WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+"]"));
-			WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
-			WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["+k+"]"));
-			WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["+k+"]"));
-			
-			 
-			Thread.sleep(3000);
-	        click(document,"Show Requirment");
-	        Thread.sleep(3000);
-	        
-			//Select Optional From the dropdown 1
-	       Thread.sleep(WaitTime.medium);
-		   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
-			
-				
-			 //Select Optional From the dropdown 2
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);
-				
-					
-			 //Select Optional From the dropdown 3
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);
-				
-				
-			 //Select Optional From the dropdown 4
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);	
-		   
-				
-			//Select Optional From the dropdown 5
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-			   Thread.sleep(3000);	
-				
-				
-				//Save
-			   Thread.sleep(WaitTime.low);
-		        click(SaveRequirement,"Save");
-		        Thread.sleep(2000);
-		        
-		        
-		        //Ok Button
-		        Thread.sleep(5000);
-		        click(OK,"Modification Successfully Completed");
-		        Thread.sleep(3000);
-			
-			}
-	       
+	/*
+	 * // COPS Requirement Page switchtodefaultframe(driver); switchtoframe(driver,
+	 * "display"); Thread.sleep(3000);
+	 * click(requirementsIcon,"Click Requirement Icon"); Thread.sleep(WaitTime.low);
+	 * switchtoframe(driver, "containerFrame"); Thread.sleep(WaitTime.low);
+	 * 
+	 * 
+	 * //Multiple Requiremrnts for (int n = 0;n<myList1.size();n++) { int s = n+2;
+	 * int k=n+1;
+	 * 
+	 * WebElement document =
+	 * driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+	 * WebElement SaveRequirement =
+	 * driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+	 * WebElement Optional1 = driver.findElement(By.
+	 * xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
+	 * WebElement Optional2 = driver.findElement(By.
+	 * xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+
+	 * "]")); WebElement Optional3 = driver.findElement(By.xpath(
+	 * "(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
+	 * WebElement Optional4 = driver.findElement(By.
+	 * xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["
+	 * +k+"]")); WebElement Optional5 = driver.findElement(By.
+	 * xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["
+	 * +k+"]"));
+	 * 
+	 * 
+	 * Thread.sleep(3000); click(document,"Show Requirment"); Thread.sleep(3000);
+	 * 
+	 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.medium);
+	 * selectFromDropdownByVisibleText(Optional1,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional2,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional3,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional4,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional5,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional"); Thread.sleep(3000);
+	 * 
+	 * 
+	 * //Save Thread.sleep(WaitTime.low); click(SaveRequirement,"Save");
+	 * Thread.sleep(2000);
+	 * 
+	 * 
+	 * //Ok Button Thread.sleep(5000);
+	 * click(OK,"Modification Successfully Completed"); Thread.sleep(3000);
+	 * 
+	 * }
+	 */	       
 	       
 	       
 	     //Policy Summary
@@ -687,19 +682,19 @@ public class STPFamily_Flow extends GenericMethods{
 
 						
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+						selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"), "hni Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"), "CEO Club Advisor Customerr");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+						selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"), "Priority Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+						selectFromDropdownByVisibleText(sensitiveCustomer, dataRow.getProperty("SensitiveCustomer"), "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
@@ -728,80 +723,74 @@ public class STPFamily_Flow extends GenericMethods{
 					}
 				}
 
-
-				// COPS Requirement Page
-	                   switchtodefaultframe(driver);
-			           switchtoframe(driver, "display"); 
-			           Thread.sleep(3000);
-			           click(requirementsIcon,"Click Requirement Icon");
-			           Thread.sleep(WaitTime.low);
-			           switchtoframe(driver, "containerFrame");
-			           Thread.sleep(WaitTime.low);
-			       
-			       
-			       //Multiple Requiremrnts
-			       for (int n = 0;n<myList1.size();n++)
-					{
-						int s = n+2;
-						int k=n+1;
-					
-					WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
-					WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
-					WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
-					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+"]"));
-					WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
-					WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["+k+"]"));
-					WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["+k+"]"));
-					
-					 
-					Thread.sleep(3000);
-			        click(document,"Show Requirement");
-			        Thread.sleep(3000);
-			        
-					//Select Optional From the dropdown 1
-			       Thread.sleep(WaitTime.medium);
-				   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-					Thread.sleep(WaitTime.medium);
-					
-						
-					 //Select Optional From the dropdown 2
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);
-						
-							
-					 //Select Optional From the dropdown 3
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);
-						
-						
-					 //Select Optional From the dropdown 4
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);	
-				   
-						
-					//Select Optional From the dropdown 5
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-					   Thread.sleep(3000);	
-						
-						
-						//Save
-					   Thread.sleep(WaitTime.low);
-				        click(SaveRequirement,"Save");
-				        Thread.sleep(2000);
-				        
-				        
-				        //Ok Button
-				        Thread.sleep(5000);
-				        click(OK,"Modification Successfully Completed");
-				        Thread.sleep(3000);
-					
-					}
-			       
-			       
+				/*
+				 * // COPS Requirement Page switchtodefaultframe(driver); switchtoframe(driver,
+				 * "display"); Thread.sleep(3000);
+				 * click(requirementsIcon,"Click Requirement Icon"); Thread.sleep(WaitTime.low);
+				 * switchtoframe(driver, "containerFrame"); Thread.sleep(WaitTime.low);
+				 * 
+				 * 
+				 * //Multiple Requiremrnts for (int n = 0;n<myList1.size();n++) { int s = n+2;
+				 * int k=n+1;
+				 * 
+				 * WebElement document =
+				 * driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+				 * WebElement SaveRequirement =
+				 * driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+				 * WebElement Optional1 = driver.findElement(By.
+				 * xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
+				 * WebElement Optional2 = driver.findElement(By.
+				 * xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+
+				 * "]")); WebElement Optional3 = driver.findElement(By.xpath(
+				 * "(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
+				 * WebElement Optional4 = driver.findElement(By.
+				 * xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["
+				 * +k+"]")); WebElement Optional5 = driver.findElement(By.
+				 * xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["
+				 * +k+"]"));
+				 * 
+				 * 
+				 * Thread.sleep(3000); click(document,"Show Requirement"); Thread.sleep(3000);
+				 * 
+				 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.medium);
+				 * selectFromDropdownByVisibleText(Optional1,dataRow.
+				 * getProperty("Optional Status"),"Selection Optional");
+				 * Thread.sleep(WaitTime.medium);
+				 * 
+				 * 
+				 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+				 * selectFromDropdownByVisibleText(Optional2,dataRow.
+				 * getProperty("Optional Status"),"Selection Optional");
+				 * Thread.sleep(WaitTime.medium);
+				 * 
+				 * 
+				 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+				 * selectFromDropdownByVisibleText(Optional3,dataRow.
+				 * getProperty("Optional Status"),"Selection Optional");
+				 * Thread.sleep(WaitTime.medium);
+				 * 
+				 * 
+				 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+				 * selectFromDropdownByVisibleText(Optional4,dataRow.
+				 * getProperty("Optional Status"),"Selection Optional");
+				 * Thread.sleep(WaitTime.medium);
+				 * 
+				 * 
+				 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+				 * selectFromDropdownByVisibleText(Optional5,dataRow.
+				 * getProperty("Optional Status"),"Selection Optional"); Thread.sleep(3000);
+				 * 
+				 * 
+				 * //Save Thread.sleep(WaitTime.low); click(SaveRequirement,"Save");
+				 * Thread.sleep(2000);
+				 * 
+				 * 
+				 * //Ok Button Thread.sleep(5000);
+				 * click(OK,"Modification Successfully Completed"); Thread.sleep(3000);
+				 * 
+				 * }
+				 * 
+				 */
 			       
 			     //Policy Summary
 					switchtodefaultframe(driver);
@@ -1018,20 +1007,21 @@ public class STPFamily_Flow extends GenericMethods{
 
 						
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+						selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"), "hni Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"), "CEO Club Advisor Customerr");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+						selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"), "Priority Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customer");
+						selectFromDropdownByVisibleText(sensitiveCustomer, dataRow.getProperty("SensitiveCustomer"), "sensitive Customerr");
 						Thread.sleep(WaitTime.low);
+						
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						click(SaveButton, "Save");
@@ -1051,79 +1041,74 @@ public class STPFamily_Flow extends GenericMethods{
 					}
 			}
 
-				// COPS Requirement Page
-		           switchtodefaultframe(driver);
-				   switchtoframe(driver, "display"); 
-				   Thread.sleep(3000);
-			       click(requirementsIcon,"Click Requirement Icon");
-			       Thread.sleep(WaitTime.low);
-			       switchtoframe(driver, "containerFrame");
-			       Thread.sleep(WaitTime.low);
-			       
-			       
-			       //Multiple Requiremrnts
-			       for (int n = 0;n<myList1.size();n++)
-					{
-						int s = n+2;
-						int k=n+1;
-					
-					WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
-					WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
-					WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
-					WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+"]"));
-					WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
-					WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["+k+"]"));
-					WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["+k+"]"));
-					
-					 
-					Thread.sleep(3000);
-			        click(document,"Show Requirment");
-			        Thread.sleep(3000);
-			        
-					//Select Optional From the dropdown 1
-			       Thread.sleep(WaitTime.medium);
-				   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-					Thread.sleep(WaitTime.medium);
-					
-						
-					 //Select Optional From the dropdown 2
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);
-						
-							
-					 //Select Optional From the dropdown 3
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);
-						
-						
-					 //Select Optional From the dropdown 4
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);	
-				   
-						
-					//Select Optional From the dropdown 5
-				       Thread.sleep(WaitTime.low);
-					   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-					   Thread.sleep(3000);	
-						
-						
-						//Save
-					   Thread.sleep(WaitTime.low);
-				        click(SaveRequirement,"Save");
-				        Thread.sleep(2000);
-				        
-				        
-				        //Ok Button
-				        Thread.sleep(5000);
-				        click(OK,"Modification Successfully Completed");
-				        Thread.sleep(3000);
-					
-					}
-			       
-			       
+			/*
+			 * // COPS Requirement Page switchtodefaultframe(driver); switchtoframe(driver,
+			 * "display"); Thread.sleep(3000);
+			 * click(requirementsIcon,"Click Requirement Icon"); Thread.sleep(WaitTime.low);
+			 * switchtoframe(driver, "containerFrame"); Thread.sleep(WaitTime.low);
+			 * 
+			 * 
+			 * //Multiple Requiremrnts for (int n = 0;n<myList1.size();n++) { int s = n+2;
+			 * int k=n+1;
+			 * 
+			 * WebElement document =
+			 * driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+			 * WebElement SaveRequirement =
+			 * driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+			 * WebElement Optional1 = driver.findElement(By.
+			 * xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
+			 * WebElement Optional2 = driver.findElement(By.
+			 * xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+
+			 * "]")); WebElement Optional3 = driver.findElement(By.xpath(
+			 * "(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
+			 * WebElement Optional4 = driver.findElement(By.
+			 * xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["
+			 * +k+"]")); WebElement Optional5 = driver.findElement(By.
+			 * xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["
+			 * +k+"]"));
+			 * 
+			 * 
+			 * Thread.sleep(3000); click(document,"Show Requirment"); Thread.sleep(3000);
+			 * 
+			 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.medium);
+			 * selectFromDropdownByVisibleText(Optional1,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional2,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional3,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional4,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional5,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional"); Thread.sleep(3000);
+			 * 
+			 * 
+			 * //Save Thread.sleep(WaitTime.low); click(SaveRequirement,"Save");
+			 * Thread.sleep(2000);
+			 * 
+			 * 
+			 * //Ok Button Thread.sleep(5000);
+			 * click(OK,"Modification Successfully Completed"); Thread.sleep(3000);
+			 * 
+			 * }
+			 * 
+			 */			       
 			       
 			     //Policy Summary
 					switchtodefaultframe(driver);
@@ -1214,9 +1199,11 @@ public class STPFamily_Flow extends GenericMethods{
 							switchtoframe(driver, "memberiframe"+x);
 							Thread.sleep(WaitTime.low);
 
+							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
 							Thread.sleep(WaitTime.low);
 
+							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
 							Thread.sleep(WaitTime.low);
 							weightinKG.sendKeys(Keys.TAB);
@@ -1335,20 +1322,21 @@ public class STPFamily_Flow extends GenericMethods{
 
 							
 							Thread.sleep(WaitTime.medium);
-							selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+							selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"), "hni Customer");
 							Thread.sleep(WaitTime.low);
 
 							Thread.sleep(WaitTime.medium);
-							selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+							selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"), "CEO Club Advisor Customerr");
 							Thread.sleep(WaitTime.low);
 
 							Thread.sleep(WaitTime.medium);
-							selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+							selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"), "Priority Customer");
 							Thread.sleep(WaitTime.low);
 
 							Thread.sleep(WaitTime.medium);
-							selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+							selectFromDropdownByVisibleText(sensitiveCustomer, dataRow.getProperty("SensitiveCustomer"), "sensitive Customerr");
 							Thread.sleep(WaitTime.low);
+							
 	
 							Thread.sleep(WaitTime.medium);
 							String zones = dataRow.getProperty("Zone");
@@ -1368,7 +1356,7 @@ public class STPFamily_Flow extends GenericMethods{
 							Thread.sleep(WaitTime.low);
 							switchtodefaultframe(driver);
 							switchtoframe(driver, "display");
-							Thread.sleep(WaitTime.low);
+							Thread.sleep(WaitTime.medium);
 							click(membericon, "Member Icon");
 							Thread.sleep(WaitTime.medium);
 							switchtoframe(driver, "containerFrame");
@@ -1377,80 +1365,74 @@ public class STPFamily_Flow extends GenericMethods{
 						}
 					}
 
-
-					// COPS Requirement Page
-			           switchtodefaultframe(driver);
-					   switchtoframe(driver, "display"); 
-					   Thread.sleep(3000);
-				       click(requirementsIcon,"Click Requirement Icon");
-				       Thread.sleep(WaitTime.low);
-				       switchtoframe(driver, "containerFrame");
-				       Thread.sleep(WaitTime.low);
-				       
-				       
-				       //Multiple Requiremrnts
-				       for (int n = 0;n<myList1.size();n++)
-						{
-							int s = n+2;
-							int k=n+1;
-						
-						WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
-						WebElement SaveRequirement = driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
-						WebElement Optional1 = driver.findElement(By.xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
-						WebElement Optional2 = driver.findElement(By.xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+"]"));
-						WebElement Optional3 = driver.findElement(By.xpath("(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
-						WebElement Optional4 = driver.findElement(By.xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["+k+"]"));
-						WebElement Optional5 = driver.findElement(By.xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["+k+"]"));
-						
-						 
-						Thread.sleep(3000);
-				        click(document,"Show Requirment");
-				        Thread.sleep(3000);
-				        
-						//Select Optional From the dropdown 1
-				       Thread.sleep(WaitTime.medium);
-					   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-						Thread.sleep(WaitTime.medium);
-						
-							
-						 //Select Optional From the dropdown 2
-					       Thread.sleep(WaitTime.low);
-						   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-							Thread.sleep(WaitTime.medium);
-							
-								
-						 //Select Optional From the dropdown 3
-					       Thread.sleep(WaitTime.low);
-						   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-							Thread.sleep(WaitTime.medium);
-							
-							
-						 //Select Optional From the dropdown 4
-					       Thread.sleep(WaitTime.low);
-						   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-							Thread.sleep(WaitTime.medium);	
-					   
-							
-						//Select Optional From the dropdown 5
-					       Thread.sleep(WaitTime.low);
-						   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-						   Thread.sleep(3000);	
-							
-							
-							//Save
-						   Thread.sleep(WaitTime.low);
-					        click(SaveRequirement,"Save");
-					        Thread.sleep(2000);
-					        
-					        
-					        //Ok Button
-					        Thread.sleep(5000);
-					        click(OK,"Modification Successfully Completed");
-					        Thread.sleep(3000);
-						
-						}
-				       
-				       
+					/*
+					 * // COPS Requirement Page switchtodefaultframe(driver); switchtoframe(driver,
+					 * "display"); Thread.sleep(3000);
+					 * click(requirementsIcon,"Click Requirement Icon"); Thread.sleep(WaitTime.low);
+					 * switchtoframe(driver, "containerFrame"); Thread.sleep(WaitTime.low);
+					 * 
+					 * 
+					 * //Multiple Requiremrnts for (int n = 0;n<myList1.size();n++) { int s = n+2;
+					 * int k=n+1;
+					 * 
+					 * WebElement document =
+					 * driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+					 * WebElement SaveRequirement =
+					 * driver.findElement(By.xpath("(//button[@id='SaveRequire'])["+s+"]"));
+					 * WebElement Optional1 = driver.findElement(By.
+					 * xpath("(//div[contains(text(),'ID Proof')]//following::select[1])["+k+"]"));
+					 * WebElement Optional2 = driver.findElement(By.
+					 * xpath("(//div[contains(text(),'Address Proof')]//following::select[1])["+k+
+					 * "]")); WebElement Optional3 = driver.findElement(By.xpath(
+					 * "(//div[contains(text(),'Passport')]//following::select[1])["+k+"]"));
+					 * WebElement Optional4 = driver.findElement(By.
+					 * xpath("(//div[contains(text(),'Declaration for Staying in India')]//following::select[1])["
+					 * +k+"]")); WebElement Optional5 = driver.findElement(By.
+					 * xpath("(//div[contains(text(),'Health Declaration Form')]//following::select[1])["
+					 * +k+"]"));
+					 * 
+					 * 
+					 * Thread.sleep(3000); click(document,"Show Requirment"); Thread.sleep(3000);
+					 * 
+					 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.medium);
+					 * selectFromDropdownByVisibleText(Optional1,dataRow.
+					 * getProperty("Optional Status"),"Selection Optional");
+					 * Thread.sleep(WaitTime.medium);
+					 * 
+					 * 
+					 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+					 * selectFromDropdownByVisibleText(Optional2,dataRow.
+					 * getProperty("Optional Status"),"Selection Optional");
+					 * Thread.sleep(WaitTime.medium);
+					 * 
+					 * 
+					 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+					 * selectFromDropdownByVisibleText(Optional3,dataRow.
+					 * getProperty("Optional Status"),"Selection Optional");
+					 * Thread.sleep(WaitTime.medium);
+					 * 
+					 * 
+					 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+					 * selectFromDropdownByVisibleText(Optional4,dataRow.
+					 * getProperty("Optional Status"),"Selection Optional");
+					 * Thread.sleep(WaitTime.medium);
+					 * 
+					 * 
+					 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+					 * selectFromDropdownByVisibleText(Optional5,dataRow.
+					 * getProperty("Optional Status"),"Selection Optional"); Thread.sleep(3000);
+					 * 
+					 * 
+					 * //Save Thread.sleep(WaitTime.low); click(SaveRequirement,"Save");
+					 * Thread.sleep(2000);
+					 * 
+					 * 
+					 * //Ok Button Thread.sleep(5000);
+					 * click(OK,"Modification Successfully Completed"); Thread.sleep(3000);
+					 * 
+					 * }
+					 * 
+					 */				       
 				       
 				     //Policy Summary
 						switchtodefaultframe(driver);
@@ -1463,7 +1445,7 @@ public class STPFamily_Flow extends GenericMethods{
 
 						//Policy Summary
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(WaitTime.medium);
 						click(DataEntry1,"DataEntry 1 Complteted");
 						Thread.sleep(WaitTime.low);
 						
@@ -1477,16 +1459,16 @@ public class STPFamily_Flow extends GenericMethods{
 						
 						
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(WaitTime.medium);
 						click(SubmitButton,"Submit");
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(WaitTime.medium);
 						
 						//STP flow
 						
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 						Thread.sleep(WaitTime.low);
 						click(issuepolicy,"Issue Policy");
-						Thread.sleep(WaitTime.low);
+						Thread.sleep(WaitTime.medium);
 				       		
 						
 						//Printing Policy Number
@@ -1499,6 +1481,7 @@ public class STPFamily_Flow extends GenericMethods{
 						
 						
 						//Policy Summary
+						Thread.sleep(WaitTime.low);
 						click(Continue,"Continue");
 						Thread.sleep(WaitTime.low);
 						
@@ -1517,11 +1500,9 @@ public class STPFamily_Flow extends GenericMethods{
 							Thread.sleep(WaitTime.low);
 							switchtoframe(driver,"containerFrame");
 							driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-				
-			
+
 			}
-		}
-				
+		}		
 	}
 				
 
