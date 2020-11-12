@@ -324,28 +324,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	private WebElement DCBCDropDown;
 	
 	
-	//POS Active assure covers
-	
-	@FindBy(xpath="(//input[@name='AHB'])[1]")
-	private WebElement AHBchkbox ;
-	
-	@FindBy(xpath="(//input[@name='ANRU'])[1]")
-	private WebElement ANRUchkbox ;
-	
-	@FindBy(xpath="(//input[@name='CHB'])[1]")
-	
-	private WebElement CHBchkbox ;
-	
-	@FindBy(xpath="(//input[@name='RIPW'])[1]")
-	private WebElement RIPWchkbox ;
-	
-	@FindBy(xpath="(//input[@name='SNCB'])[1]")
-	private WebElement SNCBchkbox ;
-	
-	@FindBy(xpath="(//input[@name='URSI'])[1]")
-	private WebElement URSIchkbox ;
-	
-	
     WebDriverWait wait;
 	public IndividualQuickPricingPage(WebDriver driver) {
 		super(driver);

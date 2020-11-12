@@ -269,9 +269,9 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		//policy summary
 		//submit 1
-		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		click(subbtn, "Submit btn");
-		Thread.sleep(WaitTime.high);
+//		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+//		click(subbtn, "Submit btn");
+//		Thread.sleep(WaitTime.high);
 		
 		//submit 2
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);

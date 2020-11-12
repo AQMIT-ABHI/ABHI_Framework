@@ -341,7 +341,6 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		click(proceedBTN, "ProceedButton");
 		String parentWindow = driver.getWindowHandle();
 		
-		
 		//EnteringQuoteDetails
 				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");

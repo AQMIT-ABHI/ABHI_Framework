@@ -132,20 +132,21 @@ public class CollectionScreen extends GenericMethods {
 
 		// Get Total
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(gettotal, "Get Total");
+		Thread.sleep(WaitTime.low);
 
 		// To be Collected & Instrument amount
 		String Collectamount = tobeCollected.getAttribute("value");
 		Thread.sleep(WaitTime.low);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
 		instrumentamount.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.xpath("//input[@name='pInstrumentAmt']")).sendKeys(Collectamount);
 		Thread.sleep(WaitTime.low);
 
 		// Source of Collection
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(sourceofCollection, dataRow.getProperty("Source of Collection"),"Source of Collection");
 		Thread.sleep(WaitTime.medium);
 
@@ -156,80 +157,81 @@ public class CollectionScreen extends GenericMethods {
 		Thread.sleep(WaitTime.medium);
 
 		// Txn Amount
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(taxamount, Collectamount, "Txn Amount");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Sub Code
 		// Sub Code Search
 		String parentWindow = driver.getWindowHandle();
 		wait.until(ExpectedConditions.elementToBeClickable(subcode));
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(subcodesearch, " search ");
 		switchToWindow(driver);
-		Thread.sleep(4000);
+		Thread.sleep(WaitTime.medium);
 		click(subcodevalue, "SubCode Value");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.low);
 		driver.switchTo().window(parentWindow);
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
 		switchtoframe(driver, "containerFrame");
 
 		// Narration
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(narration, dataRow.getProperty("Narration"), "Narration");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.low);
 
 		// Save button
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(saveBTN, "Save Button");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		// String parentWindow = driver.getWindowHandle();
 
 		// Post Button
-		Thread.sleep(4000);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(postBTN, "Post Button");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Continue Button Collection
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 		click(continueBTN, "Continue Button");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Continue Button Agent Details
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(continuebutton, "Continue Button");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Requirement Page
 		// Start
 		// For Proposer
 
 		// Show Requirements
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 		click(showrequirement, "Show Requirement");
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 
 		// Upload Requirement A
 
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(uploadrequirementA, "Upload Document of BanK");
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		switchToWindow(driver);
-		Thread.sleep(8000);
+		Thread.sleep(WaitTime.low);
 
 		// Choose File 1
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.high);
 		click(choosefile, "Choose File");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		choosefile.sendKeys("D:\\code.txt");
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.high);
 
 		// Upload File 1
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(upload, "File Uploaded");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		driver.switchTo().window(parentWindow);
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
@@ -237,61 +239,61 @@ public class CollectionScreen extends GenericMethods {
 
 		// Ok Button
 
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
         click(OK, "File Uploaded Successfully"); 
-        Thread.sleep(2000);
+        Thread.sleep(WaitTime.high);
 
         
 		// Upload Requirement B
-		Thread.sleep(3000);
+        Thread.sleep(WaitTime.medium);
 		click(uploadrequirementB, "Upload Document of Proposal form");
-		Thread.sleep(8000);
+		Thread.sleep(WaitTime.veryHigh);
 		switchToWindow(driver);
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 
 		// Choose File 2
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.veryHigh);
 		click(choosefile, "Choose File");
-		Thread.sleep(8000);
+		Thread.sleep(WaitTime.veryHigh);
 		choosefile.sendKeys("D:\\code.txt");
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.veryHigh);
 
 		// Upload File 2
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(upload, "File Uploaded");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		driver.switchTo().window(parentWindow);
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
 		switchtoframe(driver, "containerFrame");
 		// Ok Button
 
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.high);
 		click(OK, "File Uploaded Successfully"); 
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 
 		// Save
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(saverequire, "Save");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Ok Button
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(OK, "Modification Successfully Completed");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// Continue Button
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(continueButton, "Continue Button");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 
 		// End
 
 	}
 
-	public void FillCollection(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,
-			String stepGroup, CustomAssert customAssert) throws Exception {
+	public void FillCollection(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn,String stepGroup, CustomAssert customAssert) throws Exception 
+	{
 		fillcollectionscreen(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 	}
 
