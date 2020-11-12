@@ -5,17 +5,6 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TCS_STP_ArogyaMultiInd_0005" verbose="2">
-    <parameter name="ScriptReference" value="CreateMultiINDSTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TCS_STP_ArogyaMultiInd_0005"/>
-    <parameter name="Description" value="Policy should get issued with SI - 350000 and premium frequency as Yearly"/>
-    <parameter name="Product" value="Positive"/>
-    <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_STP_ArogyaMultiInd_0005"/>
-    <classes>
-      <class name="testRunner.TestExecutionSuite"/>
-    </classes>
-  </test> <!-- TCS_STP_ArogyaMultiInd_0005 -->
   <test name="TCS_STP_ArogyaMultiInd_0006" verbose="2">
     <parameter name="ScriptReference" value="CreateMultiINDSTPFlowPricing"/>
     <parameter name="ScenarioID" value="TCS_STP_ArogyaMultiInd_0006"/>

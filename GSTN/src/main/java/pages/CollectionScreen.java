@@ -132,13 +132,13 @@ public class CollectionScreen extends GenericMethods {
 
 		// Get Total
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		click(gettotal, "Get Total");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 
 		// To be Collected & Instrument amount
 		String Collectamount = tobeCollected.getAttribute("value");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
 		instrumentamount.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 		Thread.sleep(WaitTime.medium);
@@ -152,7 +152,7 @@ public class CollectionScreen extends GenericMethods {
 
 		// Collection Mode
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(mode, dataRow.getProperty("Mode"), "Collection Mode");
 		Thread.sleep(WaitTime.medium);
 
@@ -167,13 +167,16 @@ public class CollectionScreen extends GenericMethods {
 		wait.until(ExpectedConditions.elementToBeClickable(subcode));
 		Thread.sleep(WaitTime.medium);
 		click(subcodesearch, " search ");
+		Thread.sleep(WaitTime.medium);
 		switchToWindow(driver);
 		Thread.sleep(WaitTime.medium);
 		click(subcodevalue, "SubCode Value");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		driver.switchTo().window(parentWindow);
 		switchtodefaultframe(driver);
+		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver, "display");
+		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver, "containerFrame");
 
 		// Narration
