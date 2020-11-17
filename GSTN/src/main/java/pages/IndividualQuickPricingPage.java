@@ -409,7 +409,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 
 		
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		{
 		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
 		Thread.sleep(WaitTime.low);
@@ -504,7 +504,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//Nature of Duty
-				if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 				{
 					HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
 					BtnPress1.put("CASHIER", 1);
@@ -557,6 +557,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		String QuoteNo = refno2.getText();
 		setQuoteNo(QuoteNo);
+		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
 		Reporter.log("                     ");
@@ -787,7 +788,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 		
 		//Active Scure Covers POS & Non POS
-		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		 {
 			//Accidental Death Cover
 			if(dataRow.getProperty("AcciDeathCover").equalsIgnoreCase("Yes"))
@@ -1179,7 +1180,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		//Values of Premium Calculation	
 		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
-		String netpremiumcoverval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
 		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
 		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");
@@ -1187,9 +1187,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		String taxamountElementval = taxamountElement.getText().toString().replace("₹ ", "").replace(",", "");
 		String premiuminclusiveofTAXval = premiuminclusiveofTAX.getText().toString().replace("₹ ", "").replace(",", "");
 		
-		
-		
-		
+
 		//after OPD assert
 		
 		Assert.assertEquals(netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
@@ -1208,8 +1206,6 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 			AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-			
-			
 		}
 	
 }
