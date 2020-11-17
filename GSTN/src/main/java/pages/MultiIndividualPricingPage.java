@@ -446,7 +446,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member ");
 				Thread.sleep(WaitTime.low);
 				
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 				{
 					//Zone
 					String zoneval = dataRow.getProperty("Zone");
@@ -572,7 +572,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		 
 		 
 		//Nature of Duty & Risk Class
-		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 			{
 			 
 			 WebElement natureofduty=driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]"));
@@ -937,7 +937,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		
 		
 		//Active Secure POS & Non POS Covers
-				if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 				 {
 					//Accidental Death Cover
 					String AC = dataRow.getProperty("AcciDeathCover");

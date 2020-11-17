@@ -62,13 +62,11 @@ public class TCSlogin extends GenericMethods {
 		Reporter.log("<B>Login To Application</B>");
 		
 		switchtoframe(driver, "display");
-		
+		Thread.sleep(WaitTime.low);
 		clearAndSenKeys(username,dataRow.getProperty("UserName"), "UserName");
-		
 		clearAndSenKeys(password,dataRow.getProperty("Password"), "Password");
-		
+		Thread.sleep(WaitTime.low);
 		//clearAndSenKeys(role, dataRow.getProperty("Role"), "Role");
-		
 		click(loginBTN, "Login Button");
 //		Thread.sleep(WaitTime.low);
 		switchtodefaultframe(driver);

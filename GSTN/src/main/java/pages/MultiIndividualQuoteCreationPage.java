@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import org.apache.commons.collections.Predicate;
+import org.apache.commons.collections.bag.SynchronizedSortedBag;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -317,12 +318,17 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName,stepGroup);
 		Reporter.log("<B>Traverse To CommonPage</B>");
 
-		switchtoframe(driver, "display");    
+		Thread.sleep(WaitTime.medium);
+		switchtoframe(driver, "display"); 
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(Product, dataRow.getProperty("Product"),"Product");
+		Thread.sleep(WaitTime.medium);
 		click(proceedBTN, "ProceedButton");
+		Thread.sleep(WaitTime.medium);
 		String parentWindow = driver.getWindowHandle();
 		
 		//EnteringQuoteDetails
+		Thread.sleep(WaitTime.medium);
 		wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 		clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
 		click(intermediarysearch, " search ");
@@ -332,9 +338,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		
 		switchtoframe(driver, "display");  
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
 		
 		Thread.sleep(WaitTime.low);
@@ -449,10 +455,8 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			WebElement relationship = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]"));
 			WebElement SI = driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])["+y+"]"));
 			WebElement zone = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]"));
-			WebElement deduct = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]"));
+			WebElement deduct = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]"));
 			WebElement room = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])["+y+"]"));
-			WebElement natureofduty=driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]"));
-			WebElement RiskClass=driver.findElement(By.xpath("(//input[@id='Age']//following::select[5])["+y+"]"));
 			
 			
 			if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
@@ -468,30 +472,34 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				
 			    Thread.sleep(WaitTime.low);
 				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])["+y+"]")), getRandomString(), "Member Name");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 				{
-					//Zone
-					String zoneval = dataRow.getProperty("Zone");
-					//String zoneval1 = zoneval.replace(" ", "");
+				   //Zone 
+					Thread.sleep(WaitTime.medium); 
+					String zoneval =dataRow.getProperty("Zone"); 
+					String zoneval1 = zoneval.replace(" ", "");
 					ArrayList<String> zonelist = new ArrayList<String>(Arrays.asList(zoneval.split("\\+")));
-					Thread.sleep(WaitTime.low);
-					
-				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," Zone ");
-				Thread.sleep(WaitTime.low);
+					Thread.sleep(WaitTime.medium);
+					  
+				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])["+y+"]")),zonelist.get(x)," Zone "); 
+				Thread.sleep(WaitTime.medium);
+				}
 				
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
+				{
 				//Deductible
 				String deductval = dataRow.getProperty("Deductible");
 				String deductval1= deductval.replace(" ", "");
 				ArrayList<String> deductlist = new ArrayList<String>(Arrays.asList(deductval1.split("\\+")));
 				
 				Thread.sleep(WaitTime.low);
-				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])["+y+"]")),deductlist.get(x)," Deductible ");
+				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]")),deductlist.get(x)," Deductible ");
 				Thread.sleep(WaitTime.low);
-				}
-			
+				}	
 				
+
 				 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
 				 Date obj = new Date();
 				 String acurrdate=dfor.format(obj);
@@ -533,13 +541,13 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					}
 				
 				
-				 Thread.sleep(WaitTime.low);
+				 Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])["+y+"]")),genderlist.get(x)," Gender ");
 				//Relationship
 				
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
-				 Thread.sleep(WaitTime.low);
+				 Thread.sleep(WaitTime.medium);
 				 
 				//Room Category
 				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
@@ -595,27 +603,32 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		 
 		 
 		 //Nature of Duty & Risk Class
-		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 			{
 			 
-			 String NatureOf = dataRow.getProperty("NatureOfDuty");
-			 //String NatureOf = Nature.replace(" ", "");
-			 ArrayList<String> NatureOfdutylist = new ArrayList<String>(Arrays.asList(NatureOf.split("\\+")));
-				
-			    HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
-				BtnPress1.put("CASHIER", 1);
-				
-				Thread.sleep(WaitTime.medium); 
-				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]")),NatureOfdutylist.get(x), "Nature of Duty");
-				Thread.sleep(WaitTime.low);
-				for(String key: BtnPress1.keySet()){
-					if(key.equalsIgnoreCase(NatureOfdutylist.get(x)))
-					{
-					wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//input[@id='natureof dutyrowIndex'])["+y+"]"))));
-					driver.findElement(By.xpath("(//span[contains(text(),'"+key+"')])["+y+"]")).click();
-				    }
-				}
-				
+				 WebElement natureofduty=driver.findElement(By.xpath("(//input[@id='natureofdutyrowIndex'])["+y+"]"));
+				 WebElement RiskClass=driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]"));
+
+				 
+				 String NatureOf = dataRow.getProperty("NatureOfDuty");
+				 //String NatureOf = Nature.replace(" ", "");
+				 ArrayList<String> NatureOfdutylist = new ArrayList<String>(Arrays.asList(NatureOf.split("\\+")));
+					
+				    HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+					BtnPress1.put("CASHIER", 1);
+					
+					Thread.sleep(WaitTime.medium); 
+					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='natureofdutyrowIndex'])["+y+"]")),NatureOfdutylist.get(x), "Nature of Duty");
+					Thread.sleep(WaitTime.low);
+					for(String key: BtnPress1.keySet()){
+						if(key.equalsIgnoreCase(NatureOfdutylist.get(x)))
+						{
+//						wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("(//input[@id='natureofdutyrowIndex'])["+y+"]"))));
+						Thread.sleep(8000);
+						driver.findElement(By.xpath("(//span[contains(text(),'"+key+"')])")).click();
+					    }
+					}	
+					
 				
 				//Risk Class
 				String Riskclass = dataRow.getProperty("RiskClass");
@@ -623,7 +636,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				ArrayList<String> Riskclasslist = new ArrayList<String>(Arrays.asList(Riskclass.split("\\+")));
 				 
 				Thread.sleep(WaitTime.low);
-				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Age']//following::select[5])["+y+"]")),Riskclasslist.get(x)," Risk Class ");
+				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]")),Riskclasslist.get(x)," Risk Class ");
 				Thread.sleep(WaitTime.low);
 		
 			}
@@ -632,10 +645,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		
 		Thread.sleep(WaitTime.high);	
+		
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
+		Thread.sleep(2000);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+		{
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
 		click(saveBTN," SaveButton ");
 		Thread.sleep(2000);
@@ -651,6 +668,9 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
 		Reporter.log("                     ");
 		Reporter.log("---------------------");
+		
+		}
+		
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
@@ -896,7 +916,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		
 		//Active Secure POS & Non POS Covers
-		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		 {
 			//Accidental Death Cover
 			String AC = dataRow.getProperty("AcciDeathCover");
@@ -913,6 +933,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			if(ACCDlist.get(x).equalsIgnoreCase("Yes"))
 			{
 				int y = x+1;
+				Thread.sleep(WaitTime.medium);
 				click(driver.findElement(By.xpath("(//input[@name='ACCD'])["+y+"]")),"ACCD checkBOX");
 				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
 				
@@ -920,25 +941,28 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					click(saveokBTN,"OK");
 				}
 				
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'ACCD - Accidental Death Cover (AD)')]//following::select[1])["+y+"]")), ACCDvallist.get(x)," ACCD SumInsured ");
-				
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After ACCD calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button"); Thread.sleep(WaitTime.low);
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After ACCD calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}		
 		}	
 			
@@ -955,12 +979,15 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='ACME'])["+y+"]"))," AME checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				Thread.sleep(WaitTime.medium);
 				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
+				  click(calpremBTN,"Calculate Premium");
+				  Thread.sleep(WaitTime.low);
+				  boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				  
+				  if (okBTN == true) { 
+					  click(saveokBTN,"OK");
+				 
 				}
 			}	
 		}
@@ -1077,26 +1104,32 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			if(CIlist.get(x).equalsIgnoreCase("Yes"))
 			{
 				int y = x+1;
+				Thread.sleep(WaitTime.medium);
 				click(driver.findElement(By.xpath("(//input[@name='CIL'])["+y+"]"))," CI checkBOX");
 				
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")),CIvallist.get(x) ,"Critical Illness");
+				Thread.sleep(WaitTime.medium);
 				
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After CI calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				/*
+				 * click(calpremBTN, "Calculate Premium Button"); Thread.sleep(WaitTime.low);
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After CI calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}		
 
@@ -1405,11 +1438,36 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				Reporter.log("<B> -------------------------------------------</B>");
 			}
 		}
-			
 			//Covers End
 		 }
-	
-	         switchtodefaultframe(driver);
+		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
+		 {
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+		click(calpremBTN, "Calculate Premium Button");
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
+		click(saveBTN," SaveButton ");
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+		click(saveokBTN, "Ok ");
+		Thread.sleep(2000);
+		
+		String QuoteNo = refno2.getText();
+		setQuoteNo(QuoteNo);
+		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
+		
+		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
+		Reporter.log("                     ");
+		Reporter.log("---------------------");
+		
+		System.out.println("Complete");
+		
+		}
+		
+	     switchtodefaultframe(driver);
 	}
 	
 		public void fillQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception

@@ -404,7 +404,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				clearAndSenKeys(membername, getRandomString(),"Member Name");
 				Thread.sleep(WaitTime.low);
 				
-				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 				{
 				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
 				Thread.sleep(WaitTime.low);
@@ -507,7 +507,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		
 		//Nature of Duty
-		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		{
 			HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
 			BtnPress1.put("CASHIER", 1);
@@ -724,7 +724,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}
 		
 		//Active Secure POS & Non POS Covers 
-		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure  (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure  (5000)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		 {
 			//Accidental Death Cover
 			if(dataRow.getProperty("AcciDeathCover").equalsIgnoreCase("Yes"))
