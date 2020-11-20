@@ -34,9 +34,6 @@ public class TCSlogin extends GenericMethods {
 	@FindBy(xpath="//strong[contains(text(),'LOGIN')]")
 	private WebElement loginBTN;
 	
-	
-	
-	
 	@FindBy(xpath="//label[contains(text(),'GSTIN')]/parent::div/following-sibling::div/p-autocomplete/span/input")
 	private WebElement GSTIN;
 	

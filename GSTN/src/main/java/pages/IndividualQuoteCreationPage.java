@@ -211,7 +211,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			private WebElement affiliatedEMPdiscount;
 			
 			//PPN Discount
-			@FindBy(xpath="(//span[contains(text(),'PPN Discount')]//following::select)[8]")
+			@FindBy(xpath="(//span[contains(text(),'PPN Discount')]//following::select[7])[1]")
 			private WebElement PPNDiscount;
 			
 			//Nature Of Duty
@@ -257,9 +257,13 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			@FindBy(xpath="//input[@name='CIL']")
 			private WebElement CICheckbox;
 			
-			//CIDropDown
+			//CICovered
 			@FindBy(xpath="(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])[1]")
-			private WebElement CIDropDown;
+			private WebElement CICovered;
+			
+			//CICovered
+			@FindBy(xpath="(//b[contains(text(),'CIL - Critical Illness')]//following::select[2])[1]")
+			private WebElement CIDropdown;
 			
 			//SEOCheckbox
 			@FindBy(xpath="//input[@name='SCOP']")
@@ -317,8 +321,12 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			@FindBy(xpath="//input[@name='DCBC']")
 			private WebElement DCBCCheckbox;
 			
-			//DCBCDropDown
+			//DCBCDays
 			@FindBy(xpath="(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])[1]")
+			private WebElement DCBDays;
+			
+			//DCBCDropDown
+			@FindBy(xpath="(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[2])[1]")
 			private WebElement DCBCDropDown;
 			
 	
@@ -360,18 +368,18 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 	
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
@@ -380,15 +388,13 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Thread.sleep(WaitTime.low);
 		}
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(membernumbers,dataRow.getProperty("NoOfMembers"),  "No Of Members ");
-		
 		Thread.sleep(WaitTime.medium);
 		membernumbers.sendKeys(Keys.TAB);
-		
 		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		
@@ -402,15 +408,18 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		}
 				
 				clearAndSenKeys(membername, getRandomString(),"Member Name");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
+				
+				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+				{
+				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
+				Thread.sleep(WaitTime.medium);
+				}
 				
 				if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 				{
-				selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-				Thread.sleep(WaitTime.low);
-				
 				selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
 				}
 	
 
@@ -465,8 +474,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		
 		//Gender
 
-		Thread.sleep(WaitTime.low);
-
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
 		Thread.sleep(WaitTime.low);
@@ -521,21 +529,23 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
 			    }
 			}
-			
+		
 			
 			//Risk Class
 			Thread.sleep(WaitTime.low);
-			selectFromDropdownByVisibleText(RiskClass, dataRow.getProperty("RiskClass"), "Risk Class");
-			Thread.sleep(WaitTime.low);
+			//selectFromDropdownByVisibleText(RiskClass, dataRow.getProperty("RiskClass"), "Risk Class");
+			//Thread.sleep(WaitTime.low);
 	
 		}
-		
 		
 		
 		Thread.sleep(WaitTime.low);	
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 		click(calpremBTN, "Calculate Premium Button");
 		Thread.sleep(WaitTime.high);
+		
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4219)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)"))
+		{
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(saveBTN," SaveButton ");
@@ -553,6 +563,8 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Reporter.log("                     ");
 		Reporter.log("---------------------");
 		Thread.sleep(WaitTime.medium);
+		}
+
 
 		//ELSE-IF Waiver of Mandatory Co-payment 
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
@@ -564,7 +576,6 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			Thread.sleep(WaitTime.medium);
 			//SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));	
 
-			
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(WaitTime.medium);
 			WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
@@ -710,18 +721,20 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 						
 				}	
 
-				
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.medium);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				click(saveBTN," SaveButton ");
-				Thread.sleep(WaitTime.medium);
+		
 				SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+				click(calpremBTN, "Calculate Premium Button");
+				driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
+				click(saveBTN," SaveButton ");
+				Thread.sleep(2000);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+				SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 				click(saveokBTN, "Ok ");
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(2000);
 				
-		}
+		 }
+				
 		
 		//Active Secure POS & Non POS Covers 
 		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
@@ -737,21 +750,26 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(ACCDDropDown, dataRow.getProperty("ACCDsi")," ACCD SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After ACCD calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After ACCD calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */	
 			}		
 
 			
@@ -759,15 +777,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			if(dataRow.getProperty("AcciMedicalExp").equalsIgnoreCase("Yes"))
 			{
 				click(AMECheckbox,"Accidental Medical Expenses checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 				
 			}
 			
@@ -783,21 +802,26 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(EMIDropDown, dataRow.getProperty("EMIsi")," EMI SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After EMI calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After EMI calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}	
 
 			
@@ -812,21 +836,26 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(LoanDropDown, dataRow.getProperty("Loansi")," Loan SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After LoanProtect calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After LoanProtect calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */	
 			}	
 			
 			
@@ -834,15 +863,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			if(dataRow.getProperty("WEAS").equalsIgnoreCase("Yes"))
 			{
 				click(WEASCheckbox,"WEAS checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 				
 			}
 			
@@ -855,38 +885,46 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 					click(saveokBTN,"OK");
 				}
 				
-				Thread.sleep(WaitTime.low);
-				selectFromDropdownByVisibleText(CIDropDown, dataRow.getProperty("CIsi")," Loan SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After Critical Illness calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(CICovered, dataRow.getProperty("CICovered")," CriticalIllness Covered ");
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(CIDropdown, dataRow.getProperty("CIsi")," CriticalIllness SumInsured ");
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After Critical Illness calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}	
 
 			//Second E Opinion
 			if(dataRow.getProperty("SecondEOpinion").equalsIgnoreCase("Yes"))
 			{
 				click(SEOCheckbox,"SEO checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 				
 			}
 			
@@ -894,15 +932,16 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			if(dataRow.getProperty("WellnessCoach").equalsIgnoreCase("Yes"))
 			{
 				click(WCCheckbox,"WC checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}
 			
 			
@@ -910,30 +949,32 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 			if(dataRow.getProperty("AdventureSports").equalsIgnoreCase("Yes"))
 			{
 				click(ADSBCheckbox,"ADSB checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}
 			
 			//Accidental In-patient Hosp Cover
 			if(dataRow.getProperty("AcciHospCover").equalsIgnoreCase("Yes"))
 			{
 				click(APHCCheckbox,"ADSB checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */	
 			}
 			
 			//Broken Bones Benefit
@@ -947,21 +988,26 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(BBBFDropDown, dataRow.getProperty("BBBFsi")," BBBF SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After BBBF calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After BBBF calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */	
 			}
 			
 			//Burn Benefit
@@ -975,51 +1021,58 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(BNBEDropDown, dataRow.getProperty("BNBEsi")," BNBE SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After BNBE calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After BNBE calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 			
 			//Coma Benefit
 			if(dataRow.getProperty("ComaBenefit").equalsIgnoreCase("Yes"))
 			{
 				click(COBECheckbox,"COBE checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}
 			
 			//Temporary Total Disablement
 			if(dataRow.getProperty("TempTDB").equalsIgnoreCase("Yes"))
 			{
 				click(TTDBCheckbox,"TTDB checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}
 			
 			//Cancer Cover
@@ -1033,36 +1086,42 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				
 				Thread.sleep(WaitTime.low);
 				selectFromDropdownByVisibleText(CANCDropDown, dataRow.getProperty("CANCsi")," CANC SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After CANC calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After CANC calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 			
 			//Scan Second E Opinion
 			if(dataRow.getProperty("SCANOpinion").equalsIgnoreCase("Yes"))
 			{
 				click(SCANCheckbox,"SCAN checkBOX");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
-				
-				//click on OK Quote button
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * //click on OK Quote button boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}
 			
 			//Daily Cash Benefit
@@ -1074,28 +1133,58 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 					click(saveokBTN,"OK");
 				}
 				
-				Thread.sleep(WaitTime.low);
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(DCBDays, dataRow.getProperty("DCB Days")," DCB Days ");
+				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(DCBCDropDown, dataRow.getProperty("DCBCsi")," DCBC SumInsured ");
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After DCBC calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");	
+				//click(calpremBTN, "Calculate Premium Button");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After DCBC calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 			
+			
+			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+			click(calpremBTN, "Calculate Premium Button");
+			driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+			
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']")));
+			click(saveBTN," SaveButton ");
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
+			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+			click(saveokBTN, "Ok ");
+			Thread.sleep(2000);
+			
+			String QuoteNo = refno2.getText();
+			setQuoteNo(QuoteNo);
+			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
+			
+			Reporter.log("<B> Quotation:- </B> "+refno2.getText());
+			Reporter.log("                     ");
+			Reporter.log("---------------------");
+			
+			System.out.println("Complete");
+
 			//Covers End
 		 }
-		switchtodefaultframe(driver);
+		//switchtodefaultframe(driver);
 		
 	}
 	

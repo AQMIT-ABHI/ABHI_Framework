@@ -1555,10 +1555,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		
 
-		
-		
-		
-
 	
 	// POS Active Assure & Revised POS Active Assure
 	
@@ -1575,7 +1571,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Thread.sleep(WaitTime.medium);
 
 						clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
-						Thread.sleep(WaitTime.medium);
 						Thread.sleep(WaitTime.medium);
 //						wait.until(ExpectedConditions.elementToBeSelected(AffiliatedDiscount));
 						selectFromDropdownByVisibleText(AffiliatedDiscount, dataRow.getProperty("Affiliated Discount"), "Affiliated Employee Discount");
@@ -2104,7 +2099,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook,sheetName, testCaseName,stepGroup);
 
 		//Values of Premium Calculation	
-//		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+    	String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
 		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
 //		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");

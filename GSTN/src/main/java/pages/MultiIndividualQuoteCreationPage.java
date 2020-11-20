@@ -607,7 +607,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 			 
 				 WebElement natureofduty=driver.findElement(By.xpath("(//input[@id='natureofdutyrowIndex'])["+y+"]"));
-				 WebElement RiskClass=driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]"));
+				// WebElement RiskClass=driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]"));
 
 				 
 				 String NatureOf = dataRow.getProperty("NatureOfDuty");
@@ -631,13 +631,13 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 					
 				
 				//Risk Class
-				String Riskclass = dataRow.getProperty("RiskClass");
+				//String Riskclass = dataRow.getProperty("RiskClass");
 				//String riskclass = Riskclass.replace(" ", "");
-				ArrayList<String> Riskclasslist = new ArrayList<String>(Arrays.asList(Riskclass.split("\\+")));
+				//ArrayList<String> Riskclasslist = new ArrayList<String>(Arrays.asList(Riskclass.split("\\+")));
 				 
 				Thread.sleep(WaitTime.low);
-				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]")),Riskclasslist.get(x)," Risk Class ");
-				Thread.sleep(WaitTime.low);
+				//selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Age']//following::select[3])["+y+"]")),Riskclasslist.get(x)," Risk Class ");
+				//Thread.sleep(WaitTime.low);
 		
 			}
 		//End For Loop
@@ -981,14 +981,16 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				click(driver.findElement(By.xpath("(//input[@name='ACME'])["+y+"]"))," AME checkBOX");
 				Thread.sleep(WaitTime.medium);
 				
-				  click(calpremBTN,"Calculate Premium");
-				  Thread.sleep(WaitTime.low);
-				  boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				  
-				  if (okBTN == true) { 
-					  click(saveokBTN,"OK");
-				 
-				}
+				  //click(calpremBTN,"Calculate Premium");
+				 // Thread.sleep(WaitTime.low);
+					/*
+					 * boolean okBTN =
+					 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+					 * 
+					 * if (okBTN == true) { click(saveokBTN,"OK");
+					 * 
+					 * }
+					 */
 			}	
 		}
 			
@@ -1008,25 +1010,30 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='EMIP'])["+y+"]"))," EMI checkBOX");
-				
+				Thread.sleep(WaitTime.low);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'EMIP - EMI Protect')]//following::select[1])["+y+"]")),EMIvallist.get(x) ,"EMI Protect");
-				
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After EMIProtect calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After EMIProtect calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 			}
 			
@@ -1045,25 +1052,30 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='LOPC'])["+y+"]"))," Loan checkBOX");
-				
+				Thread.sleep(WaitTime.low);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'LOPC - Loan Protect')]//following::select[1])["+y+"]")),loanvallist.get(x) ,"Loan Protect");
-				
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After LoanProtect calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After LoanProtect calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}	
 			
@@ -1079,13 +1091,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='WEAS'])["+y+"]")),"WEAS checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1106,7 +1119,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 				int y = x+1;
 				Thread.sleep(WaitTime.medium);
 				click(driver.findElement(By.xpath("(//input[@name='CIL'])["+y+"]"))," CI checkBOX");
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'CIL - Critical Illness')]//following::select[1])["+y+"]")),CIvallist.get(x) ,"Critical Illness");
 				Thread.sleep(WaitTime.medium);
@@ -1144,14 +1157,16 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			if(SEOlist.get(x).equalsIgnoreCase("Yes"))
 			{
 				int y = x+1;
+				Thread.sleep(WaitTime.medium);
 				click(driver.findElement(By.xpath("(//input[@name='SCOP'])["+y+"]")),"SEO checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1166,14 +1181,16 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			if(WILlist.get(x).equalsIgnoreCase("Yes"))
 			{
 				int y = x+1;
+				Thread.sleep(WaitTime.medium);
 				click(driver.findElement(By.xpath("(//input[@name='WLI'])["+y+"]")),"WIL checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1189,13 +1206,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='ADSB'])["+y+"]")),"ADS checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1211,13 +1229,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='APHC'])["+y+"]")),"AHC checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1237,25 +1256,30 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='BBBF'])["+y+"]"))," BBBF checkBOX");
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'BBBF - Broken Bones Benefit')]//following::select[1])["+y+"]")),BBBvallist.get(x) ,"Broken Bone Benefit");
-				Thread.sleep(WaitTime.low);
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After BBB calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After BBB calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}	
 			
@@ -1275,25 +1299,30 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='BNBE'])["+y+"]"))," BNBE checkBOX");
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'BNBE - Burn Benefit')]//following::select[1])["+y+"]")),BNBEvallist.get(x) ,"Burn Benefit");
-				Thread.sleep(WaitTime.low);
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After BNBE calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After BNBE calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}
 			
@@ -1309,13 +1338,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='COBE'])["+y+"]")),"CB checkBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1357,25 +1387,30 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='CANC'])["+y+"]"))," CANC checkBOX");
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'CANC - Cancer Cover')]//following::select[1])["+y+"]")),CCvallist.get(x) ,"Cancer Cover");
-				Thread.sleep(WaitTime.low);
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After CANC calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After CANC calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}
 			
@@ -1391,13 +1426,14 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='SCAN'])["+y+"]")),"SCAN CheckBOX");
-				click(calpremBTN,"Calculate Premium");
-				Thread.sleep(WaitTime.low);
-				boolean okBTN = driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
-				
-				if (okBTN == true) {
-					click(saveokBTN,"OK");
-				}
+				//click(calpremBTN,"Calculate Premium");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * boolean okBTN =
+				 * driver.findElements(By.xpath("//button[contains(text(),'OK')]")).size() !=0;
+				 * 
+				 * if (okBTN == true) { click(saveokBTN,"OK"); }
+				 */
 			}	
 		}
 			
@@ -1417,32 +1453,33 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			{
 				int y = x+1;
 				click(driver.findElement(By.xpath("(//input[@name='DCBC'])["+y+"]"))," DCB checkBOX");
-				
+				Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])["+y+"]")));	
 				selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//b[contains(text(),'DCBC - Daily cash Benefit (DCB)')]//following::select[1])["+y+"]")),DCvallist.get(x) ,"Daily Cash Benefit");
-				Thread.sleep(WaitTime.low);
-				click(calpremBTN, "Calculate Premium Button");
-				Thread.sleep(WaitTime.low);
-				WebElement saveBTN1 = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));	
-				
-				Reporter.log("");
-				Reporter.log("<B> -------------------------------------------</B>");
-				Reporter.log("<B>After DCB calculated</B>");
-				Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText());
-				Reporter.log("<B> Discount:-  </B>"+Discount.getText());
-				Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
-				Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
-				Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"+netpremiumafterloading.getText());
-				Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText());
-				Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
-				Reporter.log("<B> -------------------------------------------</B>");
+				Thread.sleep(WaitTime.medium);
+				/*
+				 * click(calpremBTN, "Calculate Premium Button");
+				 * 
+				 * WebElement saveBTN1 =
+				 * wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSave")));
+				 * 
+				 * Reporter.log("");
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 * Reporter.log("<B>After DCB calculated</B>");
+				 * Reporter.log("<B> NetPremiumBefore Value:-  </B>"+netpremiumbefore.getText())
+				 * ; Reporter.log("<B> Discount:-  </B>"+Discount.getText());
+				 * Reporter.log("<B> NetPremiumAfter Value:-  </B>"+netpremiumafter.getText());
+				 * Reporter.log("<B> Loading Value:-  </B>"+loading.getText());
+				 * Reporter.log("<B> NetPremiumAfter Loading Value:-  </B>"
+				 * +netpremiumafterloading.getText());
+				 * Reporter.log("<B> Tax Amount Element Value:-  </B>"+taxamountElement.getText(
+				 * )); Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"
+				 * +premiuminclusiveofTAX.getText());
+				 * Reporter.log("<B> -------------------------------------------</B>");
+				 */
 			}
 		}
-			//Covers End
-		 }
 		
-		if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
-		 {
 		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 		click(calpremBTN, "Calculate Premium Button");
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -1465,9 +1502,10 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		
 		System.out.println("Complete");
 		
-		}
+		//Covers End
+		 }
 		
-	     switchtodefaultframe(driver);
+	    // switchtodefaultframe(driver);
 	}
 	
 		public void fillQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
