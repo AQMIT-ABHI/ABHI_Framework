@@ -103,6 +103,10 @@ public class StepKeyword extends StepDefination {
 		case "Create_NSTP_UWR":
 			UWRNSTPindividualfill(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;	
+			
+		case "Logout_from_NewTCS":
+			tcsLogout(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
+			break;	
 					
 			
 	}
