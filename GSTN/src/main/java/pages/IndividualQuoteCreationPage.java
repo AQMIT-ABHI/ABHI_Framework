@@ -529,7 +529,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 				driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
 			    }
 			}
-			
+		
 			
 			//Risk Class
 			Thread.sleep(WaitTime.low);
