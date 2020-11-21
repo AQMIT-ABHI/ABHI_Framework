@@ -356,9 +356,12 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		
 		//EnteringQuoteDetails
+		        Thread.sleep(WaitTime.medium);
 				wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
 				clearAndSenKeys(intermediarycodeField,dataRow.getProperty("IntermediaryCode"),"InterMediaryCode ");
+				Thread.sleep(WaitTime.low);
 				click(intermediarysearch, " search ");
+				Thread.sleep(WaitTime.low);
 				switchToWindow(driver);
 				driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("IntermediaryCode")+"')]")).click();
 				driver.switchTo().window(parentWindow);
@@ -419,14 +422,11 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
 		{
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(zone, dataRow.getProperty("Zone"),"Zone ");
-		Thread.sleep(WaitTime.low);
-		}
-		
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
-		{
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		}
 		
 	
@@ -439,8 +439,8 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 		{
 			Thread.sleep(WaitTime.low);
-			 clearAndSenKeys(AgeValue,"0","Age");
-			 String CollectAge=AgeValue.getAttribute("value");
+			 //clearAndSenKeys(AgeValue,"0","Age");
+			 String CollectAge=dataRow.getProperty("Age");
 			 String[] arrofstr=acurrdate.split("/",3);
 	         String date3=arrofstr[2];
 		     int calactual= Integer.parseInt(date3);
@@ -450,15 +450,15 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	         String actualdate=acurrdate.replaceAll(date3, yearStr);
 	         clearAndSenKeys(dob,actualdate,"Date of Birth");
 	         dob.sendKeys(Keys.TAB);
-	         AgeValue.sendKeys(Keys.TAB);
+	         //AgeValue.sendKeys(Keys.TAB);
 	      
 	} 
 	         
 		else
 		{
-			 Thread.sleep(WaitTime.low);
-        	 clearAndSenKeys(AgeValue,dataRow.getProperty("Age"),"Age");
-        	 String CollectAge=AgeValue.getAttribute("value");
+			 Thread.sleep(WaitTime.medium);
+        	 //clearAndSenKeys(AgeValue,dataRow.getProperty("Age"),"Age");
+        	 String CollectAge=dataRow.getProperty("Age");
 			 String[] arrofstr=acurrdate.split("/",3);
 	         String date3=arrofstr[2];
 		     int calactual= Integer.parseInt(date3);
@@ -468,7 +468,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	         String actualdate=acurrdate.replaceAll(date3, yearStr);
 	         clearAndSenKeys(dob,actualdate,"Date of Birth");
 	         dob.sendKeys(Keys.TAB);
-	         AgeValue.sendKeys(Keys.TAB);
+	        //AgeValue.sendKeys(Keys.TAB);
 	         
 		}
 		
@@ -478,7 +478,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(gender, dataRow.getProperty("Gender")," Gender ");
 
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.medium);
 		

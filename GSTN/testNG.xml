@@ -5,15 +5,15 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TCS_POS_IndActiveAssure_003" verbose="2">
-    <parameter name="ScriptReference" value="CreateIndividualActivAssurePOSPricing"/>
-    <parameter name="ScenarioID" value="TCS_POS_IndActiveAssure_003"/>
-    <parameter name="Description" value="Single individual Policy for a Kid equal to 26 years"/>
+  <test name="TCS_ActiveSecureNONPOSIndividual_001" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_ActiveSecureNONPOSIndividual_001"/>
+    <parameter name="Description" value="Coverage of Sample Scenario as per FSD"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_POS_IndActiveAssure_003"/>
+    <parameter name="ScenarioUID" value="TCS_ActiveSecureNONPOSIndividual_001"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_POS_IndActiveAssure_003 -->
+  </test> <!-- TCS_ActiveSecureNONPOSIndividual_001 -->
 </suite> <!-- Pricing -->
