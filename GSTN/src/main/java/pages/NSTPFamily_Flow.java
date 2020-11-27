@@ -358,7 +358,6 @@ public class NSTPFamily_Flow extends GenericMethods{
 				
 				if(dataRow.getProperty("QuestionnaireConfig")=="Yes") {
 					
-					
 				Thread.sleep(WaitTime.medium);
 			   click(Questionnairetab, "Questionnaire tab");
 			   Thread.sleep(WaitTime.low);

@@ -140,7 +140,7 @@ public class OtherUserLogin extends GenericMethods {
 	private WebElement DataEntry1;
 	
 	@FindBy(xpath="//button[@id='sendQCBtn']")
-	private WebElement SubmitButton;
+	private WebElement AcceptQC;
 	
 	
 	@FindBy(xpath="//button[@id='issuePolicyBtn']")
@@ -396,62 +396,78 @@ public class OtherUserLogin extends GenericMethods {
 		
 		//Requirement Code
 		 //COPS Requirement Page
-		   switchtodefaultframe(driver);
-		   switchtoframe(driver, "display"); 
-		   Thread.sleep(3000);
-	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.low);
-	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.low);
+		/*
+		 * switchtodefaultframe(driver); switchtoframe(driver, "display");
+		 * Thread.sleep(3000); click(requirementsIcon,"Click Requirement Icon");
+		 * Thread.sleep(WaitTime.low); switchtoframe(driver, "containerFrame");
+		 * Thread.sleep(WaitTime.low);
+		 */
 	       
 	       
 		   //Show Requirement on Requirements page
-	       Thread.sleep(3000);
-	       click(showrequirement1,"Click on Show Requirement");
-	       Thread.sleep(WaitTime.low);
+			/*
+			 * Thread.sleep(3000); click(showrequirement1,"Click on Show Requirement");
+			 * Thread.sleep(WaitTime.low);
+			 */
 	       
 	       
 		   
 	       //Select Optional From the dropdown 1
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.low);
+			/*
+			 * Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional1,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.low);
+			 */
 			
 			
 		 //Select Optional From the dropdown 2
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.low);
+			/*
+			 * Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional2,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.low);
+			 */
 			
 				
 		 //Select Optional From the dropdown 3
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.low);
+			/*
+			 * Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional3,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.low);
+			 */
 			
 			
 		 //Select Optional From the dropdown 4
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.low);	
+			/*
+			 * Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional4,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.low);
+			 */
 	   
 			
 		//Select Optional From the dropdown 5
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.low);	
+		/*
+		 * Thread.sleep(WaitTime.low);
+		 * selectFromDropdownByVisibleText(Optional5,dataRow.
+		 * getProperty("Optional Status"),"Selection Optional");
+		 * Thread.sleep(WaitTime.low);
+		 */
 			
 			
 			//Save
-	        Thread.sleep(3000);
-	        click(saverequire,"Save");
-	        Thread.sleep(2000);
+			/*
+			 * Thread.sleep(3000); click(saverequire,"Save"); Thread.sleep(2000);
+			 */
 	        
 	        
 	        //Ok Button
-	        Thread.sleep(3000);
-	        click(OK,"Modification Successfully Completed");
-	        Thread.sleep(2000);
+			/*
+			 * Thread.sleep(3000); click(OK,"Modification Successfully Completed");
+			 * Thread.sleep(2000);
+			 */
 
 		
 		
@@ -464,14 +480,11 @@ public class OtherUserLogin extends GenericMethods {
 		switchtoframe(driver,"containerFrame");
 		Thread.sleep(WaitTime.low);
 		
-		
-
 		//Policy Summary
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
-		click(DataEntry1,"DataEntry 1 Complteted");
+		click(DataEntry1,"DataEntry 1 Completed");
 		Thread.sleep(WaitTime.low);
-		
 		
 		//Data Entry1 Completed for all scrutiny cases
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
@@ -483,7 +496,7 @@ public class OtherUserLogin extends GenericMethods {
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
-		click(SubmitButton,"Submit");
+		click(AcceptQC,"Accept QC");
 		Thread.sleep(WaitTime.low);
 		
 		

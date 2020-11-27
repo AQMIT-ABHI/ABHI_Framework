@@ -1664,7 +1664,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								if (dataRow.getProperty("SelfDOB").equalsIgnoreCase("<1"))
 								{
 									 clearAndSenKeys(AgeValue,"0","Age");
-									
 									 String CollectAge=AgeValue.getAttribute("value");
 									 String[] arrofstr=acurrdate.split("/",3);
 							         String date3=arrofstr[2];
