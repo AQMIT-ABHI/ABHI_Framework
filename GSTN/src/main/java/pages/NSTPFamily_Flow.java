@@ -123,7 +123,7 @@ public class NSTPFamily_Flow extends GenericMethods{
 	@FindBy(xpath="//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 	
-	@FindBy(xpath="//select[@id='Occupation']")
+	@FindBy(xpath="//input[@id='occupation']")
 	private WebElement occupation;
 	
 	@FindBy(xpath="//select[@id='Applicable Sum Insured']")
@@ -252,6 +252,9 @@ public class NSTPFamily_Flow extends GenericMethods{
 		// Ok Button Click
 		@FindBy(xpath = "//button[contains(text(),'OK')]")
 		private WebElement OK;
+		
+		@FindBy(xpath="//select[@id='Manual Underwriting Required?']")
+		private WebElement ManualUnderwriting;
 	
 
 	
@@ -304,17 +307,344 @@ public class NSTPFamily_Flow extends GenericMethods{
 		switchtoframe(driver,"containerFrame");
 		Thread.sleep(WaitTime.low);
 		
-		String Family1 = dataRow.getProperty("FamilySize");
-		String Family2 = Family1.replace(" ", "");
-		ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
-
-		for (int x = 0; x < myList1.size(); x++) {
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")) 
+		{
+			String NoOfMem=dataRow.getProperty("Relation");
+			String NoOfMem2 = NoOfMem.replace(" ", "");
+			ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(NoOfMem2.split("\\+")));
+			
+			for (int x = 0; x < myList1.size(); x++) 
+			{
 			int y = x + 1;
 
 			WebElement SerialNo = driver.findElement(By.xpath("//div[contains(text(),'Serial No')]//following::label[" + y + "]"));
 			
 
 			if (y == 1) {
+				Thread.sleep(WaitTime.medium);
+				click(SerialNo, "Serial Number clicked");
+				switchtoframe(driver, "memberiframe"+x);
+				Thread.sleep(WaitTime.low);
+
+				clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+				Thread.sleep(WaitTime.low);
+
+				clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+				Thread.sleep(WaitTime.low);
+				weightinKG.sendKeys(Keys.TAB);
+
+//				Thread.sleep(WaitTime.medium);
+//				selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+//				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+				Thread.sleep(WaitTime.low);
+				
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(ManualUnderwriting,dataRow.getProperty("Manual_UWR"),"Manual Underwriting");
+				Thread.sleep(WaitTime.low);
+				
+				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+					String Chronic = dataRow.getProperty("Chronic");
+					ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+					for (int i = 0; i < Chroniclist.size(); i++) {
+						WebElement Chronicclick = driver
+								.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+						clickWithoutJavaScript(Chronicclick, " Chronic ");
+						Reporter.log(" as " + Chroniclist.get(i));
+					}
+				}
+
+				String zoneval = dataRow.getProperty("Zone");
+				String zoneval1 = zoneval.replace(" ", "");
+				ArrayList<String> zonelist = new ArrayList<String>(Arrays.asList(zoneval.split("\\+")));
+				
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(Optedzone, zonelist.get(1), "Zone");
+				Thread.sleep(WaitTime.low);
+
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				click(SaveButton, "Save");
+				Thread.sleep(WaitTime.medium);
+				click(Okbutton, "Ok Button");
+				Thread.sleep(WaitTime.low);
+				
+				
+//Questionnaires
+				
+				if(dataRow.getProperty("QuestionnaireConfig").equalsIgnoreCase("Yes")) {
+					
+					
+				Thread.sleep(WaitTime.medium);
+			   click(Questionnairetab, "Questionnaire tab");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(PolioQuest, "Polio Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(PolioTextBox,dataRow.getProperty("PolioTextBox"),"Polio TextBox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(OtherthanvitaminpillsQuest, "Otherthanvitaminpills Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(OtherthanvitaminpillsTextbox,dataRow.getProperty("OtherthanvitaminpillsTextbox"),"Other than vitamin pills Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(BloodtestsQuest, "Bloodtests Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(BloodtestsTextbox,dataRow.getProperty("BloodtestsTextbox"),"Bloodtests Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(SurgeryQuest, "Surgery Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(SurgeryTextbox,dataRow.getProperty("SurgeryTextbox"),"Surgery Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(viralfeverQuest, "viralfever Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(viralfeverTextbox,dataRow.getProperty("viralfeverTextbox"),"viralfever Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(dateofdeliveryQuest, "dateofdelivery Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(dateofdeliveryTextbox,dataRow.getProperty("dateofdeliveryTextbox"),"date of delivery Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(earlierpregnancyQuest, "earlierpregnancy Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(earlierpregnancyTextbox,dataRow.getProperty("earlierpregnancyTextbox"),"earlier pregnancy Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+				click(SaveButton,"Save");
+				Thread.sleep(WaitTime.medium);
+				click(Okbutton,"Ok Button");
+				Thread.sleep(WaitTime.low);
+				
+				}
+				
+				
+
+				Thread.sleep(WaitTime.low);
+				switchtodefaultframe(driver);
+				switchtoframe(driver, "display");
+				Thread.sleep(WaitTime.low);
+				click(membericon, "Member Icon");
+				Thread.sleep(WaitTime.medium);
+				switchtoframe(driver, "containerFrame");
+				Thread.sleep(WaitTime.low);
+
+			}
+
+			else if (y > 1) {
+				Thread.sleep(WaitTime.medium);
+				click(driver.findElement(By.xpath("//div[contains(text(),'Serial No')]/following::label[@id='Serial No'][" + y + "]")),"Serial Number clicked");
+				switchtoframe(driver, "memberiframe"+x);
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(mobileNumber, "9890122325", "Mobile No");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(heightfeet, dataRow.getProperty("HeightFeet"), "Height Feet");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(weightinKG, dataRow.getProperty("WeightInKG"), "Weight In KG");
+				Thread.sleep(WaitTime.low);
+				weightinKG.sendKeys(Keys.TAB);
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(nationality, "Indian", "Nationality");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(countryofResidence, "India", "Country of Residence");
+				click(driver.findElement(By.xpath("//span[contains(text(),'India')]")),"Clicked on coutry");
+//				countryofResidence.sendKeys(Keys.ENTER);
+				Thread.sleep(WaitTime.low);
+
+				
+//				Thread.sleep(WaitTime.medium);
+//				selectFromDropdownByVisibleText(occupation, dataRow.getProperty("Occupation"), "Occupation");
+//				Thread.sleep(WaitTime.low);
+				
+				Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(occupation, dataRow.getProperty("Occupation"), "Occupation");
+				click(driver.findElement(By.xpath("//span[contains(text(),'Self Employed')]")),"Clicked on country");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(ManualUnderwriting,dataRow.getProperty("Manual_UWR"),"Manual Underwriting");
+				Thread.sleep(WaitTime.low);
+				
+				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
+					String Chronic = dataRow.getProperty("Chronic");
+					ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
+					for (int i = 0; i < Chroniclist.size(); i++) {
+						WebElement Chronicclick = driver
+								.findElement(By.xpath("(//option[contains(text(),'" + Chroniclist.get(i) + "')])[1]"));
+
+						clickWithoutJavaScript(Chronicclick, " Chronic ");
+						Reporter.log(" as " + Chroniclist.get(i));
+					}
+				}
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(hniCustomer, "No", "hni Customer");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No", "CEO Club Advisor Customerr");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(priorityCustomer, "No", "Priority Customer");
+				Thread.sleep(WaitTime.low);
+
+				Thread.sleep(WaitTime.medium);
+				selectFromDropdownByVisibleText(sensitiveCustomerr, "No", "sensitive Customerr");
+				Thread.sleep(WaitTime.low);
+//							
+
+				/*
+				 * Thread.sleep(WaitTime.medium);
+				 * selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone")
+				 * ; Thread.sleep(WaitTime.low);
+				 */
+
+				((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				click(SaveButton, "Save");
+				Thread.sleep(WaitTime.medium);
+				click(Okbutton, "Ok Button");
+				Thread.sleep(WaitTime.low);
+				
+				
+//Questionnaires
+				
+				if(dataRow.getProperty("QuestionnaireConfig").equalsIgnoreCase("Yes")) {
+					
+					
+				Thread.sleep(WaitTime.medium);
+			   click(Questionnairetab, "Questionnaire tab");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(PolioQuest, "Polio Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(PolioTextBox,dataRow.getProperty("PolioTextBox"),"Polio TextBox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(OtherthanvitaminpillsQuest, "Otherthanvitaminpills Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(OtherthanvitaminpillsTextbox,dataRow.getProperty("OtherthanvitaminpillsTextbox"),"Other than vitamin pills Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(BloodtestsQuest, "Bloodtests Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(BloodtestsTextbox,dataRow.getProperty("BloodtestsTextbox"),"Bloodtests Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(SurgeryQuest, "Surgery Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(SurgeryTextbox,dataRow.getProperty("SurgeryTextbox"),"Surgery Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(viralfeverQuest, "viralfever Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(viralfeverTextbox,dataRow.getProperty("viralfeverTextbox"),"viralfever Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(dateofdeliveryQuest, "dateofdelivery Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(dateofdeliveryTextbox,dataRow.getProperty("dateofdeliveryTextbox"),"date of delivery Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+			   click(earlierpregnancyQuest, "earlierpregnancy Question RadioButton");
+			   Thread.sleep(WaitTime.low);
+			   
+			   Thread.sleep(WaitTime.medium);
+				clearAndSenKeys(earlierpregnancyTextbox,dataRow.getProperty("earlierpregnancyTextbox"),"earlier pregnancy Textbox");
+				Thread.sleep(WaitTime.low);
+			   
+				click(SaveButton,"Save");
+				Thread.sleep(WaitTime.medium);
+				click(Okbutton,"Ok Button");
+				Thread.sleep(WaitTime.low);
+				
+				}
+
+				Thread.sleep(WaitTime.low);
+				switchtodefaultframe(driver);
+				switchtoframe(driver, "display");
+				Thread.sleep(WaitTime.low);
+				click(membericon, "Member Icon");
+				Thread.sleep(WaitTime.medium);
+				switchtoframe(driver, "containerFrame");
+				Thread.sleep(WaitTime.low);
+
+			}
+
+
+	}
+		}
+
+		else 
+		{
+		String Family1 = dataRow.getProperty("FamilySize");
+		String Family2 = Family1.replace(" ", "");
+		ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(Family2.split("\\+")));
+		
+		for (int x = 0; x < myList1.size(); x++) 
+		{
+			int y = x + 1;
+
+			WebElement SerialNo = driver.findElement(By.xpath("//div[contains(text(),'Serial No')]//following::label[" + y + "]"));
+			
+
+			if (y == 1) 
+			{
 				Thread.sleep(WaitTime.medium);
 				click(SerialNo, "Serial Number clicked");
 				switchtoframe(driver, "memberiframe"+x);
@@ -596,78 +926,65 @@ public class NSTPFamily_Flow extends GenericMethods{
 				switchtoframe(driver, "containerFrame");
 				Thread.sleep(WaitTime.low);
 
-			}
+			
 
 
 	}
+}
 
-		// COPS Requirement Page
-           switchtodefaultframe(driver);
-		   switchtoframe(driver, "display"); 
-		   Thread.sleep(3000);
-	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.low);
-	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.low);
-	       
-	       
-	       //Multiple Requiremrnts
-	       for (int n = 1;n<=myList1.size();n++)
-			{
-				int s = n+1;
+	/*
+	 * // COPS Requirement Page switchtodefaultframe(driver); switchtoframe(driver,
+	 * "display"); Thread.sleep(3000);
+	 * click(requirementsIcon,"Click Requirement Icon"); Thread.sleep(WaitTime.low);
+	 * switchtoframe(driver, "containerFrame"); Thread.sleep(WaitTime.low);
+	 * 
+	 * 
+	 * //Multiple Requiremrnts for (int n = 1;n<=myList1.size();n++) { int s = n+1;
+	 * 
+	 * WebElement document =
+	 * driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
+	 * 
+	 * 
+	 * Thread.sleep(3000); click(document,"Show Requirment"); Thread.sleep(2000);
+	 * 
+	 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional1,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional2,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional3,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional4,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+	 * selectFromDropdownByVisibleText(Optional5,dataRow.
+	 * getProperty("Optional Status"),"Selection Optional");
+	 * Thread.sleep(WaitTime.medium);
+	 * 
+	 * 
+	 * //Save Thread.sleep(3000); click(saverequire,"Save"); Thread.sleep(2000);
+	 * 
+	 * 
+	 * //Ok Button Thread.sleep(3000);
+	 * click(OK,"Modification Successfully Completed"); Thread.sleep(2000);
+	 */
 			
-			WebElement document = driver.findElement(By.xpath("(//img[@title='Show Requirement'])["+s+"]"));
 			
-			 
-			Thread.sleep(3000);
-	        click(document,"Show Requirment");
-	        Thread.sleep(2000);
-	        
-			//Select Optional From the dropdown 1
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);
-				
-				
-			 //Select Optional From the dropdown 2
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);
-				
-					
-			 //Select Optional From the dropdown 3
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);
-				
-				
-			 //Select Optional From the dropdown 4
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);	
-		   
-				
-			//Select Optional From the dropdown 5
-		       Thread.sleep(WaitTime.low);
-			   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-				Thread.sleep(WaitTime.medium);	
-				
-				
-				//Save
-		        Thread.sleep(3000);
-		        click(saverequire,"Save");
-		        Thread.sleep(2000);
-		        
-		        
-		        //Ok Button
-		        Thread.sleep(3000);
-		        click(OK,"Modification Successfully Completed");
-		        Thread.sleep(2000);
-			
-			}
-	       				
-				
-				
 				Thread.sleep(WaitTime.low);
 				switchtodefaultframe(driver);
 				switchtoframe(driver,"display");
@@ -676,9 +993,41 @@ public class NSTPFamily_Flow extends GenericMethods{
 				Thread.sleep(WaitTime.medium);
 				switchtoframe(driver,"containerFrame");
 				Thread.sleep(WaitTime.low);
-				
-			}
+		
+		}
+		
+		  //Policy Summary
+		switchtodefaultframe(driver);
+		switchtoframe(driver,"display");
+		Thread.sleep(WaitTime.medium);
+		click(policysummary, "Policy Summary");
+		switchtoframe(driver,"containerFrame");
+		Thread.sleep(WaitTime.low);
+		
+
+		//Policy Summary
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+		Thread.sleep(WaitTime.low);
+		click(DataEntry1,"DataEntry 1 Complteted");
+		Thread.sleep(WaitTime.low);
+		
+		
+		//Data Entry1 Completed for all scrutiny cases
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+		String dataentry=DataEntryCompleted.getText();
+		Reporter.log("----------");
+		Reporter.log("For all Scrutiny cases "+dataentry);
+		Reporter.log("---------");
+		
+		
+		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+		Thread.sleep(WaitTime.low);
+		click(SubmitButton,"Submit");
+		Thread.sleep(WaitTime.low);
+	}
+
 			
+
 			
 			
 

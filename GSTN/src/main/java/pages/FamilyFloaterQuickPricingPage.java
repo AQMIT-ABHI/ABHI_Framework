@@ -1394,12 +1394,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					Reporter.log("<B> -------------------------------------------</B>");
 					
 //					Assert Quote Details
-					/*
-					 * String netpremiumbeforeval =
-					 * netpremiumbefore.getText().toString().replace("₹ ", "");
-					 * Assert.assertEquals("Expected value",netpremiumbeforeval,
-					 * dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
-					 */
+					
+					  String netpremiumbeforeval =
+					  netpremiumbefore.getText().toString().replace("₹ ", "");
+					  Assert.assertEquals("Expected value",netpremiumbeforeval,
+					  dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
+					 
 
 					//CO-Pay Wavier
 					String isCoPay = dataRow.getProperty("Co-Pay Waiver");
@@ -1534,25 +1534,25 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Reporter.log("<B> -------------------------------------------</B>");
 							
 					}
-				}
+				
 				
 				
 		
 		//Assert
 		
 
-		/*
-		 * String premiumbeforeOPD =
-		 * netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
-		 * premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int
-		 * premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty(
-		 * "NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
-		 * verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,
-		 * "NetPremiumAfterDiscount(BeforeOPD)");
-		 */
+		
+		  String premiumbeforeOPD =
+		  netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
+		  premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int
+		  premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty(
+		  "NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
+		  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,
+		  "NetPremiumAfterDiscount(BeforeOPD)");
+		 
 		 //verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
 
-		
+				}
 
 		
 		
@@ -1561,7 +1561,10 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 	
 	// POS Active Assure & Revised POS Active Assure
 	
-			 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")) {
+			 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")
+					 ||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")
+					 ||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)")) 
+			 {
 						
 					
 						selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("FamilySize"), "Family-Size");
@@ -1641,7 +1644,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 						selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 						
-						if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")){
+						if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")
+								||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)")){
 							
 							Thread.sleep(WaitTime.medium);
 							selectFromDropdownByVisibleText(PPNDiscount, dataRow.getProperty("PPN Discount"), "PPN Discount");
@@ -2088,11 +2092,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				        Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
 						Reporter.log("<B> -------------------------------------------</B>");
 						
-						  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
+						String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
 						  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); 
 						  int premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
 						  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(BeforeOPD)");
-						 
+
 //						click(saveBTN, "Save Button");
 						Thread.sleep(3000);
 						

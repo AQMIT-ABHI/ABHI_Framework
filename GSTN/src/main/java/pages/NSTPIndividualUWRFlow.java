@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -21,7 +23,7 @@ import util.ExcelRead;
 import util.GenericMethods;
 import util.WaitTime;
 
-public class NSTPIndividualUWRFlow extends GenericMethods{
+public class NSTPIndividualUWRFlow extends QuoteSearchPage{
 	
 	@FindBy(xpath="//i[@id='roleIcon']")
 	private WebElement roleCLICK;
@@ -98,19 +100,53 @@ public class NSTPIndividualUWRFlow extends GenericMethods{
 	 		
 	 		String parentWindow = driver.getWindowHandle();
 	 		Thread.sleep(2000);
+	 		switchtodefaultframe(driver);
+			switchtoframe(driver,"display");
+			switchtoframe(driver, "containerFrame");
 	 		click(MemberLevelAction,"Member Level Action");
 	 		switchToWindow(driver);
 	 		Thread.sleep(2000);
 	 		
-	 		//Select Decision
+	 		if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater")) 
+	 		{
+	 			String MemDecision=dataRow.getProperty("Decision_UWR");
+	 			String MemDecision2 = MemDecision.replace(" ", "");
+	 			ArrayList<String> myList1 = new ArrayList<String>(Arrays.asList(MemDecision2.split("\\+")));
+
+	 			for (int x = 0; x < myList1.size(); x++) 
+	 			{
+	 				int y = x + 1;
+	 				//Select Decision
+
+	 				WebElement Decision=driver.findElement(By.xpath("(//select[@id='Decision_1'])["+y+"]"));
+	 				selectFromDropdownByVisibleText(Decision,myList1.get(x),"Decision");
+	 				Thread.sleep(2000);
+	 			}
+
+	 		}
+	 		else {
 	 		selectFromDropdownByVisibleText(decision,dataRow.getProperty("Decision_UWR"),"Decision");
 	 		Thread.sleep(2000);
-	 		
+	 		}
 	 		//Save
 	 		click(Save,"Save");
 	 		driver.switchTo().window(parentWindow);
 	 		Thread.sleep(2000);
 	 		
+	 	String SubStatus=driver.findElement(By.xpath("//label[contains(text(),'Sub-Status')]/following::label[1]")).getAttribute("value");
+	 	
+	 	//UWR - Counter Offer
+	 	
+	 	if(SubStatus.equalsIgnoreCase("Counter Offer")) {
+	 		switchtodefaultframe(driver);
+	 		switchtoframe(driver, "head");
+	 		
+	 		click(roleCLICK,"Role Click");	
+	 		
+	 		click(driver.findElement(By.xpath("//div[contains(text(),'BOPS')]")),"Selected Role as BOPS");
+	 		searchQuote(driver);
+	 		
+	 	}
 	 		//UWR to COPS
 	 		switchtodefaultframe(driver);
 	 		switchtoframe(driver, "head");
