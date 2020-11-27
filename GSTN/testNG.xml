@@ -5,15 +5,114 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TCS_POS_IndActiveAssure_003" verbose="2">
-    <parameter name="ScriptReference" value="CreateIndividualActivAssurePOSPricing"/>
-    <parameter name="ScenarioID" value="TCS_POS_IndActiveAssure_003"/>
-    <parameter name="Description" value="Single individual Policy for a Kid equal to 26 years"/>
+  <test name="TCS_NONPOS_IndActiveAssure_120" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_120"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 59 years with Tenure = 3"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_POS_IndActiveAssure_003"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_120"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_POS_IndActiveAssure_003 -->
+  </test> <!-- TCS_NONPOS_IndActiveAssure_120 -->
+  <test name="TCS_NONPOS_IndActiveAssure_121" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_121"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 65 years with Tenure = 2"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_121"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_121 -->
+  <test name="TCS_NONPOS_IndActiveAssure_122" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_122"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 64 years with Tenure = 3"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_122"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_122 -->
+  <test name="TCS_NONPOS_IndActiveAssure_123" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_123"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 70 years with Tenure = 2"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_123"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_123 -->
+  <test name="TCS_NONPOS_IndActiveAssure_124" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_124"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 69 years with Tenure = 3"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_124"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_124 -->
+  <test name="TCS_NONPOS_IndActiveAssure_125" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_125"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 75 years with Tenure = 2"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_125"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_125 -->
+  <test name="TCS_NONPOS_IndActiveAssure_126" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_126"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 74 years with Tenure = 3"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_126"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_126 -->
+  <test name="TCS_NONPOS_IndActiveAssure_127" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_127"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 75 years with Tenure = 3"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_127"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_127 -->
+  <test name="TCS_NONPOS_IndActiveAssure_128" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_128"/>
+    <parameter name="Description" value="Single individual Policy for an insured member of age 76 years with Tenure = 1"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_128"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_128 -->
+  <test name="TCS_NONPOS_IndActiveAssure_129" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewINDIVIDUALflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_NONPOS_IndActiveAssure_129"/>
+    <parameter name="Description" value="Single individual Policy for Self with Gender = Male"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_NONPOS_IndActiveAssure_129"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_NONPOS_IndActiveAssure_129 -->
 </suite> <!-- Pricing -->
