@@ -52,8 +52,6 @@ public class OtherUserLogin extends GenericMethods {
 	@FindBy(xpath="//button[@id='Search']")
 	private WebElement SearchButton;
 	
-	
-	
 	@FindBy(xpath="//label[@ng-model='clmGridData.strParameterValue']")
 	private WebElement memberCode;
 
@@ -139,7 +137,7 @@ public class OtherUserLogin extends GenericMethods {
 	@FindBy(xpath="//button[@id='DataEntry1Completed']")
 	private WebElement DataEntry1;
 	
-	@FindBy(xpath="//button[@id='sendQCBtn']")
+	@FindBy(xpath="//button[@title='Accept QC']")
 	private WebElement AcceptQC;
 	
 	
@@ -171,7 +169,6 @@ public class OtherUserLogin extends GenericMethods {
 		   private WebElement showrequirement1;
 		
 		   
-		
 		   //Selection Dropdown 1
 		   @FindBy(xpath="//div[contains(text(),'ID Proof')]//following::select[1]")
 		   private WebElement Optional1;
@@ -379,18 +376,21 @@ public class OtherUserLogin extends GenericMethods {
 //		clearAndSenKeys(state,"MAHARASHTRA","State");
 //		Thread.sleep(WaitTime.low);
 			
-		Thread.sleep(WaitTime.low);
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
+		{		
+		Thread.sleep(WaitTime.medium);
 	    selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
+		}
 		
 		
 		//Save & Ok
 		((JavascriptExecutor) driver)
 	     .executeScript("window.scrollTo(0, document.body.scrollHeight)");
 		click(SaveButton,"Save");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(Okbutton,"Ok Button");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		

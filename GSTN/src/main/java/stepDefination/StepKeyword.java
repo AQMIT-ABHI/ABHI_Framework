@@ -90,7 +90,7 @@ public class StepKeyword extends StepDefination {
 			break;
 			
 			
-		case "Create_Family_NSTP":
+		case "Create_Family_Multi_NSTP":
 			NSTPfamilyfill(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;	
 			
@@ -102,6 +102,10 @@ public class StepKeyword extends StepDefination {
 			
 		case "Create_NSTP_UWR":
 			UWRNSTPindividualfill(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
+			break;
+			
+		case "Create_Endorsement_Flow":
+			fillEndorsementFlow(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;	
 			
 		case "Logout_from_NewTCS":

@@ -339,21 +339,19 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		//policy summary
 		//driver.switchTo().window(parentWindow);
-		Thread.sleep(WaitTime.low);
-		click(Continue, "Submit btn");
-		Thread.sleep(WaitTime.low);
-		
-		
-		//payment cycle
 		Thread.sleep(WaitTime.medium);
 		click(Continue, "Submit btn");
-		Thread.sleep(WaitTime.low);
-	
-		
-		//Endorsement
 		Thread.sleep(WaitTime.medium);
-		click(continuebtn, "Continue btn");
-		Thread.sleep(WaitTime.low);
+		
+		
+		/*
+		 * //payment cycle Thread.sleep(WaitTime.medium); click(Continue, "Submit btn");
+		 * Thread.sleep(WaitTime.low);
+		 * 
+		 * 
+		 * //Endorsement Thread.sleep(WaitTime.medium); click(continuebtn,
+		 * "Continue btn"); Thread.sleep(WaitTime.low);
+		 */
 		
 		
 		//Follow Up

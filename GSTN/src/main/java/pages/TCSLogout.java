@@ -37,6 +37,8 @@ public class TCSLogout extends GenericMethods{
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, "TCS_LoginPage", testCaseName,stepGroup);
 		Reporter.log("<B>Logout from Application</B>");
 	
+		
+		switchtodefaultframe(driver);
 		Thread.sleep(WaitTime.low);
 		switchtoframe(driver, "head");
 		Thread.sleep(WaitTime.low);

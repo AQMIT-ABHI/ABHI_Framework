@@ -74,7 +74,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 	@FindBy(xpath="//select[@id='Applicable Sum Insured']")
 	private WebElement SI;
 	
-	@FindBy(xpath="//select[@id='familysize']")
+	@FindBy(xpath="//input[@id='familysize']")
 	private WebElement FamilySize;
 	
 	@FindBy(xpath="//input[@id='Number of Members']")
@@ -245,26 +245,20 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 		policytenure.sendKeys(Keys.END);
 		selectFromDropdownByVisibleText(policytenure, dataRow.getProperty("Policy Tenure"),"Policy Tenure");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(premiumFrequency, dataRow.getProperty("Premium Frequency"),"Premium Frequency");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(covertype, dataRow.getProperty("Cover Type"),"Cover Type");
-		Thread.sleep(WaitTime.medium);
-		wait.until(ExpectedConditions.elementToBeClickable(SI));
-		
-		Thread.sleep(4000);
+		Thread.sleep(WaitTime.high);
 		selectFromDropdownByVisibleText(plantype, dataRow.getProperty("Plan"),"Plan Type");
-		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"),"SubPlan Type");
 		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.medium);
-		Thread.sleep(2000);
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured")," SumInsured ");
 		Thread.sleep(WaitTime.low);
 		
@@ -380,13 +374,13 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 	
 		Thread.sleep(WaitTime.medium);
 		Thread.sleep(2000);
-		clearAndSenKeys(FamilySize, dataRow.getProperty("FamilySize"), "Family-Size");
+		clearAndSenKeys(FamilySize, dataRow.getProperty("Relation"), "Family-Size");
 		Thread.sleep(2000);
 		
 		for(String key: BtnPress.keySet()){
-			if(key.equalsIgnoreCase(dataRow.getProperty("FamilySize")))
+			if(key.equalsIgnoreCase(dataRow.getProperty("Relation")))
 			{
-				int btnpressed = BtnPress.get(dataRow.getProperty("FamilySize"));
+				int btnpressed = BtnPress.get(dataRow.getProperty("Relation"));
 				
 				for(int x = 0 ; x<btnpressed;x++)
 				{
@@ -406,8 +400,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 		
 		  for (int j = 0; j < element.size(); j++) {
+			  Thread.sleep(WaitTime.medium);
 		        String temp = element.get(j).getText();
-		        if (temp.equals(dataRow.getProperty("FamilySize"))) {
+		        if (temp.equals(dataRow.getProperty("Relation"))) {
 		            element.get(j).click();             
 		            break;
 		        }
@@ -417,7 +412,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.high);
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.medium);
@@ -449,7 +444,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		}
 		//String name = sb.toString();
 	
-		String Family = dataRow.getProperty("FamilySize");
+		String Family = dataRow.getProperty("Relation");
 		String Family1 = Family.replace(" ", "");
 		ArrayList<String> myList = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
 
@@ -498,9 +493,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("SelfDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(AgeValue,"0","Age");
+					// clearAndSenKeys(AgeValue,"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -512,15 +507,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(dob,actualdate,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         dob.sendKeys(Keys.TAB);
-			         AgeValue.sendKeys(Keys.TAB);
+			         //AgeValue.sendKeys(Keys.TAB);
 			} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(AgeValue,dataRow.getProperty("SelfDOB"),"Age");
+		        	 //clearAndSenKeys(AgeValue,dataRow.getProperty("SelfDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("SelfDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -532,7 +527,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(dob,actualdate,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         dob.sendKeys(Keys.TAB);
-			         AgeValue.sendKeys(Keys.TAB);
+			        // AgeValue.sendKeys(Keys.TAB);
 			         
 				}
 		
@@ -570,9 +565,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("SpouseDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -584,15 +579,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate1,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			       //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("SpouseDOB"),"Age");
+		        	// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("SpouseDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("SpouseDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -604,7 +599,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate1,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -639,9 +634,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("Kid1DOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -653,15 +648,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid1DOB"),"Age");
+		        	// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid1DOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("Kid1DOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -673,7 +668,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate2,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			         //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 							
@@ -702,9 +697,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("Kid2DOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -716,15 +711,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate3,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid2DOB"),"Age");
+		        	 //clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid2DOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("Kid2DOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -736,7 +731,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate3,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			         //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -765,9 +760,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("Kid3DOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -779,15 +774,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate4,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			         //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid3DOB"),"Age");
+		        	// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("Kid3DOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("Kid3DOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -799,7 +794,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate4,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -827,9 +822,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("FatherDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					 //clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -841,15 +836,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate5,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 		    	} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("FatherDOB"),"Age");
+		        	// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("FatherDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("FatherDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -861,7 +856,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate5,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -889,9 +884,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("MotherDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -903,15 +898,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate6,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 		    	} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("MotherDOB"),"Age");
+		        	//clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("MotherDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("MotherDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -923,7 +918,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate6,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			         //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -953,9 +948,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("FILDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -967,15 +962,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate7,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 		    	} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("FILDOB"),"Age");
+		        	// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("FILDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("FILDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -987,7 +982,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate7,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 				}
 				
 				
@@ -1016,9 +1011,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				 
 				if (dataRow.getProperty("MILDOB").equalsIgnoreCase("<1"))
 				{
-					 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+					// clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 					 Thread.sleep(WaitTime.low);
-					 String CollectAge=AgeValue1.getAttribute("value");
+					 String CollectAge="0";
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -1030,15 +1025,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate8,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 		    	} 
 			         
 				else
 				{
 		        	//Date Calculation
-		        	 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("MILDOB"),"Age");
+		        	 //clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),dataRow.getProperty("MILDOB"),"Age");
 		        	 Thread.sleep(WaitTime.low);
-		        	 String CollectAge=AgeValue1.getAttribute("value");
+		        	 String CollectAge=dataRow.getProperty("MILDOB");
 					 String[] arrofstr=acurrdate.split("/",3);
 			         String date3=arrofstr[2];
 				     int calactual= Integer.parseInt(date3);
@@ -1050,7 +1045,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate8,"Date of Birth");
 			         Thread.sleep(WaitTime.low);
 			         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-			         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+			        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 			         
 				}
 				
@@ -1110,19 +1105,14 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		//Assert Quote Details
 		
-		  String netpremiumbeforeval =
-		  netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", ""); 
-		  int netpremiumbeforevalNO = (int) Float.parseFloat(netpremiumbeforeval); 
-		  int netpremiumbeforevalNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
-		  driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-		  verifyAssert(Math.round(netpremiumbeforevalNO),Math.round(netpremiumbeforevalNOSheet), "Expected value NetPremium");
-		 
-		Assert.assertEquals("Expected value",Math.round(netpremiumbeforevalNO), Math.round(netpremiumbeforevalNOSheet));
+		  //String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", ""); 
+		  //int netpremiumbeforevalNO = (int) Float.parseFloat(netpremiumbeforeval); 
+		 // int netpremiumbeforevalNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
+		 // driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+		 // verifyAssert(Math.round(netpremiumbeforevalNO),Math.round(netpremiumbeforevalNOSheet), "Expected value NetPremium");
+		    //Assert.assertEquals("Expected value",Math.round(netpremiumbeforevalNO), Math.round(netpremiumbeforevalNOSheet));
 		
 		
-		
-		
-			
 			Reporter.log("");
 			Reporter.log("<B> -------------------------------------------</B>");
 			Reporter.log("<B>After Co-Pay Added</B>");
@@ -1198,13 +1188,13 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					String genderval1= genderval.replace(" ", "");
 					ArrayList<String> genderlist = new ArrayList<String>(Arrays.asList(genderval1.split("\\+")));
 					
-					String roomval = dataRow.getProperty("RoomCategory");
+					//String roomval = dataRow.getProperty("RoomCategory");
 					//String roomval1= roomval.replace(" ", "");
-					ArrayList<String> roomlist = new ArrayList<String>(Arrays.asList(roomval.split("\\+")));
+					//ArrayList<String> roomlist = new ArrayList<String>(Arrays.asList(roomval.split("\\+")));
 					
 					Thread.sleep(WaitTime.medium);
-					selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])[1]")),roomlist.get(0)," Room ");
-					Thread.sleep(WaitTime.low);
+					//selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])[1]")),roomlist.get(0)," Room ");
+					//Thread.sleep(WaitTime.low);
 					
 					
 					HashMap<String, String> NamesList = new HashMap<>(); 
@@ -1287,8 +1277,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								
 
 								Thread.sleep(WaitTime.medium);
-								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]")),deductlist.get(x)," deductlist ");
-								Thread.sleep(WaitTime.low);
+							//	selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[2])["+y+"]")),deductlist.get(x)," deductlist ");
+								//Thread.sleep(WaitTime.low);
 							
 
 								
@@ -1304,9 +1294,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								 
 								 if (dataRow.getProperty("Age").equalsIgnoreCase("<1"))
 									{
-										 clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
+										 //clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),"0","Age");
 										 Thread.sleep(3000);
-										 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
+										 String CollectAge=agelist.get(x);
 										 String[] arrofstr=acurrdate.split("/",3);
 								         String date3=arrofstr[2];
 									     int calactual= Integer.parseInt(date3);
@@ -1318,15 +1308,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
 								         Thread.sleep(WaitTime.low);
 								         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-								         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
+								        // driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 								} 
 								         
 									else
 									{
 							        	//Date Calculation
-										 clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),agelist.get(x),"Age");
+										// clearAndSenKeysStale(driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")),agelist.get(x),"Age");
 							        	 Thread.sleep(3000);
-							        	 String CollectAge=driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).getAttribute("value");
+							        	 String CollectAge=agelist.get(x);
 										 String[] arrofstr=acurrdate.split("/",3);
 								         String date3=arrofstr[2];
 									     int calactual= Integer.parseInt(date3);
@@ -1338,8 +1328,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								         clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")),actualdate,"Date of Birth");
 								         Thread.sleep(WaitTime.low);
 								         driver.findElement(By.xpath("(//input[@id='Date of Birth'])["+y+"]")).sendKeys(Keys.TAB);
-								         driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
-								         
+								        //driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 									}
 								
 								
@@ -1348,16 +1337,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 								Thread.sleep(WaitTime.low);
 				
 								//Relationship
-								
 								Thread.sleep(WaitTime.medium);
 								selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])["+y+"]")),Relationlist.get(x)," Relationship ");
 								Thread.sleep(WaitTime.low);
-								
-								
-				
 						}
-					
-					
+						
 					Thread.sleep(WaitTime.low);	
 					SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 					click(calpremBTN, "Calculate Premium Button");
@@ -1402,6 +1386,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					 * dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
 					 */
 
+				}
+				
 					//CO-Pay Wavier
 					String isCoPay = dataRow.getProperty("Co-Pay Waiver");
 					String isCoPay1= isCoPay.replace(" ", "");
@@ -1535,7 +1521,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Reporter.log("<B> -------------------------------------------</B>");
 							
 					}
-				}
+				
 				
 				
 		
@@ -1561,7 +1547,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")) {
 						
 					
-						selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("FamilySize"), "Family-Size");
+						selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("Relation"), "Family-Size");
 						Thread.sleep(WaitTime.medium);
 						
 					
@@ -2134,7 +2120,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-      AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+            //AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 
 		}
 }

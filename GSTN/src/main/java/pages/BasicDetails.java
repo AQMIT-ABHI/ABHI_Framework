@@ -107,17 +107,17 @@ public class BasicDetails extends GenericMethods{
 	//Basic Details Method	
 	public void fillbasicdetails(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 	{
-		
-		
+	
 		String sheetName = ConfigReader.getInstance().getValue(PropertyConfigs.TestSheet);
         Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName,stepGroup);
 	   Reporter.log("<B>Traverse To CommonPage</B>");
 	   
-		
+	    Thread.sleep(WaitTime.high);
 		String unique = getuniqueApplicationNo();
 	    //Application number 1
+		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver, "containerFrame"); 
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.high);
 		clearAndSenKeys(applicationnumber1,unique,"Application Number Entry 1" );
 		
 		
@@ -217,9 +217,9 @@ public class BasicDetails extends GenericMethods{
 		//Policy Relations
 		//Continue Button
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.low);
-		click(continueBTN2, "Continue");
 		Thread.sleep(WaitTime.medium);
+		click(continueBTN2, "Continue");
+		Thread.sleep(WaitTime.high);
 		//switchtodefaultframe(driver);
 		
 }
