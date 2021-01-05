@@ -253,14 +253,14 @@ public class Finalize extends GenericMethods{
 		private WebElement refno2;
 		
 		@FindBy(xpath="(//b[contains(text(),'Net Premium before Discount')]//following::div/div/b)[13]")
+
 		private WebElement premiuminclusiveofTAX ;
 		
 		@FindBy(xpath="//input[@id='PAN Number']")
 		private WebElement pannumber;
-		
-		static String commonage;
 	
-
+		static String commonage;
+		
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
 		super(driver);
@@ -657,6 +657,7 @@ public class Finalize extends GenericMethods{
 		click(saveBTN,"Save");
 		Thread.sleep(5000);
 		click(okBTN, "OK");
+
 		Thread.sleep(5000);
 		
 		//click Multicolor icon

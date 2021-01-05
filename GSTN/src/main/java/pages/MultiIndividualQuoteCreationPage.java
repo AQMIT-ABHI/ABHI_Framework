@@ -1523,3 +1523,4 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 	}
 }
+

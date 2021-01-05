@@ -234,14 +234,14 @@ public class PPMCFlow extends GenericMethods{
 		click(PolicyManagement,"Policy Management tab");
 		
 		Thread.sleep(4000);
-		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
+		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");
 		
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
 		
 		
 		Thread.sleep(WaitTime.low);
@@ -425,7 +425,7 @@ public class PPMCFlow extends GenericMethods{
 	Thread.sleep(2000);
 	switchtoframe(driver, "display");
 	Thread.sleep(2000);
-	clearAndSenKeys(searchppmc,getQuoteNo(),"Search PPMC");
+	clearAndSenKeys(searchppmc,getQuoteNo(testCaseName),"Search PPMC");
 	Thread.sleep(2000);
 	
 	

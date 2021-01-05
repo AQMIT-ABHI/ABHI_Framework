@@ -154,7 +154,7 @@ public class CollectionScreen extends GenericMethods {
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(mode, dataRow.getProperty("Mode"), "Collection Mode");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 
 		// Txn Amount
 		Thread.sleep(WaitTime.low);
