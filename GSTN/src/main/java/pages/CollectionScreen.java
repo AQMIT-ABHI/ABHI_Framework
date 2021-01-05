@@ -66,7 +66,7 @@ public class CollectionScreen extends GenericMethods {
 	private WebElement subcodevalue;
 
 	// Narration
-	@FindBy(xpath = "//input[@id='Narration']")
+	@FindBy(xpath = "//textarea[@id='Narration']")
 	private WebElement narration;
 
 	// Save Button
@@ -182,18 +182,17 @@ public class CollectionScreen extends GenericMethods {
 		// Narration
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(narration, dataRow.getProperty("Narration"), "Narration");
-		Thread.sleep(WaitTime.low);
-
-		// Save button
 		Thread.sleep(WaitTime.medium);
-		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
+		
+		// Save button
+		driver.findElement(By.xpath("//textarea[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(saveBTN, "Save Button");
 		Thread.sleep(WaitTime.medium);
 		// String parentWindow = driver.getWindowHandle();
 
 		// Post Button
 		Thread.sleep(WaitTime.medium);
-		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
+		driver.findElement(By.xpath("//textarea[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(postBTN, "Post Button");
 		Thread.sleep(WaitTime.medium);
 
