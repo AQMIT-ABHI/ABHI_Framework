@@ -106,6 +106,7 @@ public class PolicyEndorsement extends GenericMethods {
 	@FindBy(xpath="//div[contains(text(),'Others')]//following::select[1]")
 	private WebElement Optional3;
 
+	
 
 	// Upload Requirement A
 	@FindBy(xpath = "//div[contains(text(),'Others')]//following::img[3]")

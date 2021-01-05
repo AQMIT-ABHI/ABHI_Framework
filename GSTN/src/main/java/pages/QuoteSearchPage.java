@@ -41,6 +41,7 @@ public class QuoteSearchPage extends GenericMethods {
 		
 		Thread.sleep(4000);
 		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
+		
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");

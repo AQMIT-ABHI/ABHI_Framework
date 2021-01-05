@@ -16,6 +16,7 @@ public final class MapOfUserIDAssignedToAllocation {
 	
 	public static MapOfUserIDAssignedToAllocation getInstance() throws Exception{
 		return new MapOfUserIDAssignedToAllocation();
+		
 	}
 
 	private HashMap<String,String> MapOfUserID(String[] arrayOfString) {
