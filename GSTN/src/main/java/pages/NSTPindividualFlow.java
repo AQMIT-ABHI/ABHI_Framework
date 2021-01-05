@@ -1,8 +1,11 @@
 package pages;
 
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -47,8 +50,8 @@ public class NSTPindividualFlow extends GenericMethods{
 	@FindBy(xpath="//input[@id='Height (Feet)']")
 	private WebElement heightfeet;
 	
-	@FindBy(xpath="//input[@id='Height (Inch)']")
-	private WebElement heightInch;
+	@FindBy(xpath="//input[@id='Height of the Insured (in cms)']")
+	private WebElement heightCm;
 	
 	@FindBy(xpath="//input[@id='Weight (in kgs)']")
 	private WebElement weightinKG;
@@ -193,7 +196,7 @@ public class NSTPindividualFlow extends GenericMethods{
 	private WebElement earlierpregnancyTextbox;
 	
 	@FindBy(xpath="//label[@id='Sub-Status']")
-	private WebElement RuleEngineStatus;
+	private WebElement ReferToUWRStatus;
 	
 	 //Requirements icon
 		@FindBy(xpath="//a[@name='Requirements']/i")
@@ -276,14 +279,14 @@ public class NSTPindividualFlow extends GenericMethods{
 		click(PolicyManagement,"Policy Management tab");
 		
 		Thread.sleep(4000);
-		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
+		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");
 		
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
 		
 		
   
@@ -295,15 +298,17 @@ public class NSTPindividualFlow extends GenericMethods{
 		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver,"containerFrame");
 		Thread.sleep(WaitTime.low);
-	  click(memberCode, "Member Code");
-	  switchtoframe(driver,"memberiframe0");
+	    click(memberCode, "Member Code");
+	    switchtoframe(driver,"memberiframe0");
 	  
-	  Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
-		Thread.sleep(WaitTime.low);
-	
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(heightInch,dataRow.getProperty("HeightInch"),"Height Inch");
+		/*
+		 * Thread.sleep(WaitTime.medium);
+		 * clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
+		 * Thread.sleep(WaitTime.low);
+		 */
+		
+	    Thread.sleep(WaitTime.medium);
+		clearAndSenKeys(heightCm,dataRow.getProperty("HeightCm"),"Height in Cm");
 		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.medium);
@@ -321,7 +326,6 @@ public class NSTPindividualFlow extends GenericMethods{
 			{
 			//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
 				Thread.sleep(WaitTime.veryHigh);
-				
 				driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
 		    }
 		}
@@ -331,7 +335,7 @@ public class NSTPindividualFlow extends GenericMethods{
 //		Thread.sleep(WaitTime.low);
 		
 		
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 	   selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone");
 		Thread.sleep(WaitTime.low);
 		
@@ -483,19 +487,15 @@ public class NSTPindividualFlow extends GenericMethods{
       		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
       		//fetch Refer to UWR
       		
-      		String SubStatusUWR=RuleEngineStatus.getText();
+      		String SubStatusUWR=ReferToUWRStatus.getText();
       		String quoteno=QuoteNumber.getText();
       		Reporter.log("----------");
       		Reporter.log("Quote No. "+quoteno);
       		Reporter.log("Status changed to "+SubStatusUWR);
       		Reporter.log("---------");
-      	    
       		
 }
 	
-	
-
-
      public void NSTPIndiviDetails(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
 	
     	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);

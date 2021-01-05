@@ -271,7 +271,7 @@ public class  MemberInfoPage extends GenericMethods {
 		//submit 1
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 //		click(subbtn, "Submit btn");
-//		Thread.sleep(WaitTime.medium);
+
 		
 		//submit 2
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
@@ -339,21 +339,20 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		//policy summary
 		//driver.switchTo().window(parentWindow);
-		Thread.sleep(WaitTime.low);
+
+		Thread.sleep(WaitTime.medium);
 		click(Continue, "Submit btn");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
-		//payment cycle
-//		Thread.sleep(WaitTime.medium);
-//		click(Continue, "Submit btn");
-//		Thread.sleep(WaitTime.low);
-	
-		
-		//Endorsement
-//		Thread.sleep(WaitTime.medium);
-//		click(continuebtn, "Continue btn");
-//		Thread.sleep(WaitTime.low);
+		/*
+		 * //payment cycle Thread.sleep(WaitTime.medium); click(Continue, "Submit btn");
+		 * Thread.sleep(WaitTime.low);
+		 * 
+		 * 
+		 * //Endorsement Thread.sleep(WaitTime.medium); click(continuebtn,
+		 * "Continue btn"); Thread.sleep(WaitTime.low);
+		 */
 		
 		
 		//Follow Up

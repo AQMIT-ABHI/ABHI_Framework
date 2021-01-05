@@ -253,7 +253,8 @@ public class Finalize extends GenericMethods{
 		private WebElement refno2;
 		
 		@FindBy(xpath="(//b[contains(text(),'Net Premium before Discount')]//following::div/div/b)[13]")
-		private WebElement premiuminclusiveofTAX;
+
+		private WebElement premiuminclusiveofTAX ;
 		
 		@FindBy(xpath="//input[@id='PAN Number']")
 		private WebElement pannumber;
@@ -344,6 +345,7 @@ public class Finalize extends GenericMethods{
 		//Family
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
 			{
+			
 		if(dataRow.getProperty("Gender").equalsIgnoreCase("Male")) {
 			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(title,"Mr.","Title");
@@ -371,11 +373,11 @@ public class Finalize extends GenericMethods{
 		 //Select Date
 		 if(familysize.equalsIgnoreCase("Self"))
 		 {
-			commonage= dataRow.getProperty("SelfDOB");
+			 commonage= dataRow.getProperty("SelfDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Spouse"))
 			{
-				commonage= dataRow.getProperty("SpouseDOB");
+				 commonage= dataRow.getProperty("SpouseDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid1"))
 			{
@@ -653,9 +655,10 @@ public class Finalize extends GenericMethods{
 		
 		//Save Button
 		click(saveBTN,"Save");
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		click(okBTN, "OK");
-		Thread.sleep(3000);
+
+		Thread.sleep(5000);
 		
 		//click Multicolor icon
 		click(MulticolorIcon,"Multicolor Icon");
