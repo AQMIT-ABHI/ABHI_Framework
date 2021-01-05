@@ -23,6 +23,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.seleniumhq.jetty9.server.UserIdentity;
 import org.testng.Assert;
@@ -52,6 +53,7 @@ import util.GenericMethods;
 import util.LoginUserFromSyncMap;
 import util.MapOfUserIDAssignedToAllocation;
 import util.SetUpWebdriver;
+import util.WaitTime;
 
 public class TestExecutionSuite extends GenericMethods{
 
@@ -207,7 +209,7 @@ public class TestExecutionSuite extends GenericMethods{
 		String ScanerioType=ConfigReader.getInstance().getValue(PropertyConfigs.ScanerioType);
 		
 		 XSSFWorkbook workbook = new XSSFWorkbook();
-	    	XSSFSheet sheet = workbook.createSheet("Result Summery");
+	    	XSSFSheet sheet = workbook.createSheet("Result Summary");
 	    	int rowNumber = 0;
 	    	XSSFRow rowheadHeader = sheet.createRow((short)rowNumber++);
 	    	rowheadHeader.createCell(0).setCellValue("Scenario");

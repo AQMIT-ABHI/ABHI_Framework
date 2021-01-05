@@ -33,9 +33,6 @@ public class TCSlogin extends GenericMethods {
 	@FindBy(xpath="//strong[contains(text(),'LOGIN')]")
 	private WebElement loginBTN;
 	
-	
-	
-	
 	@FindBy(xpath="//label[contains(text(),'GSTIN')]/parent::div/following-sibling::div/p-autocomplete/span/input")
 	private WebElement GSTIN;
 	
@@ -61,6 +58,7 @@ public class TCSlogin extends GenericMethods {
 		Reporter.log("<B>Login To Application</B>");
 		
 		switchtoframe(driver, "display");
+
 		
 		String user=LoginUserFromSyncMap.userIDForLogin(MapOfUserIDAssignedToAllocation.listOfUserIDForExecution,testCaseName);
         System.out.println("");
@@ -70,11 +68,9 @@ public class TCSlogin extends GenericMethods {
         System.out.println("Status wise MAP::"+MapOfUserIDAssignedToAllocation.listOfUserIDForExecution.toString());
 		
 		clearAndSenKeys(username,user, "UserName");
-		
 		clearAndSenKeys(password,dataRow.getProperty("Password"), "Password");
-		
+		Thread.sleep(WaitTime.low);
 		//clearAndSenKeys(role, dataRow.getProperty("Role"), "Role");
-		
 		click(loginBTN, "Login Button");
 //		Thread.sleep(WaitTime.low);
 		switchtodefaultframe(driver);
