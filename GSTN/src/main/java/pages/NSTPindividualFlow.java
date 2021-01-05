@@ -1,5 +1,6 @@
 package pages;
 
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -15,10 +16,12 @@ import org.testng.Reporter;
 import com.codoid.products.fillo.Connection;
 
 import constants.PropertyConfigs;
+import testRunner.TestEngine;
 import util.ConfigReader;
 import util.CustomAssert;
 import util.ExcelRead;
 import util.GenericMethods;
+import util.SetUpWebdriver;
 import util.WaitTime;
 
 public class NSTPindividualFlow extends GenericMethods{
@@ -44,6 +47,9 @@ public class NSTPindividualFlow extends GenericMethods{
 	@FindBy(xpath="//input[@id='Height (Feet)']")
 	private WebElement heightfeet;
 	
+	@FindBy(xpath="//input[@id='Height (Inch)']")
+	private WebElement heightInch;
+	
 	@FindBy(xpath="//input[@id='Weight (in kgs)']")
 	private WebElement weightinKG;
 	
@@ -56,7 +62,7 @@ public class NSTPindividualFlow extends GenericMethods{
 	@FindBy(xpath="//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 	
-	@FindBy(xpath="//select[@id='Occupation']")
+	@FindBy(xpath = "//input[@id='occupation']")
 	private WebElement occupation;
 	
 	@FindBy(xpath="//select[@id='Applicable Sum Insured']")
@@ -187,7 +193,7 @@ public class NSTPindividualFlow extends GenericMethods{
 	private WebElement earlierpregnancyTextbox;
 	
 	@FindBy(xpath="//label[@id='Sub-Status']")
-	private WebElement ReferToUWRStatus;
+	private WebElement RuleEngineStatus;
 	
 	 //Requirements icon
 		@FindBy(xpath="//a[@name='Requirements']/i")
@@ -233,6 +239,9 @@ public class NSTPindividualFlow extends GenericMethods{
 	   @FindBy(xpath="//button[@class='btn btn-default']")
 	   private WebElement OK; 
 	   
+	// Policy Number
+		@FindBy(xpath = "//label[contains(text(),'Quote/Policy Number')]//following::label[1]")
+		private WebElement QuoteNumber;
 	   
 	
 	WebDriverWait wait;
@@ -260,21 +269,21 @@ public class NSTPindividualFlow extends GenericMethods{
 		
 		click(driver.findElement(By.xpath("//div[contains(text(),'COPS')]")),"Selected Role as COPS");
 		
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
 		click(PolicyManagement,"Policy Management tab");
 		
 		Thread.sleep(4000);
-		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
+		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");
 		
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
 		
 		
   
@@ -292,19 +301,34 @@ public class NSTPindividualFlow extends GenericMethods{
 	  Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
 		Thread.sleep(WaitTime.low);
+	
+		Thread.sleep(WaitTime.medium);
+		clearAndSenKeys(heightInch,dataRow.getProperty("HeightInch"),"Height Inch");
+		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(weightinKG,dataRow.getProperty("WeightInKG"),"Weight In KG");
 		Thread.sleep(WaitTime.low);
 		weightinKG.sendKeys(Keys.TAB);
 		
-		Thread.sleep(WaitTime.medium);
-		selectFromDropdownByVisibleText(occupation,dataRow.getProperty("Occupation"),"Occupation");
+		HashMap<String, Integer> BtnPress1 = new HashMap<String, Integer>();
+		BtnPress1.put("Self Employed", 1);
+		Thread.sleep(WaitTime.medium); 
+		clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
 		Thread.sleep(WaitTime.low);
+		for(String key: BtnPress1.keySet()){
+			if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
+			{
+			//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+				Thread.sleep(WaitTime.veryHigh);
+				
+				driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
+		    }
+		}
 		
-		Thread.sleep(WaitTime.medium);
-		selectFromDropdownByVisibleText(ManualUnderwriting,dataRow.getProperty("Manual_UWR"),"Manual Underwriting");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.medium);
+//		selectFromDropdownByVisibleText(ManualUnderwriting,dataRow.getProperty("Manual_UWR"),"Manual Underwriting");
+//		Thread.sleep(WaitTime.low);
 		
 		
 		Thread.sleep(WaitTime.medium);
@@ -375,74 +399,68 @@ public class NSTPindividualFlow extends GenericMethods{
 	   Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(earlierpregnancyTextbox,dataRow.getProperty("earlierpregnancyTextbox"),"earlier pregnancy Textbox");
 		Thread.sleep(WaitTime.low);
-	   
+		}
 		click(SaveButton,"Save");
 		Thread.sleep(WaitTime.medium);
 		click(Okbutton,"Ok Button");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
-		}
+		
 		
 		  
 		   //COPS Requirement Page
-		   switchtodefaultframe(driver);
-		   switchtoframe(driver, "display"); 
-		   Thread.sleep(3000);
-	       click(requirementsIcon,"Click Requirement Icon");
-	       Thread.sleep(WaitTime.low);
-	       switchtoframe(driver, "containerFrame");
-	       Thread.sleep(WaitTime.low);
+			/*
+			 * switchtodefaultframe(driver); switchtoframe(driver, "display");
+			 * Thread.sleep(3000); click(requirementsIcon,"Click Requirement Icon");
+			 * Thread.sleep(WaitTime.low); switchtoframe(driver, "containerFrame");
+			 * Thread.sleep(WaitTime.low);
+			 */
 	       
 	       
 		   //Show Requirement on Requirements page
-	       Thread.sleep(3000);
-	       click(showrequirement1,"Click on Show Requirement");
-	       Thread.sleep(WaitTime.low);
-	       
-	       
-		   
-	       //Select Optional From the dropdown 1
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional1,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
-			
-			
-		 //Select Optional From the dropdown 2
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional2,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
-			
-				
-		 //Select Optional From the dropdown 3
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional3,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);
-			
-			
-		 //Select Optional From the dropdown 4
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional4,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
-	   
-			
-		//Select Optional From the dropdown 5
-	       Thread.sleep(WaitTime.low);
-		   selectFromDropdownByVisibleText(Optional5,dataRow.getProperty("Optional Status"),"Selection Optional");
-			Thread.sleep(WaitTime.medium);	
-			
-			
-			//Save
-	        Thread.sleep(3000);
-	        click(saverequire,"Save");
-	        Thread.sleep(2000);
-	        
-	        
-	        //Ok Button
-	        Thread.sleep(3000);
-	        click(OK,"Modification Successfully Completed");
-	        Thread.sleep(2000);
-			
-	        
+			/*
+			 * Thread.sleep(3000); click(showrequirement1,"Click on Show Requirement");
+			 * Thread.sleep(WaitTime.low);
+			 * 
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 1 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional1,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 2 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional2,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 3 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional3,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 4 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional4,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Select Optional From the dropdown 5 Thread.sleep(WaitTime.low);
+			 * selectFromDropdownByVisibleText(Optional5,dataRow.
+			 * getProperty("Optional Status"),"Selection Optional");
+			 * Thread.sleep(WaitTime.medium);
+			 * 
+			 * 
+			 * //Save Thread.sleep(3000); click(saverequire,"Save"); Thread.sleep(2000);
+			 * 
+			 * 
+			 * //Ok Button Thread.sleep(3000);
+			 * click(OK,"Modification Successfully Completed"); Thread.sleep(2000);
+			 * 
+			 */
 	        //Policy Summary
 	        switchtodefaultframe(driver);
 	    	switchtoframe(driver,"display");
@@ -458,17 +476,21 @@ public class NSTPindividualFlow extends GenericMethods{
       		Thread.sleep(WaitTime.low);
       		
       		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-      		Thread.sleep(WaitTime.low);
-      		click(SubmitButton,"Submit");
-      		Thread.sleep(WaitTime.low);
+      		Thread.sleep(WaitTime.high);
+      		click(SubmitButton,"Accept QC");
+      		Thread.sleep(WaitTime.high);
       		
+      		SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
       		//fetch Refer to UWR
       		
-      		String SubStatusUWR=ReferToUWRStatus.getText();
+      		String SubStatusUWR=RuleEngineStatus.getText();
+      		String quoteno=QuoteNumber.getText();
       		Reporter.log("----------");
+      		Reporter.log("Quote No. "+quoteno);
       		Reporter.log("Status changed to "+SubStatusUWR);
       		Reporter.log("---------");
       	    
+      		
 }
 	
 	

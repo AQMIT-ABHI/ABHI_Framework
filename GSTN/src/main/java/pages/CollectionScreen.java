@@ -66,7 +66,7 @@ public class CollectionScreen extends GenericMethods {
 	private WebElement subcodevalue;
 
 	// Narration
-	@FindBy(xpath = "//input[@id='Narration']")
+	@FindBy(xpath = "//textarea[@id='Narration']")
 	private WebElement narration;
 
 	// Save Button
@@ -153,7 +153,7 @@ public class CollectionScreen extends GenericMethods {
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(mode, dataRow.getProperty("Mode"), "Collection Mode");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 
 		// Txn Amount
 		clearAndSenKeys(taxamount, Collectamount, "Txn Amount");
@@ -181,14 +181,14 @@ public class CollectionScreen extends GenericMethods {
 
 		// Save button
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
+		driver.findElement(By.xpath("//textarea[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(saveBTN, "Save Button");
 		Thread.sleep(2000);
 		// String parentWindow = driver.getWindowHandle();
 
 		// Post Button
 		Thread.sleep(4000);
-		driver.findElement(By.xpath("//input[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
+		driver.findElement(By.xpath("//textarea[@id='Narration']")).sendKeys(Keys.PAGE_DOWN);
 		click(postBTN, "Post Button");
 		Thread.sleep(2000);
 

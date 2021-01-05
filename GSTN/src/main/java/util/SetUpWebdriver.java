@@ -120,7 +120,7 @@ public class SetUpWebdriver {
   		}
   		System.out.println(driver.getTitle());
  		driver.manage().window().maximize();
- 		driver.manage().timeouts().implicitlyWait(05, TimeUnit.SECONDS);
+ 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		return driver;
 	}catch (Exception e) {
 		System.out.println(e.getMessage());
@@ -302,10 +302,10 @@ public class SetUpWebdriver {
 	            response.setValue(Collections.<String, String>emptyMap());
 
 	            try {
-	                Field commandCodec = null;
-	                commandCodec = this.getClass().getSuperclass().getDeclaredField("commandCodec");
-	                commandCodec.setAccessible(true);
-	                commandCodec.set(this, new W3CHttpCommandCodec());
+	            	  Field commandCodec = null;
+		                commandCodec = this.getClass().getSuperclass().getDeclaredField("commandCodec");
+		                commandCodec.setAccessible(true);
+		                commandCodec.set(this, new W3CHttpCommandCodec());
 
 	                Field responseCodec = null;
 	                responseCodec = this.getClass().getSuperclass().getDeclaredField("responseCodec");

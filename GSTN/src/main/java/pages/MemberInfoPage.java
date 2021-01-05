@@ -294,38 +294,38 @@ public class  MemberInfoPage extends GenericMethods {
 		Thread.sleep(WaitTime.medium);
 	
 		selectFromDropdownByVisibleText(ProposerDetailsCapture,dataRow.getProperty("ProposerDetailsCaptur"),"Proposer Details Captur");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//ProducDetailsCapture
 		selectFromDropdownByVisibleText(ProducDetailsCapture,dataRow.getProperty("ProducDetailsCapture"),"Produc Details Capture");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//PlanDetailsCapture
 		selectFromDropdownByVisibleText(PlanDetailsCapture,dataRow.getProperty("PlanDetailsCapture"),"Plan Details Capture");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//MemberDetailsCapture
 		selectFromDropdownByVisibleText(MemberDetailsCapture,dataRow.getProperty("MemberDetailsCapture"),"Member Details Capture");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//PreviousInsuranceDetailsCapture
 		selectFromDropdownByVisibleText(PreviousInsuranceDetailsCapture,dataRow.getProperty("PreviousInsuranceDetailsCapture"),"PreviousInsuranceDetailsCapture");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//HealthDetailsCapture
 		selectFromDropdownByVisibleText(HealthDetailsCapture,dataRow.getProperty("HealthDetailsCapture"),"HealthDetailsCapture");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		//ChronicDiseaseCompleted
 		selectFromDropdownByVisibleText(ChronicDiseaseCompleted,dataRow.getProperty("ChronicDiseaseCompleted"),"Chronic Disease Completed");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 				
 		selectFromDropdownByVisibleText(NomineeDetails,dataRow.getProperty("NomineeDetails"),"Nominee Details");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		selectFromDropdownByVisibleText(CustomerSignature,dataRow.getProperty("CustomerSignature"),"Customer Signature");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 		
 		
 		//savem button
@@ -345,15 +345,15 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		
 		//payment cycle
-		Thread.sleep(WaitTime.medium);
-		click(Continue, "Submit btn");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.medium);
+//		click(Continue, "Submit btn");
+//		Thread.sleep(WaitTime.low);
 	
 		
 		//Endorsement
-		Thread.sleep(WaitTime.medium);
-		click(continuebtn, "Continue btn");
-		Thread.sleep(WaitTime.low);
+//		Thread.sleep(WaitTime.medium);
+//		click(continuebtn, "Continue btn");
+//		Thread.sleep(WaitTime.low);
 		
 		
 		//Follow Up

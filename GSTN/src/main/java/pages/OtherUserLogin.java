@@ -257,14 +257,14 @@ public class OtherUserLogin extends GenericMethods {
 		click(PolicyManagement,"Policy Management tab");
 		
 		Thread.sleep(5000);
-		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
+		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");
 		
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
 		
 		
 		Thread.sleep(WaitTime.medium);

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -17,11 +18,13 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.surefire.shade.org.apache.maven.shared.utils.io.ScanConductor.ScanAction;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
+import org.seleniumhq.jetty9.server.UserIdentity;
 import org.testng.Assert;
 import org.testng.ITestNGListener;
 import org.testng.Reporter;
@@ -46,9 +49,11 @@ import util.CustomAssert;
 import util.ExcelDatabase;
 import util.ExcelRead;
 import util.GenericMethods;
+import util.LoginUserFromSyncMap;
+import util.MapOfUserIDAssignedToAllocation;
 import util.SetUpWebdriver;
 
-public class TestExecutionSuite{
+public class TestExecutionSuite extends GenericMethods{
 
 
 	public XSSFWorkbook workbook = null;
@@ -63,8 +68,7 @@ public class TestExecutionSuite{
 	String MigrationFilePath="";
 	String SheetName = "";
 	private Object quickquote;
-	private String Quote=GenericMethods.getQuoteNo();
-	private static HashMap<String, String> scenarioStatus = new HashMap<>();
+	public static HashMap<String, HashMap<String,String>> scenarioStatus = new HashMap<>();
 	
 	
 	
@@ -72,6 +76,7 @@ public class TestExecutionSuite{
 	@Test(testName = "ScenarioID")
 	public void executionSuite(String testScenario_Id, String Module, String Description,String scriptReference, String BrowserName, String ScenarioUID,String TestScenario_RepositoryFileIndex,String TestData_RepositoryFile)throws Exception{
 		// Update GSTIN in MasterData sheet
+		scenarioStatus.put(testScenario_Id, new HashMap<String, String>());
 		String Browser=ConfigReader.getInstance().getValue(PropertyConfigs.Browser);
 		String CONFIG_PATH = ConfigReader.getInstance().getValue(PropertyConfigs.TestDataFolder) + File.separator;
 		FrameworkServices frameworkServices=new FrameworkServices();
@@ -79,16 +84,16 @@ public class TestExecutionSuite{
 		{
 		filePath=CONFIG_PATH.concat(testSuiteGenerator.getTestData_RepositoryFile().toString());
 	    }
-		Fillo fl=new Fillo();
-		conn=fl.getConnection(filePath);
+		//Fillo fl=new Fillo();
+		//conn=fl.getConnection(filePath);
 		FileInputStream fileInputMasterStream = new FileInputStream(new File(CONFIG_PATH+"0001_MasterTestSuite.xlsx"));
 		FrameworkServices.masterWorkbook = new XSSFWorkbook(fileInputMasterStream);
 		WebDriver driver = null;
 		
-		Fillo fillo = new Fillo();
-		connOfTestData = fillo.getConnection(filePath);
-		MigrationFilePath = CONFIG_PATH.concat(TestScenario_RepositoryFileIndex);
-		updateMigrationDataToMasterData(connOfTestData, MigrationFilePath, testScenario_Id, ScenarioUID);
+		//Fillo fillo = new Fillo();
+		//connOfTestData = fillo.getConnection(filePath);
+		//MigrationFilePath = CONFIG_PATH.concat(TestScenario_RepositoryFileIndex);
+		//updateMigrationDataToMasterData(connOfTestData, MigrationFilePath, testScenario_Id, ScenarioUID);
 		
 		filePath=CONFIG_PATH.concat(TestData_RepositoryFile.toString());
 		
@@ -101,18 +106,17 @@ public class TestExecutionSuite{
 			
 			CustomAssert customAssert = new CustomAssert(driver);
 			CustomAssert.executionFlag = true;
-			 Quote=GenericMethods.getQuoteNo();
+			
 			StepKeyword keyword = new StepKeyword(driver);
 			for (TestScriptStepGenerator testScriptStepGenerator : FrameworkServices.getScriptStepFromScriptName(scriptReference)) {
 				// TODO Amiya 05-10-2019
 				Reporter.log("<B><I><Font color=\"BLUE\"><U> Step   ==>"+ testScriptStepGenerator.getStepKeyword() + " </U> ===></Font></I></B>");
-				keyword.executeTestStep(driver, testScenario_Id, testScriptStepGenerator.getStepKeyword(),testScriptStepGenerator.getStepGroup(),GSTNID,ReturnType, workbook,conn,customAssert);
+				keyword.executeTestStep(driver, testScenario_Id, testScriptStepGenerator.getStepKeyword(),testScriptStepGenerator.getStepGroup(),GSTNID,ReturnType, workbook,ExcelDatabase.Connection_excel(filePath),customAssert);
 			}
 
 			if (CustomAssert.executionFlag) {
 				Reporter.log("Test Scenario has been passed");
-				scenarioStatus.put(testScenario_Id,"PASSED");
-				
+				setScenarioStatus(testScenario_Id,"PASSED");
 				// TO DO Amiya 01-11-2018
 				// Update sheet Execution Status to passed if testcase excuted successfully.
 				/*if (FrameworkServices.getConfigProperties().getProperty("ExecutionMode").equalsIgnoreCase("Migration")) {
@@ -132,7 +136,7 @@ public class TestExecutionSuite{
 					Connection connOfTestData1 = fillo1.getConnection(filePath);
 					updateExecutionStatus(connOfTestData1, MGFilePath, testScenario_Id, MigrationScenarioID, "Failed");
 				}*/
-				scenarioStatus.put(testScenario_Id,"FAILED");
+				setScenarioStatus(testScenario_Id,"FAILED");
 				throw new AssertionError();
 			}
 		} catch (Exception e) {
@@ -151,13 +155,13 @@ public class TestExecutionSuite{
 			Reporter.log(e.toString());
 			if(e.getMessage().equals(ConfigReader.getInstance().getValue("CustomExceptionMessage")) && CustomAssert.executionFlag)
 			{	
-				scenarioStatus.put(testScenario_Id,"FAILED");
+				setScenarioStatus(testScenario_Id,"FAILED");
 				Assert.assertEquals(true, true);
 				
 			}
 			else
 			{
-			scenarioStatus.put(testScenario_Id,"FAILED");
+			setScenarioStatus(testScenario_Id,"FAILED");
 			Reporter.log(e.getCause().getMessage());
 			Assert.assertEquals(true,false);
 			
@@ -178,10 +182,16 @@ public class TestExecutionSuite{
 //			fileInputStream.close();
 //			workbook.close();
 //			connOfTestData.close();
-//			conn.close(); 
+			ExcelDatabase.close_connection(); 
+			UserIDRelease(testScenario_Id);
 		}
 	}
-
+	
+	private void setScenarioStatus(String testId,String status){
+		HashMap statusMap = TestExecutionSuite.scenarioStatus.get(testId);
+		statusMap.put("Status", status);
+	}
+	
 	@AfterClass 
 	public void tearDown() throws IOException {
 //		ExcelDatabase.updateBorders(MigrationFilePath);
@@ -193,7 +203,7 @@ public class TestExecutionSuite{
 	public void afterSuite() throws Exception {
 		
 		//ScenarioType
-		
+		System.out.println(scenarioStatus);
 		String ScanerioType=ConfigReader.getInstance().getValue(PropertyConfigs.ScanerioType);
 		
 		 XSSFWorkbook workbook = new XSSFWorkbook();
@@ -204,20 +214,31 @@ public class TestExecutionSuite{
 	    	rowheadHeader.createCell(1).setCellValue("Status");
 	    	rowheadHeader.createCell(2).setCellValue("QuoteNo");
 	    	rowheadHeader.createCell(3).setCellValue("PolicyNo");
-	        for (Map.Entry<String,String> entry : scenarioStatus.entrySet()) {
-	        	XSSFRow rowhead = sheet.createRow((short)rowNumber++);
-	        	rowhead.createCell(0).setCellValue(entry.getKey());
-	        	rowhead.createCell(1).setCellValue(entry.getValue());
-	        	TestExecutionSuite txt = new TestExecutionSuite();
-	        	//txt.quickquote.setQuoteNo(QuoteNo);
-	        	
-	        	 System.out.println("Key = " + entry.getKey() + 
-	                     ", Value = " + entry.getValue()); 
-	        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
-	        	 
+	    	
+	    	Iterator<Map.Entry<String, HashMap<String, String>>> parent = scenarioStatus.entrySet().iterator();
+	    	while (parent.hasNext()) {
+	    	    Map.Entry<String, HashMap<String, String>> parentPair = parent.next();
+	    	    System.out.println("parentPair.getKey() :   " + parentPair.getKey() + " parentPair.getValue()  :  " + parentPair.getValue());
 
-	        	 rowhead.createCell(3).setCellValue(ConfigReader.getInstance().getValue("Policy_No"));
-	        }
+	    	    Iterator<Map.Entry<String, String>> child = (parentPair.getValue()).entrySet().iterator();
+	    	    XSSFRow rowhead = sheet.createRow((short)rowNumber++);
+	    	    rowhead.createCell(0).setCellValue(parentPair.getKey());
+	    	    while (child.hasNext()) {
+	    	    	
+	    	    	String myKey = child.next().getKey();
+	    	    	if(myKey.equalsIgnoreCase("Status")) {
+	    	    		rowhead.createCell(1).setCellValue(child.next().getValue());
+	    	    	}else if(myKey.equalsIgnoreCase("QuoteNumber")) {
+	    	    		rowhead.createCell(2).setCellValue(child.next().getValue());
+	    	    	}
+		        	//txt.quickquote.setQuoteNo(QuoteNo);
+		        	
+//		        	 rowhead.createCell(2).setCellValue(ConfigReader.getInstance().getValue("Quote_No"));
+	    	        child.remove(); // avoids a ConcurrentModificationException
+	    	    }
+
+	    	}
+	       
 	        FileOutputStream fileOut = new FileOutputStream(TestEngine.excutionFolder+"\\LatestSheet.xlsx");
 	        workbook.write(fileOut);
 	        fileOut.close();
@@ -253,7 +274,7 @@ public class TestExecutionSuite{
 		Set<String> keys = scenarioStatus.keySet();
 		for (String key : keys) {
 			System.out.println("=====================================================>" + key);
-			String status = scenarioStatus.get(key);
+			String status = scenarioStatus.get(key).get("Status");
 
 			File htmlFileToMove = new File(TestEngine.excutionFolder + "\\"+ScanerioType+"\\" + key + ".html");
 			File xmlFileToMove = new File(TestEngine.excutionFolder + "\\"+ScanerioType+"\\" + key + ".xml");
@@ -323,6 +344,22 @@ public class TestExecutionSuite{
 			Reporter.log(e.getMessage());
 		}
 	}
+	
+	private synchronized void UserIDRelease(String executionTestScenario_TestScenarioReference){
+        String user="";
+        if(MapOfUserIDAssignedToAllocation.listOfUserIDForExecution.containsValue(executionTestScenario_TestScenarioReference)){
+            user = LoginUserFromSyncMap.getKeyByValue(MapOfUserIDAssignedToAllocation.listOfUserIDForExecution,executionTestScenario_TestScenarioReference);
+            if (!user.equals("")){
+                MapOfUserIDAssignedToAllocation.listOfUserIDForExecution.put(user,"Free");
+            }
+            System.out.println("User ID is blank !!!");
+        }
+        System.out.println("");
+        System.out.println("Execution Done for: "+executionTestScenario_TestScenarioReference+" User ID: "+user+" released");
+        System.out.println("After release of USER ID Updated__MAP shows as below");
+        System.out.println("Status wise MAP::"+MapOfUserIDAssignedToAllocation.listOfUserIDForExecution.toString());
+        System.out.println("");
+    }
 	
 }
 

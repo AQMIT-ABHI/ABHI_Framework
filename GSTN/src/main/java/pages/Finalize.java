@@ -251,8 +251,15 @@ public class Finalize extends GenericMethods{
 	//reference Number2
 		@FindBy(xpath="//label[contains(text(),'Reference Number')]//following::label[1]")
 		private WebElement refno2;
+		
+		@FindBy(xpath="(//b[contains(text(),'Net Premium before Discount')]//following::div/div/b)[13]")
+		private WebElement premiuminclusiveofTAX;
+		
+		@FindBy(xpath="//input[@id='PAN Number']")
+		private WebElement pannumber;
 	
-
+		static String commonage;
+		
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
 		super(driver);
@@ -271,7 +278,15 @@ public class Finalize extends GenericMethods{
 
 		
 		//String winHandleBefore = driver.getWindowHandle();
-		switchtoframe(driver, "display");    
+				
+		switchtoframe(driver, "display"); 
+		
+		//For Collection Amount
+		String premiumamount= premiuminclusiveofTAX.getText();
+		String finalpremium=premiumamount.replace("₹ ", "").replace(",", "");
+		double collectionamount=Double.parseDouble(finalpremium);
+		
+		//Finalize
 		click(finalizeBTN, "FinalizeButton");
 		String parentWindow = driver.getWindowHandle();
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -348,7 +363,7 @@ public class Finalize extends GenericMethods{
 	     String acurrdate=dfor.format(obj);
 	     
 	     //Split Family Size
-	     String Family = dataRow.getProperty("FamilySize");
+	     String Family = dataRow.getProperty("Relation");
 		 String Family1 = Family.replace(" ", "");
 		 ArrayList<String> family = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
 		 String familysize=family.get(0);
@@ -356,43 +371,43 @@ public class Finalize extends GenericMethods{
 		 //Select Date
 		 if(familysize.equalsIgnoreCase("Self"))
 		 {
-			String commonage= dataRow.getProperty("SelfDOB");
+			commonage= dataRow.getProperty("SelfDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Spouse"))
 			{
-				String commonage= dataRow.getProperty("SpouseDOB");
+				commonage= dataRow.getProperty("SpouseDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid1"))
 			{
-				String commonage= dataRow.getProperty("Kid1DOB");
+				commonage= dataRow.getProperty("Kid1DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid2"))
 			{
-				String commonage= dataRow.getProperty("Kid2DOB");
+				commonage= dataRow.getProperty("Kid2DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Kid3"))
 			{
-				String commonage= dataRow.getProperty("Kid3DOB");
+				commonage= dataRow.getProperty("Kid3DOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Father"))
 			{
-				String commonage= dataRow.getProperty("FatherDOB");
+				commonage= dataRow.getProperty("FatherDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Mother"))
 			{
-				String commonage= dataRow.getProperty("MotherDOB");
+				commonage= dataRow.getProperty("MotherDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Father-in-law"))
 			{
-				String commonage= dataRow.getProperty("FILDOB");
+				commonage= dataRow.getProperty("FILDOB");
 		 }
 			else if(familysize.equalsIgnoreCase("Mother-in-law"))
 			{
-				String commonage= dataRow.getProperty("MILDOB");
+				commonage= dataRow.getProperty("MILDOB");
 		 }
 		 
 		 
-		 String CollectAge= dataRow.getProperty("commonage");
+		 String CollectAge= commonage;
 		 String[] arrofstr=acurrdate.split("/",3);
          String date3=arrofstr[2];
 	     int calactual= Integer.parseInt(date3);
@@ -618,6 +633,12 @@ public class Finalize extends GenericMethods{
 		selectFromDropdownByVisibleText(GSTregistrationtype,dataRow.getProperty("GST Registration Type"),"GST Registration Type");
 		Thread.sleep(WaitTime.medium);
 		
+		//Pan Number
+		if(collectionamount>50000.00)
+		{
+		Thread.sleep(WaitTime.medium);
+		clearAndSenKeys(pannumber,dataRow.getProperty("PAN Number"),"PAN Number" );
+		}
 		
 		//Whatsapp Number
 		Thread.sleep(WaitTime.medium);
@@ -635,7 +656,6 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(3000);
 		click(okBTN, "OK");
 		Thread.sleep(3000);
-
 		
 		//click Multicolor icon
 		click(MulticolorIcon,"Multicolor Icon");
@@ -686,7 +706,7 @@ public class Finalize extends GenericMethods{
 		
 		
 		//Click OK Button
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		click(okBTN,"OK");
 		Thread.sleep(3000);
 		
@@ -717,8 +737,8 @@ public class Finalize extends GenericMethods{
 		
 		Thread.sleep(WaitTime.medium);
 		click(ifsciconbtn,"Iconbtn");
-		switchToWindow(driver);
-				
+		Thread.sleep(WaitTime.medium);
+		switchToWindow(driver);		
 				
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
@@ -730,7 +750,6 @@ public class Finalize extends GenericMethods{
 		
 		Thread.sleep(WaitTime.medium);
 		click(ifcselectbtn,"IFSCselectbtn");
-	
 		
 		Thread.sleep(WaitTime.medium);
        driver.switchTo().window(ChildWindow2);

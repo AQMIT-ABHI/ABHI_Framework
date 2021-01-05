@@ -1119,7 +1119,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 		Thread.sleep(3000);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -1400,7 +1400,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 			Thread.sleep(3000);
 			
 			String QuoteNo = refno2.getText();
-			setQuoteNo(QuoteNo);
+			setQuoteNo(QuoteNo, testCaseName);
 			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
 			
 			Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -1848,7 +1848,7 @@ public class FamilyFloaterQuoteCreation extends IndividualQuickPricingPage {
 					Thread.sleep(3000);
 					
 					String QuoteNo = refno2.getText();
-					setQuoteNo(QuoteNo);
+					setQuoteNo(QuoteNo, testCaseName);
 					System.out.println("Quote No-------"+QuoteNo);
 					ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
 					

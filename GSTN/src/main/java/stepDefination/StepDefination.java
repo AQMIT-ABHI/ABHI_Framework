@@ -30,7 +30,9 @@ import pages.NSTPindividualFlow;
 import pages.OtherUserLogin;
 import pages.PPMCFlow;
 import pages.PaymentsDatailsPage;
+import pages.PolicyEndorsement;
 import pages.STPFamily_Flow;
+import pages.TCSLogout;
 import pages.TCSlogin;
 import pages.TcsCommonPages;
 import pages.UWRFlow;
@@ -225,9 +227,17 @@ public class StepDefination extends GSTNOnlinePortalPage {
 		}
 		
 		
+		public void fillEndosementFlow(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
+				String stepGroup, CustomAssert customAssert) throws Exception {
+			PolicyEndorsement end = new PolicyEndorsement(driver);
+			end.fillEndorsementFlow(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
+		}
 		
-		
-		
+		public void tcsLogout(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
+				String stepGroup, CustomAssert customAssert) throws Exception {
+			TCSLogout tcslogout = new TCSLogout(driver);
+			tcslogout.ClickLogout(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
+		}
 		
 		
 		

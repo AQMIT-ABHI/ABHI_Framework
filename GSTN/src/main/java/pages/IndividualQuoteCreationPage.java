@@ -356,7 +356,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(relation, dataRow.getProperty("Relationship")," Relationship ");
 		Thread.sleep(WaitTime.low);
-		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
+//		selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 		Thread.sleep(WaitTime.low);
 	
 		//click on Chronic
@@ -388,7 +388,7 @@ public class IndividualQuoteCreationPage extends GenericMethods{
 		Thread.sleep(3000);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		System.out.println("Quote No:....."+QuoteNo);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
 		

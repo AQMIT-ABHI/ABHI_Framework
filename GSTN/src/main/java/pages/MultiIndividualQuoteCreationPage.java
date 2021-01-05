@@ -531,7 +531,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(2000);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		System.out.println("Quote No-------"+QuoteNo);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
