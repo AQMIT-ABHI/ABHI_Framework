@@ -1544,8 +1544,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 
 		
-		  String premiumbeforeOPD =
-		  netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
+		  String premiumbeforeOPD =netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
 		  premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int
 		  premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty(
 		  "NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
@@ -1554,7 +1553,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		 
 		 //verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(B/eforeOPD)");
 
-				}
+			
 
 	
 	// POS Active Assure & Revised POS Active Assure
@@ -2083,19 +2082,18 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Reporter.log("<B> -------------------------------------------</B>");
 
          
-						  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
-						  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); 
-						  int premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
-						  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(BeforeOPD)");
+//						  String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
+//						  int premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); 
+//						  int premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
+//						  verifyAssert(premiumbeforeOPDNO,premiumbeforeOPDNOSheet,"NetPremiumAfterDiscount(BeforeOPD)");
 
 //						click(saveBTN, "Save Button");
 						Thread.sleep(3000);
 						
 			 }
 			 switchtodefaultframe(driver);
-	}
-		
-	
+}
+
 	
 	@SuppressWarnings("deprecation")
 	public void AssertQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
