@@ -281,12 +281,12 @@ public class NSTPFamily_Flow extends GenericMethods {
 		click(PolicyManagement, "Policy Management tab");
 
 		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(QuoteNoSearch, getQuoteNo(), "Quote No Input");
+		clearAndSenKeys(QuoteNoSearch, getQuoteNo(testCaseName), "Quote No Input");
 		Thread.sleep(WaitTime.medium);
 		click(SearchButton, "search");
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.medium);
-		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo() + "')]")), "Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo(testCaseName) + "')]")), "Quote no");
 		Thread.sleep(WaitTime.medium);
 
 		switchtodefaultframe(driver);

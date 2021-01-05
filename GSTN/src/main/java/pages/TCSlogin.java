@@ -18,6 +18,7 @@ import util.ExcelRead;
 import util.GenericMethods;
 import util.LoginUserFromSyncMap;
 import util.MapOfUserIDAssignedToAllocation;
+import util.WaitTime;
 
 public class TCSlogin extends GenericMethods {
 	

@@ -112,13 +112,7 @@ public class StepKeyword extends StepDefination {
 			tcsLogout(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
 			break;	
 			
-		case "Create_Endorsement_Flow":
-			fillEndosementFlow(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
-			break;	
 			
-		case "Logout_from_NewTCS":
-			tcsLogout(driver, testScenarioID, workbook, conn,stepGroup,customAssert);
-			break;	
 			
 	}
 }

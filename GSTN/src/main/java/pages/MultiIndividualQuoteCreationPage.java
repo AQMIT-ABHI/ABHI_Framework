@@ -674,7 +674,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(2000);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -1503,7 +1503,7 @@ public class MultiIndividualQuoteCreationPage extends GenericMethods {
 		Thread.sleep(2000);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
