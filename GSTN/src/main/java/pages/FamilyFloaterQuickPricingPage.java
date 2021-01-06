@@ -1,4 +1,3 @@
-
 package pages;
 
 import java.text.DateFormat;
@@ -2143,4 +2142,3 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		}
 }
-

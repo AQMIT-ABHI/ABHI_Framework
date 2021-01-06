@@ -94,7 +94,7 @@ public class  MemberInfoPage extends GenericMethods {
 	@FindBy(xpath="//button[@id='Submit']")
 	private WebElement subbtn;
 	
-	@FindBy(xpath="//button[@id='moreInfo']")
+	@FindBy(xpath="//button[@id='Submit']")
 	private WebElement subbtn3;
 	
 	@FindBy(xpath="//button[contains(text(),'Continue')]")
@@ -253,9 +253,9 @@ public class  MemberInfoPage extends GenericMethods {
 //		Thread.sleep(WaitTime.low);
 	
 		//Member Info
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		click(continue1,"Continue");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		
 		
 		
@@ -271,7 +271,7 @@ public class  MemberInfoPage extends GenericMethods {
 		//submit 1
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 //		click(subbtn, "Submit btn");
-
+//		Thread.sleep(WaitTime.high);
 		
 		//submit 2
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
@@ -281,51 +281,51 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		
 		//submit 3
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		String parentWindow = driver.getWindowHandle();
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
 		click(subbtn3, "Submit btn");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		
 		// ProposerDetailsCapture
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		switchToWindow(driver);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 	
 		selectFromDropdownByVisibleText(ProposerDetailsCapture,dataRow.getProperty("ProposerDetailsCaptur"),"Proposer Details Captur");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.high);
 		
 		//ProducDetailsCapture
 		selectFromDropdownByVisibleText(ProducDetailsCapture,dataRow.getProperty("ProducDetailsCapture"),"Produc Details Capture");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//PlanDetailsCapture
 		selectFromDropdownByVisibleText(PlanDetailsCapture,dataRow.getProperty("PlanDetailsCapture"),"Plan Details Capture");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//MemberDetailsCapture
 		selectFromDropdownByVisibleText(MemberDetailsCapture,dataRow.getProperty("MemberDetailsCapture"),"Member Details Capture");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//PreviousInsuranceDetailsCapture
 		selectFromDropdownByVisibleText(PreviousInsuranceDetailsCapture,dataRow.getProperty("PreviousInsuranceDetailsCapture"),"PreviousInsuranceDetailsCapture");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//HealthDetailsCapture
 		selectFromDropdownByVisibleText(HealthDetailsCapture,dataRow.getProperty("HealthDetailsCapture"),"HealthDetailsCapture");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//ChronicDiseaseCompleted
 		selectFromDropdownByVisibleText(ChronicDiseaseCompleted,dataRow.getProperty("ChronicDiseaseCompleted"),"Chronic Disease Completed");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 				
 		selectFromDropdownByVisibleText(NomineeDetails,dataRow.getProperty("NomineeDetails"),"Nominee Details");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		selectFromDropdownByVisibleText(CustomerSignature,dataRow.getProperty("CustomerSignature"),"Customer Signature");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		//savem button
@@ -339,7 +339,6 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		//policy summary
 		//driver.switchTo().window(parentWindow);
-
 		Thread.sleep(WaitTime.medium);
 		click(Continue, "Submit btn");
 		Thread.sleep(WaitTime.medium);
