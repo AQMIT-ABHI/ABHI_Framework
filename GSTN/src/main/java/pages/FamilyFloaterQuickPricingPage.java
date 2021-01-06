@@ -1,4 +1,3 @@
-
 package pages;
 
 import java.text.DateFormat;
@@ -400,7 +399,6 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 		
 		  for (int j = 0; j < element.size(); j++) {
-			  Thread.sleep(WaitTime.medium);
 		        String temp = element.get(j).getText();
 		        if (temp.equals(dataRow.getProperty("Relation"))) {
 		            element.get(j).click();             
@@ -412,7 +410,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Thread.sleep(WaitTime.high);
 		wait.until(ExpectedConditions.elementToBeClickable(plantype));
 		selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.low);
 
 		clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 		Thread.sleep(WaitTime.medium);
@@ -1105,7 +1103,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		//Assert Quote Details
 		
-		  //String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", ""); 
+		  //String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "").replace(",", ""); 
 		  //int netpremiumbeforevalNO = (int) Float.parseFloat(netpremiumbeforeval); 
 		 // int netpremiumbeforevalNOSheet = (int)Float.parseFloat(dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",", ""));
 		 // driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -1381,18 +1379,16 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 //					Assert Quote Details
 					/*
 					 * String netpremiumbeforeval =
-					 * netpremiumbefore.getText().toString().replace("₹ ", "");
+					 * netpremiumbefore.getText().toString().replace("â‚¹ ", "");
 					 * Assert.assertEquals("Expected value",netpremiumbeforeval,
 					 * dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
 					 */
-
-				}
 				
 					//CO-Pay Wavier
-					String isCoPay = dataRow.getProperty("Co-Pay Waiver");
+				    String isCoPay = dataRow.getProperty("Co-Pay Waiver");
 					String isCoPay1= isCoPay.replace(" ", "");
 					ArrayList<String> isCoPaylist= new ArrayList<String>(Arrays.asList(isCoPay1.split("\\+")));
-					
+				
 					Thread.sleep(WaitTime.medium);
 					for (int x = 0;x<isCoPaylist.size();x++)
 					{
@@ -1414,6 +1410,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					}
 					}
 					
+					
+	
 					//IF opd 
 					Thread.sleep(WaitTime.medium);
 					if(dataRow.getProperty("OPDapplicable").equalsIgnoreCase("Yes"))
@@ -1522,7 +1520,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 							
 					}
 				
-				
+					switchtodefaultframe(driver);
+				}
 				
 		
 		//Assert
@@ -1530,7 +1529,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		/*
 		 * String premiumbeforeOPD =
-		 * netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); int
+		 * netpremiumafter.getText().toString().replace("â‚¹ ","").replace(",", ""); int
 		 * premiumbeforeOPDNO = (int)Float.parseFloat(premiumbeforeOPD); int
 		 * premiumbeforeOPDNOSheet = (int)Float.parseFloat(dataRow.getProperty(
 		 * "NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
@@ -1544,10 +1543,10 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 	
 	// POS Active Assure & Revised POS Active Assure
 	
-			 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")) {
+			 if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4220)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Super Top Up (5223)")){
 						
 					
-						selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("Relation"), "Family-Size");
+						selectFromDropdownByVisibleText(FamilySize1, dataRow.getProperty("FamilySize"), "Family-Size");
 						Thread.sleep(WaitTime.medium);
 						
 					
@@ -1559,7 +1558,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						clearAndSenKeys(pincode,dataRow.getProperty("PinCode"),  "PinCode ");
 						Thread.sleep(WaitTime.medium);
 //						wait.until(ExpectedConditions.elementToBeSelected(AffiliatedDiscount));
-						selectFromDropdownByVisibleText(AffiliatedDiscount, dataRow.getProperty("Affiliated Discount"), "Affiliated Employee Discount");
+						selectFromDropdownByVisibleText(AffiliatedDiscount, dataRow.getProperty("AffiliatedEMPDiscount"), "Affiliated Employee Discount");
 						Thread.sleep(WaitTime.medium);
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 						
@@ -1592,9 +1591,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						//String name = sb.toString();
 						
 						
-						String Family = dataRow.getProperty("FamilyMembers");
-						String Family1 = Family.replace(" ", "");
-						ArrayList<String> myList = new ArrayList<String>(Arrays.asList(Family1.split("\\+")));
+						String Family = dataRow.getProperty("Relationship");
+						//String Family1 = Family.replace(" ", "");
+						ArrayList<String> myList = new ArrayList<String>(Arrays.asList(Family.split("\\+")));
 
 						
 						//member details
@@ -1607,14 +1606,17 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					
 						}
 
-//						Thread.sleep(WaitTime.medium);
-
-//						selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+						if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Assure (4226)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Care (4221)")||dataRow.getProperty("Product").equalsIgnoreCase("Super Health Plus Top Up (4223)")||dataRow.getProperty("Product").equalsIgnoreCase("Super Top Up (5223)"))
+					     {
+							Thread.sleep(WaitTime.medium);
+							selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible")," Dedcutible ");
+							
+					     }
 
 
 						Thread.sleep(WaitTime.medium);
 
-						selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
+						//selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory")," Room Category ");
 						
 						if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")){
 							
@@ -1967,7 +1969,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						 
 						
 						//Accidental Hospitalization Booster
-
+						  if(dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Assure (4227)")){
 						if(dataRow.getProperty("Accidental Hospitalization Booster").equalsIgnoreCase("Yes"))
 						{
 							
@@ -2072,7 +2074,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						Thread.sleep(3000);
 						
 			 }
-			 switchtodefaultframe(driver);
+			 }
+			 //switchtodefaultframe(driver);
 	}
 		
 	
@@ -2084,11 +2087,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook,sheetName, testCaseName,stepGroup);
 
 		//Values of Premium Calculation	
-    	String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
 		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
 		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
-//		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");
-//		String netpremiumafterloadingval = netpremiumafterloading.getText().toString().replace("₹ ", "").replace(",", "");
+		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");
+		String netpremiumafterloadingval = netpremiumafterloading.getText().toString().replace("₹ ", "").replace(",", "");
 		String taxamountElementval = taxamountElement.getText().toString().replace("₹ ", "").replace(",", "");
 		String premiuminclusiveofTAXval = premiuminclusiveofTAX.getText().toString().replace("₹ ", "").replace(",", "");
 		
@@ -2097,7 +2100,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		
 		//after OPD assert
 		int netpremiumaftervalNO = (int) Float.parseFloat(netpremiumafterval);	
-		int netpremiumaftervalNOSheet = (int) Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(AfterOPD)").replace(",", ""));	
+		int netpremiumaftervalNOSheet = (int) Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));	
 		verifyAssert(netpremiumaftervalNO, netpremiumaftervalNOSheet,"NetPremiumAfterDiscount(After Covers)");
 		//Assert.assertEquals(netpremiumafterloadingval, dataRow.getProperty("NetPremiumAfterLoading(AfterOPD)"));
 		
@@ -2120,8 +2123,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 		public void fillFamilyQuote(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-            //AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
+            AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 
 		}
 }
-

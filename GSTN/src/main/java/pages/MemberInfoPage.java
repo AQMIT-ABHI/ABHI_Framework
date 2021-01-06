@@ -94,7 +94,7 @@ public class  MemberInfoPage extends GenericMethods {
 	@FindBy(xpath="//button[@id='Submit']")
 	private WebElement subbtn;
 	
-	@FindBy(xpath="//button[@id='moreInfo']")
+	@FindBy(xpath="//button[@id='Submit']")
 	private WebElement subbtn3;
 	
 	@FindBy(xpath="//button[contains(text(),'Continue')]")

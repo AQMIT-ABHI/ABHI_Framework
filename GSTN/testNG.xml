@@ -5,15 +5,92 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TC_NSTP_ActivHealthFamily_Floater_024" verbose="2">
-    <parameter name="ScriptReference" value="CreateFamilyNSTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TC_NSTP_ActivHealthFamily_Floater_024"/>
-    <parameter name="Description" value="NSTP Family"/>
+  <test name="TCS_FamilyHealthTopUp_0172" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0172"/>
+    <parameter name="Description" value="Family Floater Policy with SI = 85 Lac and Deductible = 15 Lac"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TC_NSTP_ActivHealthFamily_Floater_024"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0172"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TC_NSTP_ActivHealthFamily_Floater_024 -->
+  </test> <!-- TCS_FamilyHealthTopUp_0172 -->
+  <test name="TCS_FamilyHealthTopUp_0173" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0173"/>
+    <parameter name="Description" value="Family Floater Policy with SI = 90 Lac and Deductible = 10 Lac"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0173"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0173 -->
+  <test name="TCS_FamilyHealthTopUp_0174" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0174"/>
+    <parameter name="Description" value="Family Floater Policy with SI = 95 Lac and Deductible = 5 Lac"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0174"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0174 -->
+  <test name="TCS_FamilyHealthTopUp_0175" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0175"/>
+    <parameter name="Description" value="Family Floater Policy with Employee/Affiliate and Long term discounts"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0175"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0175 -->
+  <test name="TCS_FamilyHealthTopUp_0176" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0176"/>
+    <parameter name="Description" value="Family Floater Policy with Employee/Affiliate and Long term discounts"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0176"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0176 -->
+  <test name="TCS_FamilyHealthTopUp_0177" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0177"/>
+    <parameter name="Description" value="Family Floater Policy with Employee/Affiliate and Long term discounts"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0177"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0177 -->
+  <test name="TCS_FamilyHealthTopUp_0178" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0178"/>
+    <parameter name="Description" value="Family Floater Policy with Employee/Affiliate and Long term discounts"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0178"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0178 -->
+  <test name="TCS_FamilyHealthTopUp_0179" verbose="2">
+    <parameter name="ScriptReference" value="CreateNewFAMILYFLOATERflowPricing"/>
+    <parameter name="ScenarioID" value="TCS_FamilyHealthTopUp_0179"/>
+    <parameter name="Description" value="Family Floater Policy with Employee/Affiliate and Long term discounts"/>
+    <parameter name="Product" value="Positive"/>
+    <parameter name="Module" value="TCS"/>
+    <parameter name="ScenarioUID" value="TCS_FamilyHealthTopUp_0179"/>
+    <classes>
+      <class name="testRunner.TestExecutionSuite"/>
+    </classes>
+  </test> <!-- TCS_FamilyHealthTopUp_0179 -->
 </suite> <!-- Pricing -->
