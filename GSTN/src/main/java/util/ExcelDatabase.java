@@ -98,7 +98,7 @@ public class ExcelDatabase {
 		}
 	}
 
-	public static void close_connection(Connection conn) {
+	public static void close_connection() {
 		conn.close();
 	}
 

@@ -240,10 +240,11 @@ public class StepDefination extends GSTNOnlinePortalPage {
 		}
 		
 		
-		
-		
-		
-		
+		public void fillEndosementFlow(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
+				String stepGroup, CustomAssert customAssert) throws Exception {
+			PolicyEndorsement end = new PolicyEndorsement(driver);
+			end.fillEndorsementFlow(driver, testScenarioID, workbook, conn, stepGroup, customAssert);
+		}
 		
 		
 		

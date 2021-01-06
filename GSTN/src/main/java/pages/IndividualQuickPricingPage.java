@@ -580,7 +580,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -1246,7 +1246,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			String QuoteNo = refno2.getText();
 			Thread.sleep(WaitTime.medium);
-			setQuoteNo(QuoteNo);
+			setQuoteNo(QuoteNo, testCaseName);
 			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1317,3 +1317,4 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 	
 }
+

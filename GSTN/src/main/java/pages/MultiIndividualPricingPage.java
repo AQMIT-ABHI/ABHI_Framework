@@ -661,7 +661,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 		//Get Quote Number
 		String QuoteNo = refno2.getText();
 		Thread.sleep(WaitTime.low);
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		Thread.sleep(WaitTime.low);
 		
@@ -1528,7 +1528,7 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			Thread.sleep(2000);
 			
 			String QuoteNo = refno2.getText();
-			setQuoteNo(QuoteNo);
+			setQuoteNo(QuoteNo, testCaseName);
 			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 			
 			Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -1582,3 +1582,4 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 		}
 }
+
