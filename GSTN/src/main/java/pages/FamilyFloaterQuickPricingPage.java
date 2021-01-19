@@ -2084,6 +2084,5 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			String stepGroup, CustomAssert customAssert) throws Exception {
 		fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 		//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-
 	}
 }

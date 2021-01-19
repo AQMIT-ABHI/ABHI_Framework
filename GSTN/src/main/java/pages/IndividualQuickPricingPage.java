@@ -1,6 +1,5 @@
 package pages;
 
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -1324,7 +1323,5 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		{
 			fillAddQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 			//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-		}
-	
+		}	
 }
-

@@ -246,9 +246,6 @@ public class NSTPindividualFlow extends GenericMethods{
 		@FindBy(xpath = "//label[contains(text(),'Quote/Policy Number')]//following::label[1]")
 		private WebElement QuoteNumber;
 	   
-		//Calculate Premium button
-		   @FindBy(xpath="//button[@id='CalPrmBtn']")
-		   private WebElement CalPrmBtn;
 	
 	WebDriverWait wait;
 	public NSTPindividualFlow(WebDriver driver) {
@@ -483,11 +480,6 @@ public class NSTPindividualFlow extends GenericMethods{
       		Thread.sleep(WaitTime.low);
       		
       		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-      		
-      		Thread.sleep(WaitTime.medium);
-    		click(CalPrmBtn,"Calculate Premium button");
-    		Thread.sleep(WaitTime.veryHigh);
-      		
       		Thread.sleep(WaitTime.high);
       		click(SubmitButton,"Accept QC");
       		Thread.sleep(WaitTime.high);
@@ -506,8 +498,6 @@ public class NSTPindividualFlow extends GenericMethods{
 	
      public void NSTPIndiviDetails(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
 	
-    	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-	
+    	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);	
 }
-	
 }

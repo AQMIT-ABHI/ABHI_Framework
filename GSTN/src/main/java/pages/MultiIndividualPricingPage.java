@@ -1582,4 +1582,3 @@ public class MultiIndividualPricingPage extends GenericMethods {
 			//AssertQuote(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 		}
 }
-

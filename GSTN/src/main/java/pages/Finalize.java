@@ -820,6 +820,5 @@ public class Finalize extends GenericMethods{
 	public void fillFinalize(WebDriver driver,String testCaseName, XSSFWorkbook workbook,Connection conn,String stepGroup,CustomAssert customAssert) throws Exception
 	{
 		fillfinalize(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-}
-		
+}		
 }

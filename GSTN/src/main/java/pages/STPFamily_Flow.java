@@ -148,7 +148,7 @@ public class STPFamily_Flow extends GenericMethods{
 	// Policy Number
 	@FindBy(xpath = "//label[contains(text(),'Quote/Policy Number')]//following::label[1]")
 	private WebElement policynumber;
-	
+
 	//Calculate Premium button
 	   @FindBy(xpath="//button[@id='CalPrmBtn']")
 	   private WebElement CalPrmBtn;
@@ -178,6 +178,7 @@ public class STPFamily_Flow extends GenericMethods{
 	@FindBy(xpath = "//button[@id='SaveRequire']")
 	private WebElement saverequire;
 	
+
 	@FindBy(xpath="//button[@title='Accept QC']")
 	private WebElement AcceptQC;
 	
@@ -221,8 +222,8 @@ public class STPFamily_Flow extends GenericMethods{
 		driver.findElement(By.xpath("//input[@name='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
 		click(driver.findElement(By.xpath("//a[contains(text(),'" + getQuoteNo(testCaseName) + "')]")), "Quote no");
+
 		Thread.sleep(WaitTime.medium);
-		
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
 		Thread.sleep(WaitTime.medium);
@@ -253,8 +254,6 @@ public class STPFamily_Flow extends GenericMethods{
 		String zoneval = dataRow.getProperty("Zone");
 		ArrayList<String> zonelist = new ArrayList<String>(Arrays.asList(zoneval.split("\\+")));
 
-		
-
 		for (int x = 0; x < myList1.size(); x++) {
 			int y = x + 1;
 
@@ -282,6 +281,7 @@ public class STPFamily_Flow extends GenericMethods{
 				driver.findElement(By.xpath("//span[contains(text(),'"+Occupationli.get(x)+"')]")).click();
 				
 				//Chronic
+
 				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 					String Chronic = dataRow.getProperty("Chronic");
 					ArrayList Chroniclist = new ArrayList(Arrays.asList(Chronic.split(",")));
@@ -293,7 +293,6 @@ public class STPFamily_Flow extends GenericMethods{
 						Reporter.log(" as " + Chroniclist.get(i));
 					}
 				}
-		
 				
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(Optedzone, zonelist.get(x), "Zone");
@@ -342,7 +341,6 @@ public class STPFamily_Flow extends GenericMethods{
 				Thread.sleep(WaitTime.veryHigh);
 				driver.findElement(By.xpath("//span[contains(text(),'"+Occupationli.get(x)+"')]")).click();
 				Thread.sleep(WaitTime.medium);
-
 				
 				if (dataRow.getProperty("IsChronic").equalsIgnoreCase("Yes")) {
 					String Chronic = dataRow.getProperty("Chronic");
@@ -356,7 +354,6 @@ public class STPFamily_Flow extends GenericMethods{
 					}
 				}
 
-				
 				/*
 				 * selectFromDropdownByVisibleText(hniCustomer,
 				 * dataRow.getProperty("HNICustomer"), "hni Customer");
@@ -395,8 +392,7 @@ public class STPFamily_Flow extends GenericMethods{
 
 			}
 	}
-   
-	       
+     
 	     //Policy Summary
 			switchtodefaultframe(driver);
 			switchtoframe(driver,"display");
@@ -435,8 +431,7 @@ public class STPFamily_Flow extends GenericMethods{
 			 * driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 			 * Thread.sleep(WaitTime.low); click(issuepolicy,"Issue Policy");
 			 * Thread.sleep(WaitTime.low);
-			 */
-	       		
+			 */		
 			
 			//Printing Policy Number
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
@@ -454,7 +449,6 @@ public class STPFamily_Flow extends GenericMethods{
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 			click(Continue,"Continue");
 			Thread.sleep(WaitTime.medium);
-			
 			
 			//Follow Up
 				switchtodefaultframe(driver);
@@ -490,7 +484,7 @@ public class STPFamily_Flow extends GenericMethods{
 						switchtoframe(driver, "memberiframe"+x);
 						Thread.sleep(WaitTime.low);
 
-				        Thread.sleep(WaitTime.medium);
+				    Thread.sleep(WaitTime.medium);
 						clearAndSenKeys(heightCm,dataRow.getProperty("HeightCm"),"Height in Cm");
 						Thread.sleep(WaitTime.low);
 
@@ -560,7 +554,7 @@ public class STPFamily_Flow extends GenericMethods{
 						clearAndSenKeys(mobileNumber, "9890122325", "Mobile No");
 						Thread.sleep(WaitTime.low);
 
-				        Thread.sleep(WaitTime.medium);
+				    Thread.sleep(WaitTime.medium);
 						clearAndSenKeys(heightCm,dataRow.getProperty("HeightCm"),"Height in Cm");
 						Thread.sleep(WaitTime.low);
 
@@ -656,7 +650,6 @@ public class STPFamily_Flow extends GenericMethods{
 
 					}
 				}
-
 			       
 			     //Policy Summary
 					switchtodefaultframe(driver);
@@ -725,7 +718,6 @@ public class STPFamily_Flow extends GenericMethods{
 						Thread.sleep(WaitTime.low);
 						switchtoframe(driver,"containerFrame");
 						driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-
 		}
 	}
 			
@@ -914,8 +906,7 @@ public class STPFamily_Flow extends GenericMethods{
 
 					}
 			}			       
-			    
-				
+			   
 			     //Policy Summary
 					switchtodefaultframe(driver);
 					switchtoframe(driver,"display");
@@ -1176,8 +1167,7 @@ public class STPFamily_Flow extends GenericMethods{
 
 						}
 					}
-			       
-				       
+			        
 				     //Policy Summary
 						switchtodefaultframe(driver);
 						switchtoframe(driver,"display");
@@ -1208,7 +1198,6 @@ public class STPFamily_Flow extends GenericMethods{
 						Thread.sleep(WaitTime.medium);
 						
 						//STP flow
-						
 						/*
 						 * driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 						 * Thread.sleep(WaitTime.medium); click(issuepolicy,"Issue Policy");

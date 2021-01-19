@@ -74,31 +74,6 @@ public class NSTPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "//td[contains(text(),'Whether there is diabetes, hypertension or any oth')]/following::textarea[1]")
 	private WebElement earlierpregnancyTextbox;
 
-	@FindBy(xpath = "//td[contains(text(),'Smoke or consume tobacco in any form, or alcohol')]/following::input[1]")
-	private WebElement PersonalHabbitsQuest;
-	
-	@FindBy(xpath = "//td[contains(text(),'Smoke or consume tobacco in any form, or alcohol')]/following::textarea[1]")
-	private WebElement PersonalHabbitsTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'Cigarettes per day')]/following::input[1]")
-	private WebElement CigarettesPerDayTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'insured smokes')]/following::input[1]")
-	private WebElement NoOfyrsSmokeTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'Amount per day')]/following::input[1]")
-	private WebElement TobaccoPerDayTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'Number of years for which the proposed to be insured consumes tobacco')]/following::input[1]")
-	private WebElement NoOfyrsTobaccoTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'Number of units')]/following::input[1]")
-	private WebElement WeeklyAlcoholTextbox;
-	
-	@FindBy(xpath = "//div[contains(text(),'Number of years for which the proposed to be insured consumes alcohol')]/following::input[1]")
-	private WebElement NoOfyrsAlcoholTextbox;
-	
-	
 	@FindBy(xpath = "//label[@id='Sub-Status']")
 	private WebElement RuleEngineStatus;
 
@@ -144,7 +119,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 	@FindBy(xpath = "//select[@id='Nationality']")
 	private WebElement nationality;
 
-	@FindBy(xpath = "//input[@id='country of residence']")
+	@FindBy(xpath = "//input[@id='countryof residence']")
 	private WebElement countryofResidence;
 
 	@FindBy(xpath = "//input[@id='occupation']")
@@ -345,38 +320,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 				String zoneval = dataRow.getProperty("Zone");
 				// String zoneval1 = zoneval.replace(" ", "");
 				ArrayList<String> zonelist = new ArrayList<String>(Arrays.asList(zoneval.split("\\+")));
-				
-				String QuestionarrieFlag = dataRow.getProperty("QuestionnaireConfig");
-				ArrayList<String> QuestionarrieList = new ArrayList<String>(Arrays.asList(QuestionarrieFlag.split("\\+")));
-				
-				String PolioQuestflag = dataRow.getProperty("PolioQuestConfig");
-				ArrayList<String> PolioQuestlist = new ArrayList<String>(Arrays.asList(PolioQuestflag.split("\\+")));
-				
-				String vitaminpillsQuestFlag = dataRow.getProperty("OtherthanvitaminpillsQuestConfig");
-				ArrayList<String> vitaminpillsQuestList = new ArrayList<String>(Arrays.asList(vitaminpillsQuestFlag.split("\\+")));
-				
-				String BloodtestsQuestFlag = dataRow.getProperty("BloodtestsQuestConfig");
-				ArrayList<String> BloodtestsQuestList = new ArrayList<String>(Arrays.asList(BloodtestsQuestFlag.split("\\+")));
-				
-				String SurgeryQuestFlag = dataRow.getProperty("SurgeryQuestConfig");
-				ArrayList<String> SurgeryQuestFlagList = new ArrayList<String>(Arrays.asList(SurgeryQuestFlag.split("\\+")));
-				
-				String viralfeverQuestFlag = dataRow.getProperty("viralfeverQuestConfig");
-				ArrayList<String> viralfeverQuestFlagList = new ArrayList<String>(Arrays.asList(viralfeverQuestFlag.split("\\+")));
-				
-				String dateofdeliveryQuestFlag = dataRow.getProperty("dateofdeliveryQuestConfig");
-				ArrayList<String> dateofdeliveryQuestList = new ArrayList<String>(Arrays.asList(dateofdeliveryQuestFlag.split("\\+")));
-				
-				String earlierpregnancyQuestFlag = dataRow.getProperty("earlierpregnancyQuestConfig");
-				ArrayList<String> earlierpregnancyQuestList = new ArrayList<String>(Arrays.asList(earlierpregnancyQuestFlag.split("\\+")));
-				
-				String PersonalHabbitQuestFlag = dataRow.getProperty("PersonalHabbitQuestConfig");
-				ArrayList<String> PersonalHabbitQuestList = new ArrayList<String>(Arrays.asList(PersonalHabbitQuestFlag.split("\\+")));
-				
-				String PersonalHabbitFlag = dataRow.getProperty("PersonalHabbitTextbox");
-				ArrayList<String> PersonalHabbitList = new ArrayList<String>(Arrays.asList(PersonalHabbitFlag.split("\\+")));
 
-				
 				for (int x = 0; x < myList1.size(); x++) {
 					int y = x + 1;
 
@@ -400,7 +344,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 						Thread.sleep(WaitTime.medium);
 						clearAndSenKeys(occupation, Occupationli.get(x), "Occupation");
 						Thread.sleep(WaitTime.veryHigh);
-						driver.findElement(By.xpath("//span[contains(text(),'"+Occupationli.get(x)+"')]")).click();
+						driver.findElement(By.xpath("//span[contains(text(),'" + Occupationli.get(x) + "')]")).click();
 
 						/*
 						 * Thread.sleep(WaitTime.medium);
@@ -432,27 +376,20 @@ public class NSTPFamily_Flow extends GenericMethods {
 
 //Questionnaires
 
-						if (QuestionarrieList.get(x).equalsIgnoreCase("Yes")) {
+						if (dataRow.getProperty("QuestionnaireConfig").equalsIgnoreCase("Yes")) {
 
 							Thread.sleep(WaitTime.medium);
 							click(Questionnairetab, "Questionnaire tab");
 							Thread.sleep(WaitTime.low);
 
-							if(PolioQuestlist.get(x).equalsIgnoreCase("Yes")) {
-							
 							Thread.sleep(WaitTime.medium);
 							click(PolioQuest, "Polio Question RadioButton");
 							Thread.sleep(WaitTime.low);
-							
 
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(PolioTextBox, dataRow.getProperty("PolioTextBox"), "Polio TextBox");
 							Thread.sleep(WaitTime.low);
-							
-							}
-							
-							if(vitaminpillsQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(OtherthanvitaminpillsQuest, "Otherthanvitaminpills Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -460,10 +397,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(OtherthanvitaminpillsTextbox,dataRow.getProperty("OtherthanvitaminpillsTextbox"),"Other than vitamin pills Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(BloodtestsQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(BloodtestsQuest, "Bloodtests Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -471,10 +405,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(BloodtestsTextbox, dataRow.getProperty("BloodtestsTextbox"),"Bloodtests Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(SurgeryQuestFlagList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(SurgeryQuest, "Surgery Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -483,10 +414,6 @@ public class NSTPFamily_Flow extends GenericMethods {
 							clearAndSenKeys(SurgeryTextbox, dataRow.getProperty("SurgeryTextbox"), "Surgery Textbox");
 							Thread.sleep(WaitTime.low);
 
-							}
-							
-							if(viralfeverQuestFlagList.get(x).equalsIgnoreCase("Yes")) {
-								
 							Thread.sleep(WaitTime.medium);
 							click(viralfeverQuest, "viralfever Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -494,10 +421,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(viralfeverTextbox, dataRow.getProperty("viralfeverTextbox"),"viralfever Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(dateofdeliveryQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(dateofdeliveryQuest, "dateofdelivery Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -505,10 +429,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(dateofdeliveryTextbox, dataRow.getProperty("dateofdeliveryTextbox"),"date of delivery Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(earlierpregnancyQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(earlierpregnancyQuest, "earlierpregnancy Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -516,40 +437,6 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(earlierpregnancyTextbox, dataRow.getProperty("earlierpregnancyTextbox"),"earlier pregnancy Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(PersonalHabbitQuestList.get(x).equalsIgnoreCase("Yes")) {
-								
-								Thread.sleep(WaitTime.medium);
-								click(PersonalHabbitsQuest, "PersonalHabbits Question RadioButton");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(PersonalHabbitsTextbox, PersonalHabbitList.get(x) ,"Personal Habbits");
-								Thread.sleep(WaitTime.low);
-								
-								String Smoke_Count = dataRow.getProperty("Smoke_Count");
-								ArrayList<String> Smoke_CountList = new ArrayList<String>(Arrays.asList(Smoke_Count.split("\\+")));
-								
-								String Tobacco_Count = dataRow.getProperty("Tobacco_Count");
-								ArrayList<String> Tobacco_CountList = new ArrayList<String>(Arrays.asList(Tobacco_Count.split("\\+")));
-								
-								String Alcohol_Count = dataRow.getProperty("Alcohol_Count");
-								ArrayList<String> Alcohol_CountList = new ArrayList<String>(Arrays.asList(Alcohol_Count.split("\\+")));
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(CigarettesPerDayTextbox, Smoke_CountList.get(x),"Cigarettes PerDay Textbox");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(TobaccoPerDayTextbox, Tobacco_CountList.get(x),"Tobacco PerDay Textbox");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(WeeklyAlcoholTextbox, Alcohol_CountList.get(x),"Weekly Alcohol Textbox");
-								Thread.sleep(WaitTime.low);
-								
-							}
 
 							click(SaveButton, "Save");
 							Thread.sleep(WaitTime.medium);
@@ -587,17 +474,17 @@ public class NSTPFamily_Flow extends GenericMethods {
 
 						Thread.sleep(WaitTime.medium);
 						selectFromDropdownByVisibleText(nationality, dataRow.getProperty("Nationality"), "Nationality");
-						Thread.sleep(WaitTime.high);
+						Thread.sleep(WaitTime.medium);
 
-//						clearAndSenKeys(countryofResidence, dataRow.getProperty("Country of Residence"),
-//								"Country of Residence");
-//						Thread.sleep(WaitTime.veryHigh);
-//						click(driver.findElement(By.xpath("//span[contains(text(),'" + dataRow.getProperty("Country of Residence") + "')]")),"Clicked on coutry");
-//						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(countryofResidence, dataRow.getProperty("Country of Residence"),
+								"Country of Residence");
+						Thread.sleep(WaitTime.veryHigh);
+						click(driver.findElement(By.xpath("//span[contains(text(),'" + dataRow.getProperty("Country of Residence") + "')]")),"Clicked on coutry");
+						Thread.sleep(WaitTime.medium);
 
 						clearAndSenKeys(occupation, Occupationli.get(x), "Occupation");
 						Thread.sleep(WaitTime.veryHigh);
-						driver.findElement(By.xpath("//span[contains(text(),'"+Occupationli.get(x)+"')]")).click();
+						driver.findElement(By.xpath("//span[contains(text(),'" + Occupationli.get(x) + "')]")).click();
 						Thread.sleep(WaitTime.medium);
 
 						/*
@@ -616,20 +503,20 @@ public class NSTPFamily_Flow extends GenericMethods {
 							}
 						}
 
-//						Thread.sleep(WaitTime.medium);
-//						selectFromDropdownByVisibleText(hniCustomer, "No","Hni Customer");
-//						Thread.sleep(WaitTime.low);
-
-//						Thread.sleep(WaitTime.medium);
-//						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No","CEO Club Advisor Customer");
-//						Thread.sleep(WaitTime.low);
-
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(priorityCustomer, "No","Priority Customer");
+						selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"),"Hni Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(sensitiveCustomerr, "No","Sensitive Customer");
+						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"),"CEO Club Advisor Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"),"Priority Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(sensitiveCustomerr, dataRow.getProperty("SensitiveCustomer"),"Sensitive Customer");
 						Thread.sleep(WaitTime.low);
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
@@ -640,27 +527,20 @@ public class NSTPFamily_Flow extends GenericMethods {
 
 //Questionnaires
 
-						if (QuestionarrieList.get(x).equalsIgnoreCase("Yes")) {
+						if (dataRow.getProperty("QuestionnaireConfig").equalsIgnoreCase("Yes")) {
 
 							Thread.sleep(WaitTime.medium);
 							click(Questionnairetab, "Questionnaire tab");
 							Thread.sleep(WaitTime.low);
 
-							if(PolioQuestlist.get(x).equalsIgnoreCase("Yes")) {
-							
 							Thread.sleep(WaitTime.medium);
 							click(PolioQuest, "Polio Question RadioButton");
 							Thread.sleep(WaitTime.low);
-							
 
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(PolioTextBox, dataRow.getProperty("PolioTextBox"), "Polio TextBox");
 							Thread.sleep(WaitTime.low);
-							
-							}
-							
-							if(vitaminpillsQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(OtherthanvitaminpillsQuest, "Otherthanvitaminpills Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -668,10 +548,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(OtherthanvitaminpillsTextbox,dataRow.getProperty("OtherthanvitaminpillsTextbox"),"Other than vitamin pills Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(BloodtestsQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(BloodtestsQuest, "Bloodtests Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -679,10 +556,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(BloodtestsTextbox, dataRow.getProperty("BloodtestsTextbox"),"Bloodtests Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(SurgeryQuestFlagList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(SurgeryQuest, "Surgery Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -691,10 +565,6 @@ public class NSTPFamily_Flow extends GenericMethods {
 							clearAndSenKeys(SurgeryTextbox, dataRow.getProperty("SurgeryTextbox"), "Surgery Textbox");
 							Thread.sleep(WaitTime.low);
 
-							}
-							
-							if(viralfeverQuestFlagList.get(x).equalsIgnoreCase("Yes")) {
-								
 							Thread.sleep(WaitTime.medium);
 							click(viralfeverQuest, "viralfever Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -702,10 +572,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(viralfeverTextbox, dataRow.getProperty("viralfeverTextbox"),"viralfever Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(dateofdeliveryQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(dateofdeliveryQuest, "dateofdelivery Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -713,10 +580,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(dateofdeliveryTextbox, dataRow.getProperty("dateofdeliveryTextbox"),"date of delivery Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(earlierpregnancyQuestList.get(x).equalsIgnoreCase("Yes")) {
-							
+
 							Thread.sleep(WaitTime.medium);
 							click(earlierpregnancyQuest, "earlierpregnancy Question RadioButton");
 							Thread.sleep(WaitTime.low);
@@ -724,41 +588,7 @@ public class NSTPFamily_Flow extends GenericMethods {
 							Thread.sleep(WaitTime.medium);
 							clearAndSenKeys(earlierpregnancyTextbox, dataRow.getProperty("earlierpregnancyTextbox"),"earlier pregnancy Textbox");
 							Thread.sleep(WaitTime.low);
-							}
-							
-							if(PersonalHabbitList.get(x).equalsIgnoreCase("Yes")) {
-								
-								Thread.sleep(WaitTime.medium);
-								click(PersonalHabbitsQuest, "PersonalHabbits Question RadioButton");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(PersonalHabbitsTextbox, PersonalHabbitList.get(x) ,"Personal Habbits");
-								Thread.sleep(WaitTime.low);
-								
-								String Smoke_Count = dataRow.getProperty("Smoke_Count");
-								ArrayList<String> Smoke_CountList = new ArrayList<String>(Arrays.asList(Smoke_Count.split("\\+")));
-								
-								String Tobacco_Count = dataRow.getProperty("Tobacco_Count");
-								ArrayList<String> Tobacco_CountList = new ArrayList<String>(Arrays.asList(Tobacco_Count.split("\\+")));
-								
-								String Alcohol_Count = dataRow.getProperty("Alcohol_Count");
-								ArrayList<String> Alcohol_CountList = new ArrayList<String>(Arrays.asList(Alcohol_Count.split("\\+")));
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(CigarettesPerDayTextbox, Smoke_CountList.get(x),"Cigarettes PerDay Textbox");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(TobaccoPerDayTextbox, Tobacco_CountList.get(x),"Tobacco PerDay Textbox");
-								Thread.sleep(WaitTime.low);
-								
-								Thread.sleep(WaitTime.medium);
-								clearAndSenKeys(WeeklyAlcoholTextbox, Alcohol_CountList.get(x),"Weekly Alcohol Textbox");
-								Thread.sleep(WaitTime.low);
-							}	
-							
-							
+
 							click(SaveButton, "Save");
 							Thread.sleep(WaitTime.medium);
 							click(Okbutton, "Ok Button");
@@ -984,25 +814,25 @@ public class NSTPFamily_Flow extends GenericMethods {
 							}
 						}
 
-//						Thread.sleep(WaitTime.medium);
-//						selectFromDropdownByVisibleText(hniCustomer, "No","Hni Customer");
-//						Thread.sleep(WaitTime.low);
-
-//						Thread.sleep(WaitTime.medium);
-//						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, "No","CEO Club Advisor Customer");
-//						Thread.sleep(WaitTime.low);
-
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(priorityCustomer, "No","Priority Customer");
+						selectFromDropdownByVisibleText(hniCustomer, dataRow.getProperty("HNICustomer"),"Hni Customer");
 						Thread.sleep(WaitTime.low);
 
 						Thread.sleep(WaitTime.medium);
-						selectFromDropdownByVisibleText(sensitiveCustomerr, "No","Sensitive Customer");
+						selectFromDropdownByVisibleText(CEOClubAdvisorCustomer, dataRow.getProperty("CEOClubAdvisor"),"CEO Club Advisor Customer");
 						Thread.sleep(WaitTime.low);
-						
-//						Thread.sleep(WaitTime.medium);
-//						selectFromDropdownByVisibleText(Optedzone, zonelist.get(x), "Zone");
-//						Thread.sleep(WaitTime.medium);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(priorityCustomer, dataRow.getProperty("PriorityCustomer"),"Priority Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(sensitiveCustomerr, dataRow.getProperty("SensitiveCustomer"),"Sensitive Customer");
+						Thread.sleep(WaitTime.low);
+
+						Thread.sleep(WaitTime.medium);
+						selectFromDropdownByVisibleText(Optedzone, zonelist.get(x), "Zone");
+						Thread.sleep(WaitTime.medium);
 
 						((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 						

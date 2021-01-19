@@ -581,7 +581,5 @@ public class OtherUserLogin extends GenericMethods {
 			String stepGroup, CustomAssert customAssert) throws Exception {
 		fillAndSubmitNewTCSLogin(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 		
-	}
-	
+	}	
 }
-
