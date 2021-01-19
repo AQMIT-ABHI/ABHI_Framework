@@ -61,6 +61,9 @@ public class OtherUserLogin extends GenericMethods {
 	@FindBy(xpath="//input[@id='Height (Feet)']")
 	private WebElement heightfeet;
 	
+	@FindBy(xpath="//input[@id='Height of the Insured (in cms)']")
+	private WebElement heightCm;
+	
 	@FindBy(xpath="//input[@id='Weight (in kgs)']")
 	private WebElement weightinKG;
 	
@@ -157,6 +160,10 @@ public class OtherUserLogin extends GenericMethods {
 	//Close
 	@FindBy(xpath="//button[@id='CloseButton']")
 	private WebElement closebutton;
+	
+	//Calculate Premium button
+	   @FindBy(xpath="//button[@id='CalPrmBtn']")
+	   private WebElement CalPrmBtn;
 	
 	
 	//Requirements icon
@@ -258,15 +265,16 @@ public class OtherUserLogin extends GenericMethods {
 		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
 		
 		
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
 		Thread.sleep(WaitTime.low);
 		click(membericon,"Member Icon");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		switchtoframe(driver,"containerFrame");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
         click(memberCode, "Member Code");
+        Thread.sleep(WaitTime.medium);
         switchtoframe(driver,"memberiframe0");
         
         
@@ -275,8 +283,14 @@ public class OtherUserLogin extends GenericMethods {
 //	    clearAndSenKeys(mobileNumber,"9890122325","Mobile No");
 //		Thread.sleep(WaitTime.low);
 		
-		Thread.sleep(WaitTime.low);
-		clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
+		/*
+		 * Thread.sleep(WaitTime.low);
+		 * clearAndSenKeys(heightfeet,dataRow.getProperty("HeightFeet"),"Height Feet");
+		 * Thread.sleep(WaitTime.low);
+		 */
+        
+        Thread.sleep(WaitTime.medium);
+		clearAndSenKeys(heightCm,dataRow.getProperty("HeightCm"),"Height in Cm");
 		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(WaitTime.low);
@@ -302,11 +316,12 @@ public class OtherUserLogin extends GenericMethods {
 		BtnPress1.put("Self Employed", 1);
 		Thread.sleep(WaitTime.medium); 
 		clearAndSenKeys(occupation,dataRow.getProperty("Occupation"), "Occupation");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		for(String key: BtnPress1.keySet()){
 			if(key.equalsIgnoreCase(dataRow.getProperty("Occupation")))
 			{
-			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+			//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='occupation']"))));
+			Thread.sleep(WaitTime.veryHigh);
 			driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
 		    }
 		}
@@ -376,7 +391,7 @@ public class OtherUserLogin extends GenericMethods {
 //		clearAndSenKeys(state,"MAHARASHTRA","State");
 //		Thread.sleep(WaitTime.low);
 			
-		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)"))
+		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 		{		
 		Thread.sleep(WaitTime.medium);
 	    selectFromDropdownByVisibleText(Optedzone,dataRow.getProperty("Zone"),"Zone");
@@ -475,16 +490,15 @@ public class OtherUserLogin extends GenericMethods {
 		//Policy Summary
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		click(policysummary, "Policy Summary");
 		switchtoframe(driver,"containerFrame");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Policy Summary
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.low);
 		click(DataEntry1,"DataEntry 1 Completed");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 		
 		//Data Entry1 Completed for all scrutiny cases
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
@@ -493,19 +507,24 @@ public class OtherUserLogin extends GenericMethods {
 		Reporter.log("For all Scrutiny cases "+dataentry);
 		Reporter.log("---------");
 		
+		Thread.sleep(WaitTime.medium);
+		click(CalPrmBtn,"Calculate Premium button");
+		Thread.sleep(WaitTime.veryHigh);
+		
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(WaitTime.low);
 		click(AcceptQC,"Accept QC");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.veryHigh);
 		
 		
 		//STP flow
 	
-		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
-		Thread.sleep(WaitTime.low);
-		click(issuepolicy,"Issue Policy");
-		Thread.sleep(WaitTime.low);
+		/*
+		 * driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+		 * Thread.sleep(WaitTime.low); click(issuepolicy,"Issue Policy");
+		 * Thread.sleep(WaitTime.low);
+		 */
 		
 		/*
 		 * click(Continue,"Continue"); Thread.sleep(WaitTime.low);
@@ -562,7 +581,5 @@ public class OtherUserLogin extends GenericMethods {
 			String stepGroup, CustomAssert customAssert) throws Exception {
 		fillAndSubmitNewTCSLogin(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 		
-	}
-	
+	}	
 }
-

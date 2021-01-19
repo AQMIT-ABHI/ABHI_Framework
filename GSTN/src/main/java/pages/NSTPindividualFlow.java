@@ -498,10 +498,6 @@ public class NSTPindividualFlow extends GenericMethods{
 	
      public void NSTPIndiviDetails(WebDriver driver, String testCaseName, XSSFWorkbook workbook, Connection conn, String stepGroup, CustomAssert customAssert) throws Exception {
 	
-    	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);
-	
+    	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);	
 }
-	
-	
-	
 }

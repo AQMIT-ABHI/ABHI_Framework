@@ -5,15 +5,15 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TC_NSTP_ActivHealthFamily_Floater_004" verbose="2">
-    <parameter name="ScriptReference" value="CreateFamilyNSTPFlowPricing"/>
-    <parameter name="ScenarioID" value="TC_NSTP_ActivHealthFamily_Floater_004"/>
-    <parameter name="Description" value="PPMC Cat3+1"/>
+  <test name="TCS_ActivHealth_FamilySTP_00001" verbose="2">
+    <parameter name="ScriptReference" value="CreateFamilySTPFlowPricing"/>
+    <parameter name="ScenarioID" value="TCS_ActivHealth_FamilySTP_00001"/>
+    <parameter name="Description" value="Activ Health (4212)-Family Floater-Platinum-Enhanced-PPMC-Cat5"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TC_NSTP_ActivHealthFamily_Floater_004"/>
+    <parameter name="ScenarioUID" value="TCS_ActivHealth_FamilySTP_00001"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TC_NSTP_ActivHealthFamily_Floater_004 -->
+  </test> <!-- TCS_ActivHealth_FamilySTP_00001 -->
 </suite> <!-- Pricing -->
