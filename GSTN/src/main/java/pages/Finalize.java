@@ -253,14 +253,27 @@ public class Finalize extends GenericMethods{
 		private WebElement refno2;
 		
 		@FindBy(xpath="(//b[contains(text(),'Net Premium before Discount')]//following::div/div/b)[13]")
+
 		private WebElement premiuminclusiveofTAX ;
 		
 		@FindBy(xpath="//input[@id='PAN Number']")
 		private WebElement pannumber;
+	
+		//Search Button
+		@FindBy(xpath="//i[@title='Search Party']")
+		private WebElement PartySearchicon;
+
+		//Party Textbox
+		@FindBy(xpath="//input[@id='Party Code']")
+		private WebElement PartyTxtbox;
+
+		//search button
+		@FindBy(xpath="//button[@id='Search']")
+		private WebElement Searchbtn;
+				
 		
 		static String commonage;
-	
-
+		
 	    WebDriverWait wait;
 	    public Finalize(WebDriver driver) {
 		super(driver);
@@ -292,7 +305,19 @@ public class Finalize extends GenericMethods{
 		String parentWindow = driver.getWindowHandle();
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 
+		if(!dataRow.getProperty("PartyCode").isEmpty()) {
+			
+			switchtodefaultframe(driver);
+			switchtoframe(driver, "display"); 
+			click(PartySearchicon, "Party Search icon");
+			switchToWindow(driver);
+			clearAndSenKeys(PartyTxtbox, dataRow.getProperty("PartyCode"), "Party code");
+			click(Searchbtn, "Search button");
+			click(driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("PartyCode")+"')]")), "Party Code");
+			
+		}
 		
+		else {
 		//Entering Policy Holder Details
 		wait.until(ExpectedConditions.elementToBeClickable(policyholderCD));
 		Thread.sleep(WaitTime.medium);
@@ -479,7 +504,7 @@ public class Finalize extends GenericMethods{
 
 		//Arogya Sanjevani
 
-		else if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)"))
+		else if(dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("POS Activ Secure (6000)")||dataRow.getProperty("Product").equalsIgnoreCase("Activ Secure (5000)"))
 			
 
 			{
@@ -625,8 +650,8 @@ public class Finalize extends GenericMethods{
 			
 
 		//Country of Residence
-		Thread.sleep(WaitTime.medium);
-		selectFromDropdownByVisibleText(countryofresidence,dataRow.getProperty("Country of Residence"),"Country of Residence");
+		//Thread.sleep(WaitTime.medium);
+		//selectFromDropdownByVisibleText(countryofresidence,dataRow.getProperty("Country of Residence"),"Country of Residence");
 		
 		//27-08-2020
 		//GST
@@ -642,10 +667,6 @@ public class Finalize extends GenericMethods{
 		clearAndSenKeys(pannumber,dataRow.getProperty("PAN Number"),"PAN Number" );
 		}
 		
-		//Whatsapp Number
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(whatsappnumber,dataRow.getProperty("WhatsApp Number"),"WhatsApp Number" );
-		
 		
 		//IstheMailing Radiobutton
 		Thread.sleep(WaitTime.medium);
@@ -657,75 +678,77 @@ public class Finalize extends GenericMethods{
 		click(saveBTN,"Save");
 		Thread.sleep(5000);
 		click(okBTN, "OK");
-		Thread.sleep(5000);
-		
+		Thread.sleep(WaitTime.high);
+		 
 		//click Multicolor icon
 		click(MulticolorIcon,"Multicolor Icon");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		//Click Permanent Contact
 		click(PermanentContact,"Permanent Contact");
-		Thread.sleep(2000);
+		Thread.sleep(WaitTime.medium);
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
 		
 		
 		//Fill Address line 1
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(AddressLine1,dataRow.getProperty("Address Line 1"),"Address Line 1");
 		
 		
 		//Fill Address line 2
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(AddressLine2,dataRow.getProperty("Address Line 2"),"Address Line 2");
 		
 		
 		//Fill Pincode
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(Pincode,dataRow.getProperty("PinCode"),"Pincode");
 		Pincode.sendKeys(Keys.TAB);
 		
 		
 		//Landline Number
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(Landline,dataRow.getProperty("Landline Number"),"Landline number");
 		
 		
 		//Mobile Number
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(Mobile,dataRow.getProperty("Mobile Number"),"Mobile Number");
 		
+		//Whatsapp Number
+ 		Thread.sleep(WaitTime.medium);
+ 		clearAndSenKeys(whatsappnumber,dataRow.getProperty("WhatsApp Number"),"WhatsApp Number" );
+		
 		//Fill Email ID
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(Email,dataRow.getProperty("Email ID"),"Email ID");
 		
 		
 		//Click Save Button
-		Thread.sleep(5000);
+		Thread.sleep(WaitTime.medium);
 		click(Save1,"Save Button");
 		
 		
 		//Click OK Button
-		Thread.sleep(6000);
+		Thread.sleep(WaitTime.medium);
 		click(okBTN,"OK");
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		
 		
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
 		//Party Create Window
 		String ChildWindow1=driver.getWindowHandle();
-		Thread.sleep(3000);
+		Thread.sleep(WaitTime.medium);
 		click(bankaccountdetails,"bankaccountdetail");
 		switchToWindow(driver);
-		Thread.sleep(4000);
-			 		
 		Thread.sleep(WaitTime.medium);
+			 		
 		clearAndSenKeys(accountNo,dataRow.getProperty("AccountNo"),"Account No");
 		Thread.sleep(WaitTime.medium);
 				
-		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(confirmaccountNo,dataRow.getProperty("ConformAccountNo"),"ConformAccount No");
 		Thread.sleep(WaitTime.medium);
 				
@@ -774,6 +797,7 @@ public class Finalize extends GenericMethods{
 		click(activateclient,"Activate Client");
 		Thread.sleep(3000);
 		
+		}
 		
 		//Is Policy Holder a Member
 		driver.switchTo().window(parentWindow);

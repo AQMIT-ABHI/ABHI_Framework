@@ -11,6 +11,8 @@ import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+import util.ConfigReader;
+
 
 public class TestSuiteEngine {
 	@SuppressWarnings("static-access")
@@ -19,7 +21,8 @@ public class TestSuiteEngine {
 		for(TestSuiteGenerator testSuiteGenerator:frameworkServices.getTestSuiteForExecution()) {
 			XmlSuite suite=new XmlSuite();
 			suite.setName(testSuiteGenerator.getLOBName());
-			suite.setThreadCount(1);
+			System.out.println(Integer.valueOf(ConfigReader.getInstance().getValue("ThreadCount")));
+			suite.setThreadCount(Integer.valueOf(ConfigReader.getInstance().getValue("ThreadCount")));
 			suite.setParallel("tests");
 			Map<String, String> testSuiteParams=new HashMap<>();
 			testSuiteParams.put("BrowserName", testSuiteGenerator.getBrowserName());

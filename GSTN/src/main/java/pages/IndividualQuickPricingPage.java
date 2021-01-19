@@ -217,6 +217,10 @@ public class IndividualQuickPricingPage extends GenericMethods {
 	@FindBy(xpath="//input[@id='natureofdutyrowIndex']")
 	private WebElement NatureOfDuty;
 	
+	//Annual Gross Income
+	@FindBy(xpath="//input[@id='Annual Gross Income']")
+	private WebElement AnnualGross;
+	
 	//Active Secure POS & Non POSCovers
 	
 	//ACCDCheckbox
@@ -526,7 +530,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 						if(key.equalsIgnoreCase(dataRow.getProperty("NatureOfDuty")))
 						{
 						//wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//input[@id='natureofdutyrowIndex']"))));
-					    Thread.sleep(WaitTime.high);
+					    Thread.sleep(WaitTime.veryHigh);
 						driver.findElement(By.xpath("//span[contains(text(),'"+key+"')]")).click();
 					    }
 					}
@@ -536,6 +540,12 @@ public class IndividualQuickPricingPage extends GenericMethods {
 					//selectFromDropdownByVisibleText(RiskClass, dataRow.getProperty("RiskClass"), "Risk Class");
 					//Thread.sleep(WaitTime.low);
 			
+					
+					//Annual Gross Income
+					Thread.sleep(WaitTime.medium); 
+					clearAndSenKeys(AnnualGross,dataRow.getProperty("AnnualGross"), "Annual Gross Income");
+					Thread.sleep(WaitTime.medium);
+					
 				}
 				
 				
@@ -580,7 +590,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Thread.sleep(WaitTime.low);
 		
 		String QuoteNo = refno2.getText();
-		setQuoteNo(QuoteNo);
+		setQuoteNo(QuoteNo, testCaseName);
 		ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 		
 		Reporter.log("<B> Quotation:- </B> "+refno2.getText());
@@ -594,7 +604,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		if(dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")||dataRow.getProperty("Product").equalsIgnoreCase("Arogya Sanjeevani Policy (4225)")||dataRow.getProperty("Product").equalsIgnoreCase("Global Health Secure - As Is (4222)")||dataRow.getProperty("Product").equalsIgnoreCase("Global Health Secure - Revised (5222)"))
 		{
 
-		//String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+		//String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "").replace(",", "");
 		//Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
 		 
 		}
@@ -802,7 +812,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>"+premiuminclusiveofTAX.getText());
 			Reporter.log("<B> -------------------------------------------</B>");
 			
-			String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
+			String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "").replace(",", "");
 			Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
 			
 		}
@@ -1246,7 +1256,7 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			
 			String QuoteNo = refno2.getText();
 			Thread.sleep(WaitTime.medium);
-			setQuoteNo(QuoteNo);
+			setQuoteNo(QuoteNo, testCaseName);
 			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote No Generated");
 			Thread.sleep(WaitTime.medium);
 			
@@ -1267,12 +1277,12 @@ public class IndividualQuickPricingPage extends GenericMethods {
 			 Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>" +premiuminclusiveofTAX.getText());
 			 Reporter.log("<B> -------------------------------------------</B>");
 			
-			String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
-			Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
+			//String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "").replace(",", "");
+			//Assert.assertEquals("Expected value",netpremiumbeforeval, dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)").replace(",",""));
 		
 		 }
 
-			//String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ","").replace(",", ""); 
+			//String premiumbeforeOPD = netpremiumafter.getText().toString().replace("â‚¹ ","").replace(",", ""); 
 			//Assert.assertEquals(premiumbeforeOPD,dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
 			
 			switchtodefaultframe(driver);	
@@ -1287,13 +1297,13 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook,sheetName, testCaseName,stepGroup);
 		
 		//Values of Premium Calculation	
-		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "").replace(",", "");
-		String discountval = Discount.getText().toString().replace("₹ ", "").replace(",", "");
-		String netpremiumafterval = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
-		String loadingval = loading.getText().toString().replace("₹ ", "").replace(",", "");
-		String netpremiumafterloadingval = netpremiumafterloading.getText().toString().replace("₹ ", "").replace(",", "");
-		String taxamountElementval = taxamountElement.getText().toString().replace("₹ ", "").replace(",", "");
-		String premiuminclusiveofTAXval = premiuminclusiveofTAX.getText().toString().replace("₹ ", "").replace(",", "");
+		String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String discountval = Discount.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String netpremiumafterval = netpremiumafter.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String loadingval = loading.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String netpremiumafterloadingval = netpremiumafterloading.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String taxamountElementval = taxamountElement.getText().toString().replace("â‚¹ ", "").replace(",", "");
+		String premiuminclusiveofTAXval = premiuminclusiveofTAX.getText().toString().replace("â‚¹ ", "").replace(",", "");
 		
 
 		//after OPD assert
@@ -1317,3 +1327,4 @@ public class IndividualQuickPricingPage extends GenericMethods {
 		}
 	
 }
+

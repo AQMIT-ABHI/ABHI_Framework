@@ -36,6 +36,10 @@ public class BasicDetails extends GenericMethods{
 	@FindBy(xpath="//select[@id='Go Green']")
 	private WebElement gogreen;
 	
+	//Channel
+	@FindBy(xpath="//select[@id='NB Channel']")
+	private WebElement Channel;
+	
 	//Intermediary code
 	@FindBy(xpath="//input[@id='Producer Code']")
 	private WebElement intermediarycodeField;
@@ -78,6 +82,9 @@ public class BasicDetails extends GenericMethods{
 	@FindBy(xpath="//button[@id='CloseBtn']")
 	private WebElement closeBTN;
 	
+	//Whatsapp Number
+	@FindBy(xpath="//input[@id='WhatsApp Number']")
+	private WebElement whatsappnumber;
 	
 	//Save 
 	@FindBy(xpath="//button[@id='Save']")
@@ -129,8 +136,11 @@ public class BasicDetails extends GenericMethods{
 		//Go green
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(gogreen,dataRow.getProperty("Go Green"),"Go Green");
-		Thread.sleep(WaitTime.low);
 		
+		//Channel
+		//Thread.sleep(WaitTime.medium);
+		//selectFromDropdownByVisibleText(Channel,dataRow.getProperty("Channel"),"Channel");
+		//Thread.sleep(WaitTime.low);
 		
 		//Intermediary code
 		//wait.until(ExpectedConditions.elementToBeClickable(intermediarycodeField));
@@ -154,14 +164,22 @@ public class BasicDetails extends GenericMethods{
 //		clearAndSenKeys(intermediaryname, "New Party", "Intermediary Name" );
 //		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
 		
- 	// Nominee details	
+ 		//Whatsapp Number
+ 		//Thread.sleep(WaitTime.medium);
+ 		//clearAndSenKeys(whatsappnumber,dataRow.getProperty("WhatsApp Number"),"WhatsApp Number" );
  		
+ 	// Nominee details	
  		Thread.sleep(3000);
 		click(nomineeDeyailsBTN,"NomineeDetailsBtn");
 		Thread.sleep(WaitTime.low);
 		
 		Thread.sleep(2000);
 		switchToWindow(driver);
+		
+		//Ok
+		//Thread.sleep(WaitTime.medium);
+		//click(okBTN3, "Ok ");
+		//Thread.sleep(WaitTime.medium);
  		
 		Thread.sleep(WaitTime.medium);
 		clearAndSenKeys(nomineeName,getRandomString(),"Nominee Name ");

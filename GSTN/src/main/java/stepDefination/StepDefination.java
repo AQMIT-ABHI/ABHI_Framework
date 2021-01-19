@@ -246,11 +246,6 @@ public class StepDefination extends GSTNOnlinePortalPage {
 		
 		
 		
-		
-		
-		
-		
-		
 	
 	public void addNewReturnB2C(WebDriver driver, String testScenarioID, XSSFWorkbook workbook, Connection conn,
 			String stepGroup, CustomAssert customAssert) throws Exception {

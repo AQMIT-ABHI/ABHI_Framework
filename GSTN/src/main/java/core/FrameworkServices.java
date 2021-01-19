@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import util.ConfigReader;
+import util.MapOfUserIDAssignedToAllocation;
 
 
 public class FrameworkServices {
@@ -18,8 +19,8 @@ public class FrameworkServices {
 	
 	public static XSSFWorkbook masterWorkbook;
 	
-	public FrameworkServices() throws IOException {
-		
+	public FrameworkServices() throws Exception {
+		MapOfUserIDAssignedToAllocation.getInstance();
 	}
 	
 	public List<TestSuiteGenerator> getTestSuiteForExecution() throws Exception{

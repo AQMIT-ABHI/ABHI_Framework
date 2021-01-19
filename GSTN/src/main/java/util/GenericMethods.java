@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -46,22 +47,26 @@ import com.github.javafaker.Faker;
 import constants.PropertyConfigs;
 import core.DateGenerator;
 import testRunner.TestEngine;
+import testRunner.TestExecutionSuite;
 
 
 
 public class GenericMethods {
 
 	WebDriver driver;
-	WebDriverWait wait;
+	protected WebDriverWait wait;
 	
-	static String QuoteNo;
+	public static  HashMap<String, String> quoteNumber = new HashMap<>();
+	
 		
-	public static String getQuoteNo() {
-		return QuoteNo;
+	public static String getQuoteNo(String testId) {
+		return quoteNumber.get(testId);
 	}
 	
-	public static void setQuoteNo(String quoteNo) {
-		QuoteNo = quoteNo;
+	public static void setQuoteNo(String quoteNo,String testId) {
+		quoteNumber.put(testId,quoteNo);
+		HashMap<String,String> quoteMap = TestExecutionSuite.scenarioStatus.get(testId);
+		quoteMap.put("QuoteNumber", quoteNo);
 	}
 	
 	

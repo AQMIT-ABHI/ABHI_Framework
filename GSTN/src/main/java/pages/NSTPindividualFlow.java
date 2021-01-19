@@ -246,6 +246,9 @@ public class NSTPindividualFlow extends GenericMethods{
 		@FindBy(xpath = "//label[contains(text(),'Quote/Policy Number')]//following::label[1]")
 		private WebElement QuoteNumber;
 	   
+		//Calculate Premium button
+		   @FindBy(xpath="//button[@id='CalPrmBtn']")
+		   private WebElement CalPrmBtn;
 	
 	WebDriverWait wait;
 	public NSTPindividualFlow(WebDriver driver) {
@@ -279,14 +282,14 @@ public class NSTPindividualFlow extends GenericMethods{
 		click(PolicyManagement,"Policy Management tab");
 		
 		Thread.sleep(4000);
-		clearAndSenKeys(QuoteNoSearch,getQuoteNo(),"Quote No Input");
+		clearAndSenKeys(QuoteNoSearch,getQuoteNo(testCaseName),"Quote No Input");
 		Thread.sleep(4000);
 		
 		click(SearchButton, "search");
 		
 		driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
 		Thread.sleep(2000);
-		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo()+"')]")),"Quote no");
+		click(driver.findElement(By.xpath("//a[contains(text(),'"+getQuoteNo(testCaseName)+"')]")),"Quote no");
 		
 		
   
@@ -480,6 +483,11 @@ public class NSTPindividualFlow extends GenericMethods{
       		Thread.sleep(WaitTime.low);
       		
       		driver.findElement(By.cssSelector("body")).sendKeys(Keys.PAGE_DOWN);
+      		
+      		Thread.sleep(WaitTime.medium);
+    		click(CalPrmBtn,"Calculate Premium button");
+    		Thread.sleep(WaitTime.veryHigh);
+      		
       		Thread.sleep(WaitTime.high);
       		click(SubmitButton,"Accept QC");
       		Thread.sleep(WaitTime.high);
@@ -501,7 +509,5 @@ public class NSTPindividualFlow extends GenericMethods{
     	 fillNSTPinfo(driver, testCaseName, workbook, conn, stepGroup, customAssert);
 	
 }
-	
-	
 	
 }

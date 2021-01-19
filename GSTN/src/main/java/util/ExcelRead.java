@@ -26,7 +26,7 @@ public class ExcelRead {
 			DataFormatter formatter = new DataFormatter(); //creating formatter using the default locale
 
 			Row titleRow = sheet.getRow(0);
-
+			
 			for (int i = 1; i<sheet.getPhysicalNumberOfRows(); i++) {
 				Row dataRow = sheet.getRow(i);
 				String testCaseID = formatter.formatCellValue(dataRow.getCell(1));
@@ -34,8 +34,8 @@ public class ExcelRead {
 				String groupName=formatter.formatCellValue(dataRow.getCell(3));
 				if (testCaseID.equalsIgnoreCase(testCaseName) && stepGroup.equalsIgnoreCase(groupName)) {
 					if(stepGroup.equalsIgnoreCase(groupName)){		
-						for (int j = 0; j<dataRow.getPhysicalNumberOfCells(); j++) {
-
+						for (int j = 0; j<titleRow.getPhysicalNumberOfCells(); j++) {
+							
 							Cell cell =  dataRow.getCell(j); //new code added By Anil on 01/08/2018 to get data from formula based cell in excel
 							try {/*
 								if(cell.getCellType() == Cell.CELL_TYPE_FORMULA) {
