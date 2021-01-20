@@ -99,16 +99,19 @@ public class PolicyEndorsement extends GenericMethods {
 	private WebElement continueBTN1;
 
 	//Show Requirement on Requirements page
-	@FindBy(xpath="(//img[@title='Show Requirement'])[1]")
+	@FindBy(xpath="//img[@title='Show Requirement'][1]")
 	private WebElement showrequirement1;
 
 	//Selection Dropdown 3
-	@FindBy(xpath="//div[contains(text(),'Others')]//following::select[1]")
+	//@FindBy(xpath="//div[contains(text(),'Aadhar Card')]//following::select[1]")
+	
+	@FindBy(xpath = "//div[contains(text(),'Others')]//following::select[1]")
 	private WebElement Optional3;
 
-	
-
 	// Upload Requirement A
+	//(xpath = "//div[contains(text(),'Others')]//following::img[3]")
+	//@FindBy(xpath = "//div[contains(text(),'Aadhar Card')]//following::img[3]")
+	
 	@FindBy(xpath = "//div[contains(text(),'Others')]//following::img[3]")
 	private WebElement uploadrequirementA;
 
@@ -134,7 +137,7 @@ public class PolicyEndorsement extends GenericMethods {
 	private WebElement continueButton;
 
 	// Save
-	@FindBy(xpath = "//button[@id='sendSubmit']")
+	@FindBy(xpath = "//button[@id='sendQCWkf']")
 	private WebElement submit;
 
 	@FindBy(xpath="//input[@id='Nominee Name0']")
@@ -340,7 +343,38 @@ public class PolicyEndorsement extends GenericMethods {
 	@FindBy(xpath = "//select[@id='Type of Account']")
 	private WebElement Typeofaccount;
 	
+	
+	//Pravina
+	@FindBy(xpath = "//td//input[@class='ng-pristine ng-untouched ng-valid ng-empty']")
+	private WebElement ListOfMemberCheckbox;
+	
+	@FindBy(xpath = "//button[@id='Loan']")
+	private WebElement loanButton;
+	
+	@FindBy(xpath = "//input[@id='Loan Account Number0']")
+	private WebElement loanAccountNumber;
+	
+	@FindBy(xpath = "//button[@id='CloseBtn']")
+	private WebElement closeButton;
+	
+	@FindBy(xpath = "//button[@id='CloseButton']")
+	private WebElement close1Button;
+	
+	@FindBy(xpath = "//button[@class='btn btn-default'][contains(text(),'OK')]")
+	private WebElement errorOk;
+	
+	@FindBy(xpath = "//button[@id='Accept_QC']")
+	private WebElement acceptQC;
+	
+	@FindBy(xpath="//label[@id='Status']")
+	private WebElement EndorsementStatus;
 
+	@FindBy(xpath="//label[@id='Member Code']")
+	private WebElement EndorsementMemberCode;
+	
+	@FindBy(xpath="//select[@id='Member Substatus']")
+	private WebElement memberSubStatus;
+	
 	WebDriverWait wait;
 	public PolicyEndorsement(WebDriver driver) {
 		super(driver);
@@ -442,9 +476,19 @@ public class PolicyEndorsement extends GenericMethods {
 
 		Thread.sleep(WaitTime.low);
 		selectFromDropdownByVisibleText(requesttype,dataRow.getProperty("RequestType"),"Selection Optional");
+		Thread.sleep(WaitTime.high);
+		
+		
+		if(dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in Nominee Details"))
+		{
+			click(ListOfMemberCheckbox, "List Of Member Selcection");
+		}
+		
+		
 		Thread.sleep(WaitTime.low);
-
+		
 		click(proceedbtn,"Proccedbtn");
+		Thread.sleep(WaitTime.medium);
 		driver.switchTo().window(parentWindow1);
 		switchtodefaultframe(driver);
 		switchtoframe(driver,"display");
@@ -470,7 +514,7 @@ public class PolicyEndorsement extends GenericMethods {
 				nomineecontactNo.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 				Thread.sleep(WaitTime.low);
 				clearAndSenKeys(nomineecontactNo,dataRow.getProperty("NomineeContactNo"),"Nominee Contact No");
-				SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+				//SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 			}
 
 			Thread.sleep(WaitTime.low);
@@ -1021,13 +1065,48 @@ public class PolicyEndorsement extends GenericMethods {
 			Thread.sleep(WaitTime.medium);
 			
 		}
+		
+		if(dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in Loan Account Number"))
+		{
+			click(membericon,"Member Icon");
+			Thread.sleep(WaitTime.low);
+			switchtoframe(driver,"containerFrame");
+			Thread.sleep(WaitTime.low);
+			click(memberCode, "Member Code");
+			switchtoframe(driver,"memberiframe0");
+			
+		
+			click(loanButton,"Loan Details Button");
+			Thread.sleep(WaitTime.medium);
+			switchToWindow(driver);
+			
+			if(!dataRow.getProperty("LoanAccountNumber").isEmpty())
+			{
+			Thread.sleep(WaitTime.medium);
+			clearAndSenKeys(loanAccountNumber,dataRow.getProperty("LoanAccountNumber"),"Loan Account number");
+			Thread.sleep(WaitTime.medium);
+			}
+			
+						
+			click(Save,"Save Button");
+			Thread.sleep(WaitTime.medium);
+			click(Okbutton, "Ok Button");
+			Thread.sleep(WaitTime.medium);
+			click(closeButton, "Close Button");
+			
+			Thread.sleep(WaitTime.medium);
+			click(close1Button, "Close Button");
+			
+		}
 			
 
 		if(dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in Nominee Details")
 				||dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification In Member Details")
-				||dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in EIA Number")) 
+				||dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in EIA Number")
+				||dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in Loan Account Number")) 
 		{ 
-
+			
+			Thread.sleep(WaitTime.medium);
 			//Upload Documents
 			click(showrequirement1,"Click on Show Requirement");
 			Thread.sleep(WaitTime.medium);
@@ -1044,7 +1123,7 @@ public class PolicyEndorsement extends GenericMethods {
 			// Choose File 1
 			click(choosefile, "Choose File");
 			Thread.sleep(WaitTime.medium);
-			choosefile.sendKeys("D:\\code.txt");
+			choosefile.sendKeys("F:\\Document.txt");
 			Thread.sleep(WaitTime.high);
 
 			// Upload File 1
@@ -1055,7 +1134,7 @@ public class PolicyEndorsement extends GenericMethods {
 			switchtodefaultframe(driver);
 			switchtoframe(driver, "display");
 			switchtoframe(driver, "containerFrame");
-			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
+			//SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 
 			// Ok Button
 
@@ -1065,10 +1144,13 @@ public class PolicyEndorsement extends GenericMethods {
 
 			click(saverequire, "Save");
 			Thread.sleep(WaitTime.medium);
-
+			
+			click(errorOk, "Error Ok Button");
 			// Ok Button
-			click(OK, "Modification Successfully Completed");
-			Thread.sleep(WaitTime.medium);
+			/*
+			 * click(OK, "Modification Successfully Completed");
+			 * Thread.sleep(WaitTime.medium);
+			 */
 
 			// Continue Button
 			click(continueButton, "Continue Button");
@@ -1079,10 +1161,77 @@ public class PolicyEndorsement extends GenericMethods {
 			SetUpWebdriver.captureScreenShot(driver, TestEngine.excutionFolder+ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 
 			String EndorsementNo=EndorsementNumber.getText();
+			System.out.println("Endorsment No : "+EndorsementNo);
 			Reporter.log("----------");
 			Reporter.log("Endorsement No. for this case is "+EndorsementNo);
 			Reporter.log("---------");
 			ConfigReader.getInstance().StoreValueToConfig("EndorsementNo", EndorsementNo, "Endorsement No generated");
+			
+			if(dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification In Member Details")
+				||dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification in Policy Holder Details"))
+			{
+				click(acceptQC, "Click on Accept QC");
+				Thread.sleep(WaitTime.medium);
+			}
+			
+			
+			if(dataRow.getProperty("Endorsement type").equalsIgnoreCase("Modification In Member Details")
+					&&dataRow.getProperty("NextRole").equalsIgnoreCase("UWR"))
+				{
+				String EndorsementNo1=EndorsementNumber.getText();
+				System.out.println("Endorsment No : "+EndorsementNo1);
+				
+				switchtodefaultframe(driver);
+				switchtoframe(driver, "head");
+				
+				click(roleCLICK,"Role Click");	
+				click(driver.findElement(By.xpath("//div[contains(text(),'UWR')]")),"Selected Role as UWR");
+				
+				Thread.sleep(WaitTime.medium);
+				switchtodefaultframe(driver);
+				switchtoframe(driver, "display");
+				click(PolicyManagement,"Policy Management tab");
+				Thread.sleep(WaitTime.high);
+				
+				/*
+				 * clearAndSenKeys(PolicyNoSearch,dataRow.getProperty("Policy No"
+				 * ),"Quote No Input"); Thread.sleep(WaitTime.medium); click(SearchButton,
+				 * "search");
+				 */
+				clearAndSenKeys(PolicyNoSearch, EndorsementNo1, "Fetch Endorsement No");
+				Thread.sleep(WaitTime.medium);
+				click(SearchButton, "search");
+				
+				driver.findElement(By.xpath("//input[@id='Policy No.']")).sendKeys(Keys.PAGE_DOWN);
+				Thread.sleep(2000);
+				click(driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("Policy No")+"')]")),"policy no");
+				Thread.sleep(2000);
+				String parentWindow2 = driver.getWindowHandle();
+				Thread.sleep(WaitTime.low);
+				switchtodefaultframe(driver);
+				switchtoframe(driver,"display");
+				Thread.sleep(WaitTime.low);
+				switchtoframe(driver,"containerFrame");
+				Thread.sleep(WaitTime.low);
+				
+				click(EndorsementMemberCode, " Click on Member code");
+				
+				switchToWindow(driver);
+				Thread.sleep(WaitTime.low);
+				
+				selectFromDropdownByVisibleText(memberSubStatus,dataRow.getProperty("MemberSubStatus"),"Selection of Member Sub Status");
+				click(saveBTN, "Click on Save Button");
+				click(Okbutton, "Ok Button");
+				driver.close();
+				
+			
+				}
+				
+			
+			String Endorsementstatus=EndorsementStatus.getText();
+			System.out.println("Endorsment Status: "+Endorsementstatus);
+			Reporter.log("----------");
+			Reporter.log("Endorsement status for this case is "+Endorsementstatus);
 
 			System.out.println("Completed");
 		}
