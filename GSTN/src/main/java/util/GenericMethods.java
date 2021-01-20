@@ -54,10 +54,9 @@ import testRunner.TestExecutionSuite;
 public class GenericMethods {
 
 	WebDriver driver;
-	WebDriverWait wait;
+	protected WebDriverWait wait;
 	
 	public static  HashMap<String, String> quoteNumber = new HashMap<>();
-	
 		
 	public static String getQuoteNo(String testId) {
 		return quoteNumber.get(testId);
@@ -68,12 +67,7 @@ public class GenericMethods {
 		HashMap<String,String> quoteMap = TestExecutionSuite.scenarioStatus.get(testId);
 		quoteMap.put("QuoteNumber", quoteNo);
 	}
-	
-	
-	
-	
-	
-	
+
 	public GenericMethods() {
 
 	}

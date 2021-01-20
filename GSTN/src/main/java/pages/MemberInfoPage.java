@@ -94,7 +94,7 @@ public class  MemberInfoPage extends GenericMethods {
 	@FindBy(xpath="//button[@id='Submit']")
 	private WebElement subbtn;
 	
-	@FindBy(xpath="//button[@id='Submit']")
+	@FindBy(xpath="//button[@id='moreInfo']")
 	private WebElement subbtn3;
 	
 	@FindBy(xpath="//button[contains(text(),'Continue')]")
@@ -339,9 +339,9 @@ public class  MemberInfoPage extends GenericMethods {
 		
 		//policy summary
 		//driver.switchTo().window(parentWindow);
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		click(Continue, "Submit btn");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.high);
 		
 		
 		/*
