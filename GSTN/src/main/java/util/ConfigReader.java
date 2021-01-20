@@ -71,7 +71,7 @@ public class ConfigReader {
     
     
     public String StoreValueToConfig(String Key,String value,String Comment) throws IOException {
- 	   String Path="D:\\git\\ABHI_Framework\\GSTN\\Config.properties";
+ 	   String Path="F:\\git\\ABHI_Framework\\ABHI_Framework\\GSTN\\Config.properties";
      FileOutputStream outputstream=new FileOutputStream(Path);
  	   props.setProperty(Key, value);
  	   props.save(outputstream, Comment);
