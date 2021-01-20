@@ -1321,31 +1321,24 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					String yearStr = String.valueOf(year);
 					String actualdate = acurrdate.replaceAll(date3, yearStr);
 					Thread.sleep(WaitTime.low);
-					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")),
-							actualdate, "Date of Birth");
+					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")),actualdate, "Date of Birth");
 					Thread.sleep(WaitTime.low);
 					driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")).sendKeys(Keys.TAB);
 					// driver.findElement(By.xpath("(//input[@id='Age'])["+y+"]")).sendKeys(Keys.TAB);
 				}
 
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleTextStale(
-						driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),
-						genderlist.get(x), " Gender ");
+				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),genderlist.get(x), " Gender ");
 				Thread.sleep(WaitTime.low);
 
 				// Relationship
 				Thread.sleep(WaitTime.medium);
-				selectFromDropdownByVisibleTextStale(
-						driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),
-						Relationlist.get(x), " Relationship ");
+				selectFromDropdownByVisibleTextStale(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),Relationlist.get(x), " Relationship ");
 				Thread.sleep(WaitTime.low);
 			}
 
 			Thread.sleep(WaitTime.low);
-			SetUpWebdriver.captureScreenShot(driver,
-					TestEngine.excutionFolder + ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),
-					dataRow.getProperty("TCID"));
+			SetUpWebdriver.captureScreenShot(driver,TestEngine.excutionFolder + ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 			click(calpremBTN, "Calculate Premium Button");
 			Thread.sleep(WaitTime.high);
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
@@ -1354,9 +1347,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			click(saveBTN, " SaveButton ");
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'OK')]")));
-			SetUpWebdriver.captureScreenShot(driver,
-					TestEngine.excutionFolder + ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),
-					dataRow.getProperty("TCID"));
+			SetUpWebdriver.captureScreenShot(driver,TestEngine.excutionFolder + ConfigReader.getInstance().getValue(PropertyConfigs.screenShotFolder),dataRow.getProperty("TCID"));
 			click(saveokBTN, "Ok ");
 			Thread.sleep(3000);
 
@@ -1749,33 +1740,21 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 					// Gender
 
-					if (dataRow.getProperty("Gender").equalsIgnoreCase("Male")
-							|| dataRow.getProperty("Gender").equalsIgnoreCase("Others-Male")) {
-						selectFromDropdownByVisibleText(
-								driver.findElement(
-										By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),
-								"Female", " Gender ");
+					if (dataRow.getProperty("Gender").equalsIgnoreCase("Male")|| dataRow.getProperty("Gender").equalsIgnoreCase("Others-Male")) {
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),"Female", " Gender ");
 						Thread.sleep(WaitTime.low);
-					} else if (dataRow.getProperty("Gender").equalsIgnoreCase("Female")
-							|| dataRow.getProperty("Gender").equalsIgnoreCase("Others-Female")) {
-						selectFromDropdownByVisibleText(
-								driver.findElement(
-										By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),
-								"Male", " Gender ");
+					} else if (dataRow.getProperty("Gender").equalsIgnoreCase("Female")|| dataRow.getProperty("Gender").equalsIgnoreCase("Others-Female")) {
+						selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),"Male", " Gender ");
 						Thread.sleep(WaitTime.low);
 					}
 
 					Thread.sleep(WaitTime.low);
-					selectFromDropdownByVisibleText(
-							driver.findElement(
-									By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),
-							"Spouse", " Relationship ");
+					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),"Spouse", " Relationship ");
 					Thread.sleep(WaitTime.high);
 
 				} else if (myList.get(x).equalsIgnoreCase("Son")) {
 
-					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]")),
-							getRandomString(), " Name ");
+					clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]")),getRandomString(), " Name ");
 
 					// Age & DOB
 					DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
@@ -1794,9 +1773,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 						int year = calactual - ageCal;
 						String yearStr = String.valueOf(year);
 						String actualdate2 = acurrdate.replaceAll(date3, yearStr);
-//							         Thread.sleep(WaitTime.medium);
-						clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")),
-								actualdate2, "Date of Birth");
+//						Thread.sleep(WaitTime.medium);
+						clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")),actualdate2, "Date of Birth");
 						Thread.sleep(WaitTime.medium);
 						driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]")).sendKeys(Keys.TAB);
 						driver.findElement(By.xpath("(//input[@id='Age'])[" + y + "]")).sendKeys(Keys.TAB);
