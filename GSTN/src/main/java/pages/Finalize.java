@@ -144,6 +144,25 @@ public class Finalize extends GenericMethods{
 	@FindBy(xpath="//input[@id='Zip CodeParty']")
 	private WebElement Pincode;
 	
+	//ID details
+	@FindBy(xpath="//button[@id='ID Details']")
+	private WebElement IDdetailsBtn;
+	
+	//ID Type
+	@FindBy(xpath="//select[@id='ID Type0']")
+	private WebElement IDType;
+
+	//ID No
+	@FindBy(xpath="//input[@name='ID Number0']")
+	private WebElement IDNo;
+
+	//Save Button
+	@FindBy(xpath="//button[@id='SaveBtn']")
+	private WebElement save;
+
+	//Close Button
+	@FindBy(xpath="//button[@id='CloseBtn']")
+	private WebElement Close;
 	
 	//Fill City
 	@FindBy(xpath="//input[@id='City1']")
@@ -289,9 +308,6 @@ public class Finalize extends GenericMethods{
 		String sheetName = ConfigReader.getInstance().getValue(PropertyConfigs.TestSheet);
 		Properties dataRow = ExcelRead.readRowDataInProperties(workbook, sheetName, testCaseName,stepGroup);
 		Reporter.log("<B>Traverse To CommonPage</B>");
-
-		
-		//String winHandleBefore = driver.getWindowHandle();
 				
 		switchtoframe(driver, "display"); 
 		
@@ -305,8 +321,10 @@ public class Finalize extends GenericMethods{
 		String parentWindow = driver.getWindowHandle();
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 
+		//Proposer
+	if(dataRow.getProperty("PolicyHolderIsMember").equalsIgnoreCase("Yes"))
+	{
 		if(!dataRow.getProperty("PartyCode").isEmpty()) {
-			
 			switchtodefaultframe(driver);
 			switchtoframe(driver, "display"); 
 			click(PartySearchicon, "Party Search icon");
@@ -324,8 +342,7 @@ public class Finalize extends GenericMethods{
 		click(policyholderCD, "PolicyHolderCD");
 		switchToWindow(driver);
 		Thread.sleep(WaitTime.medium);
-
-		//selectFromDropdownByVisibleText(title,dataRow.getProperty("Title"),"Title");
+		
 		//First Name
 		clearAndSenKeys(firstname,getRandomString(),"First Name" );
 		Thread.sleep(WaitTime.medium);
@@ -365,7 +382,7 @@ public class Finalize extends GenericMethods{
         Thread.sleep(WaitTime.medium);
         dateofbirth.sendKeys(Keys.TAB);
 		
-		}
+		}	
 		
 		//Family
 		else if(dataRow.getProperty("Policy Type").equalsIgnoreCase("Family Floater"))
@@ -456,7 +473,8 @@ public class Finalize extends GenericMethods{
 			//Gender
 			Thread.sleep(WaitTime.medium);
 			String genders = dataRow.getProperty("Gender");
-			ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
+			String genderss= genders.replace(" ", "");
+			ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genderss.split("\\+")));
 			String genderSelection=genderSelect.get(0);
 			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
@@ -602,7 +620,8 @@ public class Finalize extends GenericMethods{
 				//Gender
 				Thread.sleep(WaitTime.medium);
 				String genders = dataRow.getProperty("Gender");
-				ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders.split("\\+")));
+				String genders1= genders.replace(" ", "");
+				ArrayList<String> genderSelect = new ArrayList<String>(Arrays.asList(genders1.split("\\+")));
 				String genderSelection=genderSelect.get(0);
 				Thread.sleep(WaitTime.medium);
 				selectFromDropdownByVisibleText(gender,genderSelection,"Gender"); 
@@ -660,19 +679,10 @@ public class Finalize extends GenericMethods{
 		selectFromDropdownByVisibleText(GSTregistrationtype,dataRow.getProperty("GST Registration Type"),"GST Registration Type");
 		Thread.sleep(WaitTime.medium);
 		
-		//Pan Number
-		if(collectionamount>50000.00)
-		{
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(pannumber,dataRow.getProperty("PAN Number"),"PAN Number" );
-		}
-		
-		
 		//IstheMailing Radiobutton
 		Thread.sleep(WaitTime.medium);
 		click(mailing,"IstheMailing");
 		Thread.sleep(3000);
-		
 		
 		//Save Button
 		click(saveBTN,"Save");
@@ -741,6 +751,26 @@ public class Finalize extends GenericMethods{
 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
 		//Party Create Window
 		String ChildWindow1=driver.getWindowHandle();
+		
+		//Pan Number
+		if(collectionamount>50000.00)
+		{
+			Thread.sleep(WaitTime.medium);
+			click(IDdetailsBtn, "ID details");
+			switchToWindow(driver);
+			selectFromDropdownByVisibleText(IDType, "PAN Card", "ID Type");
+			Thread.sleep(WaitTime.low);
+			clearAndSenKeys(IDNo, dataRow.getProperty("PAN Number"), "ID Number");
+			Thread.sleep(WaitTime.low);
+			click(save, "Save");
+			Thread.sleep(WaitTime.medium);
+			click(okBTN1, "Ok");
+			Thread.sleep(WaitTime.low);
+			click(Close, "Close");
+			driver.switchTo().window(ChildWindow1);
+		}
+		
+		
 		Thread.sleep(WaitTime.medium);
 		click(bankaccountdetails,"bankaccountdetail");
 		switchToWindow(driver);
@@ -758,26 +788,26 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(WaitTime.medium);
 		
 		//Bank Account Window
-		String ChildWindow2=driver.getWindowHandle();
+	//	String ChildWindow2=driver.getWindowHandle();
 		
-		Thread.sleep(WaitTime.medium);
-		click(ifsciconbtn,"Iconbtn");
-		Thread.sleep(WaitTime.medium);
-		switchToWindow(driver);		
-				
-		Thread.sleep(WaitTime.medium);
-		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
-		Thread.sleep(WaitTime.medium);
+//		Thread.sleep(WaitTime.medium);
+//		click(ifsciconbtn,"Iconbtn");
+//		Thread.sleep(WaitTime.medium);
+//		switchToWindow(driver);		
+//				
+//		Thread.sleep(WaitTime.medium);
+//		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
+//		Thread.sleep(WaitTime.medium);
+//		
+//		Thread.sleep(WaitTime.medium);
+//		click(searchifscbtn,"IFSCsearchbtn");
+//		Thread.sleep(WaitTime.medium);
+//		
+//		Thread.sleep(WaitTime.medium);
+//		click(ifcselectbtn,"IFSCselectbtn");
 		
-		Thread.sleep(WaitTime.medium);
-		click(searchifscbtn,"IFSCsearchbtn");
-		Thread.sleep(WaitTime.medium);
-		
-		Thread.sleep(WaitTime.medium);
-		click(ifcselectbtn,"IFSCselectbtn");
-		
-		Thread.sleep(WaitTime.medium);
-       driver.switchTo().window(ChildWindow2);
+		//Thread.sleep(WaitTime.medium);
+       //driver.switchTo().window(ChildWindow2);
 		Thread.sleep(WaitTime.medium);
 		click(savebtn,"Savebtn");
 				
@@ -798,7 +828,223 @@ public class Finalize extends GenericMethods{
 		Thread.sleep(3000);
 		
 		}
+	}
 		
+	
+	//Insured Member
+	else if(dataRow.getProperty("PolicyHolderIsMember").equalsIgnoreCase("No"))
+	{
+		if(!dataRow.getProperty("PartyCode").isEmpty()) {
+			switchtodefaultframe(driver);
+			switchtoframe(driver, "display"); 
+			click(PartySearchicon, "Party Search icon");
+			switchToWindow(driver);
+			clearAndSenKeys(PartyTxtbox, dataRow.getProperty("PartyCode"), "Party code");
+			click(Searchbtn, "Search button");
+			click(driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("PartyCode")+"')]")), "Party Code");
+			
+		}
+		
+		else
+		{
+			//Entering Policy Holder Details
+			wait.until(ExpectedConditions.elementToBeClickable(policyholderCD));
+			Thread.sleep(WaitTime.medium);
+			click(policyholderCD, "PolicyHolderCD");
+			switchToWindow(driver);
+			Thread.sleep(WaitTime.medium);
+			
+			//First Name
+			clearAndSenKeys(firstname,getRandomString(),"First Name" );
+			Thread.sleep(WaitTime.medium);
+			
+		//Gender
+				selectFromDropdownByVisibleText(gender,dataRow.getProperty("ProposerGender"),"Proposer Gender");
+				Thread.sleep(WaitTime.medium);
+				
+		//Proposer Title
+				if(dataRow.getProperty("ProposerGender").equalsIgnoreCase("Male")) {
+					Thread.sleep(WaitTime.medium);
+					selectFromDropdownByVisibleText(title,"Mr.","Title");
+				}
+				else {
+					selectFromDropdownByVisibleText(title,"Ms.","Title");
+					Thread.sleep(WaitTime.medium);
+				}	
+				
+		//Proposer DOB
+				 DateFormat dfor = new SimpleDateFormat("dd/MM/yyyy");
+			     Date obj = new Date();
+			     String acurrdate=dfor.format(obj);
+			     
+				 String ProposerDOB=dataRow.getProperty("ProposerAge");
+				 String[] arrofstr=acurrdate.split("/",3);
+		         String date3=arrofstr[2];
+			     int calactual= Integer.parseInt(date3);
+			     int ageCal=Integer.parseInt(ProposerDOB);
+			     int year=calactual-ageCal;
+		         String yearStr=String.valueOf(year);
+		         String actualdate1=acurrdate.replaceAll(date3, yearStr);
+		         Thread.sleep(WaitTime.medium);
+		         clearAndSenKeys(dateofbirth,actualdate1,"Proposer Date of Birth");
+		         Thread.sleep(WaitTime.medium);
+		         dateofbirth.sendKeys(Keys.TAB);
+		         
+		  //Proposer GST Resgistration Type
+		         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+		 		Thread.sleep(WaitTime.medium);
+		 		selectFromDropdownByVisibleText(GSTregistrationtype,dataRow.getProperty("ProposerGSTRegistrationType"),"Proposer GST Registration Type");
+		 		Thread.sleep(WaitTime.medium);
+		 		
+		 		//IstheMailing Radiobutton
+		 		Thread.sleep(WaitTime.medium);
+		 		click(mailing,"IstheMailing");
+		 		Thread.sleep(3000);
+		 		
+		 		//Save Button
+		 		click(saveBTN,"Save");
+		 		Thread.sleep(5000);
+		 		click(okBTN, "OK");
+		 		Thread.sleep(WaitTime.high);
+		 		 
+		 		//click Multicolor icon
+		 		click(MulticolorIcon,"Multicolor Icon");
+		 		Thread.sleep(WaitTime.medium);
+		 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
+		 		Thread.sleep(WaitTime.medium);
+		 		
+		 		
+		 		//Click Permanent Contact
+		 		click(PermanentContact,"Permanent Contact");
+		 		Thread.sleep(WaitTime.medium);
+		 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_DOWN);
+		 		
+		 		
+		 		//Fill Address line 1
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(AddressLine1,dataRow.getProperty("ProposerAddress Line 1"),"Proposer Address Line 1");
+		 		
+		 		
+		 		//Fill Address line 2
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(AddressLine2,dataRow.getProperty("ProposerAddress Line 2"),"Proposer Address Line 2");
+		 		
+		 		
+		 		//Fill Pincode
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(Pincode,dataRow.getProperty("ProposerPincode"),"Proposer Pincode");
+		 		Pincode.sendKeys(Keys.TAB);
+		 		
+		 		
+		 		//Landline Number
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(Landline,dataRow.getProperty("ProposerLandline Number"),"Proposer Landline number");
+		 		
+		 		
+		 		//Mobile Number
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(Mobile,dataRow.getProperty("ProposerMobile Number"),"Proposer Mobile Number");
+		 		
+		 		//Fill Email ID
+		 		Thread.sleep(WaitTime.medium);
+		 		clearAndSenKeys(Email,dataRow.getProperty("ProposerEmail ID"),"Proposer Email ID");
+		 		
+		 		
+		 		//Click Save Button
+		 		Thread.sleep(WaitTime.medium);
+		 		click(Save1,"Save Button");
+		 		
+		 		
+		 		//Click OK Button
+		 		Thread.sleep(WaitTime.medium);
+		 		click(okBTN,"OK");
+		 		Thread.sleep(WaitTime.medium);
+		 		
+		 		
+		 		driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.PAGE_UP);
+		 		//Party Create Window
+		 		String ChildWindow1=driver.getWindowHandle();
+		 		
+		 		//Pan Number
+		 		if(collectionamount>50000.00)
+		 		{
+		 			Thread.sleep(WaitTime.medium);
+		 			click(IDdetailsBtn, "ID details");
+		 			switchToWindow(driver);
+		 			selectFromDropdownByVisibleText(IDType, "PAN Card", "ID Type");
+		 			Thread.sleep(WaitTime.low);
+		 			clearAndSenKeys(IDNo, dataRow.getProperty("ProposerPANNumber"), "Proposer ID Number");
+		 			Thread.sleep(WaitTime.low);
+		 			click(save, "Save");
+		 			Thread.sleep(WaitTime.medium);
+		 			click(okBTN1, "Ok");
+		 			Thread.sleep(WaitTime.low);
+		 			click(Close, "Close");
+		 			driver.switchTo().window(ChildWindow1);
+		 		}
+		 		
+		 		
+		 		Thread.sleep(WaitTime.medium);
+		 		click(bankaccountdetails,"bankaccountdetail");
+		 		switchToWindow(driver);
+		 		Thread.sleep(WaitTime.medium);
+		 			 		
+		 		clearAndSenKeys(accountNo,dataRow.getProperty("AccountNo"),"Account No");
+		 		Thread.sleep(WaitTime.medium);
+		 				
+		 		clearAndSenKeys(confirmaccountNo,dataRow.getProperty("ConformAccountNo"),"ConformAccount No");
+		 		Thread.sleep(WaitTime.medium);
+		 				
+		 		
+		 		Thread.sleep(WaitTime.medium);
+		 		selectFromDropdownByVisibleText(bankaccounttype,dataRow.getProperty("AccountType"),"account Type");
+		 		Thread.sleep(WaitTime.medium);
+		 		
+		 		//Bank Account Window
+		 	//	String ChildWindow2=driver.getWindowHandle();
+		 		
+//		 		Thread.sleep(WaitTime.medium);
+//		 		click(ifsciconbtn,"Iconbtn");
+//		 		Thread.sleep(WaitTime.medium);
+//		 		switchToWindow(driver);		
+//		 				
+//		 		Thread.sleep(WaitTime.medium);
+//		 		clearAndSenKeys(ifsccode,dataRow.getProperty("IFSCcode"),"IFSC Code");
+//		 		Thread.sleep(WaitTime.medium);
+//		 		
+//		 		Thread.sleep(WaitTime.medium);
+//		 		click(searchifscbtn,"IFSCsearchbtn");
+//		 		Thread.sleep(WaitTime.medium);
+//		 		
+//		 		Thread.sleep(WaitTime.medium);
+//		 		click(ifcselectbtn,"IFSCselectbtn");
+		 		
+		 		//Thread.sleep(WaitTime.medium);
+		        //driver.switchTo().window(ChildWindow2);
+		 		Thread.sleep(WaitTime.medium);
+		 		click(savebtn,"Savebtn");
+		 				
+		 		Thread.sleep(3000);
+		 		click(okBTN,"OK");
+		 		Thread.sleep(2000);
+		 		
+		 	// close btn on ifsc code 	
+		 		Thread.sleep(WaitTime.medium);
+		 		click(closebtn,"Closebtn");
+		 		Thread.sleep(3000);
+
+		 		driver.switchTo().window(ChildWindow1);
+		 		
+		 		//Activate Client
+		 		Thread.sleep(3000);
+		 		click(activateclient,"Activate Client");
+		 		Thread.sleep(3000);       
+				
+		}		
+		
+	}
+		
+	
 		//Is Policy Holder a Member
 		driver.switchTo().window(parentWindow);
 		Thread.sleep(2000);
