@@ -248,11 +248,10 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(subplantype, dataRow.getProperty("SubPlan"), "SubPlan Type");
-		Thread.sleep(WaitTime.low);
 
 		Thread.sleep(WaitTime.medium);
 		selectFromDropdownByVisibleText(SI, dataRow.getProperty("SumInsured"), " SumInsured ");
-		Thread.sleep(WaitTime.low);
+		Thread.sleep(WaitTime.medium);
 
 		// Active Health--Rahul
 		if (dataRow.getProperty("Product").equalsIgnoreCase("Activ Health (4212)")) {
@@ -362,9 +361,9 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			BtnPress.put("Self + Spouse + Kid1 + Kid2", 14);
 
 			Thread.sleep(WaitTime.medium);
-			Thread.sleep(2000);
+			Thread.sleep(4000);
 			clearAndSenKeys(FamilySize, dataRow.getProperty("Relation"), "Family-Size");
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			for (String key : BtnPress.keySet()) {
 				if (key.equalsIgnoreCase(dataRow.getProperty("Relation"))) {
@@ -396,16 +395,15 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 			Thread.sleep(WaitTime.high);
 			wait.until(ExpectedConditions.elementToBeClickable(plantype));
-			selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),
-					"EmployeeDiscount");
+			selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 			Thread.sleep(WaitTime.low);
 
 			clearAndSenKeys(pincode, dataRow.getProperty("PinCode"), "PinCode ");
 			Thread.sleep(WaitTime.medium);
 			driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
 
-			String noOfmembers = noOFmembers.getAttribute("value");
-			int membersno = Integer.parseInt(noOfmembers);
+//			String noOfmembers = noOFmembers.getAttribute("value");
+//			int membersno = Integer.parseInt(noOfmembers);
 
 			HashMap<String, String> genderlist = new HashMap<>();
 			genderlist.put("Self", "Male");
@@ -440,23 +438,21 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				Thread.sleep(WaitTime.low);
 			}
 
-			Thread.sleep(WaitTime.low);
-			selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible"), " Dedcutible ");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
+			selectFromDropdownByVisibleText(deductible, dataRow.getProperty("Deductible"), "Dedcutible ");
+			Thread.sleep(WaitTime.medium);
 
 			Thread.sleep(WaitTime.medium);
 			selectFromDropdownByVisibleText(room, dataRow.getProperty("RoomCategory"), " Room Category ");
-			Thread.sleep(WaitTime.low);
+			Thread.sleep(WaitTime.medium);
 
 			for (int x = 0; x < myList.size(); x++) {
 				int y = x + 1;
 
 				WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]"));
 				WebElement dob = driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]"));
-				WebElement gender = driver
-						.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]"));
-				WebElement relationship = driver
-						.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]"));
+				WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]"));
+				WebElement relationship = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]"));
 				WebElement AgeValue1 = driver.findElement(By.xpath("(//input[@id='Age'])[" + y + "]"));
 
 				if (myList.get(x).equalsIgnoreCase("Self")) {
@@ -916,16 +912,11 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 					Thread.sleep(WaitTime.medium);
 					selectFromDropdownByVisibleText(
-							driver.findElement(
-									By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),
-							"Female", " Gender ");
+							driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),"Female", " Gender ");
 					Thread.sleep(WaitTime.low);
 
 					Thread.sleep(WaitTime.medium);
-					selectFromDropdownByVisibleText(
-							driver.findElement(
-									By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),
-							"Mother", " Relationship ");
+					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),"Mother", " Relationship ");
 					Thread.sleep(WaitTime.low);
 
 				} else if (myList.get(x).equalsIgnoreCase("Father-in-law")) {
@@ -1046,18 +1037,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 					}
 
 					Thread.sleep(WaitTime.medium);
-					selectFromDropdownByVisibleText(
-							driver.findElement(
-									By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),
-							"Female", " Gender");
+					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]")),"Female", " Gender");
 					Thread.sleep(WaitTime.low);
 
 					Thread.sleep(WaitTime.medium);
-					selectFromDropdownByVisibleText(
-							driver.findElement(
-									By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),
-							"Mother-in-Law", " Relationship");
-					Thread.sleep(WaitTime.low);
+					selectFromDropdownByVisibleText(driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]")),"Mother-in-Law", " Relationship");
+					Thread.sleep(WaitTime.medium);
 
 				}
 
@@ -1091,7 +1076,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 			String QuoteNo = refno2.getText();
 			setQuoteNo(QuoteNo, testCaseName);
-			ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
+		//	ConfigReader.getInstance().StoreValueToConfig("Quote_No", QuoteNo, "Quote generated");
 
 			Reporter.log("<B> Quotation:- </B> " + refno2.getText());
 			Reporter.log("                     ");
@@ -1137,8 +1122,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 			Thread.sleep(WaitTime.medium);
 			wait.until(ExpectedConditions.elementToBeClickable(plantype));
-			selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),
-					"EmployeeDiscount");
+			selectFromDropdownByVisibleText(employeediscount, dataRow.getProperty("EmployeeDiscount"),"EmployeeDiscount");
 			Thread.sleep(WaitTime.low);
 
 			clearAndSenKeys(pincode, dataRow.getProperty("PinCode"), "PinCode ");
@@ -1245,18 +1229,12 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 				// Name'])["+y+"]"));
 				WebElement MemberName = driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]"));
 				WebElement dob = driver.findElement(By.xpath("(//input[@id='Date of Birth'])[" + y + "]"));
-				WebElement gender = driver
-						.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]"));
-				WebElement relationship = driver
-						.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]"));
-				WebElement SI = driver
-						.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])[" + y + "]"));
-				WebElement zone = driver
-						.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])[" + y + "]"));
-				WebElement deduct = driver
-						.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])[" + y + "]"));
-				WebElement room = driver
-						.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])[" + y + "]"));
+				WebElement gender = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[1])[" + y + "]"));
+				WebElement relationship = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[2])[" + y + "]"));
+				WebElement SI = driver.findElement(By.xpath("(//input[@id='Member Name']//preceding::select[1])[" + y + "]"));
+				WebElement zone = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[1])[" + y + "]"));
+				WebElement deduct = driver.findElement(By.xpath("(//input[@id='Member Name']//following::select[3])[" + y + "]"));
+				WebElement room = driver.findElement(By.xpath("(//input[@id='Date of Birth']//following::select[3])[" + y + "]"));
 
 				Thread.sleep(WaitTime.medium);
 
@@ -1264,10 +1242,8 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 //								Thread.sleep(WaitTime.low);
 
 				Thread.sleep(WaitTime.medium);
-				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]")),
-						getRandomString(), "Member ");
-				// driver.findElement(By.xpath("(//input[@id='Member
-				// Name'])["+y+"]")).sendKeys(name);
+				clearAndSenKeys(driver.findElement(By.xpath("(//input[@id='Member Name'])[" + y + "]")),getRandomString(), "Member ");
+				// driver.findElement(By.xpath("(//input[@id='MemberName'])["+y+"]")).sendKeys(name);
 				Thread.sleep(WaitTime.low);
 
 //								Thread.sleep(WaitTime.medium);
@@ -1373,11 +1349,10 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 			Reporter.log("<B> Premium Inclusive of Tax Value Value:-  </B>" + premiuminclusiveofTAX.getText());
 			Reporter.log("<B> -------------------------------------------</B>");
 
-//					Assert Quote Details
+//Assert Quote Details
 
-			String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("â‚¹ ", "");
-			Assert.assertEquals("Expected value", netpremiumbeforeval,
-					dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
+			//String netpremiumbeforeval = netpremiumbefore.getText().toString().replace("₹ ", "");
+			//Assert.assertEquals("Expected value", netpremiumbeforeval,dataRow.getProperty("NetPremiumBeforeDiscouunt(BeforeOPD)"));
 
 		}
 
@@ -2017,8 +1992,7 @@ public class FamilyFloaterQuickPricingPage extends CustomAssert {
 
 				String premiumbeforeOPD = netpremiumafter.getText().toString().replace("₹ ", "").replace(",", "");
 				int premiumbeforeOPDNO = (int) Float.parseFloat(premiumbeforeOPD);
-				int premiumbeforeOPDNOSheet = (int) Float
-						.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
+				int premiumbeforeOPDNOSheet = (int) Float.parseFloat(dataRow.getProperty("NetPremiumAfterDiscount(BeforeOPD)").replace(",", ""));
 				verifyAssert(premiumbeforeOPDNO, premiumbeforeOPDNOSheet, "NetPremiumAfterDiscount(BeforeOPD)");
 
 				Thread.sleep(WaitTime.medium);
