@@ -188,7 +188,7 @@ public class SetUpWebdriver {
 		return destinationFilePath.getAbsolutePath();
 	}
 	public static void txtFileGenerator(String fileName,HashSet<String> data) throws FileNotFoundException, UnsupportedEncodingException {
-		PrintWriter writer = new PrintWriter("E:\\screenshot\\Latest\\"+fileName+".txt", "UTF-8");
+		PrintWriter writer = new PrintWriter("F:\\screenshot\\Latest\\"+fileName+".txt", "UTF-8");
 		for(String str:data) {
 			writer.println(str);
 		}
@@ -213,9 +213,9 @@ public class SetUpWebdriver {
 	}
 	public static boolean codeDeploymentUtility(String fileName) throws IOException {
 		boolean deployflag=true;
-		BufferedReader reader1 = new BufferedReader(new FileReader("E:\\screenshot\\Old\\"+fileName+".txt"));
+		BufferedReader reader1 = new BufferedReader(new FileReader("F:\\screenshot\\Old\\"+fileName+".txt"));
 
-		BufferedReader reader2 = new BufferedReader(new FileReader("E:\\screenshot\\Latest\\"+fileName+".txt"));
+		BufferedReader reader2 = new BufferedReader(new FileReader("F:\\screenshot\\Latest\\"+fileName+".txt"));
 
 		String line1 = reader1.readLine();
 
