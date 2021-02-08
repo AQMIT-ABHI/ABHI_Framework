@@ -102,6 +102,19 @@ public class BasicDetails extends GenericMethods{
 	@FindBy(xpath="//button[contains(text(),'Continue')]")
 	private WebElement continueBTN2;
 	
+	//Payer Xpaths
+	@FindBy(xpath="(//input[@name='Is proposer also the Payer ?'])[1]")
+	private WebElement ProposerAlsoAPayer;
+	
+	@FindBy(xpath="//input[@id='Payer_Pay']")
+	private WebElement PayerPartycode;
+	
+	@FindBy(xpath="//a[@id='openLookUp Payer_Pay']//i")
+	private WebElement SearchPayer;
+	
+	@FindBy(xpath="//input[@id='relationshipwith proposer']")
+	private WebElement PayerRltnWithProposer;
+	
 	
 	WebDriverWait wait;
 	public BasicDetails(WebDriver driver) {
@@ -219,14 +232,41 @@ public class BasicDetails extends GenericMethods{
  		switchtodefaultframe(driver);
  		switchtoframe(driver, "display"); 
  		switchtoframe(driver, "containerFrame");
-		
+ 		
+ 		//Payer Flow 05th Feb 2021
+ 		if(dataRow.getProperty("ProposerAlsoAPayer").equalsIgnoreCase("No"))
+ 		{
+ 			click(ProposerAlsoAPayer,"ProposerAlsoAPayer is No");
+ 			Thread.sleep(WaitTime.medium);
+ 			clearAndSenKeys(PayerPartycode,dataRow.getProperty("PayerPartyCode"),"PayerPartycode");
+ 			Thread.sleep(WaitTime.medium);
+ 			String childwindow = driver.getWindowHandle();
+ 			click(SearchPayer,"Search Payer");
+ 			Thread.sleep(WaitTime.low);
+ 			switchToWindow(driver);
+ 			click(driver.findElement(By.xpath("//a[contains(text(),'"+dataRow.getProperty("PayerPartyCode")+"')]")), "Payer Party Code");
+ 			Thread.sleep(WaitTime.medium);
+ 			driver.switchTo().window(childwindow);
+ 			switchtodefaultframe(driver);
+ 	 		switchtoframe(driver, "display"); 
+ 	 		switchtoframe(driver, "containerFrame");
+ 			
+ 			//Payer Relation with Proposer
+ 			clearAndSenKeys(PayerRltnWithProposer,dataRow.getProperty("PayerRltnWithProposer"),"Payer Relation With Proposer");
+ 			driver.findElement(By.xpath("(//span[contains(text(),'"+dataRow.getProperty("PayerRltnWithProposer")+"')])[1]")).click();
+ 			Thread.sleep(WaitTime.medium);
+ 		}
+ 		
 		
 		//Save Button
 		Thread.sleep(3000);
 		click(saveBTN,"Save");
 		Thread.sleep(3000);
 		
-
+		//Ok
+		click(okBTN3, "Ok ");
+		Thread.sleep(3000);
+		
 		//Continue
 		click(continueBTN1, "Continue");
 		Thread.sleep(WaitTime.medium);

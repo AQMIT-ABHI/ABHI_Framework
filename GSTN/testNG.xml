@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="1" parallel="tests" name="Pricing">
@@ -5,15 +6,16 @@
   <parameter name="LoBName" value="Pricing"/>
   <parameter name="TestScenario_RepositoryFileIndex" value="TCS_Return\TestScenarioSuite\CalculationScanerio\0003_ScenarioSuite.xlsx"/>
   <parameter name="TestData_RepositoryFile" value="TCS_Return\TestDataSuite\CalculationData\0002_TestDataSuite.xlsx"/>
-  <test name="TCS_EndorsementActiveHealth_NSTP_0016" verbose="2">
-    <parameter name="ScriptReference" value="CreateEndorsementFlow"/>
-    <parameter name="ScenarioID" value="TCS_EndorsementActiveHealth_NSTP_0016"/>
-    <parameter name="Description" value="Modification in Policy Holder Details"/>
+  <test name="TCS_ArogyaSanjINDSTP_00003" verbose="2">
+    <parameter name="ScriptReference" value="CreateIndividualOtherUserLoginInfo"/>
+    <parameter name="ScenarioID" value="TCS_ArogyaSanjINDSTP_00003"/>
+    <parameter name="Description" value="Policy should get issued with SI - 100000 and premium frequency as Quarterly"/>
     <parameter name="Product" value="Positive"/>
     <parameter name="Module" value="TCS"/>
-    <parameter name="ScenarioUID" value="TCS_EndorsementActiveHealth_NSTP_0016"/>
+    <parameter name="ScenarioUID" value="TCS_ArogyaSanjINDSTP_00003"/>
     <classes>
       <class name="testRunner.TestExecutionSuite"/>
     </classes>
-  </test> <!-- TCS_EndorsementActiveHealth_NSTP_0016 -->
+  </test> <!-- TCS_ArogyaSanjINDSTP_00003 -->
 </suite> <!-- Pricing -->
+
