@@ -252,7 +252,7 @@ public class CollectionScreen extends GenericMethods {
 		// Upload File 1
 		Thread.sleep(WaitTime.medium);
 		click(upload, "File Uploaded");
-		Thread.sleep(WaitTime.medium);
+		Thread.sleep(WaitTime.veryHigh);
 		driver.switchTo().window(parentWindow);
 		switchtodefaultframe(driver);
 		switchtoframe(driver, "display");
